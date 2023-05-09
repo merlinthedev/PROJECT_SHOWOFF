@@ -3,31 +3,22 @@
     "maps": [
         {
             "name": "Movement",
-            "id": "33f438b4-f6f9-40c8-8d14-5e916b5cfed7",
+            "id": "a345dc91-d1a2-4ec1-9760-7dd15db99435",
             "actions": [
                 {
                     "name": "Walking",
                     "type": "Value",
-                    "id": "38e3d815-39ee-4ef9-9ce5-2232d8248143",
+                    "id": "e6650fa9-2fa2-4ab9-8bf8-2c8d534c8301",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Join Button",
-                    "type": "Button",
-                    "id": "3cd8d5b2-4d49-4ffe-a946-ea138d8d658d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "54d8ab54-b8e4-48e9-afa9-c2f21b9aa44c",
+                    "id": "4396ca22-4da4-4697-8184-107f0d41aa27",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
@@ -37,8 +28,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Keyboard",
-                    "id": "1cb8e135-492d-409b-9dc9-d6b4cd7f6fae",
+                    "name": "2D Vector",
+                    "id": "a77502f5-0efc-44c7-baaa-b36c3fc817ff",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -49,7 +40,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "73c0afa9-d519-4abd-bb59-111ad21c2dfb",
+                    "id": "1c7c7224-1f4e-4caa-983e-fcd7224b6b45",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -60,7 +51,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "dea036a8-206e-474c-9a93-d69c46a652bf",
+                    "id": "b38d8353-bbdf-4443-87be-e0d352f419c1",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -71,7 +62,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "c905b36e-7039-478c-88e1-66c5d5455813",
+                    "id": "1551eadd-348f-4b64-b4b8-1263cd34130d",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -82,7 +73,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "8be7a6d1-0b46-4e6a-8ca7-7eb5cca15f86",
+                    "id": "440e70c0-f557-46c0-afa2-e692c63aada4",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -90,28 +81,6 @@
                     "action": "Walking",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "1445d2d3-d360-4607-9840-6df0031c4778",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Join Button",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e3d1ef6f-dd9d-413c-83c4-e03033571216",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard + Mouse",
-                    "action": "Join Button",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }
