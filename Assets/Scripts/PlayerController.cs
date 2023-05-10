@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     private void Update()
     {
+        Debug.Log(_objectCollission);
         if (!_active) return;
         // Calculate velocity
         Velocity = (transform.position - _lastPosition) / Time.deltaTime;
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
 
     [Header("COLLISION")][SerializeField] private Bounds _characterBounds;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private LayerMask _objectLayer;
     [SerializeField] private int _detectorCount = 3;
     [SerializeField] private float _detectionRayLength = 0.1f;
     [SerializeField][Range(0.1f, 0.3f)] private float _rayBuffer = 0.1f; // Prevents side detectors hitting the ground
@@ -126,6 +128,36 @@ public class PlayerController : MonoBehaviour, IPlayerController
         bool RunDetection(RayRange range)
         {
             return EvaluateRayPositions(range).Any(point => Physics2D.Raycast(point, range.Dir, _detectionRayLength, _groundLayer));
+        }
+
+        // Objects
+
+        var objectCheck = false;
+
+        if(objectCheck = ObjectDetection(_raysDown))
+        {
+            _objectCollission = true;
+        }
+        else if(objectCheck = ObjectDetection(_raysUp))
+        {
+            _objectCollission = true;
+        }
+        else if (objectCheck = ObjectDetection(_raysLeft))
+        {
+            _objectCollission = true;
+        }
+        else if (objectCheck = ObjectDetection(_raysRight))
+        {
+            _objectCollission = true;
+        }
+        else
+        {
+            _objectCollission = false;
+        }
+
+        bool ObjectDetection(RayRange range)
+        {
+            return EvaluateRayPositions(range).Any(point => Physics2D.Raycast(point, range.Dir, _detectionRayLength, _objectLayer));
         }
     }
 
@@ -254,6 +286,7 @@ public class PlayerController : MonoBehaviour, IPlayerController
     [SerializeField] private float _jumpBuffer = 0.1f;
     [SerializeField] private float _jumpEndEarlyGravityModifier = 3;
     private bool _coyoteUsable;
+    private bool _objectCollission;
     private bool _endedJumpEarly = true;
     private float _apexPoint; // Becomes 1 at the apex of a jump
     private float _lastJumpPressed;
