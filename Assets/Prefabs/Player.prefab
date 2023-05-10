@@ -126,7 +126,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2809409103064106543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,9 +169,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e7bb555a0b5e349afd46d5c2daf467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 2809409103064106543}
-  rb: {fileID: 7052072812959686206}
-  speed: 5
+  _characterBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _detectorCount: 3
+  _detectionRayLength: 0.6
+  _rayBuffer: 0.1
+  _acceleration: 40
+  _moveClamp: 13
+  _deAcceleration: 60
+  _apexBonus: 2
+  _fallClamp: -20
+  _minFallSpeed: 30
+  _maxFallSpeed: 72
+  _jumpHeight: 15
+  _jumpApexThreshold: 10
+  _coyoteTimeThreshold: 0.1
+  _jumpBuffer: 0.1
+  _jumpEndEarlyGravityModifier: 3
+  _freeColliderIterations: 10
 --- !u!114 &774228856724907074
 MonoBehaviour:
   m_ObjectHideFlags: 0
