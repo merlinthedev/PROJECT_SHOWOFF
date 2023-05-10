@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [Header("Jump")]
     private bool isGrounded = false;
     [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float groundCheckRaycastDistance = 0.5f;
 
     private void FixedUpdate()
     {
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
         // Groundcheck
         isGrounded = false;
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, 1f, LayerMask.GetMask("Ground"));
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, groundCheckRaycastDistance, LayerMask.GetMask("Ground"));
         foreach (RaycastHit2D hit in hits)
         {
             if (hit.collider.gameObject != gameObject)
