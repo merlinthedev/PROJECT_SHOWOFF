@@ -1178,8 +1178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1fe13b86ab92e4cb915648ed01ed4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSwitcher: {fileID: 0}
-  colliderIndex: 1
+  camera: {fileID: 611573315}
+  cameraPriority: 5
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,7 +2082,7 @@ GameObject:
   - component: {fileID: 1197456493}
   - component: {fileID: 1197456492}
   m_Layer: 0
-  m_Name: PlayerFocus
+  m_Name: PlayerFocus [Default]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2104,7 +2104,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: -1
+  m_Priority: 1
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 590932627}
