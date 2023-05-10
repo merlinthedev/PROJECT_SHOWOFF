@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     [Header("Jump")]
-    private bool isGrounded = false;
+    public bool isGrounded = false;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
 
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.gameObject != gameObject)
             {
-                Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
+                //Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
                 isGrounded = true;
                 break;
             }

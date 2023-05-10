@@ -232,6 +232,7 @@ MonoBehaviour:
   gravityScaleDrop: 10
   rb: {fileID: 7052072812959686206}
   jumpForce: 11
+  groundCheckRaycastDistance: 0.5
 --- !u!114 &774228856724907074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff80a3e3796658c4284042a48a7093dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objectLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  objectGrabPointTranform: {fileID: 0}
 --- !u!1 &7052072814427263470
 GameObject:
   m_ObjectHideFlags: 0

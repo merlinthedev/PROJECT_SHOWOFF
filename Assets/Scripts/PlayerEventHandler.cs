@@ -6,6 +6,8 @@ public class PlayerEventHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask _objectLayer;
     private GameObject nearObject;
+    [SerializeField] private Transform objectGrabPointTranform;
+    int empty = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +18,14 @@ public class PlayerEventHandler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (empty >= 4)
+        {
+            nearObject = null;
+            empty = 0;
+        }
         //up, down, left, right directions
-        Vector2[] raycastDirection = { Vector2.up, Vector2.down, Vector2.left, Vector2.right, };
-        for(int i = 0; i < 4; i++)
+        Vector2[] raycastDirection = { Vector2.up, Vector2.up, Vector2.left, Vector2.right};
+        for (int i = 0; i < 4; i++)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection[i], 1f, _objectLayer);
             if (hit.collider != null)
@@ -27,9 +34,11 @@ public class PlayerEventHandler : MonoBehaviour
             }
             else
             {
-                nearObject = null;
+                empty++;
             }
         }
+        Debug.Log(empty);
+
 
     }
 
@@ -37,7 +46,19 @@ public class PlayerEventHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && nearObject != null)
         {
-            Debug.LogWarning("object hooked");
+            Debug.Log(nearObject.name);
+            if (nearObject.TryGetComponent(out ObjectGrabbable objectGrabbable))
+            {
+                objectGrabbable.Grab();
+
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift) && nearObject != null || this.GetComponent<PlayerController>().isGrounded == false && nearObject != null)
+        {
+            if (nearObject.TryGetComponent(out ObjectGrabbable objectGrabbable))
+            {
+                objectGrabbable.Drop();
+            }
         }
     }
 
