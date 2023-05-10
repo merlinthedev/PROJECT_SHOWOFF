@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColliserUserTracker : MonoBehaviour
+public class ColliderCameraTrigger : MonoBehaviour
 {
     [SerializeField] private Cinemachine.CinemachineVirtualCameraBase camera;
     [SerializeField] private int cameraPriority = 5;
@@ -10,6 +10,9 @@ public class ColliserUserTracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (camera == null)
+            camera = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
+        
         camera.Priority = -1;
     }
 
