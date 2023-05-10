@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColliserUserTracker : MonoBehaviour
+public class ColliderCameraTrigger : MonoBehaviour
 {
-    [SerializeField] private Animator cameraSwitcher;
-    [SerializeField] private int colliderIndex = 0;
+    [SerializeField] private Cinemachine.CinemachineVirtualCameraBase camera;
+    [SerializeField] private int cameraPriority = 5;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (camera == null)
+            camera = GetComponent<Cinemachine.CinemachineVirtualCameraBase>();
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        camera.Priority = -1;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -24,7 +21,7 @@ public class ColliserUserTracker : MonoBehaviour
         Debug.Log("Object entered with tag: " + other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
-            cameraSwitcher.SetInteger("CameraIndex", colliderIndex);
+            camera.Priority = cameraPriority;
         }
     }
 
@@ -32,7 +29,7 @@ public class ColliserUserTracker : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            cameraSwitcher.SetInteger("CameraIndex", 0);
+            camera.Priority = -1;
         }
     }
 }
