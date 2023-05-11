@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour {
     [Header("Movement")]
     [SerializeField] private float maxSpeed = 8f;
+    [SerializeField] private float maxAirSpeed = 4f;
     [SerializeField] private float acceleration = 10f;
     [SerializeField] private float deceleration = 5f;
     [SerializeField] private AnimationCurve accelerationCurve;
@@ -132,7 +133,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void move() {
-        float targetSpeed = movementInput.x * maxSpeed;
+        float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed);
         float speedDifference = targetSpeed - rb.velocity.x;
         float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
         float movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) * Mathf.Sign(speedDifference);

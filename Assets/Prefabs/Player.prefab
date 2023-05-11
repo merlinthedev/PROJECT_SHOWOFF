@@ -125,7 +125,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 73a2f0ff6f465ef49922f8f44377e1eb, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &2809409103064106543
 MonoBehaviour:
@@ -201,8 +201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e7bb555a0b5e349afd46d5c2daf467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 12
-  acceleration: 20
+  maxSpeed: 5
+  maxAirSpeed: 2.5
+  acceleration: 10
   deceleration: 5
   accelerationCurve:
     serializedVersion: 2
@@ -230,8 +231,16 @@ MonoBehaviour:
     m_RotationOrder: 4
   forceScale: {x: 1, y: 1}
   gravityScaleDrop: 10
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  movementInput: {x: 0, y: 0}
   rb: {fileID: 7052072812959686206}
+  col: {fileID: 7052072812959686207}
+  movementControlDisabled: 0
+  isGrounded: 0
   jumpForce: 11
+  groundCheckRaycastDistance: 0.7
 --- !u!114 &774228856724907074
 MonoBehaviour:
   m_ObjectHideFlags: 0
