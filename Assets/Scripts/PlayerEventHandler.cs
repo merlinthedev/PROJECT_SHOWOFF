@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class PlayerEventHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask _objectLayer;
     private GameObject nearObject;
+    private RaycastHit2D nearObjectHit;
     [SerializeField] private Transform objectGrabPointTranform;
+
+    [SerializeField] private HingeJoint2D grabAnchor;
+
     int empty = 0;
 
     // Start is called before the first frame update
@@ -31,6 +36,7 @@ public class PlayerEventHandler : MonoBehaviour
             if (hit.collider != null)
             {
                 nearObject = hit.collider.gameObject;
+                nearObjectHit = hit;
             }
             else
             {
@@ -49,15 +55,20 @@ public class PlayerEventHandler : MonoBehaviour
             Debug.Log(nearObject.name);
             if (nearObject.TryGetComponent(out ObjectGrabbable objectGrabbable))
             {
-                objectGrabbable.Grab();
-
+                //objectGrabbable.Grab();
+                grabAnchor.anchor = grabAnchor.transform.InverseTransformPoint(nearObjectHit.point);
+                grabAnchor.connectedBody = nearObject.GetComponent<Rigidbody2D>();
+                grabAnchor.enabled = true;
             }
         }
         if (Input.GetKeyUp(KeyCode.LeftShift) && nearObject != null || this.GetComponent<PlayerController>().isGrounded == false && nearObject != null)
         {
             if (nearObject.TryGetComponent(out ObjectGrabbable objectGrabbable))
             {
-                objectGrabbable.Drop();
+                //objectGrabbable.Drop();
+                grabAnchor.connectedBody = null;
+                grabAnchor.enabled = false;
+                
             }
         }
     }

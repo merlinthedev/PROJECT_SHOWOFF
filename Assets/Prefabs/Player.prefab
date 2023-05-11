@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 3745794131473792869}
   - component: {fileID: 8053746013419463735}
   - component: {fileID: 3405028337700285670}
+  - component: {fileID: 2673834634931968580}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: objectgrabpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +42,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2389605156695322836}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -61,7 +62,7 @@ HingeJoint2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2389605156695322836}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 0}
@@ -78,6 +79,24 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!255 &2673834634931968580
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2389605156695322836}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 7052072812959686206}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0.4300003, y: -0.03000021}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &7052072812959686177
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,8 +336,8 @@ MonoBehaviour:
   col: {fileID: 0}
   movementControlDisabled: 0
   isGrounded: 0
-  jumpForce: 11
-  groundCheckRaycastDistance: 0.5
+  jumpForce: 12
+  groundCheckRaycastDistance: 0.7
 --- !u!114 &774228856724907074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,8 +352,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   objectGrabPointTranform: {fileID: 0}
+  grabAnchor: {fileID: 3405028337700285670}
 --- !u!1 &7052072814427263470
 GameObject:
   m_ObjectHideFlags: 0
