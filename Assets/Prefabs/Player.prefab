@@ -331,7 +331,6 @@ MonoBehaviour:
   gravityScaleDrop: 10
   groundLayerMask:
     serializedVersion: 2
-<<<<<<< HEAD
     m_Bits: 0
   movementInput: {x: 0, y: 0}
   rb: {fileID: 7052072812959686206}
@@ -339,15 +338,6 @@ MonoBehaviour:
   movementControlDisabled: 0
   isGrounded: 0
   jumpForce: 12
-=======
-    m_Bits: 64
-  movementInput: {x: 0, y: 0}
-  rb: {fileID: 7052072812959686206}
-  col: {fileID: 7052072812959686207}
-  movementControlDisabled: 0
-  isGrounded: 0
-  jumpForce: 11
->>>>>>> main
   groundCheckRaycastDistance: 0.7
 --- !u!114 &774228856724907074
 MonoBehaviour:

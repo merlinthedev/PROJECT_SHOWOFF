@@ -43,9 +43,6 @@ public class PlayerEventHandler : MonoBehaviour
                 empty++;
             }
         }
-        Debug.Log(empty);
-
-
     }
 
     private void Update()

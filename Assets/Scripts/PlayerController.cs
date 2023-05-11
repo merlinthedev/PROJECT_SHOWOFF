@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
         // Groundcheck
         isGrounded = false;
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, groundCheckRaycastDistance, LayerMask.GetMask("Ground"));
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, groundCheckRaycastDistance, groundLayerMask);
         foreach (RaycastHit2D hit in hits) {
             if (hit.collider.gameObject != gameObject) {
                 //Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour {
             }
         } else {
             // shoot raycast to the left to check for ledges
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.left, 0.7f, LayerMask.GetMask("Ground"));
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.left, 0.7f, groundLayerMask);
             foreach (RaycastHit2D hit in hits) {
                 if (hit.collider.gameObject != gameObject) {
                     Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
