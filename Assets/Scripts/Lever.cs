@@ -15,6 +15,7 @@ public class Lever : MonoBehaviour {
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(Vector2.right * (defaultState ? 1 : -1), ForceMode2D.Impulse);
+        onStateChange?.Invoke(defaultState);
     }
 
     private void Update() {
