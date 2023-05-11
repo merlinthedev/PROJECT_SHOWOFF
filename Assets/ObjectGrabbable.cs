@@ -6,7 +6,7 @@ public class ObjectGrabbable : MonoBehaviour
 {
     private Rigidbody2D objectRigidbody;
     private Transform objectGrabpointTransform;
-    [SerializeField] FixedJoint2D joint;
+    [SerializeField] HingeJoint2D joint;
     [SerializeField] Rigidbody2D playerRb;
     private void Awake() 
     {
