@@ -113,6 +113,17 @@ public class PlayerController : MonoBehaviour {
                     Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
                     if (hit.collider.gameObject.GetComponent<Ledge>() != null) {
                         Debug.LogWarning("Found Ledge");
+
+                        this.rb.bodyType = RigidbodyType2D.Kinematic;
+                        this.rb.velocity = Vector2.zero;
+
+                        this.ledge = hit.collider.gameObject.GetComponent<Ledge>();
+                        var targetPosition = new Vector2(hit.point.x,
+                            // top of the box collider + half of our height
+                            hit.collider.gameObject.transform.position.y + hit.collider.gameObject.GetComponent<BoxCollider2D>().size.y / 2 + col.bounds.extents.y
+                            );
+
+                        adjustPlayerPosition(targetPosition);
                     }
                     break;
                 }
