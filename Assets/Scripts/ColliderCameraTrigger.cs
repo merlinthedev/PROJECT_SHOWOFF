@@ -18,7 +18,7 @@ public class ColliderCameraTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Object entered with tag: " + other.gameObject.tag);
+        //Debug.Log("Object entered with tag: " + other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
             camera.Priority = cameraPriority;
