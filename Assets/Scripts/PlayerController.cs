@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
 
-    private Ledge ledge;
     private bool moved = false;
     [SerializeField] private float maxLedgeHeight = 2f;
     [SerializeField] private float ledgeCheckDistance = 0.6f;
@@ -59,12 +58,8 @@ public class PlayerController : MonoBehaviour {
             checkLedge();
         }
 
-        ledge = null;
 
-        // Gravity
-        if (ledge == null) {
-            rb.AddForce(Vector2.down * gravityScaleDrop * rb.mass);
-        }
+        rb.AddForce(Vector2.down * gravityScaleDrop * rb.mass);
 
     }
 
@@ -102,7 +97,7 @@ public class PlayerController : MonoBehaviour {
         // at circlePosition, check if that point is a valid position for our player object
         Collider2D[] colliders = Physics2D.OverlapCircleAll(circlePosition, playerRadius, groundLayerMask);
 
-        if(colliders.Length > 0) {
+        if (colliders.Length > 0) {
             return;
         }
 
@@ -111,7 +106,7 @@ public class PlayerController : MonoBehaviour {
         //raycast downwards to find where the top of the ledge is
         RaycastHit2D downHit = Physics2D.Raycast(circlePosition, direction, maxLedgeHeight, groundLayerMask);
 
-        if(downHit.collider == null) {
+        if (downHit.collider == null) {
             return;
         }
 
