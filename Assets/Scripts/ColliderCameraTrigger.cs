@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ColliderCameraTrigger : MonoBehaviour
 {
-    [SerializeField] private Cinemachine.CinemachineVirtualCameraBase camera;
+    [SerializeField] new private Cinemachine.CinemachineVirtualCameraBase camera;
     [SerializeField] private int cameraPriority = 5;
 
     // Start is called before the first frame update

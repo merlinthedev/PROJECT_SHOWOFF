@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void checkLedge() {
-        Debug.LogWarning("Checking Ledge");
+        //Debug.LogWarning("Checking Ledge");
         if (transform.localScale.x > 0) {
             // shoot raycast to the right to check for ledges
             RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right, 0.7f, groundLayerMask);
