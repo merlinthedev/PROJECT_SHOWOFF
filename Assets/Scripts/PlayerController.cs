@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour {
     [Header("Movement")]
@@ -30,6 +31,10 @@ public class PlayerController : MonoBehaviour {
 
     private Ledge ledge;
     private bool moved = false;
+    [SerializeField] private float maxLedgeHeight = 2f;
+    [SerializeField] private float ledgeCheckDistance = 0.6f;
+    [SerializeField] private float playerRadius = 1f;
+
     private void FixedUpdate() {
 
         if (!movementControlDisabled) {
@@ -80,45 +85,41 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void checkLedge() {
-        //Debug.LogWarning("Checking Ledge");
-        if (transform.localScale.x > 0) {
-            // shoot raycast to the right to check for ledges
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.right, 0.7f, groundLayerMask);
-            foreach (RaycastHit2D hit in hits) {
-                if (hit.collider.gameObject != gameObject) {
-                    Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
-                    if (hit.collider.gameObject.GetComponent<Ledge>() != null) {
-                        Debug.LogWarning("Found Ledge");
+        //direction the player is facing horizontally
+        Vector2 direction = Vector2.right * Mathf.Sign(movementInput.x);
 
-                        this.rb.bodyType = RigidbodyType2D.Kinematic;
-                        this.rb.velocity = Vector2.zero;
+        //raycast forwards to check if we hit a ledge
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, ledgeCheckDistance, groundLayerMask);
 
-                        // TODO: Move to ledge
-                        this.ledge = hit.collider.gameObject.GetComponent<Ledge>();
-                        var targetPosition = new Vector2(hit.point.x,
-                            // top of the box collider + half of our height
-                            hit.collider.gameObject.transform.position.y + hit.collider.gameObject.GetComponent<BoxCollider2D>().size.y / 2 + col.bounds.extents.y
-                            );
-
-                        adjustPlayerPosition(targetPosition);
-
-                    }
-                    break;
-                }
-            }
-        } else {
-            // shoot raycast to the left to check for ledges
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.left, 0.7f, groundLayerMask);
-            foreach (RaycastHit2D hit in hits) {
-                if (hit.collider.gameObject != gameObject) {
-                    Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
-                    if (hit.collider.gameObject.GetComponent<Ledge>() != null) {
-                        Debug.LogWarning("Found Ledge");
-                    }
-                    break;
-                }
-            }
+        // if we didn't hit anything, return
+        if (hit.collider == null) {
+            return;
         }
+
+        //move slightly into the ledge and up
+        var circlePosition = new Vector2(hit.point.x + playerRadius, hit.point.y + maxLedgeHeight);
+
+        // at circlePosition, check if that point is a valid position for our player object
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(circlePosition, playerRadius, groundLayerMask);
+
+        if(colliders.Length > 0) {
+            return;
+        }
+
+        direction = Vector2.down;
+
+        //raycast downwards to find where the top of the ledge is
+        RaycastHit2D downHit = Physics2D.Raycast(circlePosition, direction, maxLedgeHeight, groundLayerMask);
+
+        if(downHit.collider == null) {
+            return;
+        }
+
+        //teleport to the top of the ledge
+        //TODO: change this with an animation instead so it looks better
+        this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
+
+
     }
 
     private void move() {
@@ -148,5 +149,23 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    private void OnDrawGizmos() {
+        // draw circle around player based on radius
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, playerRadius);
 
+        //if selected
+        if (Selection.activeGameObject == gameObject) {
+            //draw a line in the direction the player is facing
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, transform.position + Vector3.right * ledgeCheckDistance);
+            //draw a line downwards from the ledge check position
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position + Vector3.right * ledgeCheckDistance, transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight);
+            //draw a circle at the ledge check position
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight, playerRadius);
+        }
+
+    }
 }
