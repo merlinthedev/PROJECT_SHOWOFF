@@ -63,22 +63,6 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-    private void adjustPlayerPosition(Vector2 targetPosition) {
-        if (!moved) {
-            Debug.LogWarning("Moving");
-            moved = true;
-
-            // move player to the edge of the ledge
-
-            transform.position = targetPosition;
-
-            Debug.LogWarning("Moving done");
-
-            this.rb.bodyType = RigidbodyType2D.Dynamic;
-
-        }
-    }
-
     private void checkLedge() {
         //direction the player is facing horizontally
         Vector2 direction = Vector2.right * Mathf.Sign(movementInput.x);
