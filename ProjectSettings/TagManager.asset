@@ -13,8 +13,8 @@ TagManager:
   - UI
   - Ground
   - Grass
-  - 
-  - 
+  - Background
+  - Foreground
   - 
   - 
   - 
@@ -38,11 +38,11 @@ TagManager:
   - 
   - Velocity
   m_SortingLayers:
-  - name: Ground
-    uniqueID: 2614975985
-    locked: 0
   - name: Background
     uniqueID: 2094449113
+    locked: 0
+  - name: Ground
+    uniqueID: 2614975985
     locked: 0
   - name: Default
     uniqueID: 0
