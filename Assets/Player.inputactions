@@ -2,7 +2,7 @@
     "name": "Player",
     "maps": [
         {
-            "name": "Movement",
+            "name": "Player",
             "id": "a345dc91-d1a2-4ec1-9760-7dd15db99435",
             "actions": [
                 {
@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SlingShotDirection",
+                    "type": "Value",
+                    "id": "ebcb9907-d7d0-43a8-b48a-31cd23cd7b24",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -132,27 +141,10 @@
                     "action": "Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "SlingShot",
-            "id": "912b364f-1112-4ccf-9e9e-e7e6f60e62de",
-            "actions": [
-                {
-                    "name": "SlingShotDirection",
-                    "type": "Value",
-                    "id": "c080399e-59c6-4062-a0cd-098638cc724d",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "c3a23511-d2b0-401a-a1bc-d572cede2ce3",
+                    "id": "6e48d6e7-cd6b-4fbe-9275-87aef2933d79",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
@@ -163,7 +155,7 @@
                 },
                 {
                     "name": "2D Vector",
-                    "id": "e673fc6d-4009-4391-8383-8750019731c8",
+                    "id": "bed0c750-d2fd-4e20-a41f-43833945473a",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -174,7 +166,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "1bb9b341-a649-4187-87fa-b4a113dcdc5c",
+                    "id": "75a6ade3-7fba-4e04-9499-d76895a06c91",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
@@ -185,7 +177,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "c45f96c7-3c2a-45e7-b774-4b15e0ac13a8",
+                    "id": "e9845f09-42a1-4ef6-999e-e304ec77223f",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
@@ -196,7 +188,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "bb13e5cb-4edf-445e-838f-927001e53160",
+                    "id": "8cc1b916-93d9-4df1-9fc3-32f9be903e83",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -207,7 +199,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "7ab525f4-80d7-4a9d-9164-8021ff6608b2",
+                    "id": "bb7c5836-28bc-47ff-8a29-69ec3e8ac022",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",

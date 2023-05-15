@@ -15,12 +15,14 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private LayerMask groundLayerMask;
 
-
-
     public Vector2 movementInput;
     public Rigidbody2D rb;
     public Collider2D col;
     public bool movementControlDisabled = false;
+
+    [Header("Visuals")]
+    [SerializeField] private Transform visualsTransform;
+    private Vector3 defaultVisualScale;
 
     [Header("Jump")]
     public bool isGrounded = false;
@@ -36,6 +38,10 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Events")]
     [SerializeField] private UnityEvent OnLedgeClimb;
+
+    private void Start() {
+        defaultVisualScale = visualsTransform.localScale;
+    }
 
     private void FixedUpdate() {
 
@@ -72,6 +78,19 @@ public class PlayerController : MonoBehaviour {
 
         rb.AddForce(Vector2.down * gravityScaleDrop * rb.mass);
 
+        UpdateVisuals();
+    }
+
+    private void UpdateVisuals() {
+        if (visualsTransform == null) {
+            return;
+        }
+
+        if (movementInput.x > 0) {
+            visualsTransform.localScale = defaultVisualScale;
+        } else if (movementInput.x < 0) {
+            visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1,1,1));
+        }
     }
 
     private void checkLedge() {
@@ -87,7 +106,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         //move slightly into the ledge and up
-        var circlePosition = new Vector2(hit.point.x + playerRadius, hit.point.y + maxLedgeHeight);
+        var circlePosition = new Vector2(hit.point.x + (playerRadius * Mathf.Sign(movementInput.x)), hit.point.y + maxLedgeHeight);
 
         // at circlePosition, check if that point is a valid position for our player object
         Collider2D[] colliders = Physics2D.OverlapCircleAll(circlePosition, playerRadius, groundLayerMask);
@@ -141,17 +160,34 @@ public class PlayerController : MonoBehaviour {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, playerRadius);
 
-        //if selected
-        if (Selection.activeGameObject == gameObject) {
-            //draw a line in the direction the player is facing
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, transform.position + Vector3.right * ledgeCheckDistance);
-            //draw a line downwards from the ledge check position
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(transform.position + Vector3.right * ledgeCheckDistance, transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight);
-            //draw a circle at the ledge check position
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight, playerRadius);
+        //if not in play mode
+        if (!Application.isPlaying) {
+            //if selected
+            if (Selection.activeGameObject == gameObject) {
+                //draw a line in the direction the player is facing
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, transform.position + Vector3.right * ledgeCheckDistance);
+                //draw a line downwards from the ledge check position
+                Gizmos.color = Color.blue;
+                Gizmos.DrawLine(transform.position + Vector3.right * ledgeCheckDistance, transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight);
+                //draw a circle at the ledge check position
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireSphere(transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight, playerRadius);
+            }
+        }
+        else {
+            //if selected
+            if (Selection.activeGameObject == gameObject) {
+                //draw a line in the direction the player is facing
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, transform.position + (Vector3.right * Mathf.Sign(movementInput.x) * ledgeCheckDistance));
+                //draw a line downwards from the ledge check position
+                Gizmos.color = Color.blue;
+                Gizmos.DrawLine(transform.position + Vector3.right * ledgeCheckDistance, transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight);
+                //draw a circle at the ledge check position
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawWireSphere(transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight, playerRadius);
+            }
         }
 
     }
