@@ -32,13 +32,23 @@ public class PlayerController : MonoBehaviour {
     private bool moved = false;
     [SerializeField] private float maxLedgeHeight = 2f;
     [SerializeField] private float ledgeCheckDistance = 0.6f;
+    [SerializeField] private float ledgeFreezeTime = 0.5f;
     [SerializeField] private float playerRadius = 1f;
+    private float lastLedgeGrab = 0f;
 
     private void FixedUpdate() {
 
-        if (!movementControlDisabled) {
-            move();
+        if (movementControlDisabled || Time.time < lastLedgeGrab) {
+            this.rb.velocity = Vector3.zero;
+            Debug.Log("Can't move.", this);
+            return;
         }
+
+        move();
+
+        //if (!movementControlDisabled || Time.time > lastLedgeGrab) {
+        //    move();
+        //}
 
         // Groundcheck
         isGrounded = false;
@@ -97,6 +107,7 @@ public class PlayerController : MonoBehaviour {
         //teleport to the top of the ledge
         //TODO: change this with an animation instead so it looks better
         this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
+        lastLedgeGrab = Time.time + ledgeFreezeTime;
 
 
     }
