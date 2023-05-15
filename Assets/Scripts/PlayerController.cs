@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour {
 
         rb.AddForce(Vector2.down * gravityScaleDrop * rb.mass);
 
+
     }
 
     private void checkLedge() {
