@@ -1,9 +1,7 @@
-using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour {
     [Header("Movement")]
@@ -124,19 +122,15 @@ public class PlayerController : MonoBehaviour {
 
     public void DoMove(InputAction.CallbackContext context) {
         movementInput = context.ReadValue<Vector2>();
-        // flip the character
-        if (movementInput.x > 0) {
-            transform.localScale = new Vector3(1, 1, 1);
-        } else if (movementInput.x < 0) {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
     }
+
 
     public void DoJump(InputAction.CallbackContext context) {
         if (context.performed && isGrounded) {
             //Debug.LogWarning("Jump");
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
+
     }
 
     private void OnDrawGizmos() {
