@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+[DefaultExecutionOrder(2000)]
 public class ParallaxScroller : MonoBehaviour
 {
     [SerializeField] private Vector2 scrollSpeed = Vector2.one;
@@ -20,10 +21,9 @@ public class ParallaxScroller : MonoBehaviour
     {
         cameraTransform = Camera.main.transform;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
+    
+    //right before this gets rendered, update the position
+    private void LateUpdate() {
         UpdateParallaxScroll(cameraTransform);
     }
 
