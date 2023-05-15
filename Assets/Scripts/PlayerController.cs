@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour {
     [Header("Movement")]
@@ -35,6 +36,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float ledgeFreezeTime = 0.5f;
     [SerializeField] private float playerRadius = 1f;
     private float lastLedgeGrab = 0f;
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent OnLedgeClimb;
 
     private void FixedUpdate() {
 
@@ -108,7 +112,7 @@ public class PlayerController : MonoBehaviour {
         //TODO: change this with an animation instead so it looks better
         this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
         lastLedgeGrab = Time.time + ledgeFreezeTime;
-
+        OnLedgeClimb?.Invoke();
 
     }
 

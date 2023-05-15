@@ -2797,13 +2797,45 @@ PrefabInstance:
       propertyPath: groundLayerMask.m_Bits
       value: 192
       objectReference: {fileID: 0}
+    - target: {fileID: -5482234946955284214, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: OnLedgeClimb.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5482234946955284214, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: OnLedgeClimb.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5482234946955284214, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: OnLedgeClimb.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 574610176}
+    - target: {fileID: -5482234946955284214, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: OnLedgeClimb.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5482234946955284214, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: OnLedgeClimb.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: -5482234946955284214, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: OnLedgeClimb.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: -5482234946955284214, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: OnLedgeClimb.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: LedgeClimb
+      objectReference: {fileID: 0}
+    - target: {fileID: -5482234946955284214, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: OnLedgeClimb.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2673834634931968580, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.42999983
+      value: 0.4300003
       objectReference: {fileID: 0}
     - target: {fileID: 2673834634931968580, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.030000001
+      value: -0.029999971
       objectReference: {fileID: 0}
     - target: {fileID: 7052072812959686177, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
       propertyPath: m_Name
