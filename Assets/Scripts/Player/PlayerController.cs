@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // Ledge stuff
-        if (!isGrounded) {
+        if (!isGrounded && rb.velocity.y <= 0) {
             checkLedge();
         }
 
