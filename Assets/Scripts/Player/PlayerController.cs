@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour {
         }
 
 
+
         rb.AddForce(Vector2.down * gravityScaleDrop * rb.mass);
 
         UpdateVisuals();
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour {
         if (movementInput.x > 0) {
             visualsTransform.localScale = defaultVisualScale;
         } else if (movementInput.x < 0) {
-            visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1,1,1));
+            visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1, 1, 1));
         }
     }
 
@@ -126,7 +127,22 @@ public class PlayerController : MonoBehaviour {
 
         //teleport to the top of the ledge
         //TODO: change this with an animation instead so it looks better
-        this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
+
+        //this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
+        var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
+        var path = new LTBezierPath(new Vector3[] { transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0) });
+
+        LeanTween.move(gameObject, path, ledgeFreezeTime);
+
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        col.enabled = false;
+
+        InvokeDelayed(ledgeFreezeTime, () => {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            col.enabled = true;
+        });
+
+
         lastLedgeGrab = Time.time + ledgeFreezeTime;
         OnLedgeClimb?.Invoke();
 
@@ -174,8 +190,7 @@ public class PlayerController : MonoBehaviour {
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawWireSphere(transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight, playerRadius);
             }
-        }
-        else {
+        } else {
             //if selected
             if (Selection.activeGameObject == gameObject) {
                 //draw a line in the direction the player is facing
@@ -190,5 +205,14 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+    }
+
+    private void InvokeDelayed(float delay, System.Action action) {
+        StartCoroutine(InvokeDelayedCoroutine(delay, action));
+    }
+
+    private System.Collections.IEnumerator InvokeDelayedCoroutine(float delay, System.Action action) {
+        yield return new WaitForSeconds(delay);
+        action.Invoke();
     }
 }
