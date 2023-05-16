@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Events")]
     [SerializeField] private UnityEvent OnLedgeClimb;
+    [SerializeField] private UnityEvent OnWhistle;
 
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour {
 
         if (movementControlDisabled || Time.time < lastLedgeGrab) {
             this.rb.velocity = Vector3.zero;
-            Debug.Log("Can't move.", this);
+            // Debug.Log("Can't move.", this);
             return;
         }
 
@@ -74,8 +75,6 @@ public class PlayerController : MonoBehaviour {
         if (!isGrounded && rb.velocity.y <= 0) {
             checkLedge();
         }
-
-
 
         rb.AddForce(Vector2.down * gravityScaleDrop * rb.mass);
 
@@ -170,6 +169,7 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+    
 
     private void OnDrawGizmos() {
         // draw circle around player based on radius
