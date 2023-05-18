@@ -40,11 +40,4 @@ public class RopeControllerEditor : Editor
             EditorGUI.indentLevel--;
         }
     }
-
-    private void OnSceneGUI() {
-        RopeController controller = (RopeController)target;
-        if(controller.testClosePoint != null) {
-            controller.testClosePoint.transform.position = Handles.PositionHandle(controller.testClosePoint.transform.position, Quaternion.identity);
-        }
-    }
 }

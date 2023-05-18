@@ -11,9 +11,6 @@ public class RopeController : MonoBehaviour {
 
     [SerializeField] float ropeDamping = 0f;
 
-    [SerializeField][Range(0,1)] float testProgress = 0;
-    public Transform testClosePoint;
-
     // Start is called before the first frame update
     void Start() {
 
@@ -136,16 +133,6 @@ public class RopeController : MonoBehaviour {
 
     private void OnValidate() {
         UpdateRopeParts();
-    }
-
-    private void OnDrawGizmosSelected() {
-        Gizmos.DrawWireSphere(GetRopePoint(testProgress), 0.5f);
-
-        if(testClosePoint != null) {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(GetRopePoint(GetRopeProgress(testClosePoint.transform.position)), 0.2f);
-        }
-
     }
 #endif
 }
