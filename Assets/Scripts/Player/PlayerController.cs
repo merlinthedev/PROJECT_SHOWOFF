@@ -4,8 +4,7 @@ using UnityEditor;
 using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour {
-    [Header("Movement")]
-    [SerializeField] private float maxSpeed = 8f;
+    [Header("Movement")] [SerializeField] private float maxSpeed = 8f;
     [SerializeField] private float maxAirSpeed = 4f;
     [SerializeField] private float acceleration = 10f;
     [SerializeField] private float deceleration = 5f;
@@ -20,12 +19,10 @@ public class PlayerController : MonoBehaviour {
     public Collider2D col;
     public bool movementControlDisabled = false;
 
-    [Header("Visuals")]
-    [SerializeField] private Transform visualsTransform;
+    [Header("Visuals")] [SerializeField] private Transform visualsTransform;
     private Vector3 defaultVisualScale;
 
-    [Header("Jump")]
-    public bool isGrounded = false;
+    [Header("Jump")] public bool isGrounded = false;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
 
@@ -36,16 +33,18 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float playerRadius = 1f;
     private float lastLedgeGrab = 0f;
 
-    [Header("Events")]
-    [SerializeField] private UnityEvent OnLedgeClimb;
+    [Header("Needs to move")] [SerializeField]
+    private Player player;
+
+    [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
     [SerializeField] private UnityEvent OnWhistle;
+
 
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
     }
 
     private void FixedUpdate() {
-
         if (movementControlDisabled || Time.time < lastLedgeGrab) {
             this.rb.velocity = Vector3.zero;
             // Debug.Log("Can't move.", this);
@@ -61,7 +60,8 @@ public class PlayerController : MonoBehaviour {
         // Groundcheck
         isGrounded = false;
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, groundCheckRaycastDistance, groundLayerMask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, groundCheckRaycastDistance,
+            groundLayerMask);
         foreach (RaycastHit2D hit in hits) {
             if (hit.collider.gameObject != gameObject) {
                 //Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
@@ -106,7 +106,8 @@ public class PlayerController : MonoBehaviour {
         }
 
         //move slightly into the ledge and up
-        var circlePosition = new Vector2(hit.point.x + (playerRadius * Mathf.Sign(movementInput.x)), hit.point.y + maxLedgeHeight);
+        var circlePosition = new Vector2(hit.point.x + (playerRadius * Mathf.Sign(movementInput.x)),
+            hit.point.y + maxLedgeHeight);
 
         // at circlePosition, check if that point is a valid position for our player object
         Collider2D[] colliders = Physics2D.OverlapCircleAll(circlePosition, playerRadius, groundLayerMask);
@@ -129,7 +130,10 @@ public class PlayerController : MonoBehaviour {
 
         //this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
-        var path = new LTBezierPath(new Vector3[] { transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0) });
+        var path = new LTBezierPath(new Vector3[] {
+            transform.position, ledgeCorner, ledgeCorner,
+            new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+        });
 
         LeanTween.move(gameObject, path, ledgeFreezeTime);
 
@@ -144,17 +148,18 @@ public class PlayerController : MonoBehaviour {
 
         lastLedgeGrab = Time.time + ledgeFreezeTime;
         OnLedgeClimb?.Invoke();
-
     }
 
     private void move() {
         float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed);
         float speedDifference = targetSpeed - rb.velocity.x;
         float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
-        float movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) * Mathf.Sign(speedDifference);
+        float movement =
+            Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate,
+                accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
+            Mathf.Sign(speedDifference);
 
         rb.AddForce(Vector2.right * movement * forceScale.x * rb.mass);
-
     }
 
     public void DoMove(InputAction.CallbackContext context) {
@@ -167,9 +172,8 @@ public class PlayerController : MonoBehaviour {
             //Debug.LogWarning("Jump");
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-
     }
-    
+
 
     private void OnDrawGizmos() {
         // draw circle around player based on radius
@@ -185,26 +189,32 @@ public class PlayerController : MonoBehaviour {
                 Gizmos.DrawLine(transform.position, transform.position + Vector3.right * ledgeCheckDistance);
                 //draw a line downwards from the ledge check position
                 Gizmos.color = Color.blue;
-                Gizmos.DrawLine(transform.position + Vector3.right * ledgeCheckDistance, transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight);
+                Gizmos.DrawLine(transform.position + Vector3.right * ledgeCheckDistance,
+                    transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight);
                 //draw a circle at the ledge check position
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight, playerRadius);
+                Gizmos.DrawWireSphere(
+                    transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight,
+                    playerRadius);
             }
         } else {
             //if selected
             if (Selection.activeGameObject == gameObject) {
                 //draw a line in the direction the player is facing
                 Gizmos.color = Color.red;
-                Gizmos.DrawLine(transform.position, transform.position + (Vector3.right * Mathf.Sign(movementInput.x) * ledgeCheckDistance));
+                Gizmos.DrawLine(transform.position,
+                    transform.position + (Vector3.right * Mathf.Sign(movementInput.x) * ledgeCheckDistance));
                 //draw a line downwards from the ledge check position
                 Gizmos.color = Color.blue;
-                Gizmos.DrawLine(transform.position + Vector3.right * ledgeCheckDistance, transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight);
+                Gizmos.DrawLine(transform.position + Vector3.right * ledgeCheckDistance,
+                    transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight);
                 //draw a circle at the ledge check position
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight, playerRadius);
+                Gizmos.DrawWireSphere(
+                    transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight,
+                    playerRadius);
             }
         }
-
     }
 
     private void InvokeDelayed(float delay, System.Action action) {
@@ -215,4 +225,5 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(delay);
         action.Invoke();
     }
+    
 }

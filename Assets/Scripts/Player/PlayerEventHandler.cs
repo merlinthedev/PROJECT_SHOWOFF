@@ -12,12 +12,17 @@ public class PlayerEventHandler : MonoBehaviour {
     private int empty = 0;
     private bool grabbing = false;
 
+    public bool Grabbing {
+        get => grabbing;
+    }
+
     // Update is called once per frame
     void FixedUpdate() {
         if (empty >= 4) {
             nearObject = null;
             empty = 0;
         }
+
         //up, down, left, right directions
         Vector2[] raycastDirection = { Vector2.up, Vector2.up, Vector2.left, Vector2.right };
         for (int i = 0; i < 4; i++) {
@@ -32,10 +37,13 @@ public class PlayerEventHandler : MonoBehaviour {
     }
 
     public void OnGrab(InputAction.CallbackContext callbackContext) {
-        if (callbackContext.started && nearObject != null) {
+        if (callbackContext.started) {
             grabbing = true;
-            grabAnchor.anchor = grabAnchor.transform.InverseTransformPoint(nearObjectHit.point);
-            grabAnchor.connectedBody = nearObject.GetComponent<Rigidbody2D>();
+            if (this.nearObject != null) {
+                grabAnchor.anchor = grabAnchor.transform.InverseTransformPoint(nearObjectHit.point);
+                grabAnchor.connectedBody = nearObject.GetComponent<Rigidbody2D>();
+            }
+
             grabAnchor.enabled = true;
             Debug.Log("Started grabbing context");
         }

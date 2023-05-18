@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,15 +14,18 @@ public class SlingShotController : MonoBehaviour {
     [SerializeField] private float minShootForce = 1f;
     private float shootForce = 0f;
 
-    [SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private AProjectile projectilePrefab;
 
     // Start is called before the first frame update
     void Start() {
-
     }
 
     // Update is called once per frame
     void Update() {
+        this.Aim();
+    }
+
+    public void Aim() {
         //update smoothed stick
         Vector2 smoothDelta = stickSmoothed - stickInput;
         stickSmoothed -= smoothDelta * Mathf.Clamp01(stickSmoothSpeed * Time.deltaTime);
@@ -38,16 +40,35 @@ public class SlingShotController : MonoBehaviour {
             stickSmoothed = Vector2.zero;
             Shoot(shootDirection, shootForce);
         }
-
     }
 
     void Shoot(Vector2 shootDirection, float shootForce) {
-        Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        // Get player script from parent object
+        var player = transform.parent.GetComponent<Player>();
+
+        if (player == null) {
+            Debug.Log("player does not exist");
+            return;
+        }
+
+        if (!player.HasProjectile()) {
+            Debug.Log("player does not have projectile");
+            return;
+        }
+
+        var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        var x = projectile.GetComponent<IPickup>();
+        if (x == null) {
+            Debug.Log("x is null");
+            return;
+        }
+
+        x.OnThrow();
         projectile.Shoot(shootDirection, shootForce);
+        player.SetProjectileFlag(false);
     }
 
     public void OnStickInput(InputAction.CallbackContext context) {
         stickInput = context.ReadValue<Vector2>();
     }
-
 }
