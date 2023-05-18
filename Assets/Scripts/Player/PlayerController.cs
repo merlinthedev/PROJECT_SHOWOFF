@@ -130,15 +130,20 @@ public class PlayerController : MonoBehaviour {
 
         //this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
-        var path = new LTBezierPath(new Vector3[] {
+        
+
+        InvokeDelayed(.2f, () => {
+            var path = new LTBezierPath(new Vector3[] {
             transform.position, ledgeCorner, ledgeCorner,
             new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
         });
+            LeanTween.move(gameObject, path, ledgeFreezeTime);
 
-        LeanTween.move(gameObject, path, ledgeFreezeTime);
 
         rb.bodyType = RigidbodyType2D.Kinematic;
         col.enabled = false;
+
+
 
         InvokeDelayed(ledgeFreezeTime, () => {
             rb.bodyType = RigidbodyType2D.Dynamic;
@@ -148,6 +153,8 @@ public class PlayerController : MonoBehaviour {
 
         lastLedgeGrab = Time.time + ledgeFreezeTime;
         OnLedgeClimb?.Invoke();
+
+        });
     }
 
     private void move() {
