@@ -1,0 +1,453 @@
+fileFormatVersion: 2
+guid: 68acca8d3b3be0843a11ab6e6cd7646c
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: Grass Top Right
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 949
+      y: 1739
+      width: 443
+      height: 294
+    spriteID: 1745d9a3adf8cdc419b38d2d6f78d4ae
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 949, y: 1739}
+    spritePosition: {x: 2438, y: 1149}
+  - name: Grass Top Left
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 505
+      y: 2154
+      width: 425
+      height: 292
+    spriteID: 6323131f7e338964da0986de5d1260ac
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 505, y: 2154}
+    spritePosition: {x: 52, y: 1156}
+  - name: Grass Top
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1393
+      width: 1961
+      height: 338
+    spriteID: 43138763841434743976d923c9e2764f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 1393}
+    spritePosition: {x: 477, y: 1167}
+  - name: Grass Bottom Right
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1739
+      width: 493
+      height: 913
+    spriteID: d81be2e3cae2e3a45859b619ba8e2bcb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 1739}
+    spritePosition: {x: 2439, y: 0}
+  - name: Grass Bottom Left
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 2660
+      width: 475
+      height: 918
+    spriteID: 3856198ec2ce564458fbff09ea269e37
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 2660}
+    spritePosition: {x: 0, y: 0}
+  - name: Grass Bottom
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 1964
+      height: 956
+    spriteID: 3c34a44e5f2b13d48934ade01cc20efe
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 475, y: 0}
+  - name: Dirt Pebbles Right
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 3586
+      width: 451
+      height: 409
+    spriteID: 864421b0abcd5cd4ea549f18b8ce270a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 3586}
+    spritePosition: {x: 2438, y: 827}
+  - name: Dirt Pebbles Left
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 505
+      y: 1739
+      width: 436
+      height: 407
+    spriteID: 30fbc224467f33a4badb542c9f835057
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 505, y: 1739}
+    spritePosition: {x: 41, y: 827}
+  - name: Dirt Pebbles
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 968
+      width: 1961
+      height: 417
+    spriteID: 1302dbcef06c8bd418e120d72f7d7686
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 968}
+    spritePosition: {x: 477, y: 831}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  sharedRigSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  skeletonAssetReferenceID: 
+  padding: 4
+  spriteSizeExpand: 0
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: Grass Top Right
+    spriteName: Grass Top Right
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 1745d9a3adf8cdc419b38d2d6f78d4ae
+    layerID: 77
+    mosaicPosition: {x: 949, y: 1739}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Grass Top Left
+    spriteName: Grass Top Left
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 6323131f7e338964da0986de5d1260ac
+    layerID: 74
+    mosaicPosition: {x: 505, y: 2154}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Grass Top
+    spriteName: Grass Top
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 43138763841434743976d923c9e2764f
+    layerID: 55
+    mosaicPosition: {x: 4, y: 1393}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Grass Bottom Right
+    spriteName: Grass Bottom Right
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d81be2e3cae2e3a45859b619ba8e2bcb
+    layerID: 76
+    mosaicPosition: {x: 4, y: 1739}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Grass Bottom Left
+    spriteName: Grass Bottom Left
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 3856198ec2ce564458fbff09ea269e37
+    layerID: 69
+    mosaicPosition: {x: 4, y: 2660}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Grass Bottom
+    spriteName: Grass Bottom
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 3c34a44e5f2b13d48934ade01cc20efe
+    layerID: 57
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Dirt Pebbles Right
+    spriteName: Dirt Pebbles Right
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 864421b0abcd5cd4ea549f18b8ce270a
+    layerID: 75
+    mosaicPosition: {x: 4, y: 3586}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Dirt Pebbles Left
+    spriteName: Dirt Pebbles Left
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 30fbc224467f33a4badb542c9f835057
+    layerID: 70
+    mosaicPosition: {x: 505, y: 1739}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Dirt Pebbles
+    spriteName: Dirt Pebbles
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 1302dbcef06c8bd418e120d72f7d7686
+    layerID: 63
+    mosaicPosition: {x: 4, y: 968}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  sharedRigPSDLayers: []
+  pSDLayerImportSetting: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638200073369178364
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []
