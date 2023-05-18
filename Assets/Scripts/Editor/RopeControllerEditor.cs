@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Unity.VisualScripting;
 
 [CustomEditor(typeof(RopeController))]
 public class RopeControllerEditor : Editor
@@ -37,6 +38,13 @@ public class RopeControllerEditor : Editor
                 EditorGUILayout.HelpBox("Still have to do this part \\o/", MessageType.Info);
             }
             EditorGUI.indentLevel--;
+        }
+    }
+
+    private void OnSceneGUI() {
+        RopeController controller = (RopeController)target;
+        if(controller.testClosePoint != null) {
+            controller.testClosePoint.transform.position = Handles.PositionHandle(controller.testClosePoint.transform.position, Quaternion.identity);
         }
     }
 }

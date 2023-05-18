@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -11,6 +12,7 @@ public class RopeController : MonoBehaviour {
     [SerializeField] float ropeDamping = 0f;
 
     [SerializeField][Range(0,1)] float testProgress = 0;
+    public Transform testClosePoint;
 
     // Start is called before the first frame update
     void Start() {
@@ -45,7 +47,33 @@ public class RopeController : MonoBehaviour {
 
     public float GetRopeProgress(Vector2 point) {
         //return the progress along the rope with the given position
-        return 0;
+
+        var closestRopePart = ropeParts[0];
+        float closestPartProgress = 0;
+        Vector2 closestPoint = Vector2.positiveInfinity;
+
+        for(int i = 0; i < ropeParts.Length - 1; i++) {
+            var ropePart = ropeParts[i];
+            var nextRopePart = ropeParts[i + 1];
+            var partVector = ((Vector2)(nextRopePart.transform.position) - (Vector2)(ropePart.transform.position));
+            Gizmos.DrawWireCube(ropePart.transform.position, Vector3.one * 0.1f);
+            var relPosition = point - (Vector2)ropePart.transform.position;
+            float posDot = Mathf.Clamp01(Vector2.Dot(partVector, relPosition));
+
+            Vector2 closestPartPoint = Vector2.Lerp(ropePart.transform.position, nextRopePart.transform.position, posDot);
+            //closestPartPoint += (Vector2)ropePart.transform.position;
+            Gizmos.DrawLine(point, closestPartPoint);
+
+            if (Vector2.Distance(point, closestPartPoint) < Vector2.Distance(point, closestPoint)) {
+                closestRopePart = ropePart;
+                closestPartProgress = i + posDot;
+                closestPoint = closestPartPoint;
+            }
+        }
+
+        float progress = closestPartProgress / (ropeParts.Length - 1);
+        progress = Mathf.Clamp01(progress);
+        return progress;
     }
 
 #if UNITY_EDITOR
@@ -117,6 +145,12 @@ public class RopeController : MonoBehaviour {
 
     private void OnDrawGizmosSelected() {
         Gizmos.DrawWireSphere(GetRopePoint(testProgress), 0.5f);
+
+        if(testClosePoint != null) {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(GetRopePoint(GetRopeProgress(testClosePoint.transform.position)), 0.2f);
+        }
+
     }
 #endif
 }
