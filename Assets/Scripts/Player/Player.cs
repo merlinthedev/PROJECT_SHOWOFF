@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour {
     // Will keep track of inventory later
     private bool hasProjectile = false;
+    private GameObject projectile = null;
+    [SerializeField] private Transform holdTransform;
 
     public bool HasProjectile() {
         return this.hasProjectile;
@@ -12,6 +14,14 @@ public class Player : MonoBehaviour {
 
     public void SetProjectileFlag(bool value) {
         this.hasProjectile = value;
+    }
+
+    public GameObject GetProjectile() {
+        return this.projectile;
+    }
+
+    public Transform GetHoldingTransform() {
+        return this.holdTransform;
     }
 
     private void OnTriggerStay2D(Collider2D other) {
@@ -30,6 +40,7 @@ public class Player : MonoBehaviour {
             var pickup = other.gameObject.GetComponent<IPickup>();
             pickup.OnPickup(this);
             this.hasProjectile = true;
+            this.projectile = other.gameObject;
         }
     }
 }

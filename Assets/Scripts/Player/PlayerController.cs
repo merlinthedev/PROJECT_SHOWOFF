@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         
 
-        InvokeDelayed(.2f, () => {
+        Utils.Instance.InvokeDelayed(.2f, () => {
             var path = new LTBezierPath(new Vector3[] {
             transform.position, ledgeCorner, ledgeCorner,
             new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
-        InvokeDelayed(ledgeFreezeTime, () => {
+        Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
             rb.bodyType = RigidbodyType2D.Dynamic;
             col.enabled = true;
         });
@@ -224,13 +224,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void InvokeDelayed(float delay, System.Action action) {
-        StartCoroutine(InvokeDelayedCoroutine(delay, action));
-    }
-
-    private System.Collections.IEnumerator InvokeDelayedCoroutine(float delay, System.Action action) {
-        yield return new WaitForSeconds(delay);
-        action.Invoke();
-    }
+    
     
 }
