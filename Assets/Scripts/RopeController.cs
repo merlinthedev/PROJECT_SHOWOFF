@@ -68,6 +68,20 @@ public class RopeController : MonoBehaviour {
         return progress;
     }
 
+    public Rigidbody2D GetRopePart(float ropeProgress) {
+        //returns the point along the rope curve at the given progress (0 to 1)
+        //we assume a constant length between rope parts
+        int ropePartCount = ropeParts.Length;
+        //make sure float is within bounds
+        ropeProgress = Mathf.Clamp01(ropeProgress) * (ropePartCount - 1);
+        //at which rope part are we
+        int ropeIndex = Mathf.FloorToInt(ropeProgress);
+        //find the rope part we are below
+        var ropePart = ropeParts[ropeIndex];
+
+        return ropePart.GetComponent<Rigidbody2D>();
+    }
+
 #if UNITY_EDITOR
     public void FindRope() {
         List<GameObject> newRopeParts = new List<GameObject>();
