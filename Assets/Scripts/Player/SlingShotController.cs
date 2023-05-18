@@ -63,7 +63,7 @@ public class SlingShotController : MonoBehaviour {
             return;
         }
 
-        x.OnThrow();
+        x.OnThrow(player);
         projectile.Shoot(shootDirection, shootForce);
         player.SetProjectileFlag(false);
     }

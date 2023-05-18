@@ -15,6 +15,11 @@ public class Player : MonoBehaviour {
     public void SetProjectileFlag(bool value) {
         this.hasProjectile = value;
     }
+    
+    public void ResetProjectile() {
+        this.hasProjectile = false;
+        this.projectile = null;
+    }
 
     public GameObject GetProjectile() {
         return this.projectile;
