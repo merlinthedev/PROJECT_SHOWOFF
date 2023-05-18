@@ -31,7 +31,7 @@ public class SlingShotController : MonoBehaviour {
         float smoothStickMagnitude = stickSmoothed.magnitude;
 
         if (stickInput == Vector2.zero && smoothStickMagnitude >= minShootMagnitude) {
-            shootDirection = -stickSmoothed.normalized;
+            shootDirection = stickSmoothed.normalized;
             shootForce = Mathf.Lerp(minShootForce, maxShootForce, smoothStickMagnitude);
             Debug.Log("Shoot Direction: " + shootDirection);
             Debug.Log("Shoot Force: " + shootForce);
