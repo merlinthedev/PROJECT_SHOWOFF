@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour {
-    [Header("Movement")] [SerializeField] private float maxSpeed = 8f;
+    [Header("Movement")][SerializeField] private float maxSpeed = 8f;
     [SerializeField] private float maxAirSpeed = 4f;
     [SerializeField] private float acceleration = 10f;
     [SerializeField] private float deceleration = 5f;
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     public Collider2D col;
     public bool movementControlDisabled = false;
 
-    [Header("Visuals")] [SerializeField] private Transform visualsTransform;
+    [Header("Visuals")][SerializeField] private Transform visualsTransform;
     private Vector3 defaultVisualScale;
 
     [Header("Jump")] public bool isGrounded = false;
@@ -33,12 +33,20 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float playerRadius = 1f;
     private float lastLedgeGrab = 0f;
 
-    [Header("Needs to move")] [SerializeField]
+    [Header("Needs to move")]
+    [SerializeField]
     private Player player;
 
-    [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
+    [Header("Events")][SerializeField] private UnityEvent OnLedgeClimb;
     [SerializeField] private UnityEvent OnWhistle;
 
+    [Header("Rope")]
+    [SerializeField] FixedJoint2D ropeJoint;
+    [SerializeField] float ropeGrabTimeout = 0.5f;
+    private bool isOnRope = false;
+    private RopeController rope;
+    private float ropeProgress = 0f;
+    private float lastRopeRelease = 0f;
 
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
@@ -53,10 +61,7 @@ public class PlayerController : MonoBehaviour {
 
         move();
 
-        //if (!movementControlDisabled || Time.time > lastLedgeGrab) {
-        //    move();
-        //}
-
+        #region groundCheck
         // Groundcheck
         isGrounded = false;
 
@@ -70,12 +75,16 @@ public class PlayerController : MonoBehaviour {
                 break;
             }
         }
+        #endregion
 
+        #region ledge
         // Ledge stuff
         if (!isGrounded && rb.velocity.y <= 0) {
             checkLedge();
         }
+        #endregion
 
+        //gravity
         rb.AddForce(Vector2.down * gravityScaleDrop * rb.mass);
 
         UpdateVisuals();
@@ -86,6 +95,7 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
+        //flip our visuals if we are goinf in the other direction
         if (movementInput.x > 0) {
             visualsTransform.localScale = defaultVisualScale;
         } else if (movementInput.x < 0) {
@@ -130,9 +140,8 @@ public class PlayerController : MonoBehaviour {
 
         //this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
-        
 
-        InvokeDelayed(.2f, () => {
+        Utils.Instance.InvokeDelayed(.2f, () => {
             var path = new LTBezierPath(new Vector3[] {
             transform.position, ledgeCorner, ledgeCorner,
             new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
@@ -140,19 +149,19 @@ public class PlayerController : MonoBehaviour {
             LeanTween.move(gameObject, path, ledgeFreezeTime);
 
 
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        col.enabled = false;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            col.enabled = false;
 
 
 
-        InvokeDelayed(ledgeFreezeTime, () => {
+        Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
             rb.bodyType = RigidbodyType2D.Dynamic;
             col.enabled = true;
         });
 
 
-        lastLedgeGrab = Time.time + ledgeFreezeTime;
-        OnLedgeClimb?.Invoke();
+            lastLedgeGrab = Time.time + ledgeFreezeTime;
+            OnLedgeClimb?.Invoke();
 
         });
     }
@@ -167,6 +176,10 @@ public class PlayerController : MonoBehaviour {
             Mathf.Sign(speedDifference);
 
         rb.AddForce(Vector2.right * movement * forceScale.x * rb.mass);
+
+        if (isOnRope) {
+
+        }
     }
 
     public void DoMove(InputAction.CallbackContext context) {
@@ -175,12 +188,39 @@ public class PlayerController : MonoBehaviour {
 
 
     public void DoJump(InputAction.CallbackContext context) {
-        if (context.performed && isGrounded) {
-            //Debug.LogWarning("Jump");
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        if (context.performed) {
+            if (isGrounded || isOnRope) {
+                //Debug.LogWarning("Jump");
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+            if (isOnRope) {
+                //Debug.LogWarning("Jump");
+                ropeJoint.enabled = false;
+                isOnRope = false;
+                lastRopeRelease = Time.time;
+            }
         }
+
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        //rope check
+        if (collision.gameObject.CompareTag("Rope")) {
+            //if we're not already on a rope
+            if (!isOnRope && Time.time > lastRopeRelease + ropeGrabTimeout) {
+                //Debug.Log("On Rope");
+                //set the rope we're on
+                rope = collision.gameObject.GetComponentInParent<RopeController>();
+                //set how far we are along the rope
+                ropeProgress = rope.GetRopeProgress(transform.position);
+                //fix our joint to the rope
+                ropeJoint.enabled = true;
+                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress);
+                //set the player's onRope bool to true
+                isOnRope = true;
+            }
+        }
+    }
 
     private void OnDrawGizmos() {
         // draw circle around player based on radius
@@ -224,13 +264,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void InvokeDelayed(float delay, System.Action action) {
-        StartCoroutine(InvokeDelayedCoroutine(delay, action));
-    }
-
-    private System.Collections.IEnumerator InvokeDelayedCoroutine(float delay, System.Action action) {
-        yield return new WaitForSeconds(delay);
-        action.Invoke();
-    }
+    
     
 }

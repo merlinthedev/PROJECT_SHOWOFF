@@ -11,9 +11,6 @@ public class RopeController : MonoBehaviour {
 
     [SerializeField] float ropeDamping = 0f;
 
-    [SerializeField][Range(0,1)] float testProgress = 0;
-    public Transform testClosePoint;
-
     // Start is called before the first frame update
     void Start() {
 
@@ -69,6 +66,20 @@ public class RopeController : MonoBehaviour {
         float progress = closestPartProgress / (ropeParts.Length - 1);
         progress = Mathf.Clamp01(progress);
         return progress;
+    }
+
+    public Rigidbody2D GetRopePart(float ropeProgress) {
+        //returns the point along the rope curve at the given progress (0 to 1)
+        //we assume a constant length between rope parts
+        int ropePartCount = ropeParts.Length;
+        //make sure float is within bounds
+        ropeProgress = Mathf.Clamp01(ropeProgress) * (ropePartCount - 1);
+        //at which rope part are we
+        int ropeIndex = Mathf.FloorToInt(ropeProgress);
+        //find the rope part we are below
+        var ropePart = ropeParts[ropeIndex];
+
+        return ropePart.GetComponent<Rigidbody2D>();
     }
 
 #if UNITY_EDITOR
@@ -136,16 +147,6 @@ public class RopeController : MonoBehaviour {
 
     private void OnValidate() {
         UpdateRopeParts();
-    }
-
-    private void OnDrawGizmosSelected() {
-        Gizmos.DrawWireSphere(GetRopePoint(testProgress), 0.5f);
-
-        if(testClosePoint != null) {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(GetRopePoint(GetRopeProgress(testClosePoint.transform.position)), 0.2f);
-        }
-
     }
 #endif
 }
