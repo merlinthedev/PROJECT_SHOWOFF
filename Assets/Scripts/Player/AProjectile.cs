@@ -12,4 +12,5 @@ public abstract class AProjectile : MonoBehaviour {
 
         rb.AddForce(direction * force, ForceMode2D.Impulse);
     }
+    
 }

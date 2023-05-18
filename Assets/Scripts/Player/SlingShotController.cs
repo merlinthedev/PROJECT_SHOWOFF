@@ -56,14 +56,14 @@ public class SlingShotController : MonoBehaviour {
             return;
         }
 
-        var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        var projectile = transform.parent.GetComponentInChildren<AProjectile>();
         var x = projectile.GetComponent<IPickup>();
         if (x == null) {
             Debug.Log("x is null");
             return;
         }
 
-        x.OnThrow();
+        x.OnThrow(player);
         projectile.Shoot(shootDirection, shootForce);
         player.SetProjectileFlag(false);
     }
