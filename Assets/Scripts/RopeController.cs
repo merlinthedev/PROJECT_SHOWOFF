@@ -48,7 +48,6 @@ public class RopeController : MonoBehaviour {
     public float GetRopeProgress(Vector2 point) {
         //return the progress along the rope with the given position
 
-        var closestRopePart = ropeParts[0];
         float closestPartProgress = 0;
         Vector2 closestPoint = Vector2.positiveInfinity;
 
@@ -56,16 +55,12 @@ public class RopeController : MonoBehaviour {
             var ropePart = ropeParts[i];
             var nextRopePart = ropeParts[i + 1];
             var partVector = ((Vector2)(nextRopePart.transform.position) - (Vector2)(ropePart.transform.position));
-            Gizmos.DrawWireCube(ropePart.transform.position, Vector3.one * 0.1f);
             var relPosition = point - (Vector2)ropePart.transform.position;
-            float posDot = Mathf.Clamp01(Vector2.Dot(partVector, relPosition));
+            float posDot = Mathf.Clamp01(Vector2.Dot(partVector.normalized, relPosition) / partVector.magnitude);
 
             Vector2 closestPartPoint = Vector2.Lerp(ropePart.transform.position, nextRopePart.transform.position, posDot);
-            //closestPartPoint += (Vector2)ropePart.transform.position;
-            Gizmos.DrawLine(point, closestPartPoint);
 
             if (Vector2.Distance(point, closestPartPoint) < Vector2.Distance(point, closestPoint)) {
-                closestRopePart = ropePart;
                 closestPartProgress = i + posDot;
                 closestPoint = closestPartPoint;
             }
