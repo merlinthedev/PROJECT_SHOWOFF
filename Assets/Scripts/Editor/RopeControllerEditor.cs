@@ -6,6 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(RopeController))]
 public class RopeControllerEditor : Editor
 {
+    bool showRopeCreator = false;
     
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
@@ -25,5 +26,17 @@ public class RopeControllerEditor : Editor
             ropeController.ClearRope();
         }
         GUILayout.EndHorizontal();
+
+        showRopeCreator = EditorGUILayout.Foldout(showRopeCreator, "Rope creator");
+        if(showRopeCreator) {
+            //indent
+            EditorGUI.indentLevel++;
+            if (ropeController.RopeRoot == null) {
+                EditorGUILayout.HelpBox("No rope root set", MessageType.Error);
+            } else {
+                EditorGUILayout.HelpBox("Still have to do this part \\o/", MessageType.Info);
+            }
+            EditorGUI.indentLevel--;
+        }
     }
 }

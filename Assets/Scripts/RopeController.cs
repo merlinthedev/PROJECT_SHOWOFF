@@ -5,6 +5,7 @@ using UnityEngine.U2D;
 
 public class RopeController : MonoBehaviour {
     [SerializeField] Transform ropeRoot;
+    public Transform RopeRoot { get { return ropeRoot; } }
     [SerializeField] GameObject[] ropeParts;
 
     [SerializeField] float ropeDamping = 0f;
@@ -17,6 +18,16 @@ public class RopeController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+    }
+
+    public Vector2 GetRopePoint(float ropeProgress) {
+        //returns the point along the rope curve at the given progress (0 to 1)
+        return Vector2.zero;
+    }
+
+    public float GetRopeProgress(Vector2 point) {
+        //return the progress along the rope with the given position
+        return 0;
     }
 
 #if UNITY_EDITOR
