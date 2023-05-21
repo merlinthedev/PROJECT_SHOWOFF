@@ -168,10 +168,6 @@ public class PlayerController : MonoBehaviour {
         });
     }
 
-    private float currentWalkingPenalty = 0f;
-    private float maxWalkingPenalty = 0.5f;
-    private float currentMovementLerpSpeed = 100f;
-
     private bool isFloatBetween(float value, float min, float max) {
         return value >= min && value <= max;
     }
@@ -185,7 +181,7 @@ public class PlayerController : MonoBehaviour {
                 accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
             Mathf.Sign(speedDifference);
         
-        Debug.Log("Movement " + movement);
+        // Debug.Log("Movement " + movement);
 
         if (isFloatBetween(movement, -1, 1)) {
             this.rb.sharedMaterial.friction = 1;
@@ -194,34 +190,7 @@ public class PlayerController : MonoBehaviour {
         }
         
         rb.AddForce(Vector2.right * movement * forceScale.x * rb.mass);
-        
-        //
-        // Vector2 dir = this.movementInput;
-        // var normalizedDir = this.movementInput.normalized;
-        //
-        // if (dir != Vector2.zero) {
-        //     currentWalkingPenalty += this.acceleration * Time.fixedDeltaTime;
-        // } else {
-        //     currentWalkingPenalty -= this.acceleration * Time.fixedDeltaTime;
-        // }
-        //
-        // this.currentWalkingPenalty = Mathf.Clamp(this.currentWalkingPenalty, maxWalkingPenalty, 1);
-        //
-        // Vector2 targetVelocity = new Vector2(normalizedDir.x, this.rb.velocity.y) * this.currentWalkingPenalty *
-        //                          this.maxSpeed;
-        //
-        // Vector2 idealVelocity = new Vector2(targetVelocity.x, this.rb.velocity.y);
-        //
-        // Debug.Log("idealVelocity: " + idealVelocity);
-        //
-        // if (idealVelocity.magnitude < 0.1f) {
-        //     this.rb.velocity = Vector2.zero;
-        //     return;
-        // }
-        //
-        // this.rb.velocity =
-        //     Vector2.MoveTowards(this.rb.velocity, idealVelocity, currentMovementLerpSpeed * Time.fixedDeltaTime);
-        //
+
         /*
          * Rope stuff 
          */
