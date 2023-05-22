@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BranchScript : MonoBehaviour
 {
-    public bool isParent = false;
+    [SerializeField] private bool isParent = false;
     public bool gotBonked = false;
 
     private void Update() {
