@@ -1,9 +1,6 @@
-using System;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
-using UnityEditor.Rendering;
 using UnityEngine.Events;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -23,7 +20,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D col;
     [SerializeField] private bool movementControlDisabled = false;
-    
+
     [SerializeField] private float maxClimbAngle = 30;
 
 
@@ -32,22 +29,23 @@ public class PlayerController : MonoBehaviour {
     private Vector3 defaultVisualScale;
 
 
-    [Header("Jump")] public bool isGrounded = false;
+    [Header("Jump")] [SerializeField] private bool isGrounded = false;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
 
     [Header("Ledge")]
     [SerializeField] private float maxLedgeHeight = 2f;
+
     [SerializeField] private float ledgeCheckDistance = 0.6f;
     [SerializeField] private float ledgeFreezeTime = 0.5f;
     private float lastLedgeGrab = 0f;
     private bool moved = false;
 
     [Header("Rope")]
-    [SerializeField] FixedJoint2D ropeJoint;
+    [SerializeField] private FixedJoint2D ropeJoint;
 
-    [SerializeField] float ropeGrabTimeout = 0.5f;
-    
+    [SerializeField] private float ropeGrabTimeout = 0.5f;
+
     [Header("Needs to move")]
     [SerializeField]
     private Player player;
@@ -55,7 +53,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
     [SerializeField] private UnityEvent OnWhistle;
-    
+
     private bool isOnRope = false;
     private RopeController rope;
     private float ropeProgress = 0f;
@@ -324,5 +322,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     #endregion
+
+    #region getter & setter
+
+    public bool IsGrounded() {
+        return this.isGrounded;
+    }
+
+    #endregion
+
 
 }
