@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         float angle = Vector2.Angle(Vector2.up, hit.normal);
-        // Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
+        Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
 
         return angle < maxClimbAngle;
     }
