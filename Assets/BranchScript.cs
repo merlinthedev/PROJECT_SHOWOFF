@@ -17,8 +17,7 @@ public class BranchScript : MonoBehaviour
             if(TryGetComponent<Rigidbody2D>(out Rigidbody2D rb)) rb.bodyType = RigidbodyType2D.Kinematic;
             for (int i = 0; i < transform.childCount; i++) 
             {
-                if (transform.GetChild(i).GetComponent<BranchScript>().gotBonked == true)
-                    Destroy();
+                if (transform.GetChild(i).GetComponent<BranchScript>().gotBonked) Destroy();
             }
         }
         //if fade is true, fade out the branch and then destroy it
