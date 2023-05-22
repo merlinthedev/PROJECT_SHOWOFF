@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour {
     private RopeController rope;
     private float ropeProgress = 0f;
     private float lastRopeRelease = 0f;
+    [SerializeField] private AudioClip jumpSound;
+
 
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
@@ -267,6 +269,9 @@ public class PlayerController : MonoBehaviour {
                 ropeJoint.enabled = false;
                 isOnRope = false;
                 lastRopeRelease = Time.time;
+            }
+            if (jumpSound != null) {
+                AudioSource.PlayClipAtPoint(jumpSound, transform.position);
             }
         }
 
