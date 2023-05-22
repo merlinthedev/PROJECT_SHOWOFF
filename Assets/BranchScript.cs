@@ -4,11 +4,29 @@ using UnityEngine;
 
 public class BranchScript : MonoBehaviour
 {
-    //check for collision with player rock
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.name == "stone") {
-            //destroy branch
-            Debug.Log("bonk");
+    public bool isParent = false;
+    public bool gotBonked = false;
+
+    private void Update() {
+
+        if(isParent)
+        { 
+            for (int i = 0; i < transform.childCount; i++) 
+            {
+                if (transform.GetChild(i).GetComponent<BranchScript>().gotBonked == true)
+                    Destroy();
+            }
+        }
+    }
+    public void Destroy() {
+        for (int i = 0; i < transform.childCount; i++) {
+            transform.GetChild(i).GetComponent<FixedJoint2D>().enabled = false;
+        }
+
+    }
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.name == ("stone")) {
+            gotBonked=true;
         }
     }
 }

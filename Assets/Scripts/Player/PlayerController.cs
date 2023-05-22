@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour {
                 accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
             Mathf.Sign(speedDifference);
 
-        Debug.Log("Movement " + movement);
+        //Debug.Log("Movement " + movement);
 
         // if (isFloatBetween(movement, -1, 1)) {
         //     this.rb.sharedMaterial.friction = 1;
