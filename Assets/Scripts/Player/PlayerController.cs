@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-
         if (movementControlDisabled || Time.time < lastLedgeGrab) {
             this.rb.velocity = Vector3.zero;
             // Debug.Log("Can't move.", this);
@@ -107,9 +106,7 @@ public class PlayerController : MonoBehaviour {
         UpdateVisuals();
     }
 
-    private bool isFloatBetween(float value, float min, float max) {
-        return value >= min && value <= max;
-    }
+    #region movement
 
     private bool SurfaceCheck() {
         // Save the bottom side of our collider to a vector2
@@ -120,19 +117,13 @@ public class PlayerController : MonoBehaviour {
         }
 
         float angle = Vector2.Angle(Vector2.up, hit.normal);
-        Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
-
+        // Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
 
         return angle < maxClimbAngle;
     }
 
     private void applyMovement(float x) {
-        Debug.Log("Movement Input X: " + movementInput.x);
-        if (movementInput.x == 0) {
-            this.rb.sharedMaterial.friction = 1;
-        } else {
-            this.rb.sharedMaterial.friction = 0;
-        }
+        this.rb.sharedMaterial.friction = movementInput.x == 0 ? 1 : 0;
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
     }
 
@@ -145,14 +136,6 @@ public class PlayerController : MonoBehaviour {
                 accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
             Mathf.Sign(speedDifference);
 
-        // Debug.Log("Movement " + movement);
-
-        // if (isFloatBetween(movement, -1, 1)) {
-        //     this.rb.sharedMaterial.friction = 1;
-        // } else {
-        //     this.rb.sharedMaterial.friction = 0;
-        // }
-
         /*
          * Rope stuff 
          */
@@ -160,6 +143,10 @@ public class PlayerController : MonoBehaviour {
 
         return movement;
     }
+
+    #endregion
+
+    #region ledge
 
     private void checkLedge() {
         //direction the player is facing horizontally
@@ -222,6 +209,10 @@ public class PlayerController : MonoBehaviour {
         });
     }
 
+    #endregion
+
+    #region visuals
+
     private void UpdateVisuals() {
         if (visualsTransform == null) {
             return;
@@ -234,6 +225,8 @@ public class PlayerController : MonoBehaviour {
             visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1, 1, 1));
         }
     }
+
+    #endregion
 
     private void OnTriggerEnter2D(Collider2D collision) {
         //rope check
