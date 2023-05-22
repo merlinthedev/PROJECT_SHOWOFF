@@ -71,6 +71,9 @@ public class PlayerController : MonoBehaviour {
     private bool walkSoundPlaying = false;
     private bool isMoving = false;
 
+    public float cheeseStrength = 2f;
+    public bool isCheesing = false;
+
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
     }
@@ -286,7 +289,8 @@ public class PlayerController : MonoBehaviour {
         if (context.performed) {
             if (isGrounded || isOnRope) {
                 //Debug.LogWarning("Jump");
-                rb.AddForce(Vector2.up * jumpForce * (inWater ? waterGravityScale : 1), ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * jumpForce * (inWater ? waterGravityScale : 1) * (isCheesing ? cheeseStrength : 1f),
+                    ForceMode2D.Impulse);
             }
             if (isOnRope) {
                 //Debug.LogWarning("Jump");

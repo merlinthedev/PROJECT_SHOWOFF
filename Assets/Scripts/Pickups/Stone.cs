@@ -25,9 +25,10 @@ public class Stone : AProjectile, IPickup {
 
         _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
 
-        Utils.Instance.InvokeDelayed(1f, () => {
+        Utils.Instance.InvokeDelayed(2f, () => {
             _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
             newCollider2D.isTrigger = true;
+            _rigidbody2D.velocity = Vector2.zero;
         });
     }
 
@@ -58,6 +59,7 @@ public class Stone : AProjectile, IPickup {
             newCollider2D.excludeLayers = 0;
             newCollider2D.isTrigger = true;
             newRigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+            newRigidbody2D.velocity = Vector2.zero;
 
             checkViewportPosition();
         });
