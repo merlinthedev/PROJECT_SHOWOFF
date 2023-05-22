@@ -42,9 +42,9 @@ public class PlayerEventHandler : MonoBehaviour {
             if (this.nearObject != null) {
                 grabAnchor.anchor = grabAnchor.transform.InverseTransformPoint(nearObjectHit.point);
                 grabAnchor.connectedBody = nearObject.GetComponent<Rigidbody2D>();
+                grabAnchor.enabled = true;
             }
 
-            grabAnchor.enabled = true;
             Debug.Log("Started grabbing context");
         }
 
