@@ -29,7 +29,7 @@ public class PlayerAnimatorController : MonoBehaviour
     {
         animator.SetFloat("xSpeed", Mathf.Abs(rb.velocity.x));
         animator.SetFloat("ySpeed", rb.velocity.y);
-        animator.SetBool("Grounded", playerController.isGrounded);
+        animator.SetBool("Grounded", playerController.IsGrounded());
         
     }
 }

@@ -1,9 +1,6 @@
-using System;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
-using UnityEditor.Rendering;
 using UnityEngine.Events;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -19,49 +16,56 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private LayerMask groundLayerMask;
 
-    public Vector2 movementInput;
-    public Rigidbody2D rb;
-    public Collider2D col;
-    public bool movementControlDisabled = false;
+    [SerializeField] private Vector2 movementInput;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Collider2D col;
+    [SerializeField] private bool movementControlDisabled = false;
+
+    [SerializeField] private float maxClimbAngle = 30;
+
 
     [Header("Visuals")] [SerializeField] private Transform visualsTransform;
+    [SerializeField] private float playerRadius = 1f;
     private Vector3 defaultVisualScale;
 
-    [Header("Jump")] public bool isGrounded = false;
+
+    [Header("Jump")] [SerializeField] private bool isGrounded = false;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
 
-    private bool moved = false;
+    [Header("Ledge")]
     [SerializeField] private float maxLedgeHeight = 2f;
+
     [SerializeField] private float ledgeCheckDistance = 0.6f;
     [SerializeField] private float ledgeFreezeTime = 0.5f;
-    [SerializeField] private float playerRadius = 1f;
     private float lastLedgeGrab = 0f;
+    private bool moved = false;
+
+    [Header("Rope")]
+    [SerializeField] private FixedJoint2D ropeJoint;
+
+    [SerializeField] private float ropeGrabTimeout = 0.5f;
 
     [Header("Needs to move")]
     [SerializeField]
     private Player player;
 
-    [SerializeField] private float maxClimbAngle = 30;
 
     [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
     [SerializeField] private UnityEvent OnWhistle;
 
-    [Header("Rope")]
-    [SerializeField] FixedJoint2D ropeJoint;
-
-    [SerializeField] float ropeGrabTimeout = 0.5f;
     private bool isOnRope = false;
     private RopeController rope;
     private float ropeProgress = 0f;
     private float lastRopeRelease = 0f;
+    [SerializeField] private AudioClip jumpSound;
+
 
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
     }
 
     private void FixedUpdate() {
-
         if (movementControlDisabled || Time.time < lastLedgeGrab) {
             this.rb.velocity = Vector3.zero;
             // Debug.Log("Can't move.", this);
@@ -107,14 +111,12 @@ public class PlayerController : MonoBehaviour {
         UpdateVisuals();
     }
 
-    private bool isFloatBetween(float value, float min, float max) {
-        return value >= min && value <= max;
-    }
+    #region movement
 
     private bool SurfaceCheck() {
         // Save the bottom side of our collider to a vector2
         Vector2 bottom = new Vector2(col.bounds.center.x, col.bounds.min.y + 0.1f);
-        RaycastHit2D hit = Physics2D.Raycast(bottom, Vector2.right * movementInput.x, 0.7f, groundLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(bottom, Vector2.right * movementInput.x, 0.7f, LayerMask.GetMask("Ground"));
         if (hit.collider == null) {
             return true;
         }
@@ -122,27 +124,15 @@ public class PlayerController : MonoBehaviour {
         float angle = Vector2.Angle(Vector2.up, hit.normal);
         Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
 
-
         return angle < maxClimbAngle;
     }
 
     private void applyMovement(float x) {
-        if (isFloatBetween(x, -1, 1)) {
-            this.rb.sharedMaterial.friction = 1;
-        } else {
-            this.rb.sharedMaterial.friction = 0;
-        }
-
+        this.rb.sharedMaterial.friction = movementInput.x == 0 ? 1 : 0;
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
     }
 
     private float move() {
-        if (movementInput.x == 0) {
-            this.rb.sharedMaterial.friction = 1;
-        } else {
-            this.rb.sharedMaterial.friction = 0;
-        }
-
         float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed);
         float speedDifference = targetSpeed - rb.velocity.x;
         float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
@@ -151,14 +141,6 @@ public class PlayerController : MonoBehaviour {
                 accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
             Mathf.Sign(speedDifference);
 
-        //Debug.Log("Movement " + movement);
-
-        // if (isFloatBetween(movement, -1, 1)) {
-        //     this.rb.sharedMaterial.friction = 1;
-        // } else {
-        //     this.rb.sharedMaterial.friction = 0;
-        // }
-
         /*
          * Rope stuff 
          */
@@ -166,6 +148,10 @@ public class PlayerController : MonoBehaviour {
 
         return movement;
     }
+
+    #endregion
+
+    #region ledge
 
     private void checkLedge() {
         //direction the player is facing horizontally
@@ -228,6 +214,10 @@ public class PlayerController : MonoBehaviour {
         });
     }
 
+    #endregion
+
+    #region visuals
+
     private void UpdateVisuals() {
         if (visualsTransform == null) {
             return;
@@ -240,6 +230,8 @@ public class PlayerController : MonoBehaviour {
             visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1, 1, 1));
         }
     }
+
+    #endregion
 
     private void OnTriggerEnter2D(Collider2D collision) {
         //rope check
@@ -277,6 +269,9 @@ public class PlayerController : MonoBehaviour {
                 ropeJoint.enabled = false;
                 isOnRope = false;
                 lastRopeRelease = Time.time;
+            }
+            if (jumpSound != null) {
+                AudioSource.PlayClipAtPoint(jumpSound, transform.position);
             }
         }
 
@@ -332,5 +327,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     #endregion
+
+    #region getter & setter
+
+    public bool IsGrounded() {
+        return this.isGrounded;
+    }
+
+    #endregion
+
 
 }
