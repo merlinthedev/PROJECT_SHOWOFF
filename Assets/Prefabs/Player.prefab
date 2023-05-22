@@ -102,7 +102,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.42999268, y: -0.029999733}
+  m_ConnectedAnchor: {x: 0.4300003, y: -0.03000021}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &3910479842993109162
@@ -342,8 +342,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1608351049
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -524,9 +524,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e7bb555a0b5e349afd46d5c2daf467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
-  maxAirSpeed: 3
-  acceleration: 10
+  maxSpeed: 4.5
+  maxAirSpeed: 4
+  acceleration: 12
   deceleration: 5
   accelerationCurve:
     serializedVersion: 2
@@ -561,7 +561,7 @@ MonoBehaviour:
   rb: {fileID: 7052072812959686206}
   col: {fileID: 5287127574608404407}
   movementControlDisabled: 0
-  maxClimbAngle: 30
+  maxClimbAngle: 60
   visualsTransform: {fileID: 361482788603527927}
   playerRadius: 0.5
   isGrounded: 0
@@ -572,9 +572,9 @@ MonoBehaviour:
   ledgeFreezeTime: 1.5
   ropeJoint: {fileID: 0}
   ropeGrabTimeout: 0.5
-  waterMovementSpeedDebuff: 0.5
-  waterGravityScale: 0.5
-  waterJumpForceDebuff: 0.5
+  waterMovementSpeedDebuff: 0.8
+  waterGravityScale: 0.8
+  waterJumpForceDebuff: 0.8
   inWater: 0
   player: {fileID: 490823350040079843}
   OnLedgeClimb:
@@ -596,8 +596,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   audioSource: {fileID: 2549151372395889695}
-  jumpSound: {fileID: 8300000, guid: 2bd7394a56d16d2409dfd42f9b7ffc39, type: 3}
+  jumpSound: {fileID: 0}
   walkSound: {fileID: 8300000, guid: 5e6397adc023c7d44a8ed1a988b08474, type: 3}
+  cheeseStrength: 2
+  isCheesing: 0
 --- !u!114 &774228856724907074
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class BranchScript : MonoBehaviour
     public bool gotBonked = false;
     public bool fade = false;
 
-    private void Update() {
+    private void FixedUpdate() {
 
         // If this is a parent branch, check if any of the children have been bonked
         if(isParent)
@@ -24,7 +24,7 @@ public class BranchScript : MonoBehaviour
         if(fade) 
         {
             Color tmp = GetComponent<SpriteRenderer>().color;
-            if(tmp.a > 0) tmp.a -= 0.002f;
+            if(tmp.a > 0) tmp.a -= 0.009f;
             else if (tmp.a < 0) tmp.a = 0;
             GetComponent<SpriteRenderer>().color = tmp;
             //destroy the branch once it is fully faded out
@@ -43,6 +43,6 @@ public class BranchScript : MonoBehaviour
     }
     //if the branch collides with a stone, set gotBonked to true
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.name == ("stone")) gotBonked = true;
+        if (collision.gameObject.name == ("stone(Clone)")) gotBonked = true;
     }
 }

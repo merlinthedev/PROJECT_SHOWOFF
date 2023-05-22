@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour {
 
         if (isMoving && !walkSoundPlaying) {
             audioSource.clip = walkSound;
+            audioSource.volume = 0.4f;
             audioSource.Play();
             walkSoundPlaying = true;
         } else if (!isMoving && walkSoundPlaying) {
