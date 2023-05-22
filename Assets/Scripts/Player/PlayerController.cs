@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour {
     [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
     [SerializeField] private UnityEvent OnWhistle;
 
+    //SOUND
+    [SerializeField] private AudioClip jumpSound;
+
 
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
@@ -167,6 +170,23 @@ public class PlayerController : MonoBehaviour {
             Mathf.Sign(speedDifference);
 
         rb.AddForce(Vector2.right * movement * forceScale.x * rb.mass);
+
+        //check if the player is touching an object with tag "Grass"
+        // if (isGrounded && rb.velocity.magnitude > 0.1f) {
+        //     RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, groundCheckRaycastDistance,
+        //         grassLayerMask);
+        //     foreach (RaycastHit2D hit in hits) {
+        //         if (hit.collider.gameObject != gameObject) {
+        //             //Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
+        //             //play a sound at the players position editable in the inspector
+        //             if (grassSound != null) {
+        //                 AudioSource.PlayClipAtPoint(grassSound, transform.position);
+        //             }
+
+        //             break;
+        //         }
+        //     }
+        // }
     }
 
     public void DoMove(InputAction.CallbackContext context) {
@@ -178,6 +198,12 @@ public class PlayerController : MonoBehaviour {
         if (context.performed && isGrounded) {
             //Debug.LogWarning("Jump");
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+            //play a sound at the players position editable in the inspector
+            if (jumpSound != null) {
+                AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+            }
+
         }
     }
 
