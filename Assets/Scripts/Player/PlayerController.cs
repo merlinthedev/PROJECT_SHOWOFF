@@ -132,11 +132,17 @@ public class PlayerController : MonoBehaviour {
         } else {
             this.rb.sharedMaterial.friction = 0;
         }
-        
+
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
     }
 
     private float move() {
+        if (movementInput.x == 0) {
+            this.rb.sharedMaterial.friction = 1;
+        } else {
+            this.rb.sharedMaterial.friction = 0;
+        }
+
         float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed);
         float speedDifference = targetSpeed - rb.velocity.x;
         float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
@@ -145,14 +151,14 @@ public class PlayerController : MonoBehaviour {
                 accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
             Mathf.Sign(speedDifference);
 
-        // Debug.Log("Movement " + movement);
+        Debug.Log("Movement " + movement);
 
-        if (isFloatBetween(movement, -1, 1)) {
-            this.rb.sharedMaterial.friction = 1;
-        } else {
-            this.rb.sharedMaterial.friction = 0;
-        }
-        
+        // if (isFloatBetween(movement, -1, 1)) {
+        //     this.rb.sharedMaterial.friction = 1;
+        // } else {
+        //     this.rb.sharedMaterial.friction = 0;
+        // }
+
         /*
          * Rope stuff 
          */
