@@ -65,8 +65,11 @@ public class PlayerController : MonoBehaviour {
     private RopeController rope;
     private float ropeProgress = 0f;
     private float lastRopeRelease = 0f;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip jumpSound;
-
+    [SerializeField] private AudioClip walkSound;
+    private bool walkSoundPlaying = false;
+    private bool isMoving = false;
 
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
@@ -77,6 +80,17 @@ public class PlayerController : MonoBehaviour {
             this.rb.velocity = Vector3.zero;
             // Debug.Log("Can't move.", this);
             return;
+        }
+
+        isMoving = movementInput.x != 0;
+
+        if (isMoving && !walkSoundPlaying) {
+            audioSource.clip = walkSound;
+            audioSource.Play();
+            walkSoundPlaying = true;
+        } else if (!isMoving && walkSoundPlaying) {
+            audioSource.Stop();
+            walkSoundPlaying = false;
         }
 
         float x = move();
@@ -137,6 +151,8 @@ public class PlayerController : MonoBehaviour {
     private void applyMovement(float x) {
         this.rb.sharedMaterial.friction = movementInput.x == 0 ? 1 : 0;
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
+
+
     }
 
     private float move() {
@@ -279,8 +295,10 @@ public class PlayerController : MonoBehaviour {
                 lastRopeRelease = Time.time;
             }
             if (jumpSound != null) {
-                AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+                // AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+                audioSource.PlayOneShot(jumpSound);
             }
+
         }
 
     }
