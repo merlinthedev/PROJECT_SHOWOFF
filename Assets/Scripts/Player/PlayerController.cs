@@ -19,38 +19,43 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private LayerMask groundLayerMask;
 
-    public Vector2 movementInput;
-    public Rigidbody2D rb;
-    public Collider2D col;
-    public bool movementControlDisabled = false;
+    [SerializeField] private Vector2 movementInput;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Collider2D col;
+    [SerializeField] private bool movementControlDisabled = false;
+    
+    [SerializeField] private float maxClimbAngle = 30;
+
 
     [Header("Visuals")] [SerializeField] private Transform visualsTransform;
+    [SerializeField] private float playerRadius = 1f;
     private Vector3 defaultVisualScale;
+
 
     [Header("Jump")] public bool isGrounded = false;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
 
-    private bool moved = false;
+    [Header("Ledge")]
     [SerializeField] private float maxLedgeHeight = 2f;
     [SerializeField] private float ledgeCheckDistance = 0.6f;
     [SerializeField] private float ledgeFreezeTime = 0.5f;
-    [SerializeField] private float playerRadius = 1f;
     private float lastLedgeGrab = 0f;
-
-    [Header("Needs to move")]
-    [SerializeField]
-    private Player player;
-
-    [SerializeField] private float maxClimbAngle = 30;
-
-    [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
-    [SerializeField] private UnityEvent OnWhistle;
+    private bool moved = false;
 
     [Header("Rope")]
     [SerializeField] FixedJoint2D ropeJoint;
 
     [SerializeField] float ropeGrabTimeout = 0.5f;
+    
+    [Header("Needs to move")]
+    [SerializeField]
+    private Player player;
+
+
+    [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
+    [SerializeField] private UnityEvent OnWhistle;
+    
     private bool isOnRope = false;
     private RopeController rope;
     private float ropeProgress = 0f;
