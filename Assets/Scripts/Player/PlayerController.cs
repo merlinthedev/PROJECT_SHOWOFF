@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour {
     private bool SurfaceCheck() {
         // Save the bottom side of our collider to a vector2
         Vector2 bottom = new Vector2(col.bounds.center.x, col.bounds.min.y + 0.1f);
-        RaycastHit2D hit = Physics2D.Raycast(bottom, Vector2.right * movementInput.x, 0.7f, groundLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(bottom, Vector2.right * movementInput.x, 0.7f, LayerMask.GetMask("Ground"));
         if (hit.collider == null) {
             return true;
         }
@@ -127,22 +127,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void applyMovement(float x) {
-        if (isFloatBetween(x, -1, 1)) {
-            this.rb.sharedMaterial.friction = 1;
-        } else {
-            this.rb.sharedMaterial.friction = 0;
-        }
-
-        this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
-    }
-
-    private float move() {
+        Debug.Log("Movement Input X: " + movementInput.x);
         if (movementInput.x == 0) {
             this.rb.sharedMaterial.friction = 1;
         } else {
             this.rb.sharedMaterial.friction = 0;
         }
+        this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
+    }
 
+    private float move() {
         float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed);
         float speedDifference = targetSpeed - rb.velocity.x;
         float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
@@ -151,7 +145,7 @@ public class PlayerController : MonoBehaviour {
                 accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
             Mathf.Sign(speedDifference);
 
-        Debug.Log("Movement " + movement);
+        // Debug.Log("Movement " + movement);
 
         // if (isFloatBetween(movement, -1, 1)) {
         //     this.rb.sharedMaterial.friction = 1;
