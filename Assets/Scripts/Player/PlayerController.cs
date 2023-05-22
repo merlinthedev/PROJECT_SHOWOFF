@@ -46,6 +46,13 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private float ropeGrabTimeout = 0.5f;
 
+    [Header("Water")]
+    [SerializeField] private float waterMovementSpeedDebuff = 0.5f;
+
+    [SerializeField] private float waterGravityScale = 0.5f;
+    [SerializeField] private float waterJumpForceDebuff = 0.5f;
+    [SerializeField] private bool inWater = false;
+
     [Header("Needs to move")]
     [SerializeField]
     private Player player;
@@ -106,7 +113,7 @@ public class PlayerController : MonoBehaviour {
         #endregion
 
         //gravity
-        rb.AddForce(Vector2.down * (gravityScaleDrop * rb.mass));
+        rb.AddForce(Vector2.down * (gravityScaleDrop * rb.mass * (inWater ? waterGravityScale : 1)));
 
         UpdateVisuals();
     }
@@ -133,13 +140,14 @@ public class PlayerController : MonoBehaviour {
     }
 
     private float move() {
-        float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed);
+        float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed) * (inWater ? waterMovementSpeedDebuff : 1);
         float speedDifference = targetSpeed - rb.velocity.x;
         float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
         float movement =
             Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate,
                 accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
             Mathf.Sign(speedDifference);
+
 
         /*
          * Rope stuff 
@@ -262,7 +270,7 @@ public class PlayerController : MonoBehaviour {
         if (context.performed) {
             if (isGrounded || isOnRope) {
                 //Debug.LogWarning("Jump");
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * jumpForce * (inWater ? waterGravityScale : 1), ForceMode2D.Impulse);
             }
             if (isOnRope) {
                 //Debug.LogWarning("Jump");
@@ -332,6 +340,14 @@ public class PlayerController : MonoBehaviour {
 
     public bool IsGrounded() {
         return this.isGrounded;
+    }
+
+    public bool IsInWater() {
+        return this.inWater;
+    }
+
+    public void SetInWater(bool inWater) {
+        this.inWater = inWater;
     }
 
     #endregion
