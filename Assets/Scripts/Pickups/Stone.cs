@@ -53,6 +53,8 @@ public class Stone : AProjectile, IPickup {
 
         Utils.Instance.InvokeDelayed(2.5f, () => {
             // reset exlude layers
+            if (newCollider2D == null) return;
+            if (newRigidbody2D == null) return;
             newCollider2D.excludeLayers = 0;
             newCollider2D.isTrigger = true;
             newRigidbody2D.bodyType = RigidbodyType2D.Kinematic;
