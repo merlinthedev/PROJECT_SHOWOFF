@@ -1,11 +1,15 @@
 using System;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEngine.Events;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour {
-    [Header("Movement")][SerializeField] private float maxSpeed = 8f;
+    [Header("Movement")] [SerializeField] private float maxSpeed = 8f;
     [SerializeField] private float maxAirSpeed = 4f;
     [SerializeField] private float acceleration = 10f;
     [SerializeField] private float deceleration = 5f;
@@ -20,7 +24,7 @@ public class PlayerController : MonoBehaviour {
     public Collider2D col;
     public bool movementControlDisabled = false;
 
-    [Header("Visuals")][SerializeField] private Transform visualsTransform;
+    [Header("Visuals")] [SerializeField] private Transform visualsTransform;
     private Vector3 defaultVisualScale;
 
     [Header("Jump")] public bool isGrounded = false;
@@ -38,11 +42,14 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private Player player;
 
-    [Header("Events")][SerializeField] private UnityEvent OnLedgeClimb;
+    [SerializeField] private float maxClimbAngle = 30;
+
+    [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
     [SerializeField] private UnityEvent OnWhistle;
 
     [Header("Rope")]
     [SerializeField] FixedJoint2D ropeJoint;
+
     [SerializeField] float ropeGrabTimeout = 0.5f;
     private bool isOnRope = false;
     private RopeController rope;
@@ -54,16 +61,21 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        
+
         if (movementControlDisabled || Time.time < lastLedgeGrab) {
             this.rb.velocity = Vector3.zero;
             // Debug.Log("Can't move.", this);
             return;
         }
 
-        move();
+        float x = move();
+
+        if (SurfaceCheck()) {
+            applyMovement(x);
+        }
 
         #region groundCheck
+
         // Groundcheck
         isGrounded = false;
 
@@ -77,32 +89,76 @@ public class PlayerController : MonoBehaviour {
                 break;
             }
         }
+
         #endregion
 
         #region ledge
+
         // Ledge stuff
         if (!isGrounded && rb.velocity.y <= 0) {
             checkLedge();
         }
+
         #endregion
 
         //gravity
-        rb.AddForce(Vector2.down * gravityScaleDrop * rb.mass);
+        rb.AddForce(Vector2.down * (gravityScaleDrop * rb.mass));
 
         UpdateVisuals();
     }
 
-    private void UpdateVisuals() {
-        if (visualsTransform == null) {
-            return;
+    private bool isFloatBetween(float value, float min, float max) {
+        return value >= min && value <= max;
+    }
+
+    private bool SurfaceCheck() {
+        // Save the bottom side of our collider to a vector2
+        Vector2 bottom = new Vector2(col.bounds.center.x, col.bounds.min.y + 0.1f);
+        RaycastHit2D hit = Physics2D.Raycast(bottom, Vector2.right * movementInput.x, 0.7f, groundLayerMask);
+        if (hit.collider == null) {
+            return true;
         }
 
-        //flip our visuals if we are goinf in the other direction
-        if (movementInput.x > 0) {
-            visualsTransform.localScale = defaultVisualScale;
-        } else if (movementInput.x < 0) {
-            visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1, 1, 1));
+        float angle = Vector2.Angle(Vector2.up, hit.normal);
+        Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
+
+
+        return angle < maxClimbAngle;
+    }
+
+    private void applyMovement(float x) {
+        if (isFloatBetween(x, -1, 1)) {
+            this.rb.sharedMaterial.friction = 1;
+        } else {
+            this.rb.sharedMaterial.friction = 0;
         }
+        
+        this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
+    }
+
+    private float move() {
+        float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed);
+        float speedDifference = targetSpeed - rb.velocity.x;
+        float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
+        float movement =
+            Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate,
+                accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
+            Mathf.Sign(speedDifference);
+
+        // Debug.Log("Movement " + movement);
+
+        if (isFloatBetween(movement, -1, 1)) {
+            this.rb.sharedMaterial.friction = 1;
+        } else {
+            this.rb.sharedMaterial.friction = 0;
+        }
+        
+        /*
+         * Rope stuff 
+         */
+        if (isOnRope) { }
+
+        return movement;
     }
 
     private void checkLedge() {
@@ -145,9 +201,8 @@ public class PlayerController : MonoBehaviour {
 
         Utils.Instance.InvokeDelayed(.2f, () => {
             var path = new LTBezierPath(new Vector3[] {
-            transform.position, ledgeCorner, ledgeCorner,
-            new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
-        });
+                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+            });
             LeanTween.move(gameObject, path, ledgeFreezeTime);
 
 
@@ -155,11 +210,10 @@ public class PlayerController : MonoBehaviour {
             col.enabled = false;
 
 
-
-        Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            col.enabled = true;
-        });
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                col.enabled = true;
+            });
 
 
             lastLedgeGrab = Time.time + ledgeFreezeTime;
@@ -168,56 +222,17 @@ public class PlayerController : MonoBehaviour {
         });
     }
 
-    private bool isFloatBetween(float value, float min, float max) {
-        return value >= min && value <= max;
-    }
-
-    private void move() {
-        float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed);
-        float speedDifference = targetSpeed - rb.velocity.x;
-        float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
-        float movement =
-            Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate,
-                accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
-            Mathf.Sign(speedDifference);
-        
-        // Debug.Log("Movement " + movement);
-
-        if (isFloatBetween(movement, -1, 1)) {
-            this.rb.sharedMaterial.friction = 1;
-        } else {
-            this.rb.sharedMaterial.friction = 0;
-        }
-        
-        rb.AddForce(Vector2.right * movement * forceScale.x * rb.mass);
-
-        /*
-         * Rope stuff 
-         */
-        if (isOnRope) {
-
-        }
-    }
-
-    public void DoMove(InputAction.CallbackContext context) {
-        movementInput = context.ReadValue<Vector2>();
-    }
-
-
-    public void DoJump(InputAction.CallbackContext context) {
-        if (context.performed) {
-            if (isGrounded || isOnRope) {
-                //Debug.LogWarning("Jump");
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            }
-            if (isOnRope) {
-                //Debug.LogWarning("Jump");
-                ropeJoint.enabled = false;
-                isOnRope = false;
-                lastRopeRelease = Time.time;
-            }
+    private void UpdateVisuals() {
+        if (visualsTransform == null) {
+            return;
         }
 
+        //flip our visuals if we are goinf in the other direction
+        if (movementInput.x > 0) {
+            visualsTransform.localScale = defaultVisualScale;
+        } else if (movementInput.x < 0) {
+            visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1, 1, 1));
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -238,6 +253,32 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
+
+    #region Input
+
+    public void DoMove(InputAction.CallbackContext context) {
+        movementInput = context.ReadValue<Vector2>();
+    }
+
+    public void DoJump(InputAction.CallbackContext context) {
+        if (context.performed) {
+            if (isGrounded || isOnRope) {
+                //Debug.LogWarning("Jump");
+                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
+            if (isOnRope) {
+                //Debug.LogWarning("Jump");
+                ropeJoint.enabled = false;
+                isOnRope = false;
+                lastRopeRelease = Time.time;
+            }
+        }
+
+    }
+
+    #endregion
+
+    #region debug
 
     private void OnDrawGizmos() {
         // draw circle around player based on radius
@@ -277,10 +318,13 @@ public class PlayerController : MonoBehaviour {
                 Gizmos.DrawWireSphere(
                     transform.position + Vector3.right * ledgeCheckDistance + Vector3.up * maxLedgeHeight,
                     playerRadius);
+
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawLine(transform.position, transform.position + Vector3.right * movementInput.x);
             }
         }
     }
 
-    
-    
+    #endregion
+
 }
