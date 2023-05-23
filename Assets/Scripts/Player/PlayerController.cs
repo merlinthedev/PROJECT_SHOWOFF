@@ -290,7 +290,7 @@ public class PlayerController : MonoBehaviour {
         if (context.performed) {
             if (isGrounded || isOnRope) {
                 //Debug.LogWarning("Jump");
-                rb.AddForce(Vector2.up * jumpForce * (inWater ? waterGravityScale : 1) * (isCheesing ? cheeseStrength : 1f),
+                rb.AddForce(Vector2.up * jumpForce * (inWater ? waterJumpForceDebuff : 1) * (isCheesing ? cheeseStrength : 1f),
                     ForceMode2D.Impulse);
             }
             if (isOnRope) {
