@@ -160,6 +160,9 @@ public class PlayerController : MonoBehaviour {
     private void applyMovement(float x) {
         this.rb.sharedMaterial.friction = movementInput.x == 0 ? 1 : 0;
         x *= (inWater ? waterMovementSpeedDebuff : 1f);
+
+        // Debug.Log("Applying movement: " + x);
+        Debug.Log("Current rb force: " + this.rb.velocity);
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
 
 
