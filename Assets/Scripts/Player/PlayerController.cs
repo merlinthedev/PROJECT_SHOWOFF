@@ -159,6 +159,7 @@ public class PlayerController : MonoBehaviour {
 
     private void applyMovement(float x) {
         this.rb.sharedMaterial.friction = movementInput.x == 0 ? 1 : 0;
+        x *= (inWater ? waterMovementSpeedDebuff : 1f);
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
 
 
@@ -295,8 +296,20 @@ public class PlayerController : MonoBehaviour {
         if (context.performed) {
             if (isGrounded || isOnRope) {
                 //Debug.LogWarning("Jump");
-                rb.AddForce(Vector2.up * jumpForce * (inWater ? waterJumpForceDebuff : 1) * (isCheesing ? cheeseStrength : 1f),
-                    ForceMode2D.Impulse);
+                // rb.AddForce(Vector2.up * jumpForce * (inWater ? waterJumpForceDebuff : 1) * (isCheesing ? cheeseStrength : 1f),
+                //     ForceMode2D.Impulse);
+
+                if (this.isCheesing) {
+                    this.rb.AddForce(Vector2.up * this.jumpForce * this.cheeseStrength, ForceMode2D.Impulse);
+                } else if (this.inWater) {
+                    this.rb.AddForce(Vector2.up * this.jumpForce * this.waterJumpForceDebuff, ForceMode2D.Impulse);
+                } else {
+                    this.rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
+                }
+                
+                
+                
+                
             }
             if (isOnRope) {
                 //Debug.LogWarning("Jump");
