@@ -45,6 +45,10 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private FixedJoint2D ropeJoint;
 
     [SerializeField] private float ropeGrabTimeout = 0.5f;
+    private bool isOnRope = false;
+    private RopeController rope;
+    private float ropeProgress = 0f;
+    private float lastRopeRelease = 0f;
 
     [Header("Water")]
     [SerializeField] private float waterMovementSpeedDebuff = 0.5f;
@@ -52,6 +56,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float waterGravityScale = 0.5f;
     [SerializeField] private float waterJumpForceDebuff = 0.5f;
     [SerializeField] private bool inWater = false;
+    [SerializeField] private float waterLedgeDelay = 0.5f;
+    private float lastWaterLeaveTime;
+    
 
     [Header("Needs to move")]
     [SerializeField]
@@ -61,16 +68,14 @@ public class PlayerController : MonoBehaviour {
     [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
     [SerializeField] private UnityEvent OnWhistle;
 
-    private bool isOnRope = false;
-    private RopeController rope;
-    private float ropeProgress = 0f;
-    private float lastRopeRelease = 0f;
+    [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip walkSound;
     private bool walkSoundPlaying = false;
     private bool isMoving = false;
 
+    [Header("Cheese")]
     public float cheeseStrength = 2f;
     public bool isCheesing = false;
 
@@ -124,7 +129,7 @@ public class PlayerController : MonoBehaviour {
         #region ledge
 
         // Ledge stuff
-        if (!isGrounded && rb.velocity.y <= 0) {
+        if (!isGrounded && !this.inWater && rb.velocity.y <= 0) {
             checkLedge();
         }
 
@@ -369,8 +374,11 @@ public class PlayerController : MonoBehaviour {
         return this.inWater;
     }
 
-    public void SetInWater(bool inWater) {
+    public void SetInWater(bool inWater, float time) {
         this.inWater = inWater;
+
+        if (time < 0) return;
+        
     }
 
     #endregion
