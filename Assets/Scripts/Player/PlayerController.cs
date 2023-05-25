@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private bool inWater = false;
     [SerializeField] private float waterLedgeDelay = 0.5f;
     private float lastWaterLeaveTime;
-    
+
 
     [Header("Needs to move")]
     [SerializeField]
@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
+
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip walkSound;
     private bool walkSoundPlaying = false;
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Cheese")]
     public float cheeseStrength = 2f;
+
     public bool isCheesing = false;
 
     private void Start() {
@@ -177,15 +179,15 @@ public class PlayerController : MonoBehaviour {
                 //    The reason this is not perfect is because the player is not always in the center of the groundCollider.
                 //    This means that the force applied to the ground will not always be applied to the center of the groundCollider.
                 //    This is not a problem for now, but it might be in the future.
-                
+
                 // Calculate the force needed to keep the player in place
                 var force = Vector2.right * x * forceScale.x * rb.mass;
                 // Apply the opposite force to the ground
                 groundRB.AddForce(-force);
-                
-            }    
+
+            }
         }
-        
+
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
 
 
@@ -204,16 +206,16 @@ public class PlayerController : MonoBehaviour {
         /*
          * Rope stuff 
          */
-        if (isOnRope){
+        if (isOnRope) {
             if (movementInput.y != 0) {
                 ropeProgress -= movementInput.y * Time.fixedDeltaTime;
                 ropeProgress = Mathf.Clamp01(ropeProgress);
-            
-            Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
-            rb.position = ropePosition;
-            ropeJoint.connectedBody = rope.GetRopePart(ropeProgress);
-            ropeJoint.connectedAnchor = ropePosition;
-            return 0;
+
+                Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
+                rb.position = ropePosition;
+                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress);
+                ropeJoint.connectedAnchor = ropePosition;
+                return 0;
             }
         }
 
@@ -226,7 +228,8 @@ public class PlayerController : MonoBehaviour {
 
     private void checkLedge() {
         //direction the player is facing horizontally
-        Vector2 direction = Vector2.right * Mathf.Sign(movementInput.x);
+        Vector2 direction = new Vector2(movementInput.x, 0);
+        Debug.Log("dir: " + direction.ToString());
 
         //raycast forwards to check if we hit a ledge
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, ledgeCheckDistance, groundLayerMask);
@@ -343,13 +346,11 @@ public class PlayerController : MonoBehaviour {
                     this.rb.AddForce(Vector2.up * this.jumpForce * this.waterJumpForceDebuff, ForceMode2D.Impulse);
                 } else {
                     this.rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
-                    if(groundRB != null)
+                    if (groundRB != null)
                         groundRB.AddForceAtPosition(Vector2.down * this.jumpForce, this.rb.position);
                 }
-                
-                
-                
-                
+
+
             }
             if (isOnRope) {
                 //Debug.LogWarning("Jump");
