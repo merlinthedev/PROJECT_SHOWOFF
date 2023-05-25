@@ -10,6 +10,7 @@ public class RopeController : MonoBehaviour {
     [SerializeField] GameObject[] ropeParts;
 
     [SerializeField] float ropeDamping = 0f;
+    [SerializeField] bool startEnabled = true;
 
     public bool RopeEnabled {
         get {
@@ -23,6 +24,10 @@ public class RopeController : MonoBehaviour {
                 part.GetComponent<Rigidbody2D>().simulated = value;
             }
         }
+    }
+
+    private void Start() {
+        RopeEnabled = startEnabled;
     }
 
     public Vector2 GetRopePoint(float ropeProgress) {

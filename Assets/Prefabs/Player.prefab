@@ -102,7 +102,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.4300003, y: -0.03000021}
+  m_ConnectedAnchor: {x: 0.4300003, y: -0.029999971}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &3910479842993109162
@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 4994682683498032186}
   - component: {fileID: 490823350040079843}
   - component: {fileID: 2549151372395889695}
+  - component: {fileID: 3983036056305442033}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -302,7 +303,7 @@ Transform:
   - {fileID: 361482788603527927}
   - {fileID: 8522265021308677764}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7052072812959686204
 SpriteRenderer:
@@ -369,7 +370,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 73a2f0ff6f465ef49922f8f44377e1eb, type: 2}
@@ -381,7 +382,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &2809409103064106543
 MonoBehaviour:
@@ -455,10 +456,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 0adad682-579f-47d6-9659-aca3f295557e
-    m_ActionName: Player/Grab[/Keyboard/leftShift]
+    m_ActionName: Movement/Grab[/Keyboard/leftShift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3564916307715087403}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SlingShotController, Assembly-CSharp
         m_MethodName: OnStickInput
         m_Mode: 0
@@ -471,7 +472,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: ebcb9907-d7d0-43a8-b48a-31cd23cd7b24
-    m_ActionName: Player/SlingShotDirection[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+    m_ActionName: Player/SlingShotDirection[/DualSenseGamepadHID/rightStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -525,7 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 4.5
-  maxAirSpeed: 4
+  maxAirSpeed: 3
   acceleration: 12
   deceleration: 5
   accelerationCurve:
@@ -556,7 +557,7 @@ MonoBehaviour:
   gravityScaleDrop: 10
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   movementInput: {x: 0, y: 0}
   rb: {fileID: 7052072812959686206}
   col: {fileID: 5287127574608404407}
@@ -565,17 +566,18 @@ MonoBehaviour:
   visualsTransform: {fileID: 361482788603527927}
   playerRadius: 0.5
   isGrounded: 0
-  jumpForce: 13
+  jumpForce: 16
   groundCheckRaycastDistance: 0.7
-  maxLedgeHeight: 0.8
+  maxLedgeHeight: 2
   ledgeCheckDistance: 0.55
   ledgeFreezeTime: 1.5
-  ropeJoint: {fileID: 0}
+  ropeJoint: {fileID: 3983036056305442033}
   ropeGrabTimeout: 0.5
   waterMovementSpeedDebuff: 0.8
   waterGravityScale: 0.8
-  waterJumpForceDebuff: 0.8
+  waterJumpForceDebuff: 0.6
   inWater: 0
+  waterLedgeDelay: 0.5
   player: {fileID: 490823350040079843}
   OnLedgeClimb:
     m_PersistentCalls:
@@ -741,6 +743,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!255 &3983036056305442033
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052072812959686177}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 38.48, y: 3.699}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &7052072814427263470
 GameObject:
   m_ObjectHideFlags: 0
