@@ -16,10 +16,17 @@ public class ParallaxScroller : MonoBehaviour
 
     Transform cameraTransform;
 
+
     // Start is called before the first frame update
     void Start()
     {
         cameraTransform = Camera.main.transform;
+
+        
+
+
+
+
     }
     
     //right before this gets rendered, update the position
@@ -35,6 +42,7 @@ public class ParallaxScroller : MonoBehaviour
             (relativePosition.x * scrollSpeed.x) + offset.x,
             (relativePosition.y * scrollSpeed.y) + offset.y,
             depth
+
         );
 
         transform.position = newPosition;

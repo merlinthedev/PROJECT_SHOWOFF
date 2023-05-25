@@ -41,11 +41,17 @@ TagManager:
   - 
   - Velocity
   m_SortingLayers:
-  - name: Background
-    uniqueID: 2094449113
+  - name: Background-Back
+    uniqueID: 2831631483
     locked: 0
-  - name: Tree Background
-    uniqueID: 1194124135
+  - name: Background-Far
+    uniqueID: 3944767611
+    locked: 0
+  - name: Background-Mid
+    uniqueID: 2926437975
+    locked: 0
+  - name: Background-Front
+    uniqueID: 2094449113
     locked: 0
   - name: Ground
     uniqueID: 2614975985
@@ -58,4 +64,10 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2686616247
+    locked: 0
+  - name: Furthest ground
+    uniqueID: 2405667001
+    locked: 0
+  - name: New Layer 9
+    uniqueID: 3091395933
     locked: 0
