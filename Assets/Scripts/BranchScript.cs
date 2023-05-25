@@ -7,6 +7,7 @@ public class BranchScript : MonoBehaviour
     [SerializeField] private bool isParent = false;
     public bool gotBonked = false;
     public bool fade = false;
+    [SerializeField] private GameObject enableThis;
 
     private void FixedUpdate() {
 
@@ -17,7 +18,10 @@ public class BranchScript : MonoBehaviour
             if(TryGetComponent<Rigidbody2D>(out Rigidbody2D rb)) rb.bodyType = RigidbodyType2D.Kinematic;
             for (int i = 0; i < transform.childCount; i++) 
             {
-                if (transform.GetChild(i).GetComponent<BranchScript>().gotBonked) Destroy();
+                if (transform.GetChild(i).GetComponent<BranchScript>().gotBonked) {
+                    if (enableThis != null) enableThis.gameObject.SetActive(true);
+                    Destroy();
+                }
             }
         }
         //if fade is true, fade out the branch and then destroy it
@@ -28,7 +32,10 @@ public class BranchScript : MonoBehaviour
             else if (tmp.a < 0) tmp.a = 0;
             GetComponent<SpriteRenderer>().color = tmp;
             //destroy the branch once it is fully faded out
-            if(tmp.a == 0) Destroy(gameObject);
+            if (tmp.a == 0) {
+
+                Destroy(gameObject);
+            }
             Debug.Log(tmp.a);
         }
     }
