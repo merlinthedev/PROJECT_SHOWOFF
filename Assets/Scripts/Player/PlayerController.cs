@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
+[SelectionBase]
 public class PlayerController : MonoBehaviour {
     [Header("Movement")] [SerializeField] private float maxSpeed = 8f;
     [SerializeField] private float maxAirSpeed = 4f;
@@ -152,7 +153,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         float angle = Vector2.Angle(Vector2.up, hit.normal);
-        Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
+        // Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
 
         return angle < maxClimbAngle;
     }
@@ -402,11 +403,8 @@ public class PlayerController : MonoBehaviour {
         return this.inWater;
     }
 
-    public void SetInWater(bool inWater, float time) {
+    public void SetInWater(bool inWater) {
         this.inWater = inWater;
-
-        if (time < 0) return;
-        
     }
 
     #endregion

@@ -16,7 +16,8 @@ public class Water : MonoBehaviour {
             return;
         }
         
-        player.SetInWater(true, -1);
+        Debug.Log("InWater is set to true");
+        player.SetInWater(true);
     }
 
     private void OnTriggerStay2D(Collider2D other) {
@@ -30,8 +31,12 @@ public class Water : MonoBehaviour {
             Debug.LogError("Player has no PlayerController component", this);
             return;
         }
-        
-        if(!player.IsInWater()) player.SetInWater(true, -1);
+
+        if (!player.IsInWater()) {
+            Debug.Log("InWater set to true from stay");
+            player.SetInWater(true);
+            
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
@@ -48,7 +53,8 @@ public class Water : MonoBehaviour {
 
 
         Utils.Instance.InvokeDelayed(0.5f, () => {
-            player.SetInWater(false, Time.time);
+            Debug.Log("InWater has been set to false after 0.5f seconds");
+            player.SetInWater(false);
         });
     }
 }
