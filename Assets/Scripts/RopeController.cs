@@ -11,16 +11,6 @@ public class RopeController : MonoBehaviour {
 
     [SerializeField] float ropeDamping = 0f;
 
-    // Start is called before the first frame update
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
-
     public Vector2 GetRopePoint(float ropeProgress) {
         //returns the point along the rope curve at the given progress (0 to 1)
         //we assume a constant length between rope parts

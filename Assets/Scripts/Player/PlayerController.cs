@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour {
         x *= (inWater ? waterMovementSpeedDebuff : 1f);
 
         // Debug.Log("Applying movement: " + x);
-        Debug.Log("Current rb force: " + this.rb.velocity);
+        //Debug.Log("Current rb force: " + this.rb.velocity);
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
 
 
@@ -181,7 +181,18 @@ public class PlayerController : MonoBehaviour {
         /*
          * Rope stuff 
          */
-        if (isOnRope) { }
+        if (isOnRope){
+            if (movementInput.y != 0) {
+                ropeProgress += movementInput.y * Time.fixedDeltaTime;
+                ropeProgress = Mathf.Clamp01(ropeProgress);
+            
+            Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
+            rb.position = ropePosition;
+            ropeJoint.connectedBody = rope.GetRopePart(ropeProgress);
+            ropeJoint.connectedAnchor = ropePosition;
+            return 0;
+            }
+        }
 
         return movement;
     }
@@ -285,6 +296,7 @@ public class PlayerController : MonoBehaviour {
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress);
                 //set the player's onRope bool to true
                 isOnRope = true;
+                rb.position = rope.GetRopePoint(ropeProgress);
             }
         }
     }
