@@ -11,6 +11,20 @@ public class RopeController : MonoBehaviour {
 
     [SerializeField] float ropeDamping = 0f;
 
+    public bool RopeEnabled {
+        get {
+            foreach (var part in ropeParts) {
+                if (part.GetComponent<Rigidbody2D>().simulated) return true;
+            }
+            return false;
+        }
+        set {
+            foreach (var part in ropeParts) {
+                part.GetComponent<Rigidbody2D>().simulated = value;
+            }
+        }
+    }
+
     public Vector2 GetRopePoint(float ropeProgress) {
         //returns the point along the rope curve at the given progress (0 to 1)
         //we assume a constant length between rope parts
@@ -25,7 +39,7 @@ public class RopeController : MonoBehaviour {
         var ropePart = ropeParts[ropeIndex];
 
         //if we are at the end of the rope
-        if(ropeIndex >= ropePartCount - 1) {
+        if (ropeIndex >= ropePartCount - 1) {
             return ropePart.transform.position;
         }
         var nextRopePart = ropeParts[ropeIndex + 1];
@@ -38,7 +52,7 @@ public class RopeController : MonoBehaviour {
         float closestPartProgress = 0;
         Vector2 closestPoint = Vector2.positiveInfinity;
 
-        for(int i = 0; i < ropeParts.Length - 1; i++) {
+        for (int i = 0; i < ropeParts.Length - 1; i++) {
             var ropePart = ropeParts[i];
             var nextRopePart = ropeParts[i + 1];
             var partVector = ((Vector2)(nextRopePart.transform.position) - (Vector2)(ropePart.transform.position));
