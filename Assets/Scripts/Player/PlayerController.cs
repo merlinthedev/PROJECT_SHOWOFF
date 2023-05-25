@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour {
          */
         if (isOnRope){
             if (movementInput.y != 0) {
-                ropeProgress += movementInput.y * Time.fixedDeltaTime;
+                ropeProgress -= movementInput.y * Time.fixedDeltaTime;
                 ropeProgress = Mathf.Clamp01(ropeProgress);
             
             Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
@@ -291,12 +291,12 @@ public class PlayerController : MonoBehaviour {
                 rope = collision.gameObject.GetComponentInParent<RopeController>();
                 //set how far we are along the rope
                 ropeProgress = rope.GetRopeProgress(transform.position);
+                rb.position = rope.GetRopePoint(ropeProgress);
                 //fix our joint to the rope
                 ropeJoint.enabled = true;
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress);
                 //set the player's onRope bool to true
                 isOnRope = true;
-                rb.position = rope.GetRopePoint(ropeProgress);
             }
         }
     }
