@@ -15,13 +15,13 @@ public class RopeController : MonoBehaviour {
     public bool RopeEnabled {
         get {
             foreach (var part in ropeParts) {
-                if (part.GetComponent<Rigidbody2D>().simulated) return true;
+                if (part.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Dynamic) return true;
             }
             return false;
         }
         set {
             foreach (var part in ropeParts) {
-                part.GetComponent<Rigidbody2D>().simulated = value;
+                part.GetComponent<Rigidbody2D>().bodyType = value ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
             }
         }
     }
