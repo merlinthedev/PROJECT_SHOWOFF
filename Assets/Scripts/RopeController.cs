@@ -27,8 +27,15 @@ public class RopeController : MonoBehaviour {
         }
     }
 
+    private float ropeLength;
+
     private void Start() {
         RopeEnabled = startEnabled;
+
+        // calculate the length of the rope
+        for (int i = 0; i < ropeParts.Length - 1; i++) {
+            ropeLength += Vector2.Distance(ropeParts[i].transform.position, ropeParts[i + 1].transform.position);
+        }
     }
 
     public Vector2 GetRopePoint(float ropeProgress) {
@@ -159,4 +166,8 @@ public class RopeController : MonoBehaviour {
         UpdateRopeParts();
     }
 #endif
+
+    public float getRopeLength() {
+        return this.ropeLength;
+    }
 }

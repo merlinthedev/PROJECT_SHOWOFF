@@ -1,5 +1,3 @@
-using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
@@ -49,6 +47,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private FixedJoint2D ropeJoint;
 
     [SerializeField] private float ropeGrabTimeout = 0.5f;
+    [SerializeField] private float ropeSpeedMultiplier = 1.5f;
     private bool isOnRope = false;
     private RopeController rope;
     private float ropeProgress = 0f;
@@ -136,7 +135,7 @@ public class PlayerController : MonoBehaviour {
         #region ledge
 
         // Ledge stuff
-        if (!isGrounded && !this.inWater && rb.velocity.y <= 0) {
+        if (!isGrounded && !this.inWater && rb.velocity.y <= 0 && !GetComponent<PlayerEventHandler>().Grabbing) {
             checkLedge();
         }
 
@@ -208,7 +207,7 @@ public class PlayerController : MonoBehaviour {
          */
         if (isOnRope) {
             if (movementInput.y != 0) {
-                ropeProgress -= movementInput.y * Time.fixedDeltaTime;
+                ropeProgress -= (movementInput.y * ropeSpeedMultiplier * Time.fixedDeltaTime) / rope.getRopeLength();
                 ropeProgress = Mathf.Clamp01(ropeProgress);
 
                 Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
