@@ -1,3 +1,5 @@
+using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
@@ -33,7 +35,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Jump")] [SerializeField] private bool isGrounded = false;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
-    private Collider2D groundCollider;
+    [SerializeField] private Collider2D groundCollider;
 
     [Header("Ledge")]
     [SerializeField] private float maxLedgeHeight = 2f;
@@ -166,6 +168,24 @@ public class PlayerController : MonoBehaviour {
 
         // Debug.Log("Applying movement: " + x);
         //Debug.Log("Current rb force: " + this.rb.velocity);
+        if (this.groundCollider != null) {
+            var groundRB = this.groundCollider.attachedRigidbody;
+            if (groundRB != null) {
+                // Q: Is there any way to calculate the exact force needed to keep the attachedRigidbody in place?
+                // A: No, but we can calculate the force needed to keep the player in place, and then apply the opposite force to the ground.
+                //    This is not perfect, but it's good enough for now.
+                //    The reason this is not perfect is because the player is not always in the center of the groundCollider.
+                //    This means that the force applied to the ground will not always be applied to the center of the groundCollider.
+                //    This is not a problem for now, but it might be in the future.
+                
+                // Calculate the force needed to keep the player in place
+                var force = Vector2.right * x * forceScale.x * rb.mass;
+                // Apply the opposite force to the ground
+                groundRB.AddForce(-force);
+                
+            }    
+        }
+        
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
 
 
