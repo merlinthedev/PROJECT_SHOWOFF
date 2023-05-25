@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Jump")] [SerializeField] private bool isGrounded = false;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
-    private Collider2D groundCollider;
+    [SerializeField] private Collider2D groundCollider;
 
     [Header("Ledge")]
     [SerializeField] private float maxLedgeHeight = 2f;
