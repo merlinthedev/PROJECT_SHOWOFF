@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
+[SelectionBase]
 public class PlayerController : MonoBehaviour {
     [Header("Movement")] [SerializeField] private float maxSpeed = 8f;
     [SerializeField] private float maxAirSpeed = 4f;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Jump")] [SerializeField] private bool isGrounded = false;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
+    private Collider2D groundCollider;
 
     [Header("Ledge")]
     [SerializeField] private float maxLedgeHeight = 2f;
@@ -45,6 +47,10 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private FixedJoint2D ropeJoint;
 
     [SerializeField] private float ropeGrabTimeout = 0.5f;
+    private bool isOnRope = false;
+    private RopeController rope;
+    private float ropeProgress = 0f;
+    private float lastRopeRelease = 0f;
 
     [Header("Water")]
     [SerializeField] private float waterMovementSpeedDebuff = 0.5f;
@@ -52,6 +58,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float waterGravityScale = 0.5f;
     [SerializeField] private float waterJumpForceDebuff = 0.5f;
     [SerializeField] private bool inWater = false;
+    [SerializeField] private float waterLedgeDelay = 0.5f;
+    private float lastWaterLeaveTime;
+    
 
     [Header("Needs to move")]
     [SerializeField]
@@ -61,16 +70,14 @@ public class PlayerController : MonoBehaviour {
     [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
     [SerializeField] private UnityEvent OnWhistle;
 
-    private bool isOnRope = false;
-    private RopeController rope;
-    private float ropeProgress = 0f;
-    private float lastRopeRelease = 0f;
+    [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip walkSound;
     private bool walkSoundPlaying = false;
     private bool isMoving = false;
 
+    [Header("Cheese")]
     public float cheeseStrength = 2f;
     public bool isCheesing = false;
 
@@ -115,6 +122,7 @@ public class PlayerController : MonoBehaviour {
                 //Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
                 isGrounded = true;
                 moved = false;
+                this.groundCollider = hit.collider;
                 break;
             }
         }
@@ -124,7 +132,7 @@ public class PlayerController : MonoBehaviour {
         #region ledge
 
         // Ledge stuff
-        if (!isGrounded && rb.velocity.y <= 0) {
+        if (!isGrounded && !this.inWater && rb.velocity.y <= 0) {
             checkLedge();
         }
 
@@ -147,13 +155,17 @@ public class PlayerController : MonoBehaviour {
         }
 
         float angle = Vector2.Angle(Vector2.up, hit.normal);
-        Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
+        // Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
 
         return angle < maxClimbAngle;
     }
 
     private void applyMovement(float x) {
         this.rb.sharedMaterial.friction = movementInput.x == 0 ? 1 : 0;
+        x *= (inWater ? waterMovementSpeedDebuff : 1f);
+
+        // Debug.Log("Applying movement: " + x);
+        //Debug.Log("Current rb force: " + this.rb.velocity);
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
 
 
@@ -172,7 +184,18 @@ public class PlayerController : MonoBehaviour {
         /*
          * Rope stuff 
          */
-        if (isOnRope) { }
+        if (isOnRope){
+            if (movementInput.y != 0) {
+                ropeProgress -= movementInput.y * Time.fixedDeltaTime;
+                ropeProgress = Mathf.Clamp01(ropeProgress);
+            
+            Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
+            rb.position = ropePosition;
+            ropeJoint.connectedBody = rope.GetRopePart(ropeProgress);
+            ropeJoint.connectedAnchor = ropePosition;
+            return 0;
+            }
+        }
 
         return movement;
     }
@@ -271,6 +294,7 @@ public class PlayerController : MonoBehaviour {
                 rope = collision.gameObject.GetComponentInParent<RopeController>();
                 //set how far we are along the rope
                 ropeProgress = rope.GetRopeProgress(transform.position);
+                rb.position = rope.GetRopePoint(ropeProgress);
                 //fix our joint to the rope
                 ropeJoint.enabled = true;
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress);
@@ -290,8 +314,22 @@ public class PlayerController : MonoBehaviour {
         if (context.performed) {
             if (isGrounded || isOnRope) {
                 //Debug.LogWarning("Jump");
-                rb.AddForce(Vector2.up * jumpForce * (inWater ? waterJumpForceDebuff : 1) * (isCheesing ? cheeseStrength : 1f),
-                    ForceMode2D.Impulse);
+                // rb.AddForce(Vector2.up * jumpForce * (inWater ? waterJumpForceDebuff : 1) * (isCheesing ? cheeseStrength : 1f),
+                //     ForceMode2D.Impulse);
+                var groundRB = this.groundCollider.attachedRigidbody;
+                if (this.isCheesing) {
+                    this.rb.AddForce(Vector2.up * this.jumpForce * this.cheeseStrength, ForceMode2D.Impulse);
+                } else if (this.inWater) {
+                    this.rb.AddForce(Vector2.up * this.jumpForce * this.waterJumpForceDebuff, ForceMode2D.Impulse);
+                } else {
+                    this.rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
+                    if(groundRB != null)
+                        groundRB.AddForceAtPosition(Vector2.down * this.jumpForce, this.rb.position);
+                }
+                
+                
+                
+                
             }
             if (isOnRope) {
                 //Debug.LogWarning("Jump");
