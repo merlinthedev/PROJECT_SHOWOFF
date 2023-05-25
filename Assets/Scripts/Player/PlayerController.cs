@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Jump")] [SerializeField] private bool isGrounded = false;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
+    private Collider2D groundCollider;
 
     [Header("Ledge")]
     [SerializeField] private float maxLedgeHeight = 2f;
@@ -121,6 +122,7 @@ public class PlayerController : MonoBehaviour {
                 //Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
                 isGrounded = true;
                 moved = false;
+                this.groundCollider = hit.collider;
                 break;
             }
         }
@@ -314,13 +316,15 @@ public class PlayerController : MonoBehaviour {
                 //Debug.LogWarning("Jump");
                 // rb.AddForce(Vector2.up * jumpForce * (inWater ? waterJumpForceDebuff : 1) * (isCheesing ? cheeseStrength : 1f),
                 //     ForceMode2D.Impulse);
-
+                var groundRB = this.groundCollider.attachedRigidbody;
                 if (this.isCheesing) {
                     this.rb.AddForce(Vector2.up * this.jumpForce * this.cheeseStrength, ForceMode2D.Impulse);
                 } else if (this.inWater) {
                     this.rb.AddForce(Vector2.up * this.jumpForce * this.waterJumpForceDebuff, ForceMode2D.Impulse);
                 } else {
                     this.rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
+                    if(groundRB != null)
+                        groundRB.AddForceAtPosition(Vector2.down * this.jumpForce, this.rb.position);
                 }
                 
                 
