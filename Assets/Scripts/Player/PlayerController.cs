@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log("Current rb force: " + this.rb.velocity);
         if (this.groundCollider != null) {
             var groundRB = this.groundCollider.attachedRigidbody;
-            if (groundRB != null) {
+            if (groundRB != null && isGrounded) {
                 // Q: Is there any way to calculate the exact force needed to keep the attachedRigidbody in place?
                 // A: No, but we can calculate the force needed to keep the player in place, and then apply the opposite force to the ground.
                 //    This is not perfect, but it's good enough for now.
