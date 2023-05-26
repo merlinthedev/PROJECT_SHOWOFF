@@ -102,7 +102,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.42999983, y: -0.029999971}
+  m_ConnectedAnchor: {x: 0.4300003, y: -0.03000021}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &3910479842993109162
@@ -303,7 +303,7 @@ Transform:
   - {fileID: 361482788603527927}
   - {fileID: 8522265021308677764}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7052072812959686204
 SpriteRenderer:
@@ -574,6 +574,7 @@ MonoBehaviour:
   ledgeFreezeTime: 1.5
   ropeJoint: {fileID: 3983036056305442033}
   ropeGrabTimeout: 0.5
+  ropeSpeedMultiplier: 1.5
   waterMovementSpeedDebuff: 0.8
   waterGravityScale: 0.8
   waterJumpForceDebuff: 0.6

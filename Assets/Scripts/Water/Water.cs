@@ -52,7 +52,7 @@ public class Water : MonoBehaviour {
         }
 
 
-        Utils.Instance.InvokeDelayed(0.5f, () => {
+        Utils.Instance.InvokeDelayed(0.25f, () => {
             Debug.Log("InWater has been set to false after 0.5f seconds");
             player.SetInWater(false);
         });

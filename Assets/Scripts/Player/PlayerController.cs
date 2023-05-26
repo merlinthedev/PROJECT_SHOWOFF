@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour {
         #region ledge
 
         // Ledge stuff
-        if (!isGrounded && !this.inWater && rb.velocity.y <= 0 && !GetComponent<PlayerEventHandler>().Grabbing) {
+        if (!isGrounded && !this.inWater && rb.velocity.y <= 0 && !GetComponent<PlayerEventHandler>().Grabbing && !isOnRope && this.lastRopeRelease + 0.5f < Time.time) {
             checkLedge();
         }
 
