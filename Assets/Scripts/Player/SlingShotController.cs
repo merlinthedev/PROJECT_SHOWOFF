@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,14 +17,16 @@ public class SlingShotController : MonoBehaviour {
 
     [SerializeField] private AProjectile projectilePrefab;
 
+
     // Start is called before the first frame update
-    void Start() {
-    }
+    
 
     // Update is called once per frame
     void Update() {
         this.Aim();
     }
+
+    
 
     public void Aim() {
         //update smoothed stick
@@ -31,12 +34,18 @@ public class SlingShotController : MonoBehaviour {
         stickSmoothed -= smoothDelta * Mathf.Clamp01(stickSmoothSpeed * Time.deltaTime);
 
         float smoothStickMagnitude = stickSmoothed.magnitude;
-
+        
+        shootDirection = stickSmoothed.normalized;
+        shootForce = Mathf.Lerp(minShootForce, maxShootForce, smoothStickMagnitude);
+        Debug.LogWarning("Shoot Direction: " + shootDirection);
+        Debug.LogWarning("Shoot Force: " + shootForce);
+        
+        
         if (stickInput == Vector2.zero && smoothStickMagnitude >= minShootMagnitude) {
-            shootDirection = stickSmoothed.normalized;
-            shootForce = Mathf.Lerp(minShootForce, maxShootForce, smoothStickMagnitude);
-            Debug.Log("Shoot Direction: " + shootDirection);
-            Debug.Log("Shoot Force: " + shootForce);
+            
+            Debug.LogError("Shoot Direction: " + shootDirection);
+            Debug.LogError("Shoot Force: " + shootForce);
+            
             stickSmoothed = Vector2.zero;
             Shoot(shootDirection, shootForce);
         }
