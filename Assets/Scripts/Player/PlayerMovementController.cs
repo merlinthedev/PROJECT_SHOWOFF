@@ -126,7 +126,6 @@ public class PlayerMovementController : MonoBehaviour {
             Physics2D.CircleCastAll(groundCheckTransform.position, playerRadius + 0.1f, Vector2.zero, groundLayerMask);
 
         for (int i = 0; i < hits.Length; i++) {
-            Debug.Log("Colliding with: " + hits[i].collider.gameObject.name + " at array position: " + i);
             if (hits[i].collider.gameObject != gameObject) {
                 isGrounded = true;
                 moved = false;
