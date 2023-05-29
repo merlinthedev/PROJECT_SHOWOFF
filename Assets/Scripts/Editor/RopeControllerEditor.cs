@@ -150,7 +150,7 @@ public class RopeControllerEditor : Editor {
     }
 
     private void Update() {
-        if (!draggingRopePart) return;
+        if (!editRopeMode) return;
 
         anchor.connectedBody = selectedRopePart;
         Physics2D.simulationMode = SimulationMode2D.Script;
