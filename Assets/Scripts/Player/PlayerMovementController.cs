@@ -16,6 +16,7 @@ public class PlayerMovementController : MonoBehaviour {
     [SerializeField] private float gravityScaleDrop = 10f;
 
     [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private LayerMask checkForValidPositions;
 
     [SerializeField] private Vector2 movementInput;
     [SerializeField] private Rigidbody2D rb;
@@ -223,7 +224,7 @@ public class PlayerMovementController : MonoBehaviour {
             hit.point.y + maxLedgeHeight);
 
         // at circlePosition, check if that point is a valid position for our player object
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(circlePosition, playerRadius, groundLayerMask);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(circlePosition, playerRadius, checkForValidPositions);
 
         if (colliders.Length > 0) {
             return;
