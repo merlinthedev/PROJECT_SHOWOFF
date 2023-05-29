@@ -7,7 +7,8 @@ using UnityEngine.U2D;
 public class RopeController : MonoBehaviour {
     [SerializeField] Transform ropeRoot;
     public Transform RopeRoot { get { return ropeRoot; } }
-    [SerializeField] GameObject[] ropeParts;
+    [SerializeField] GameObject[] ropeParts = new GameObject[0];
+    public GameObject[] RopeParts { get { return ropeParts;} }
 
     [SerializeField] float ropeDamping = 0f;
     [SerializeField] bool startEnabled = true;
@@ -27,14 +28,14 @@ public class RopeController : MonoBehaviour {
         }
     }
 
-    private float ropeLength;
+    public float RopeLength { get; private set; }
 
     private void Start() {
         RopeEnabled = startEnabled;
 
         // calculate the length of the rope
         for (int i = 0; i < ropeParts.Length - 1; i++) {
-            ropeLength += Vector2.Distance(ropeParts[i].transform.position, ropeParts[i + 1].transform.position);
+            RopeLength += Vector2.Distance(ropeParts[i].transform.position, ropeParts[i + 1].transform.position);
         }
     }
 
@@ -86,6 +87,7 @@ public class RopeController : MonoBehaviour {
     }
 
     public Rigidbody2D GetRopePart(float ropeProgress) {
+        if (ropeParts.Length == 0) return null;
         //returns the point along the rope curve at the given progress (0 to 1)
         //we assume a constant length between rope parts
         int ropePartCount = ropeParts.Length;
@@ -97,6 +99,31 @@ public class RopeController : MonoBehaviour {
         var ropePart = ropeParts[ropeIndex];
 
         return ropePart.GetComponent<Rigidbody2D>();
+    }
+
+    public Rigidbody2D GetRopePart(Vector2 point) {
+        return GetRopePart(GetRopeProgress(point));
+    }
+
+    public Rigidbody2D getClosestRopePart(Vector2 point) {
+        Rigidbody2D closestPart = null;
+        float closestDistance = float.PositiveInfinity;
+
+        foreach (var part in ropeParts) {
+            float distance = Vector2.Distance(point, part.transform.position);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestPart = part.GetComponent<Rigidbody2D>();
+            }
+        }
+        return closestPart;
+    }
+
+    public int GetPartIndex(GameObject part) {
+        for (int i = 0; i < ropeParts.Length; i++) {
+            if (ropeParts[i] == part) return i;
+        }
+        return -1;
     }
 
 #if UNITY_EDITOR
@@ -165,9 +192,11 @@ public class RopeController : MonoBehaviour {
     private void OnValidate() {
         UpdateRopeParts();
     }
-#endif
 
-    public float getRopeLength() {
-        return this.ropeLength;
+    //on attach to gameobject
+    private void Reset() {
+        ropeRoot = transform;
     }
+
+#endif
 }
