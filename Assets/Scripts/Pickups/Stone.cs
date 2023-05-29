@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Jobs;
 
 public class Stone : AProjectile, IPickup {
 
@@ -7,7 +6,7 @@ public class Stone : AProjectile, IPickup {
 
     public void OnPickup(Player player) {
         this.transform.SetParent(player.transform);
-        this.transform.position = player.GetHoldingTransform().position;
+        this.transform.position = player.GetPlayerProjectileController().GetHoldingTransform().position;
     }
 
     public void OnDrop() {
@@ -50,7 +49,7 @@ public class Stone : AProjectile, IPickup {
 
         newRigidbody2D.bodyType = RigidbodyType2D.Dynamic;
 
-        player.ResetProjectile();
+        player.GetPlayerProjectileController().ResetProjectile();
 
         Utils.Instance.InvokeDelayed(2.5f, () => {
             // reset exlude layers

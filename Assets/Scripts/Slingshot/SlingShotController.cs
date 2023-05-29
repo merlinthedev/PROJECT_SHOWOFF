@@ -19,14 +19,13 @@ public class SlingShotController : MonoBehaviour {
 
 
     // Start is called before the first frame update
-    
+
 
     // Update is called once per frame
     void Update() {
         this.Aim();
     }
 
-    
 
     public void Aim() {
         //update smoothed stick
@@ -34,18 +33,18 @@ public class SlingShotController : MonoBehaviour {
         stickSmoothed -= smoothDelta * Mathf.Clamp01(stickSmoothSpeed * Time.deltaTime);
 
         float smoothStickMagnitude = stickSmoothed.magnitude;
-        
+
         shootDirection = stickSmoothed.normalized;
         shootForce = Mathf.Lerp(minShootForce, maxShootForce, smoothStickMagnitude);
         Debug.LogWarning("Shoot Direction: " + shootDirection);
         Debug.LogWarning("Shoot Force: " + shootForce);
-        
-        
+
+
         if (stickInput == Vector2.zero && smoothStickMagnitude >= minShootMagnitude) {
-            
+
             Debug.LogError("Shoot Direction: " + shootDirection);
             Debug.LogError("Shoot Force: " + shootForce);
-            
+
             stickSmoothed = Vector2.zero;
             Shoot(shootDirection, shootForce);
         }
@@ -60,7 +59,7 @@ public class SlingShotController : MonoBehaviour {
             return;
         }
 
-        if (!player.HasProjectile()) {
+        if (!player.GetPlayerProjectileController().HasProjectile()) {
             Debug.Log("player does not have projectile");
             return;
         }
@@ -74,7 +73,7 @@ public class SlingShotController : MonoBehaviour {
 
         x.OnThrow(player);
         projectile.Shoot(shootDirection, shootForce);
-        player.SetProjectileFlag(false);
+        player.GetPlayerProjectileController().SetProjectileFlag(false);
     }
 
     public void OnStickInput(InputAction.CallbackContext context) {

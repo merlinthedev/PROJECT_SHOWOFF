@@ -6,7 +6,7 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 [SelectionBase]
-public class PlayerController : MonoBehaviour {
+public class PlayerMovementController : MonoBehaviour {
     [Header("Movement")] [SerializeField] private float maxSpeed = 8f;
     [SerializeField] private float maxAirSpeed = 4f;
     [SerializeField] private float acceleration = 10f;
@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour {
     [Header("Ledge")]
     [SerializeField] private float maxLedgeHeight = 2f;
 
+    [SerializeField] private float ledgeGrabDelay = 0.2f;
     [SerializeField] private float ledgeCheckDistance = 0.6f;
     [SerializeField] private float ledgeFreezeTime = 0.5f;
     private float lastLedgeGrab = 0f;
@@ -71,12 +72,6 @@ public class PlayerController : MonoBehaviour {
     [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
     [SerializeField] private UnityEvent OnWhistle;
 
-    [Header("Audio")]
-    [SerializeField] private AudioSource audioSource;
-
-    [SerializeField] private AudioClip jumpSound;
-    [SerializeField] private AudioClip walkSound;
-    private bool walkSoundPlaying = false;
     private bool isMoving = false;
 
     [Header("Cheese")]
@@ -97,15 +92,8 @@ public class PlayerController : MonoBehaviour {
 
         isMoving = movementInput.x != 0;
 
-        if (isMoving && !walkSoundPlaying) {
-            audioSource.clip = walkSound;
-            audioSource.volume = 0.4f;
-            audioSource.Play();
-            walkSoundPlaying = true;
-        } else if (!isMoving && walkSoundPlaying) {
-            audioSource.Stop();
-            walkSoundPlaying = false;
-        }
+
+        player.GetPlayerAudioController().PlayWalkingSound(isMoving);
 
         float x = move();
 
@@ -135,7 +123,8 @@ public class PlayerController : MonoBehaviour {
         #region ledge
 
         // Ledge stuff
-        if (!isGrounded && !this.inWater && rb.velocity.y <= 0 && !GetComponent<PlayerEventHandler>().Grabbing && !isOnRope && this.lastRopeRelease + 0.5f < Time.time) {
+        if (!isGrounded && !this.inWater && rb.velocity.y <= 0 && !GetComponent<PlayerEventHandler>().Grabbing && !isOnRope &&
+            this.lastRopeRelease + 0.5f < Time.time) {
             checkLedge();
         }
 
@@ -172,14 +161,6 @@ public class PlayerController : MonoBehaviour {
         if (this.groundCollider != null) {
             var groundRB = this.groundCollider.attachedRigidbody;
             if (groundRB != null && isGrounded) {
-                // Q: Is there any way to calculate the exact force needed to keep the attachedRigidbody in place?
-                // A: No, but we can calculate the force needed to keep the player in place, and then apply the opposite force to the ground.
-                //    This is not perfect, but it's good enough for now.
-                //    The reason this is not perfect is because the player is not always in the center of the groundCollider.
-                //    This means that the force applied to the ground will not always be applied to the center of the groundCollider.
-                //    This is not a problem for now, but it might be in the future.
-
-                // Calculate the force needed to keep the player in place
                 var force = Vector2.right * x * forceScale.x * rb.mass;
                 // Apply the opposite force to the ground
                 groundRB.AddForce(-force);
@@ -188,7 +169,6 @@ public class PlayerController : MonoBehaviour {
         }
 
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
-
 
     }
 
@@ -264,7 +244,7 @@ public class PlayerController : MonoBehaviour {
         //this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
 
-        Utils.Instance.InvokeDelayed(.2f, () => {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
                 transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
@@ -357,10 +337,8 @@ public class PlayerController : MonoBehaviour {
                 isOnRope = false;
                 lastRopeRelease = Time.time;
             }
-            if (jumpSound != null) {
-                // AudioSource.PlayClipAtPoint(jumpSound, transform.position);
-                audioSource.PlayOneShot(jumpSound);
-            }
+
+            player.GetPlayerAudioController().PlayJumpSound();
 
         }
 

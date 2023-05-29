@@ -270,12 +270,12 @@ GameObject:
   - component: {fileID: 7052072812959686205}
   - component: {fileID: 7052072812959686204}
   - component: {fileID: 7052072812959686206}
-  - component: {fileID: 2809409103064106543}
   - component: {fileID: 5287127574608404407}
+  - component: {fileID: 490823350040079843}
+  - component: {fileID: 2809409103064106543}
   - component: {fileID: -5482234946955284214}
   - component: {fileID: 774228856724907074}
   - component: {fileID: 4994682683498032186}
-  - component: {fileID: 490823350040079843}
   - component: {fileID: 2549151372395889695}
   - component: {fileID: 3983036056305442033}
   m_Layer: 3
@@ -384,6 +384,58 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!70 &5287127574608404407
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052072812959686177}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0018053055, y: 0.2996413}
+  m_Size: {x: 0.7653408, y: 1.5992826}
+  m_Direction: 0
+--- !u!114 &490823350040079843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052072812959686177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64198aebca8f45499c0315ea160e54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovementController: {fileID: 0}
+  playerAnimatorController: {fileID: 0}
+  playerAudioController: {fileID: 0}
+  playerEventHandler: {fileID: 0}
+  playerProjectileController: {fileID: 0}
 --- !u!114 &2809409103064106543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,41 +530,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!70 &5287127574608404407
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7052072812959686177}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0018053055, y: 0.2996413}
-  m_Size: {x: 0.7653408, y: 1.5992826}
-  m_Direction: 0
 --- !u!114 &-5482234946955284214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,6 +587,7 @@ MonoBehaviour:
   groundCheckRaycastDistance: 0.7
   groundCollider: {fileID: 0}
   maxLedgeHeight: 2
+  ledgeGrabDelay: 0.2
   ledgeCheckDistance: 0.55
   ledgeFreezeTime: 1.5
   ropeJoint: {fileID: 3983036056305442033}
@@ -599,9 +617,6 @@ MonoBehaviour:
   OnWhistle:
     m_PersistentCalls:
       m_Calls: []
-  audioSource: {fileID: 2549151372395889695}
-  jumpSound: {fileID: 0}
-  walkSound: {fileID: 8300000, guid: 5e6397adc023c7d44a8ed1a988b08474, type: 3}
   cheeseStrength: 2
   isCheesing: 0
 --- !u!114 &774228856724907074
@@ -635,20 +650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4543286856622924250}
   rb: {fileID: 7052072812959686206}
-  playerController: {fileID: -5482234946955284214}
---- !u!114 &490823350040079843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7052072812959686177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f64198aebca8f45499c0315ea160e54e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdTransform: {fileID: 3338017705763328374}
+  playerMovementController: {fileID: -5482234946955284214}
 --- !u!82 &2549151372395889695
 AudioSource:
   m_ObjectHideFlags: 0

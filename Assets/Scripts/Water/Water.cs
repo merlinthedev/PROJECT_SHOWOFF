@@ -9,7 +9,7 @@ public class Water : MonoBehaviour {
             return;
         }
 
-        var player = other.gameObject.GetComponent<PlayerController>();
+        var player = other.gameObject.GetComponent<PlayerMovementController>();
 
         if (player == null) {
             Debug.LogError("Player has no PlayerController component", this);
@@ -25,7 +25,7 @@ public class Water : MonoBehaviour {
             return;
         }
 
-        var player = other.gameObject.GetComponent<PlayerController>();
+        var player = other.gameObject.GetComponent<PlayerMovementController>();
 
         if (player == null) {
             Debug.LogError("Player has no PlayerController component", this);
@@ -44,7 +44,7 @@ public class Water : MonoBehaviour {
             return;
         }
 
-        var player = other.gameObject.GetComponent<PlayerController>();
+        var player = other.gameObject.GetComponent<PlayerMovementController>();
 
         if (player == null) {
             Debug.LogError("Player has no PlayerController component", this);

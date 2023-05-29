@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerAnimatorController : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] Rigidbody2D rb;
-    [SerializeField] PlayerController playerController;
+    [FormerlySerializedAs("playerController")] [SerializeField] PlayerMovementController playerMovementController;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,8 @@ public class PlayerAnimatorController : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
         }
 
-        if (playerController == null) {
-            playerController = GetComponent<PlayerController>();
+        if (playerMovementController == null) {
+            playerMovementController = GetComponent<PlayerMovementController>();
         }
     }
 
@@ -29,7 +30,7 @@ public class PlayerAnimatorController : MonoBehaviour
     {
         animator.SetFloat("xSpeed", Mathf.Abs(rb.velocity.x));
         animator.SetFloat("ySpeed", rb.velocity.y);
-        animator.SetBool("Grounded", playerController.IsGrounded());
+        animator.SetBool("Grounded", playerMovementController.IsGrounded());
         
     }
 }
