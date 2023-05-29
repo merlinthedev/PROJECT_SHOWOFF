@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
@@ -35,6 +36,7 @@ public class PlayerMovementController : MonoBehaviour {
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float groundCheckRaycastDistance = 0.5f;
     [SerializeField] private Collider2D groundCollider;
+    [SerializeField] private Transform groundCheckTransform;
 
     [Header("Ledge")]
     [SerializeField] private float maxLedgeHeight = 2f;
@@ -107,14 +109,28 @@ public class PlayerMovementController : MonoBehaviour {
         // Groundcheck
         isGrounded = false;
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, groundCheckRaycastDistance,
-            groundLayerMask);
-        foreach (RaycastHit2D hit in hits) {
-            if (hit.collider.gameObject != gameObject) {
-                //Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
+        // RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, groundCheckRaycastDistance,
+        //     groundLayerMask);
+        // foreach (RaycastHit2D hit in hits) {
+        //     if (hit.collider.gameObject != gameObject) {
+        //         //Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
+        //         isGrounded = true;
+        //         moved = false;
+        //         this.groundCollider = hit.collider;
+        //         break;
+        //     }
+        // }
+
+
+        RaycastHit2D[] hits =
+            Physics2D.CircleCastAll(groundCheckTransform.position, playerRadius + 0.1f, Vector2.zero, groundLayerMask);
+
+        for (int i = 0; i < hits.Length; i++) {
+            Debug.Log("Colliding with: " + hits[i].collider.gameObject.name + " at array position: " + i);
+            if (hits[i].collider.gameObject != gameObject) {
                 isGrounded = true;
                 moved = false;
-                this.groundCollider = hit.collider;
+                this.groundCollider = hits[i].collider;
                 break;
             }
         }
