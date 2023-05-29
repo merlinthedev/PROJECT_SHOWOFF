@@ -24,6 +24,9 @@ public class SlingShotController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (stickInput == Vector2.zero) {
+            this.slingShotTrajectoryPreview.ClearPredictionLine();
+        }
         this.Aim();
     }
 
