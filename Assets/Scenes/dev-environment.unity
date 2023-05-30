@@ -1952,6 +1952,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1724355925797312522, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: m_Positions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724355925797312522, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724355925797312522, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 824a9c42f8a70164a87cfb78ba0eedef, type: 2}
+    - target: {fileID: 1724355925797312522, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: m_Parameters.textureScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1724355925797312522, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5362193137698299860, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
+      propertyPath: lineWidth
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7052072812959686177, guid: 558dcbf855371fb4a944696dc2933ddb, type: 3}
       propertyPath: m_Name
       value: Player
