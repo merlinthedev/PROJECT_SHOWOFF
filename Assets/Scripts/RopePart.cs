@@ -10,7 +10,7 @@ public class RopePart : MonoBehaviour
     public Rigidbody2D rigidBody;
     public HingeJoint2D joint;
     public bool isAnchored = false;
-    public Joint2D Anchor;
+    public Joint2D Anchor = null;
     public float ropeProgress;
     
     public int ropePartIndex;

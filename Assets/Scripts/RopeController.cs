@@ -130,53 +130,6 @@ public class RopeController : MonoBehaviour {
     }
 
 #if UNITY_EDITOR
-    public void FindRope() {
-        List<RopePart> newRopeParts = new List<RopePart>();
-        RopePart current = transform.GetComponent<RopePart>();
-        newRopeParts.Add(current);
-        //go to parts child untill there is none or the first child is marked to be ignored
-        while (current.transform.childCount > 0) {
-            current = current.transform.GetChild(0).GetComponent<RopePart>();
-            if (current.name.StartsWith("[NOROPE]")) break;
-            newRopeParts.Add(current);
-        }
-
-        ropeParts = newRopeParts;
-    }
-
-    public void SetupRope() {
-        //go through all rope parts, ensure there is a RigidBody2D and a HingeJoint2D on there
-        //next link the hinge joint to the part's child
-
-        for (int i = 0; i < ropeParts.Count - 1; i++) {
-            GameObject part = ropeParts[i].gameObject;
-            GameObject child = ropeParts[i + 1].gameObject;
-
-            Rigidbody2D rb = part.GetComponent<Rigidbody2D>();
-            if (rb == null) {
-                rb = part.AddComponent<Rigidbody2D>();
-            }
-
-            HingeJoint2D hj = part.GetComponent<HingeJoint2D>();
-            if (hj == null) {
-                hj = part.AddComponent<HingeJoint2D>();
-            }
-
-            Rigidbody2D rbChild = child.GetComponent<Rigidbody2D>();
-            if (rbChild == null) {
-                rbChild = child.AddComponent<Rigidbody2D>();
-            }
-
-            hj.connectedBody = rbChild;
-        }
-
-        //remove the hinge joint from the last part
-        HingeJoint2D lastHJ = ropeParts[ropeParts.Count - 1].GetComponent<HingeJoint2D>();
-        if (lastHJ != null) {
-            DestroyImmediate(lastHJ);
-        }
-    }
-
     public void ClearRope() {
         //clear the list of RopeParts
         ropeParts = new();
@@ -201,7 +154,29 @@ public class RopeController : MonoBehaviour {
 
     //on attach to gameobject
     private void Reset() {
+        ClearRope();
     }
+
+    public enum RopeSpriteType {
+        None,
+        Segmented,
+        Skinned
+    }
+
+    [System.Serializable]
+    public class CreatorConfiguration {
+        //rope creator
+        public float ropeLength = 1f;
+        public int ropePartCount = 2;
+        public RopeSpriteType ropeSpriteType = RopeSpriteType.None;
+        public Sprite ropeSprite = null;
+        public float initialRopeCurveAngle = 0f;
+        public Vector2 SpriteSize = Vector2.one;
+        public Vector2 SpriteOffset = Vector2.zero;
+    }
+
+    [HideInInspector]
+    public CreatorConfiguration creatorConfiguration = new CreatorConfiguration();
 
 #endif
 }
