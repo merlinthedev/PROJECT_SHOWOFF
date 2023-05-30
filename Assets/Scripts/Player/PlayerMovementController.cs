@@ -165,7 +165,10 @@ public class PlayerMovementController : MonoBehaviour {
             if (groundRB != null && isGrounded) {
                 var force = Vector2.right * x * forceScale.x * rb.mass;
                 // Apply the opposite force to the ground
-                groundRB.AddForce(-force);
+                // Debug.Log("Applying force to ground: " + force + " , " + groundRB + " , " + groundRB.gameObject.name);
+                if (groundRB.gameObject.GetComponent<ObjectGrabbable>().isWater) {
+                    groundRB.AddForce(-force);
+                }
 
             }
         }

@@ -1,5 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ObjectGrabbable : MonoBehaviour {   }
+public class ObjectGrabbable : MonoBehaviour {
+
+    public bool shouldWaterCheck = false;
+    public bool isWater = false;
+    
+}
