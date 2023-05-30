@@ -126,18 +126,35 @@ public class RopeControllerEditor : Editor {
             ropePart.transform.rotation = Quaternion.Euler(0, 0, partAngle);
 
             var cc = ropePart.AddComponent<CircleCollider2D>();
-            ropePart.joint = ropePart.AddComponent<HingeJoint2D>();
+            if(i < currentConfig.ropePartCount - 1)
+                ropePart.joint = ropePart.AddComponent<HingeJoint2D>();
             ropePart.rigidBody = ropePart.GetComponent<Rigidbody2D>();
             ropePart.Root = ropeTarget;
             if (lastPart != null) {
                 lastPart.joint.connectedBody = ropePart.rigidBody;
             }
+            cc.radius = partLength / 3f;
+
+            ropeTarget.RopeParts.Add(ropePart);
 
             Vector2 add = (Quaternion.Euler(0, 0, partAngle) * Vector2.down) * partLength;
             partPosition += add;
             partAngle += currentConfig.initialRopeCurveAngle;
             previousPart = ropePart.gameObject;
             lastPart = ropePart;
+
+            //sprite stuff
+            if (currentConfig.ropeSprite != null && currentConfig.ropeSpriteType == RopeController.RopeSpriteType.Segmented) {
+                var spriteObject = new GameObject("Sprite");
+                spriteObject.transform.parent = ropePart.transform;
+                spriteObject.transform.localPosition = localBoxCenter;
+                spriteObject.transform.localRotation = Quaternion.identity;
+                spriteObject.transform.localScale = Vector3.one;
+                var spriteRenderer = spriteObject.AddComponent<SpriteRenderer>();
+                spriteRenderer.sprite = currentConfig.ropeSprite;
+                spriteRenderer.drawMode = SpriteDrawMode.Sliced;
+                spriteRenderer.size = localBoxSize * 2;
+            }
         }
     }
 
@@ -227,7 +244,6 @@ public class RopeControllerEditor : Editor {
     private void Update() {
         if (!editRopeMode) return;
 
-        anchor.connectedBody = selectedRopePart.rigidBody;
         Physics2D.simulationMode = SimulationMode2D.Script;
         Physics2D.Simulate(Time.fixedDeltaTime);
         Physics2D.simulationMode = SimulationMode2D.FixedUpdate;

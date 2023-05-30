@@ -16,6 +16,8 @@ public class RopePart : MonoBehaviour
     public int ropePartIndex;
 
     public void SetStiffness(float stiffness) {
+        if (joint == null) return;
+
         if(stiffness == 0) {
             joint.useLimits = false;
         } else {
