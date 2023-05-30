@@ -35,42 +35,32 @@ public class RopeControllerEditor : Editor {
         base.OnInspectorGUI();
 
         RopeController ropeController = (RopeController)target;
-
-        //edit rope mode button
-        if (editRopeMode) {
-            if (GUILayout.Button("Exit edit rope mode")) {
-                editRopeMode = false;
-                Tools.current = Tool.Move;
-            }
-        } else {
-            if (GUILayout.Button("Edit rope mode")) {
-                editRopeMode = true;
-                showRopeCreator = false;
-                Tools.current = Tool.None;
-            }
-        }
-
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Find Rope")) {
-            ropeController.FindRope();
-        }
-
-        if (GUILayout.Button("Setup Rope")) {
-            ropeController.SetupRope();
-        }
-
-        if (GUILayout.Button("Clear Rope")) {
-            ropeController.ClearRope();
-        }
-        GUILayout.EndHorizontal();
-
-        showRopeCreator = EditorGUILayout.Foldout(showRopeCreator, "Rope creator");
-        if (showRopeCreator) {
-            //indent
-            EditorGUI.indentLevel++;
-            if (ropeController.RopeRoot == null) {
-                EditorGUILayout.HelpBox("No rope root set", MessageType.Error);
+        bool hasRope = ropeController.RopeParts.Count > 0;
+        if (hasRope) {
+            //edit rope mode button
+            if (editRopeMode) {
+                if (GUILayout.Button("Exit edit rope mode")) {
+                    editRopeMode = false;
+                    Tools.current = Tool.Move;
+                }
             } else {
+                if (GUILayout.Button("Edit rope mode")) {
+                    editRopeMode = true;
+                    showRopeCreator = false;
+                    Tools.current = Tool.None;
+                }
+            }
+
+            if (GUILayout.Button("Clear Rope")) {
+                ropeController.ClearRope();
+            }
+
+        } else {
+
+            showRopeCreator = EditorGUILayout.Foldout(showRopeCreator, "Rope creator") && ropeController.RopeParts.Count == 0;
+            if (showRopeCreator) {
+                //indent
+                EditorGUI.indentLevel++;
                 ropeLength = EditorGUILayout.FloatField("Rope length", ropeLength);
 
                 GUI.enabled = ropeSpriteType != RopeSpriteType.Skinned;
@@ -99,17 +89,14 @@ public class RopeControllerEditor : Editor {
                 if (GUILayout.Button("Create rope")) {
                     //ropeController.CreateRope(ropeLength, ropePartCount, ropeDamping, ropeStiffness, startEnabled, ropeSpriteType, ropeSprite);
                 }
+                EditorGUI.indentLevel--;
             }
-            EditorGUI.indentLevel--;
         }
     }
 
     //on scene gizmo
     private void OnSceneGUI() {
         RopeController ropeController = (RopeController)target;
-
-        if (ropeController.RopeRoot == null)
-            return;
 
         if (showRopeCreator) {
 
@@ -133,7 +120,7 @@ public class RopeControllerEditor : Editor {
 
                 if (EditorGUI.EndChangeCheck()) {
                     draggingRopePart = true;
-                    selectedRopePart = ropePart;
+                    selectedRopePart = ropePart.rigidBody;
                     //find the index of our edited rope part
                     int ropePartIndex = ropeController.GetPartIndex(ropePart.gameObject);
                     for (int i = 0; i < ropeController.RopeParts.Count; i++) {

@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour {
 
                 Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
                 rb.position = ropePosition;
-                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress);
+                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
                 ropeJoint.connectedAnchor = ropePosition;
                 return 0;
             }
@@ -319,7 +319,7 @@ public class PlayerController : MonoBehaviour {
                 rb.position = rope.GetRopePoint(ropeProgress);
                 //fix our joint to the rope
                 ropeJoint.enabled = true;
-                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress);
+                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
                 //set the player's onRope bool to true
                 isOnRope = true;
             }
