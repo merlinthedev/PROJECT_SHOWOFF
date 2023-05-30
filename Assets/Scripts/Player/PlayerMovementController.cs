@@ -94,8 +94,7 @@ public class PlayerMovementController : MonoBehaviour {
         }
 
         isMoving = movementInput.x != 0;
-
-
+        
         player.GetPlayerAudioController().PlayWalkingSound(isMoving);
 
         float x = move();
@@ -108,19 +107,6 @@ public class PlayerMovementController : MonoBehaviour {
 
         // Groundcheck
         isGrounded = false;
-
-        // RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, groundCheckRaycastDistance,
-        //     groundLayerMask);
-        // foreach (RaycastHit2D hit in hits) {
-        //     if (hit.collider.gameObject != gameObject) {
-        //         //Debug.Log(hit.collider.gameObject.name, hit.collider.gameObject);
-        //         isGrounded = true;
-        //         moved = false;
-        //         this.groundCollider = hit.collider;
-        //         break;
-        //     }
-        // }
-
 
         RaycastHit2D[] hits =
             Physics2D.CircleCastAll(groundCheckTransform.position, playerRadius + 0.1f, Vector2.zero, groundLayerMask);
@@ -139,7 +125,7 @@ public class PlayerMovementController : MonoBehaviour {
         #region ledge
 
         // Ledge stuff
-        if (!isGrounded && !this.inWater && rb.velocity.y <= 0 && !GetComponent<PlayerEventHandler>().Grabbing && !isOnRope &&
+        if (!isGrounded && !this.inWater && rb.velocity.y <= 0 && this.player.GetPlayerEventHandler().Grabbing && !isOnRope &&
             this.lastRopeRelease + 0.5f < Time.time) {
             checkLedge();
         }
