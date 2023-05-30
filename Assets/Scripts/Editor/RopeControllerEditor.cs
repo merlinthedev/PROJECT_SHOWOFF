@@ -136,7 +136,7 @@ public class RopeControllerEditor : Editor {
                     selectedRopePart = ropePart;
                     //find the index of our edited rope part
                     int ropePartIndex = ropeController.GetPartIndex(ropePart.gameObject);
-                    for (int i = 0; i < ropeController.RopeParts.Length; i++) {
+                    for (int i = 0; i < ropeController.RopeParts.Count; i++) {
                         var part = ropeController.RopeParts[i];
                         Undo.RecordObject(part.transform, "Move Rope");
                         if (i == ropePartIndex) { }
