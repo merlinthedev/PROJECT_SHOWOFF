@@ -11,7 +11,8 @@ public class RopeController : MonoBehaviour {
     public float RopeLength { get; private set; }
 
     [SerializeField] float ropeDamping = 0f;
-    [SerializeField] float ropeStiffness = 0f;
+    [HideInInspector]
+    float ropeStiffness = 0f;
     [SerializeField] float climbSpeedMultiplier = 1f;
     public float ClimbSpeedMultiplier { get => climbSpeedMultiplier; }
     [SerializeField] bool startEnabled = true;
@@ -130,6 +131,7 @@ public class RopeController : MonoBehaviour {
     }
 
 #if UNITY_EDITOR
+
     public void ClearRope() {
         //clear the list of RopeParts
         ropeParts = new();

@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 [CustomEditor(typeof(RopeController))]
 public class RopeControllerEditor : Editor {
     bool editRopeMode = false;
+    bool simulateRope = false;
     bool showRopeCreator = false;
 
     RopeController ropeTarget;
@@ -13,9 +14,11 @@ public class RopeControllerEditor : Editor {
     RopeController.CreatorConfiguration currentConfig;
     
     //rope editor
-    HingeJoint2D anchor;
     RopePart selectedRopePart;
     bool draggingRopePart = false;
+
+    Sprite lockedSprite = null;
+    Sprite unlockedSprite = null;
     
     
 
@@ -40,7 +43,9 @@ public class RopeControllerEditor : Editor {
                     showRopeCreator = false;
                     Tools.current = Tool.None;
                 }
+                //simulate rope bool
             }
+                simulateRope = EditorGUILayout.Toggle("Simulate rope", simulateRope);
 
             if (GUILayout.Button("Clear Rope")) {
                 ropeController.ClearRope();
@@ -102,6 +107,7 @@ public class RopeControllerEditor : Editor {
 
         //create rope
         ropeTarget.ClearRope();
+        
         GameObject previousPart = ropeTarget.gameObject;
 
         Vector2 partPosition = ropeTarget.transform.position;
@@ -123,7 +129,7 @@ public class RopeControllerEditor : Editor {
             RopePart ropePart = new GameObject("Rope part " + i).AddComponent<RopePart>();
             ropePart.transform.parent = previousPart.transform;
             ropePart.transform.position = partPosition;
-            ropePart.transform.rotation = Quaternion.Euler(0, 0, partAngle);
+            ropePart.transform.rotation = Quaternion.Euler(0, 0, partAngle - currentConfig.initialRopeCurveAngle);
 
             var cc = ropePart.AddComponent<CircleCollider2D>();
             if(i < currentConfig.ropePartCount - 1)
@@ -144,7 +150,7 @@ public class RopeControllerEditor : Editor {
             lastPart = ropePart;
 
             //sprite stuff
-            if (currentConfig.ropeSprite != null && currentConfig.ropeSpriteType == RopeController.RopeSpriteType.Segmented) {
+            if (currentConfig.ropeSprite != null && currentConfig.ropeSpriteType == RopeController.RopeSpriteType.Segmented && i > 0) {
                 var spriteObject = new GameObject("Sprite");
                 spriteObject.transform.parent = ropePart.transform;
                 spriteObject.transform.localPosition = localBoxCenter;
@@ -156,6 +162,9 @@ public class RopeControllerEditor : Editor {
                 spriteRenderer.size = localBoxSize * 2;
             }
         }
+
+        ropeTarget.UpdateRopeParts();
+        ropeTarget.RopeEnabled = true;
     }
 
     //on scene gizmo
@@ -183,9 +192,9 @@ public class RopeControllerEditor : Editor {
                 Handles.DrawWireDisc(partPosition, Vector3.forward, partLength / 3f);
                 
                 Handles.color = Color.green;
-                if(currentConfig.ropeSpriteType == RopeController.RopeSpriteType.Segmented && currentConfig.ropeSprite != null) {
+                if(currentConfig.ropeSpriteType == RopeController.RopeSpriteType.Segmented && currentConfig.ropeSprite != null && i > 0) {
                     //draw bounding box of potential sprite
-                    Quaternion rotationOffset = Quaternion.Euler(0, 0, partAngle);
+                    Quaternion rotationOffset = Quaternion.Euler(0, 0, partAngle - currentConfig.initialRopeCurveAngle);
                     Vector2 center = partPosition + (Vector2)(rotationOffset * localBoxCenter);
                     Vector3 topRight = center + (Vector2)(rotationOffset * (localBoxSize * new Vector2(1, 1)));
                     Vector3 botRight = center + (Vector2)(rotationOffset * (localBoxSize * new Vector2(1, -1)));
@@ -202,7 +211,8 @@ public class RopeControllerEditor : Editor {
                 partPosition += add;
                 partAngle += currentConfig.initialRopeCurveAngle;
 
-                Handles.DrawLine(prevPosition, partPosition);
+                if(i < currentConfig.ropePartCount - 1)
+                    Handles.DrawLine(prevPosition, partPosition);
 
             }
         }
@@ -216,45 +226,69 @@ public class RopeControllerEditor : Editor {
             //find the rope part closest to the mouse
             var ropePart = ropeTarget.getClosestRopePart(mousePosition);
             if (ropePart != null) {
-                //begin change check
-                EditorGUI.BeginChangeCheck();
-                Vector3 ropePartPosition = Handles.PositionHandle(ropePart.transform.position, Quaternion.identity);
-
-                draggingRopePart = false;
-                selectedRopePart = null;
-
-                if (EditorGUI.EndChangeCheck()) {
-                    draggingRopePart = true;
-                    selectedRopePart = ropePart;
-                    //find the index of our edited rope part
-                    int ropePartIndex = ropeTarget.GetPartIndex(ropePart.gameObject);
-                    for (int i = 0; i < ropeTarget.RopeParts.Count; i++) {
-                        var part = ropeTarget.RopeParts[i];
-                        Undo.RecordObject(part.transform, "Move Rope");
-                        if (i == ropePartIndex) { }
-                        //part.transform.position = ropePartPosition;
-                    }
-                    anchor.transform.position = mousePosition;
-
+                if (ropePart.isAnchored) {
+                    Vector3 ropePartPosition = Handles.PositionHandle(ropePart.joint.transform.position, Quaternion.identity);
+                    ropePart.joint.transform.position = ropePartPosition;
                 }
+                //draw lock/unlock button with sprites
+                Handles.BeginGUI();
+
+                
+                if (ropePart.isAnchored) {
+                    if (GUI.Button(new Rect(HandleUtility.WorldToGUIPoint(ropePart.transform.position) + new Vector2(-20, 20), new Vector2(60, 20)), "Unlock")) {
+                        ropePart.isAnchored = false;
+                        DestroyImmediate(ropePart.joint.gameObject);
+                    }
+                } else {
+                    if (GUI.Button(new Rect(HandleUtility.WorldToGUIPoint(ropePart.transform.position) + new Vector2(-20, 20), new Vector2(40, 20)), "Lock")) {
+                        //create rope anchor on rope position
+                        var anchor = new GameObject(ropePart.gameObject.name + " Anchor");
+                        anchor.transform.parent = ropeTarget.transform;
+                        anchor.transform.position = ropePart.transform.position;
+
+                        //create joint
+                        var joint = anchor.AddComponent<HingeJoint2D>();
+                        joint.autoConfigureConnectedAnchor = false;
+                        joint.connectedBody = ropePart.rigidBody;
+                        joint.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                        joint.anchor = Vector2.zero;
+                        joint.connectedAnchor = Vector2.zero;
+
+
+                        ropePart.joint = joint;
+                        ropePart.isAnchored = true;
+                    }
+                }   
+
+                Handles.EndGUI();
+                
+            }
+
+            //loop over each rope part and draw a green circle if unlocked, red if locked
+            foreach(RopePart part in ropeTarget.RopeParts) {
+                if (part.isAnchored) {
+                    Handles.color = Color.red;
+                } else {
+                    Handles.color = Color.green;
+                }
+                Handles.DrawWireDisc(part.transform.position, Vector3.forward, 0.1f);
             }
         }
     }
 
     private void Update() {
-        if (!editRopeMode) return;
+        if (!simulateRope) return;
 
         Physics2D.simulationMode = SimulationMode2D.Script;
-        Physics2D.Simulate(Time.fixedDeltaTime);
+        Physics2D.Simulate(Mathf.Min(Time.deltaTime, 0.1f));
         Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
-        anchor.connectedBody = null;
+
     }
 
     private void OnDisable() {
         ropeTarget = null;
         currentConfig = null;
 
-        DestroyImmediate(anchor.gameObject);
         editRopeMode = false;
         Tools.current = Tool.Move;
         EditorApplication.update -= Update;
@@ -264,13 +298,13 @@ public class RopeControllerEditor : Editor {
         ropeTarget = (RopeController)target;
         currentConfig = ropeTarget.creatorConfiguration;
 
-        //create empty gameObject with hingeJoint
-        GameObject grabAnchor = new GameObject("TempAnchor");
-        anchor = grabAnchor.AddComponent<HingeJoint2D>();
-        anchor.autoConfigureConnectedAnchor = false;
         EditorApplication.update += Update;
 
         editRopeMode = false;
         Tools.current = Tool.Move;
+
+
+        lockedSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Editor/Locked.png");
+        unlockedSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Editor/Unlocked.png");
     }
 }
