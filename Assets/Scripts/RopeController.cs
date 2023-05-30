@@ -7,7 +7,8 @@ using UnityEngine.U2D;
 public class RopeController : MonoBehaviour {
     [SerializeField] Transform ropeRoot;
     public Transform RopeRoot { get { return ropeRoot; } }
-    [SerializeField] GameObject[] ropeParts;
+    [SerializeField] List<RopePart> ropeParts = new();
+    public List<RopePart> RopeParts { get { return ropeParts;} }
 
     [SerializeField] float ropeDamping = 0f;
     [SerializeField] bool startEnabled = true;
@@ -27,21 +28,21 @@ public class RopeController : MonoBehaviour {
         }
     }
 
-    private float ropeLength;
+    public float RopeLength { get; private set; }
 
     private void Start() {
         RopeEnabled = startEnabled;
 
         // calculate the length of the rope
-        for (int i = 0; i < ropeParts.Length - 1; i++) {
-            ropeLength += Vector2.Distance(ropeParts[i].transform.position, ropeParts[i + 1].transform.position);
+        for (int i = 0; i < ropeParts.Count - 1; i++) {
+            RopeLength += Vector2.Distance(ropeParts[i].transform.position, ropeParts[i + 1].transform.position);
         }
     }
 
     public Vector2 GetRopePoint(float ropeProgress) {
         //returns the point along the rope curve at the given progress (0 to 1)
         //we assume a constant length between rope parts
-        int ropePartCount = ropeParts.Length;
+        int ropePartCount = ropeParts.Count;
         //make sure float is within bounds
         ropeProgress = Mathf.Clamp01(ropeProgress) * (ropePartCount - 1);
         //at which rope part are we
@@ -65,7 +66,7 @@ public class RopeController : MonoBehaviour {
         float closestPartProgress = 0;
         Vector2 closestPoint = Vector2.positiveInfinity;
 
-        for (int i = 0; i < ropeParts.Length - 1; i++) {
+        for (int i = 0; i < ropeParts.Count - 1; i++) {
             var ropePart = ropeParts[i];
             var nextRopePart = ropeParts[i + 1];
             var partVector = ((Vector2)(nextRopePart.transform.position) - (Vector2)(ropePart.transform.position));
@@ -80,15 +81,16 @@ public class RopeController : MonoBehaviour {
             }
         }
 
-        float progress = closestPartProgress / (ropeParts.Length - 1);
+        float progress = closestPartProgress / (ropeParts.Count - 1);
         progress = Mathf.Clamp01(progress);
         return progress;
     }
 
     public Rigidbody2D GetRopePart(float ropeProgress) {
+        if (ropeParts.Count == 0) return null;
         //returns the point along the rope curve at the given progress (0 to 1)
         //we assume a constant length between rope parts
-        int ropePartCount = ropeParts.Length;
+        int ropePartCount = ropeParts.Count;
         //make sure float is within bounds
         ropeProgress = Mathf.Clamp01(ropeProgress) * (ropePartCount - 1);
         //at which rope part are we
@@ -99,28 +101,53 @@ public class RopeController : MonoBehaviour {
         return ropePart.GetComponent<Rigidbody2D>();
     }
 
+    public Rigidbody2D GetRopePart(Vector2 point) {
+        return GetRopePart(GetRopeProgress(point));
+    }
+
+    public Rigidbody2D getClosestRopePart(Vector2 point) {
+        Rigidbody2D closestPart = null;
+        float closestDistance = float.PositiveInfinity;
+
+        foreach (var part in ropeParts) {
+            float distance = Vector2.Distance(point, part.transform.position);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestPart = part.GetComponent<Rigidbody2D>();
+            }
+        }
+        return closestPart;
+    }
+
+    public int GetPartIndex(GameObject part) {
+        for (int i = 0; i < ropeParts.Count; i++) {
+            if (ropeParts[i] == part) return i;
+        }
+        return -1;
+    }
+
 #if UNITY_EDITOR
     public void FindRope() {
-        List<GameObject> newRopeParts = new List<GameObject>();
-        GameObject current = ropeRoot.gameObject;
+        List<RopePart> newRopeParts = new List<RopePart>();
+        RopePart current = ropeRoot.GetComponent<RopePart>();
         newRopeParts.Add(current);
         //go to parts child untill there is none or the first child is marked to be ignored
         while (current.transform.childCount > 0) {
-            current = current.transform.GetChild(0).gameObject;
+            current = current.transform.GetChild(0).GetComponent<RopePart>();
             if (current.name.StartsWith("[NOROPE]")) break;
             newRopeParts.Add(current);
         }
 
-        ropeParts = newRopeParts.ToArray();
+        ropeParts = newRopeParts;
     }
 
     public void SetupRope() {
         //go through all rope parts, ensure there is a RigidBody2D and a HingeJoint2D on there
         //next link the hinge joint to the part's child
 
-        for (int i = 0; i < ropeParts.Length - 1; i++) {
-            GameObject part = ropeParts[i];
-            GameObject child = ropeParts[i + 1];
+        for (int i = 0; i < ropeParts.Count - 1; i++) {
+            GameObject part = ropeParts[i].gameObject;
+            GameObject child = ropeParts[i + 1].gameObject;
 
             Rigidbody2D rb = part.GetComponent<Rigidbody2D>();
             if (rb == null) {
@@ -141,7 +168,7 @@ public class RopeController : MonoBehaviour {
         }
 
         //remove the hinge joint from the last part
-        HingeJoint2D lastHJ = ropeParts[ropeParts.Length - 1].GetComponent<HingeJoint2D>();
+        HingeJoint2D lastHJ = ropeParts[ropeParts.Count - 1].GetComponent<HingeJoint2D>();
         if (lastHJ != null) {
             DestroyImmediate(lastHJ);
         }
@@ -149,12 +176,12 @@ public class RopeController : MonoBehaviour {
 
     public void ClearRope() {
         //clear the list of RopeParts
-        ropeParts = new GameObject[0];
+        ropeParts = new();
     }
 
     public void UpdateRopeParts() {
         //loop over all rope parts and apply the damping to the linearDamping on the RigidBody2D
-        foreach (GameObject part in ropeParts) {
+        foreach (RopePart part in ropeParts) {
             Rigidbody2D rb = part.GetComponent<Rigidbody2D>();
             if (rb != null) {
                 rb.drag = ropeDamping;
@@ -165,9 +192,11 @@ public class RopeController : MonoBehaviour {
     private void OnValidate() {
         UpdateRopeParts();
     }
-#endif
 
-    public float getRopeLength() {
-        return this.ropeLength;
+    //on attach to gameobject
+    private void Reset() {
+        ropeRoot = transform;
     }
+
+#endif
 }

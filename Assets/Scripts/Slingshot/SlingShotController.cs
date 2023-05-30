@@ -40,8 +40,12 @@ public class SlingShotController : MonoBehaviour {
 
         shootDirection = stickSmoothed.normalized;
         shootForce = Mathf.Lerp(minShootForce, maxShootForce, smoothStickMagnitude);
+<<<<<<< HEAD:Assets/Scripts/Slingshot/SlingShotController.cs
         // Debug.LogWarning("Shoot Direction: " + shootDirection);
         // Debug.LogWarning("Shoot Force: " + shootForce);
+=======
+        
+>>>>>>> RopeDesigner:Assets/Scripts/Player/SlingShotController.cs
         
         if(shootDirection == Vector2.zero) {
             return;
@@ -50,10 +54,13 @@ public class SlingShotController : MonoBehaviour {
         slingShotTrajectoryPreview.DrawPredictionLine(shootDirection * shootForce, this.transform.position);
 
         if (stickInput == Vector2.zero && smoothStickMagnitude >= minShootMagnitude) {
+<<<<<<< HEAD:Assets/Scripts/Slingshot/SlingShotController.cs
 
             // Debug.LogError("Shoot Direction: " + shootDirection);
             // Debug.LogError("Shoot Force: " + shootForce);
 
+=======
+>>>>>>> RopeDesigner:Assets/Scripts/Player/SlingShotController.cs
             stickSmoothed = Vector2.zero;
             Shoot(shootDirection, shootForce);
         }

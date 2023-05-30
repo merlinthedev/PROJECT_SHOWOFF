@@ -203,7 +203,7 @@ public class PlayerMovementController : MonoBehaviour {
          */
         if (isOnRope) {
             if (movementInput.y != 0) {
-                ropeProgress -= (movementInput.y * ropeSpeedMultiplier * Time.fixedDeltaTime) / rope.getRopeLength();
+                ropeProgress -= (movementInput.y * ropeSpeedMultiplier * Time.fixedDeltaTime) / rope.RopeLength;
                 ropeProgress = Mathf.Clamp01(ropeProgress);
 
                 Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
