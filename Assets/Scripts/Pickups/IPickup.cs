@@ -4,5 +4,4 @@ public interface IPickup {
     void OnPickup(Player player);
     void OnDrop();
     void OnThrow(Player player);
-    void ToString();
 }

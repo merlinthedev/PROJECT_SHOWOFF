@@ -24,10 +24,9 @@ public class StoneManager : MonoBehaviour {
             Debug.LogError("Stone prefab has no Stone script attached.");
             return;
         }
-        
+
         stoneScript.SetSpawnerTransform(this.transform);
         stoneScript.OnSpawn();
-        
     }
 
     public void ResetCurrentStone() {

@@ -27,11 +27,12 @@ public class SlingShotController : MonoBehaviour {
         if (stickInput == Vector2.zero) {
             this.slingShotTrajectoryPreview.ClearPredictionLine();
         }
-        this.Aim();
+
+        this.aim();
     }
 
 
-    public void Aim() {
+    private void aim() {
         //update smoothed stick
         Vector2 smoothDelta = stickSmoothed - stickInput;
         stickSmoothed -= smoothDelta * Mathf.Clamp01(stickSmoothSpeed * Time.deltaTime);
@@ -40,25 +41,24 @@ public class SlingShotController : MonoBehaviour {
 
         shootDirection = stickSmoothed.normalized;
         shootForce = Mathf.Lerp(minShootForce, maxShootForce, smoothStickMagnitude);
-        
-        
-        if(shootDirection == Vector2.zero) {
+
+
+        if (shootDirection == Vector2.zero) {
             return;
         }
 
         slingShotTrajectoryPreview.DrawPredictionLine(shootDirection * shootForce, this.transform.position);
 
         if (stickInput == Vector2.zero && smoothStickMagnitude >= minShootMagnitude) {
-
             // Debug.LogError("Shoot Direction: " + shootDirection);
             // Debug.LogError("Shoot Force: " + shootForce);
 
             stickSmoothed = Vector2.zero;
-            Shoot(shootDirection, shootForce);
+            this.shoot(shootDirection, shootForce);
         }
     }
 
-    void Shoot(Vector2 shootDirection, float shootForce) {
+    private void shoot(Vector2 shootDirection, float shootForce) {
         // Get player script from parent object
         var player = transform.parent.GetComponent<Player>();
 
@@ -83,7 +83,6 @@ public class SlingShotController : MonoBehaviour {
         projectile.Shoot(shootDirection, shootForce);
         player.GetPlayerProjectileController().SetProjectileFlag(false);
         this.slingShotTrajectoryPreview.ClearPredictionLine();
-        
     }
 
     public void OnStickInput(InputAction.CallbackContext context) {

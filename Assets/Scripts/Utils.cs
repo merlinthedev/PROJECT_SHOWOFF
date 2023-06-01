@@ -10,7 +10,9 @@ public class Utils : MonoBehaviour {
             Destroy(this);
         }
     }
-
+    
+    // Refactor the code below to also take parameters for the System.Action
+    
     public void InvokeDelayed(float delay, System.Action action) {
         StartCoroutine(InvokeDelayedCoroutine(delay, action));
     }
