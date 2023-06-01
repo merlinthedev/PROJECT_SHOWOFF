@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4335601788981524369}
   m_Layer: 0
   m_Name: Rope part 1
-  m_TagString: Untagged
+  m_TagString: Rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,8 +111,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613332611533267354}
-  m_LocalRotation: {x: -0, y: -0, z: -0.54550016, w: 0.8381108}
-  m_LocalPosition: {x: -0.7025461, y: -0.31106776, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.5546482, w: 0.832085}
+  m_LocalPosition: {x: -0.7091917, y: -0.29560268, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -196,7 +196,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -218,177 +218,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.0000011026856, y: 0.76834095}
-  m_UseMotor: 0
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
---- !u!1 &1231007446102640821
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3495133577911971514}
-  - component: {fileID: 6906096442565135224}
-  - component: {fileID: 2286228559878564300}
-  m_Layer: 0
-  m_Name: Rope part 6 Anchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3495133577911971514
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231007446102640821}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.428711, y: 0.13098145, z: -0.0039259624}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 265105024313453785}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &6906096442565135224
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231007446102640821}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!233 &2286228559878564300
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231007446102640821}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 8495635883718246271}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_UseMotor: 0
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
---- !u!1 &1415816000565036129
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2368173723688883419}
-  - component: {fileID: 4500377135134271221}
-  - component: {fileID: 3802019914567061352}
-  m_Layer: 0
-  m_Name: Rope part 3 Anchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2368173723688883419
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415816000565036129}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6351624, y: 0.2454443, z: -0.0039259624}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 265105024313453785}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &4500377135134271221
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415816000565036129}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!233 &3802019914567061352
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415816000565036129}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6092332284807420763}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -0.00000010430809, y: 0.76835644}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -579,7 +409,7 @@ GameObject:
   - component: {fileID: 3083694919397235049}
   m_Layer: 0
   m_Name: Rope part 6
-  m_TagString: Untagged
+  m_TagString: Rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -591,8 +421,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3131372702509451224}
-  m_LocalRotation: {x: -0, y: -0, z: -0.4435067, w: 0.89627105}
-  m_LocalPosition: {x: -0.6108292, y: -0.46607563, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.085927136, w: 0.9963014}
+  m_LocalPosition: {x: -0.13155252, y: -0.7570229, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -641,7 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Root: {fileID: 8988351056497991706}
   rigidBody: {fileID: 8495635883718246271}
-  joint: {fileID: 2286228559878564300}
+  joint: {fileID: 0}
   isAnchored: 1
   Anchor: {fileID: 0}
   ropeProgress: 0
@@ -675,7 +505,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -696,7 +526,7 @@ GameObject:
   - component: {fileID: 681435676516436309}
   m_Layer: 0
   m_Name: Rope part 5
-  m_TagString: Untagged
+  m_TagString: Rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,8 +538,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4460611819794864101}
-  m_LocalRotation: {x: -0, y: -0, z: -0.36753535, w: 0.9300096}
-  m_LocalPosition: {x: -0.5252452, y: -0.5607507, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.043802366, w: 0.99904025}
+  m_LocalPosition: {x: -0.06724858, y: -0.7654117, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -793,7 +623,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -815,7 +645,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.000005394216, y: 0.7683291}
+  m_ConnectedAnchor: {x: -0.000013262025, y: 0.76836455}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -839,7 +669,7 @@ GameObject:
   - component: {fileID: 4618378974673471427}
   m_Layer: 0
   m_Name: Rope part 2
-  m_TagString: Untagged
+  m_TagString: Rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -851,8 +681,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4493332084735889683}
-  m_LocalRotation: {x: -0, y: -0, z: -0.52819294, w: 0.84912443}
-  m_LocalPosition: {x: -0.68920386, y: -0.3396267, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.50671774, w: 0.8621121}
+  m_LocalPosition: {x: -0.6712978, y: -0.3737761, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -936,7 +766,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -958,7 +788,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.0000076889955, y: 0.7683322}
+  m_ConnectedAnchor: {x: 0.000008404245, y: 0.76833105}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1150,7 +980,7 @@ GameObject:
   - component: {fileID: 5047320387888411384}
   m_Layer: 0
   m_Name: Rope part 4
-  m_TagString: Untagged
+  m_TagString: Rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1162,8 +992,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5394033759364232959}
-  m_LocalRotation: {x: -0, y: -0, z: 0.81096953, w: 0.5850885}
-  m_LocalPosition: {x: 0.72913235, y: 0.24228707, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.94392985, w: 0.3301462}
+  m_LocalPosition: {x: 0.4788983, y: 0.6008687, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1247,7 +1077,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1269,7 +1099,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.0000008717172, y: 0.7683242}
+  m_ConnectedAnchor: {x: 0.000008463856, y: 0.76836205}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1377,7 +1207,7 @@ GameObject:
   - component: {fileID: 7819274916554955887}
   m_Layer: 0
   m_Name: Rope part 3
-  m_TagString: Untagged
+  m_TagString: Rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1389,8 +1219,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8203939753636514193}
-  m_LocalRotation: {x: -0, y: -0, z: -0.38597512, w: 0.9225092}
-  m_LocalPosition: {x: -0.5471573, y: -0.53940725, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.4111153, w: 0.9115834}
+  m_LocalPosition: {x: -0.57589316, y: -0.5086129, z: 0}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1440,7 +1270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Root: {fileID: 8988351056497991706}
   rigidBody: {fileID: 6092332284807420763}
-  joint: {fileID: 3802019914567061352}
+  joint: {fileID: 0}
   isAnchored: 1
   Anchor: {fileID: 0}
   ropeProgress: 0
@@ -1474,7 +1304,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1496,7 +1326,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.000007838009, y: 0.7683385}
+  m_ConnectedAnchor: {x: -0.0000011548398, y: 0.768366}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1517,7 +1347,7 @@ GameObject:
   - component: {fileID: 8988351056497991706}
   m_Layer: 0
   m_Name: TestRope
-  m_TagString: Untagged
+  m_TagString: Rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1535,10 +1365,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 109610567972311591}
-  - {fileID: 2368173723688883419}
-  - {fileID: 3495133577911971514}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8988351056497991706
 MonoBehaviour:
@@ -1586,7 +1414,7 @@ GameObject:
   - component: {fileID: 6257062054064283390}
   m_Layer: 0
   m_Name: Rope part 0
-  m_TagString: Untagged
+  m_TagString: Rope
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1682,7 +1510,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1704,7 +1532,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.0000043809405, y: 0.7683367}
+  m_ConnectedAnchor: {x: -0.000007778406, y: 0.7683269}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
