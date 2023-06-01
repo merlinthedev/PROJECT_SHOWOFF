@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class SlingShotTrajectoryPreview : MonoBehaviour {
-
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private float lineWidth = 0.2f;
 
@@ -16,11 +15,10 @@ public class SlingShotTrajectoryPreview : MonoBehaviour {
 
         lineRenderer.positionCount = lineRendererPoints.Count;
         lineRenderer.SetPositions(lineRendererPoints.ToArray());
-
     }
 
     private List<Vector3> simulateArc(Vector2 velocity, Vector2 startPoint) {
-        List<Vector3> lineRendererPoints = new List<Vector3>();
+        List<Vector3> lineRendererPoints = new();
 
         Vector2 gravity = Physics2D.gravity;
         float timestep = Time.fixedDeltaTime;
@@ -41,5 +39,4 @@ public class SlingShotTrajectoryPreview : MonoBehaviour {
     public void ClearPredictionLine() {
         lineRenderer.positionCount = 0;
     }
-
 }
