@@ -35,7 +35,7 @@ Transform:
   - {fileID: 4436984354633847426}
   - {fileID: 7024819241979634297}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &477260344799006209
 SpriteRenderer:
@@ -128,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207690a1b9cedd647843fe4d5f52b1a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ropeRoot: {fileID: 5051420940083843193}
   ropeParts:
   - {fileID: 216756936156111566}
   - {fileID: 2092121168663460569}
@@ -141,7 +140,16 @@ MonoBehaviour:
   - {fileID: 7165431040164698847}
   - {fileID: 1389291163882113908}
   ropeDamping: 1
+  climbSpeedMultiplier: 1
   startEnabled: 1
+  creatorConfiguration:
+    ropeLength: 1
+    ropePartCount: 2
+    ropeSpriteType: 0
+    ropeSprite: {fileID: 0}
+    initialRopeCurveAngle: 0
+    SpriteSize: {x: 1, y: 1}
+    SpriteOffset: {x: 0, y: 0}
 --- !u!233 &8915557391134890279
 HingeJoint2D:
   m_ObjectHideFlags: 0
