@@ -5,12 +5,16 @@ using UnityEngine;
 using UnityEngine.U2D;
 
 public class RopeController : MonoBehaviour {
-    [SerializeField] Transform ropeRoot;
-    public Transform RopeRoot { get { return ropeRoot; } }
     [SerializeField] List<RopePart> ropeParts = new();
     public List<RopePart> RopeParts { get { return ropeParts;} }
 
+    public float RopeLength { get; private set; }
+
     [SerializeField] float ropeDamping = 0f;
+    [HideInInspector]
+    float ropeStiffness = 0f;
+    [SerializeField] float climbSpeedMultiplier = 1f;
+    public float ClimbSpeedMultiplier { get => climbSpeedMultiplier; }
     [SerializeField] bool startEnabled = true;
 
     public bool RopeEnabled {
@@ -21,6 +25,7 @@ public class RopeController : MonoBehaviour {
             return false;
         }
         set {
+            if (ropeParts.Count == 0) return;
             foreach (var part in ropeParts) {
                 part.GetComponent<Rigidbody2D>().bodyType = value ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
             }
@@ -28,7 +33,6 @@ public class RopeController : MonoBehaviour {
         }
     }
 
-    public float RopeLength { get; private set; }
 
     private void Start() {
         RopeEnabled = startEnabled;
@@ -86,7 +90,7 @@ public class RopeController : MonoBehaviour {
         return progress;
     }
 
-    public Rigidbody2D GetRopePart(float ropeProgress) {
+    public RopePart GetRopePart(float ropeProgress) {
         if (ropeParts.Count == 0) return null;
         //returns the point along the rope curve at the given progress (0 to 1)
         //we assume a constant length between rope parts
@@ -98,22 +102,22 @@ public class RopeController : MonoBehaviour {
         //find the rope part we are below
         var ropePart = ropeParts[ropeIndex];
 
-        return ropePart.GetComponent<Rigidbody2D>();
+        return ropePart;
     }
 
-    public Rigidbody2D GetRopePart(Vector2 point) {
+    public RopePart GetRopePart(Vector2 point) {
         return GetRopePart(GetRopeProgress(point));
     }
 
-    public Rigidbody2D getClosestRopePart(Vector2 point) {
-        Rigidbody2D closestPart = null;
+    public RopePart getClosestRopePart(Vector2 point) {
+        RopePart closestPart = null;
         float closestDistance = float.PositiveInfinity;
 
         foreach (var part in ropeParts) {
             float distance = Vector2.Distance(point, part.transform.position);
             if (distance < closestDistance) {
                 closestDistance = distance;
-                closestPart = part.GetComponent<Rigidbody2D>();
+                closestPart = part;
             }
         }
         return closestPart;
@@ -121,82 +125,60 @@ public class RopeController : MonoBehaviour {
 
     public int GetPartIndex(GameObject part) {
         for (int i = 0; i < ropeParts.Count; i++) {
-            if (ropeParts[i] == part) return i;
+            if (ropeParts[i].gameObject == part) return i;
         }
         return -1;
     }
 
 #if UNITY_EDITOR
-    public void FindRope() {
-        List<RopePart> newRopeParts = new List<RopePart>();
-        RopePart current = ropeRoot.GetComponent<RopePart>();
-        newRopeParts.Add(current);
-        //go to parts child untill there is none or the first child is marked to be ignored
-        while (current.transform.childCount > 0) {
-            current = current.transform.GetChild(0).GetComponent<RopePart>();
-            if (current.name.StartsWith("[NOROPE]")) break;
-            newRopeParts.Add(current);
-        }
-
-        ropeParts = newRopeParts;
-    }
-
-    public void SetupRope() {
-        //go through all rope parts, ensure there is a RigidBody2D and a HingeJoint2D on there
-        //next link the hinge joint to the part's child
-
-        for (int i = 0; i < ropeParts.Count - 1; i++) {
-            GameObject part = ropeParts[i].gameObject;
-            GameObject child = ropeParts[i + 1].gameObject;
-
-            Rigidbody2D rb = part.GetComponent<Rigidbody2D>();
-            if (rb == null) {
-                rb = part.AddComponent<Rigidbody2D>();
-            }
-
-            HingeJoint2D hj = part.GetComponent<HingeJoint2D>();
-            if (hj == null) {
-                hj = part.AddComponent<HingeJoint2D>();
-            }
-
-            Rigidbody2D rbChild = child.GetComponent<Rigidbody2D>();
-            if (rbChild == null) {
-                rbChild = child.AddComponent<Rigidbody2D>();
-            }
-
-            hj.connectedBody = rbChild;
-        }
-
-        //remove the hinge joint from the last part
-        HingeJoint2D lastHJ = ropeParts[ropeParts.Count - 1].GetComponent<HingeJoint2D>();
-        if (lastHJ != null) {
-            DestroyImmediate(lastHJ);
-        }
-    }
 
     public void ClearRope() {
         //clear the list of RopeParts
         ropeParts = new();
+        //delete all children gameObjects
+        while (transform.childCount > 0) {
+            DestroyImmediate(transform.GetChild(0).gameObject);
+        }
     }
 
     public void UpdateRopeParts() {
         //loop over all rope parts and apply the damping to the linearDamping on the RigidBody2D
         foreach (RopePart part in ropeParts) {
-            Rigidbody2D rb = part.GetComponent<Rigidbody2D>();
-            if (rb != null) {
-                rb.drag = ropeDamping;
-            }
+            part.SetDamping(ropeDamping);
+            part.SetStiffness(ropeStiffness);
         }
     }
 
     private void OnValidate() {
+        RopeEnabled = startEnabled;
         UpdateRopeParts();
     }
 
     //on attach to gameobject
     private void Reset() {
-        ropeRoot = transform;
+        ClearRope();
     }
+
+    public enum RopeSpriteType {
+        None,
+        Segmented,
+        Skinned
+    }
+
+    [System.Serializable]
+    public class CreatorConfiguration {
+        //rope creator
+        public float ropeLength = 1f;
+        public int ropePartCount = 2;
+        public RopeSpriteType ropeSpriteType = RopeSpriteType.None;
+        public Sprite ropeSprite = null;
+        public float initialRopeCurveAngle = 0f;
+        public Vector2 SpriteSize = Vector2.one;
+        public Vector2 SpriteOffset = Vector2.zero;
+    }
+
+    [HideInInspector]
+    public CreatorConfiguration creatorConfiguration = new CreatorConfiguration();
 
 #endif
 }
