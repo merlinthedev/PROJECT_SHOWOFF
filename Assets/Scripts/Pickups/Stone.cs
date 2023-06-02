@@ -80,7 +80,6 @@ public class Stone : AProjectile, IPickup {
 
         player.GetPlayerProjectileController().ResetProjectile();
 
-        Utils.Instance.InvokeDelayed(0.2f, () => preparePlayerPickup());
 
         StartCoroutine(this.handleViewportPositionCoroutine);
     }
@@ -111,6 +110,7 @@ public class Stone : AProjectile, IPickup {
 
         this.m_Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
         this.m_Rigidbody2D.velocity = Vector2.zero;
+
 
         this.m_Collider2D.excludeLayers = 0;
         this.m_Collider2D.isTrigger = true;

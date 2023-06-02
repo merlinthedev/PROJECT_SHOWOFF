@@ -38,8 +38,7 @@ public class PlayerMovementController : MonoBehaviour {
     [SerializeField] private Collider2D groundCollider;
     [SerializeField] private Transform groundCheckTransform;
 
-    [Header("Ledge")]
-    [SerializeField] private float maxLedgeHeight = 2f;
+    [Header("Ledge")] [SerializeField] private float maxLedgeHeight = 2f;
 
     [SerializeField] private float ledgeGrabDelay = 0.2f;
     [SerializeField] private float ledgeCheckDistance = 0.6f;
@@ -47,8 +46,7 @@ public class PlayerMovementController : MonoBehaviour {
     private float lastLedgeGrab = 0f;
     private bool moved = false;
 
-    [Header("Rope")]
-    [SerializeField] private FixedJoint2D ropeJoint;
+    [Header("Rope")] [SerializeField] private FixedJoint2D ropeJoint;
 
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float ropeSpeedMultiplier = 1.5f;
@@ -57,8 +55,7 @@ public class PlayerMovementController : MonoBehaviour {
     private float ropeProgress = 0f;
     private float lastRopeRelease = 0f;
 
-    [Header("Water")]
-    [SerializeField] private float waterMovementSpeedDebuff = 0.5f;
+    [Header("Water")] [SerializeField] private float waterMovementSpeedDebuff = 0.5f;
 
     [SerializeField] private float waterGravityScale = 0.5f;
     [SerializeField] private float waterJumpForceDebuff = 0.5f;
@@ -67,8 +64,7 @@ public class PlayerMovementController : MonoBehaviour {
     private float lastWaterLeaveTime;
 
 
-    [Header("Needs to move")]
-    [SerializeField]
+    [Header("Needs to move")] [SerializeField]
     private Player player;
 
 
@@ -77,8 +73,7 @@ public class PlayerMovementController : MonoBehaviour {
 
     private bool isMoving = false;
 
-    [Header("Cheese")]
-    public float cheeseStrength = 2f;
+    [Header("Cheese")] public float cheeseStrength = 2f;
 
     public bool isCheesing = false;
 
@@ -94,7 +89,7 @@ public class PlayerMovementController : MonoBehaviour {
         }
 
         isMoving = movementInput.x != 0;
-        
+
         player.GetPlayerAudioController().PlayWalkingSound(isMoving);
 
         float x = move();
@@ -125,8 +120,10 @@ public class PlayerMovementController : MonoBehaviour {
         #region ledge
 
         // Ledge stuff
-        if (!isGrounded && !this.inWater && rb.velocity.y <= 0 && this.player.GetPlayerEventHandler().Grabbing && !isOnRope &&
+        if (!this.inWater && rb.velocity.y <= 0 && !this.player.GetPlayerEventHandler().Grabbing &&
+            !isOnRope &&
             this.lastRopeRelease + 0.5f < Time.time) {
+            Debug.Log("Going to check ledge.");
             checkLedge();
         }
 
@@ -143,7 +140,8 @@ public class PlayerMovementController : MonoBehaviour {
     private bool SurfaceCheck() {
         // Save the bottom side of our collider to a vector2
         Vector2 bottom = new Vector2(col.bounds.center.x, col.bounds.min.y + 0.1f);
-        RaycastHit2D hit = Physics2D.Raycast(bottom, Vector2.right * movementInput.x, 0.7f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit =
+            Physics2D.Raycast(bottom, Vector2.right * movementInput.x, 0.7f, LayerMask.GetMask("Ground"));
         if (hit.collider == null) {
             return true;
         }
@@ -175,11 +173,11 @@ public class PlayerMovementController : MonoBehaviour {
         }
 
         this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
-
     }
 
     private float move() {
-        float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed) * (inWater ? waterMovementSpeedDebuff : 1);
+        float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed) *
+                            (inWater ? waterMovementSpeedDebuff : 1);
         float speedDifference = targetSpeed - rb.velocity.x;
         float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
         float movement =
@@ -221,6 +219,7 @@ public class PlayerMovementController : MonoBehaviour {
 
         // if we didn't hit anything, return
         if (hit.collider == null) {
+            Debug.LogError("Did not find ledge collider returning.");
             return;
         }
 
@@ -232,6 +231,7 @@ public class PlayerMovementController : MonoBehaviour {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(circlePosition, playerRadius, checkForValidPositions);
 
         if (colliders.Length > 0) {
+            Debug.LogError("IDK what the fuck this does but it failed.");
             return;
         }
 
@@ -241,6 +241,7 @@ public class PlayerMovementController : MonoBehaviour {
         RaycastHit2D downHit = Physics2D.Raycast(circlePosition, direction, maxLedgeHeight, groundLayerMask);
 
         if (downHit.collider == null) {
+            Debug.LogError("Did not find anywhere to cast down to.");
             return;
         }
 
@@ -249,11 +250,14 @@ public class PlayerMovementController : MonoBehaviour {
 
         //this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
+        Debug.Log("Found corner for ledging.");
 
         Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner,
+                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
+            Debug.Log("Calling LT.move");
             LeanTween.move(gameObject, path, ledgeFreezeTime);
 
 
@@ -261,15 +265,16 @@ public class PlayerMovementController : MonoBehaviour {
             col.enabled = false;
 
 
+            Debug.Log("Invoking ledge climb ending.");
             Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
                 rb.bodyType = RigidbodyType2D.Dynamic;
                 col.enabled = true;
             });
 
 
+            Debug.Log("Setting last ledge grab time.");
             lastLedgeGrab = Time.time + ledgeFreezeTime;
             OnLedgeClimb?.Invoke();
-
         });
     }
 
@@ -288,6 +293,8 @@ public class PlayerMovementController : MonoBehaviour {
         } else if (movementInput.x < 0) {
             visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1, 1, 1));
         }
+
+        this.player.GetPlayerProjectileController().UpdateProjectile();
     }
 
     #endregion
@@ -334,9 +341,8 @@ public class PlayerMovementController : MonoBehaviour {
                     if (groundRB != null)
                         groundRB.AddForceAtPosition(Vector2.down * this.jumpForce, this.rb.position);
                 }
-
-
             }
+
             if (isOnRope) {
                 //Debug.LogWarning("Jump");
                 ropeJoint.enabled = false;
@@ -345,9 +351,7 @@ public class PlayerMovementController : MonoBehaviour {
             }
 
             player.GetPlayerAudioController().PlayJumpSound();
-
         }
-
     }
 
     #endregion
@@ -416,6 +420,4 @@ public class PlayerMovementController : MonoBehaviour {
     }
 
     #endregion
-
-
 }

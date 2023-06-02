@@ -17,7 +17,8 @@ public class StoneManager : MonoBehaviour {
             return;
         }
 
-        this.currentStone = Instantiate(this.stonePrefab, this.stoneSpawnPoint.position, Quaternion.identity);
+        this.currentStone = Instantiate(this.stonePrefab, this.stoneSpawnPoint.position,
+            this.stonePrefab.transform.rotation);
 
         var stoneScript = this.currentStone.GetComponent<Stone>();
         if (stoneScript == null) {

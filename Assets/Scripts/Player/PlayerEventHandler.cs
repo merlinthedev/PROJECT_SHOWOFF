@@ -37,9 +37,9 @@ public class PlayerEventHandler : MonoBehaviour {
     }
 
     public void OnGrab(InputAction.CallbackContext callbackContext) {
-        return;
         if (callbackContext.started) {
             grabbing = true;
+
             if (this.nearObject != null) {
                 grabAnchor.anchor = grabAnchor.transform.InverseTransformPoint(nearObjectHit.point);
                 grabAnchor.connectedBody = nearObject.GetComponent<Rigidbody2D>();

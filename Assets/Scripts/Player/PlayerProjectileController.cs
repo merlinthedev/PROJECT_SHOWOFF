@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerProjectileController : MonoBehaviour {
-
     [SerializeField] private Player player;
-    
+
     private bool hasProjectile = false;
     private GameObject projectile = null;
     [SerializeField] private Transform holdTransform;
+
+    public void UpdateProjectile() {
+        if (this.projectile == null) return;
+        this.projectile.transform.position = this.holdTransform.position;
+    }
 
     public bool HasProjectile() {
         return this.hasProjectile;
