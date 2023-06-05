@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEditor;
@@ -10,20 +9,16 @@ using Vector3 = UnityEngine.Vector3;
 public class PlayerMovementController : MonoBehaviour {
     [Header("Movement")] [SerializeField] private float maxSpeed = 8f;
     [SerializeField] private float maxAirSpeed = 4f;
-    [SerializeField] private float acceleration = 10f;
-    [SerializeField] private float deceleration = 5f;
-    [SerializeField] private AnimationCurve accelerationCurve;
+    [SerializeField] private float acceleration = 90f;
+    [SerializeField] private float deceleration = 60f;
     [SerializeField] private Vector2 forceScale = new Vector2(1f, 1f);
     [SerializeField] private float gravityScaleDrop = 10f;
-
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private LayerMask checkForValidPositions;
-
     [SerializeField] private Vector2 movementInput;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Collider2D col;
     [SerializeField] private bool movementControlDisabled = false;
-
     [SerializeField] private float maxClimbAngle = 30;
 
 
@@ -39,7 +34,6 @@ public class PlayerMovementController : MonoBehaviour {
     [SerializeField] private Transform groundCheckTransform;
 
     [Header("Ledge")] [SerializeField] private float maxLedgeHeight = 2f;
-
     [SerializeField] private float ledgeGrabDelay = 0.2f;
     [SerializeField] private float ledgeCheckDistance = 0.6f;
     [SerializeField] private float ledgeFreezeTime = 0.5f;
@@ -47,7 +41,6 @@ public class PlayerMovementController : MonoBehaviour {
     private bool moved = false;
 
     [Header("Rope")] [SerializeField] private FixedJoint2D ropeJoint;
-
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float ropeSpeedMultiplier = 1.5f;
     private bool isOnRope = false;
@@ -56,7 +49,6 @@ public class PlayerMovementController : MonoBehaviour {
     private float lastRopeRelease = 0f;
 
     [Header("Water")] [SerializeField] private float waterMovementSpeedDebuff = 0.5f;
-
     [SerializeField] private float waterGravityScale = 0.5f;
     [SerializeField] private float waterJumpForceDebuff = 0.5f;
     [SerializeField] private bool inWater = false;
@@ -64,17 +56,21 @@ public class PlayerMovementController : MonoBehaviour {
     private float lastWaterLeaveTime;
 
 
-    [Header("Needs to move")] [SerializeField]
-    private Player player;
-
+    [Header("Needs to move")] [SerializeField] private Player player;
+    private Vector3 rawMovement;
+    [SerializeField] private float fallClamp = -20f;
+    [SerializeField] private float minFallSpeed = 30f;
+    [SerializeField] private float maxFallSpeed = 50f;
+    private float fallSpeed = 0f;
+    private Vector3 velocity;
+    private Vector3 lastPosition;
+    private FrameInput Input;
 
     [Header("Events")] [SerializeField] private UnityEvent OnLedgeClimb;
     [SerializeField] private UnityEvent OnWhistle;
-
     private bool isMoving = false;
 
     [Header("Cheese")] public float cheeseStrength = 2f;
-
     public bool isCheesing = false;
 
     private void Start() {
@@ -82,40 +78,26 @@ public class PlayerMovementController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (movementControlDisabled || Time.time < lastLedgeGrab) {
-            this.rb.velocity = Vector3.zero;
-            // Debug.Log("Can't move.", this);
-            return;
-        }
+        velocity = (transform.position - lastPosition) / Time.fixedDeltaTime;
 
-        isMoving = movementInput.x != 0;
+        lastPosition = transform.position;
+
+        gatherInput();
+
+        isMoving = movementInput.x != 0 || Input.X != 0;
 
         player.GetPlayerAudioController().PlayWalkingSound(isMoving);
 
-        float x = move();
+        calculateMovement();
+        calculateJumpApex();
+        calculateGravity();
+        calculateJump();
 
-        if (SurfaceCheck()) {
-            applyMovement(x);
-        }
+        applyMovement();
 
-        #region groundCheck
+        UpdateVisuals();
 
-        // Groundcheck
-        isGrounded = false;
-
-        RaycastHit2D[] hits =
-            Physics2D.CircleCastAll(groundCheckTransform.position, playerRadius, Vector2.zero, groundLayerMask);
-
-        for (int i = 0; i < hits.Length; i++) {
-            if (hits[i].collider.gameObject != gameObject) {
-                isGrounded = true;
-                moved = false;
-                this.groundCollider = hits[i].collider;
-                break;
-            }
-        }
-
-        #endregion
+        return;
 
         #region ledge
 
@@ -129,62 +111,54 @@ public class PlayerMovementController : MonoBehaviour {
 
         #endregion
 
-        //gravity
-        rb.AddForce(Vector2.down * (gravityScaleDrop * rb.mass * (inWater ? waterGravityScale : 1)));
-
-        UpdateVisuals();
     }
 
     #region movement
 
-    private bool SurfaceCheck() {
-        // Save the bottom side of our collider to a vector2
-        Vector2 bottom = new Vector2(col.bounds.center.x, col.bounds.min.y + 0.1f);
-        RaycastHit2D hit =
-            Physics2D.Raycast(bottom, Vector2.right * movementInput.x, 0.7f, LayerMask.GetMask("Ground"));
-        if (hit.collider == null) {
-            return true;
+    private void gatherInput() {
+        Input = new FrameInput {
+            JumpDown = UnityEngine.Input.GetButtonDown("Jump"),
+            JumpUp = UnityEngine.Input.GetButtonUp("Jump"),
+            X = UnityEngine.Input.GetAxisRaw("Horizontal")
+        };
+        if (Input.JumpDown) {
+            lastJumpPressed = Time.time;
         }
-
-        float angle = Vector2.Angle(Vector2.up, hit.normal);
-        // Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
-
-        return angle < maxClimbAngle;
     }
 
-    private void applyMovement(float x) {
-        this.rb.sharedMaterial.friction = movementInput.x == 0 ? 1 : 0;
-        x *= (inWater ? waterMovementSpeedDebuff : 1f);
+    private void applyMovement() {
+        currentHorizontalSpeed *= (inWater ? waterMovementSpeedDebuff : 1f);
+        rawMovement = new Vector3(currentHorizontalSpeed, currentVerticalSpeed);
 
-        // Debug.Log("Applying movement: " + x);
-        //Debug.Log("Current rb force: " + this.rb.velocity);
-        if (this.groundCollider != null) {
-            var groundRB = this.groundCollider.attachedRigidbody;
-            if (groundRB != null && isGrounded) {
-                var force = Vector2.right * x * forceScale.x * rb.mass;
-                // Apply the opposite force to the ground
-                // Debug.Log("Applying force to ground: " + force + " , " + groundRB + " , " + groundRB.gameObject.name);
-                if (groundRB.gameObject.GetComponent<ObjectGrabbable>() != null) {
-                    if (groundRB.gameObject.GetComponent<ObjectGrabbable>().isWater) {
-                        groundRB.AddForce(-force);
-                    }
-                }
-            }
-        }
+        var move = rawMovement * Time.fixedDeltaTime;
+        this.rb.velocity = move;
 
-        this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
+        // if (this.groundCollider != null) {
+        //     var groundRB = this.groundCollider.attachedRigidbody;
+        //     if (groundRB != null && isGrounded) {
+        //         var force = Vector2.right * currentHorizontalSpeed * forceScale.x * rb.mass;
+        //         // Apply the opposite force to the ground
+        //         // Debug.Log("Applying force to ground: " + force + " , " + groundRB + " , " + groundRB.gameObject.name);
+        //         if (groundRB.gameObject.GetComponent<ObjectGrabbable>() != null) {
+        //             if (groundRB.gameObject.GetComponent<ObjectGrabbable>().isWater) {
+        //                 groundRB.AddForce(-force);
+        //             }
+        //         }
+        //     }
+        // }
+
     }
 
-    private float move() {
-        float targetSpeed = movementInput.x * (isGrounded ? maxSpeed : maxAirSpeed) *
-                            (inWater ? waterMovementSpeedDebuff : 1);
-        float speedDifference = targetSpeed - rb.velocity.x;
-        float accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
-        float movement =
-            Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate,
-                accelerationCurve.Evaluate(Mathf.Abs(speedDifference) * accelerationRate)) *
-            Mathf.Sign(speedDifference);
+    private float currentHorizontalSpeed;
+    private float currentVerticalSpeed;
 
+    private void calculateMovement() {
+        if (Input.X != 0) {
+            currentHorizontalSpeed += Input.X * acceleration * Time.fixedDeltaTime;
+            currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed, -maxSpeed, maxSpeed);
+        } else {
+            currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, 0, deceleration * Time.fixedDeltaTime);
+        }
 
         /*
          * Rope stuff 
@@ -198,11 +172,64 @@ public class PlayerMovementController : MonoBehaviour {
                 rb.position = ropePosition;
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
                 ropeJoint.connectedAnchor = ropePosition;
-                return 0;
             }
         }
 
-        return movement;
+    }
+
+    private void calculateGravity() {
+        if (isGrounded) {
+            if (currentVerticalSpeed < 0) currentVerticalSpeed = 0;
+        } else {
+            var m_FallSpeed = endedJumpEarly && currentVerticalSpeed > 0 ? fallSpeed * jumpEndEarlyGravityModifier : fallSpeed;
+
+            currentVerticalSpeed -= m_FallSpeed * Time.fixedDeltaTime;
+
+            currentVerticalSpeed = Mathf.Clamp(currentVerticalSpeed, fallClamp, Mathf.Infinity);
+        }
+    }
+
+    [SerializeField] private float jumpHeight = 30f;
+    [SerializeField] private float jumpApexThreshold = 10f;
+    [SerializeField] private float coyoteTimeThreshold = 0.1f;
+    [SerializeField] private float jumpBuffer = 0.1f;
+    [SerializeField] private float jumpEndEarlyGravityModifier = 3f;
+
+    private bool coyoteUsable;
+    private bool endedJumpEarly = true;
+    private float apexPoint;
+    private float lastJumpPressed;
+
+    private float timeLeftGrounded;
+
+    private bool canUseCoyote => coyoteUsable && !isGrounded && timeLeftGrounded + coyoteTimeThreshold > Time.time;
+    private bool hasBufferedJump => isGrounded && lastJumpPressed + jumpBuffer > Time.time;
+
+    private bool jumpingThisFrame;
+
+    private void calculateJumpApex() {
+        if (!isGrounded) {
+            apexPoint = Mathf.InverseLerp(jumpApexThreshold, 0, Mathf.Abs(velocity.y));
+            fallSpeed = Mathf.Lerp(minFallSpeed, maxFallSpeed, apexPoint);
+        } else {
+            apexPoint = 0;
+        }
+    }
+
+    private void calculateJump() {
+        if (Input.JumpDown && canUseCoyote || hasBufferedJump) {
+            currentVerticalSpeed = jumpHeight;
+            endedJumpEarly = false;
+            coyoteUsable = false;
+            timeLeftGrounded = float.MinValue;
+            jumpingThisFrame = true;
+        } else {
+            jumpingThisFrame = false;
+        }
+
+        if (!isGrounded && Input.JumpUp && !endedJumpEarly && velocity.y > 0) {
+            endedJumpEarly = true;
+        }
     }
 
     #endregion

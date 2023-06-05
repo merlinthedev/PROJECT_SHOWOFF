@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -123,7 +124,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     }
 
     #endregion
-
+    
 
     #region Gather Input
 
@@ -201,7 +202,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     private void OnDrawGizmos() {
         // Bounds
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position + characterBounds.center, characterBounds.size);
+        Gizmos.DrawWireSphere(transform.position + characterBounds.center, playerRadius);
 
         // Rays
         if (!Application.isPlaying) {
@@ -217,9 +218,10 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         if (!Application.isPlaying) return;
 
         // Draw the future position. Handy for visualizing gravity
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.magenta;
         var move = new Vector3(currentHorizontalSpeed, currentVerticalSpeed) * Time.deltaTime;
-        Gizmos.DrawWireCube(transform.position + characterBounds.center + move, characterBounds.size);
+        // Gizmos.DrawWireCube(transform.position + characterBounds.center + move, characterBounds.size);
+        Gizmos.DrawWireSphere(transform.position + characterBounds.center + move, playerRadius);
     }
 
     #endregion
@@ -316,6 +318,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
             coyoteUsable = false;
             timeLeftGrounded = float.MinValue;
             JumpingThisFrame = true;
+
         } else {
             JumpingThisFrame = false;
         }
@@ -346,7 +349,8 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         Vector3 furthestPoint = pos + move;
 
         // check furthest movement. If nothing hit, move and don't do extra checks
-        Collider2D hit = Physics2D.OverlapBox(furthestPoint, characterBounds.size, 0, groundLayer);
+        // Collider2D hit = Physics2D.OverlapBox(furthestPoint, characterBounds.size, 0, groundLayer);
+        Collider2D hit = Physics2D.OverlapCircle(furthestPoint, playerRadius, groundLayer);
         if (!hit) {
             transform.position += move;
             return;
@@ -359,7 +363,8 @@ public class PlayerController : MonoBehaviour, IPlayerController {
             var t = (float)i / freeColliderIterations;
             var posToTry = Vector2.Lerp(pos, furthestPoint, t);
 
-            if (Physics2D.OverlapBox(posToTry, characterBounds.size, 0, groundLayer)) {
+            // if (Physics2D.OverlapBox(posToTry, characterBounds.size, 0, groundLayer)) {
+            if (Physics2D.OverlapCircle(posToTry, playerRadius, groundLayer)) {
                 transform.position = positionToMoveTo;
 
                 // We've landed on a corner or hit our head on a ledge. Nudge the player gently
