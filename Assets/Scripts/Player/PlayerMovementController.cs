@@ -104,7 +104,7 @@ public class PlayerMovementController : MonoBehaviour {
         isGrounded = false;
 
         RaycastHit2D[] hits =
-            Physics2D.CircleCastAll(groundCheckTransform.position, playerRadius + 0.1f, Vector2.zero, groundLayerMask);
+            Physics2D.CircleCastAll(groundCheckTransform.position, playerRadius, Vector2.zero, groundLayerMask);
 
         for (int i = 0; i < hits.Length; i++) {
             if (hits[i].collider.gameObject != gameObject) {
@@ -119,8 +119,8 @@ public class PlayerMovementController : MonoBehaviour {
 
         #region ledge
 
-        // Ledge stuff
-        if (!this.inWater && rb.velocity.y <= 0 && !this.player.GetPlayerEventHandler().Grabbing &&
+        // Ledge stuff, ADD GROUNDED CHECK ONCE IT IS REFACTORED
+        if (!this.isGrounded && !this.inWater && rb.velocity.y <= 0 && !this.player.GetPlayerEventHandler().Grabbing &&
             !isOnRope &&
             this.lastRopeRelease + 0.5f < Time.time) {
             Debug.Log("Going to check ledge.");
