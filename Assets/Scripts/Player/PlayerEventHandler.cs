@@ -38,23 +38,27 @@ public class PlayerEventHandler : MonoBehaviour {
 
     public void OnGrab(InputAction.CallbackContext callbackContext) {
         if (callbackContext.started) {
+            Debug.Log("Started grabbing context");
+
             grabbing = true;
+            
+            Debug.Log("Grabbing object");
 
             if (this.nearObject != null) {
                 grabAnchor.anchor = grabAnchor.transform.InverseTransformPoint(nearObjectHit.point);
                 grabAnchor.connectedBody = nearObject.GetComponent<Rigidbody2D>();
                 grabAnchor.enabled = true;
+                Debug.Log("Found stuff");
             }
-
-            Debug.Log("Started grabbing context");
         }
 
         if (callbackContext.canceled) {
+            Debug.Log("Stopped grabbing context");
             grabbing = false;
             grabAnchor.connectedBody = null;
             grabAnchor.enabled = false;
+            Debug.Log("Grab is false");
 
-            Debug.Log("Stopped grabbing context");
         }
     }
 
