@@ -120,7 +120,7 @@ public class PlayerMovementController : MonoBehaviour {
         #region ledge
 
         // Ledge stuff, ADD GROUNDED CHECK ONCE IT IS REFACTORED
-        if (!this.isGrounded && !this.inWater && rb.velocity.y <= 0 && !this.player.GetPlayerEventHandler().Grabbing &&
+        if (!this.inWater && rb.velocity.y <= 0 && !this.player.GetPlayerEventHandler().Grabbing &&
             !isOnRope &&
             this.lastRopeRelease + 0.5f < Time.time) {
             Debug.Log("Going to check ledge.");
@@ -252,10 +252,10 @@ public class PlayerMovementController : MonoBehaviour {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
+        {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner,
-                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             LeanTween.move(gameObject, path, ledgeFreezeTime);
@@ -266,7 +266,8 @@ public class PlayerMovementController : MonoBehaviour {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
+            {
                 rb.bodyType = RigidbodyType2D.Dynamic;
                 col.enabled = true;
             });
@@ -420,4 +421,5 @@ public class PlayerMovementController : MonoBehaviour {
     }
 
     #endregion
+
 }
