@@ -73,9 +73,10 @@ public class PlayerMovementController : MonoBehaviour {
 
     private bool isMoving = false;
 
-    [Header("Cheese")] public float cheeseStrength = 2f;
-
+    [Header("Cheese")] 
+    public float cheeseStrength = 2f;
     public bool isCheesing = false;
+    public bool canJump = true;
 
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
@@ -317,6 +318,14 @@ public class PlayerMovementController : MonoBehaviour {
                 isOnRope = true;
             }
         }
+
+    }
+    private void OnCollisionStay2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Boat")) {
+            if (collision.gameObject.GetComponent<Boat>().playerInBoat) {
+                canJump = false;
+            }
+        }
     }
 
     #region Input
@@ -326,7 +335,7 @@ public class PlayerMovementController : MonoBehaviour {
     }
 
     public void DoJump(InputAction.CallbackContext context) {
-        if (context.performed) {
+        if (context.performed && canJump) {
             if (isGrounded || isOnRope) {
                 //Debug.LogWarning("Jump");
                 // rb.AddForce(Vector2.up * jumpForce * (inWater ? waterJumpForceDebuff : 1) * (isCheesing ? cheeseStrength : 1f),
