@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     private void ledgeGrabbing() {
         // if we are grounded, return
         if (this.colDown) return;
-        
+
         Vector2 direction = new Vector2(this.Input.X, 0);
 
         //raycast forwards to check if we hit a ledge
@@ -428,8 +428,13 @@ public class PlayerController : MonoBehaviour, IPlayerController {
             var t = (float)i / freeColliderIterations;
             var posToTry = Vector2.Lerp(pos, furthestPoint, t);
 
-            // if (Physics2D.OverlapBox(posToTry, characterBounds.size, 0, groundLayer)) {
-            if (Physics2D.OverlapCircle(posToTry, playerRadius, groundLayer)) {
+            Collider2D c2d = Physics2D.OverlapCircle(posToTry, this.playerRadius, this.groundLayer);
+            if (c2d) {
+                if (c2d.gameObject.GetComponent<Rigidbody2D>() != null) {
+                    c2d.gameObject.GetComponent<Rigidbody2D>()
+                        .AddForce(new Vector2(this.currentHorizontalSpeed * 100, 0), ForceMode2D.Force);
+                }
+
                 transform.position = positionToMoveTo;
                 // this.rb.position = positionToMoveTo;
 
@@ -443,6 +448,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
                 return;
             }
+
 
             positionToMoveTo = posToTry;
         }
