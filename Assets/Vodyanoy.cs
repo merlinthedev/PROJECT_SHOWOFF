@@ -16,7 +16,7 @@ public class Vodyanoy : MonoBehaviour {
 
     public FixedJoint2D fj;
     public GameObject boat;
-    public GameObject player;
+    public PlayerController player;
 
     //When the object is enabled, it will move to the riseTarget
     private void OnEnable() {
@@ -58,8 +58,11 @@ public class Vodyanoy : MonoBehaviour {
     
     private void EnablePlayerJump() {
         Debug.Log("EnablePlayerJump");
-        player.gameObject.GetComponent<PlayerMovementController>().canJump = true;
-        player.gameObject.GetComponent<PlayerMovementController>().travelling = false;
+        // player.gameObject.GetComponent<PlayerMovementController>().canJump = true;
+        // player.gameObject.GetComponent<PlayerMovementController>().travelling = false;
+
+        this.player.setCanJump(true);
+        this.player.setTraveling(false);
     }
     public void Connect() {
         fj.connectedBody = boat.GetComponent<Rigidbody2D>();

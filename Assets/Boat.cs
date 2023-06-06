@@ -46,18 +46,15 @@ public class Boat : MonoBehaviour {
     private void MoveBoat(float speed) {
         rb.velocity = new Vector2(speed, 0);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision) {
-
-    }
+    
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Trigger") {
             boatSpeed = 0;
         }
         if (collision.gameObject.tag == "Vodyanoy") {
             //collision.gameObject.GetComponent<Vodyanoy>().Connect();
-            rb.mass = .1f;
-            boatMass = .1f;
+            rb.mass = 0.1f;
+            boatMass = 0.1f;
         }
     }
 }

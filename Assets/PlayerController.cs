@@ -358,6 +358,8 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     [SerializeField] private float jumpBuffer = 0.1f;
     [SerializeField] private float jumpEndEarlyGravityModifier = 3;
 
+    private bool canJump = true;
+
     private bool coyoteUsable;
     private bool endedJumpEarly = true;
     private float apexPoint; // Becomes 1 at the apex of a jump
@@ -377,6 +379,8 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     private void calculateJump() {
         // Jump if: grounded or within coyote threshold || sufficient jump buffer
+        if (!this.canJump) return;
+
         if (Input.JumpDown && (canUseCoyote || hasBufferedJump || this.isOnRope || this.inWater)) {
             currentVerticalSpeed = this.inWater ? this.jumpHeight / 2 : this.jumpHeight;
             endedJumpEarly = false;
@@ -404,11 +408,16 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         }
     }
 
+    public void setCanJump(bool value) {
+        this.canJump = value;
+    }
+
     #endregion
 
     #region Water
 
     private bool inWater = false;
+    private bool isTraveling = true;
     private float a, b, c;
 
     public void onWaterEnter() {
@@ -427,6 +436,10 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         return this.inWater;
     }
 
+    public void setTraveling(bool value) {
+        this.isTraveling = value;
+    }
+
     private void disableManualGravity() {
         this.fallClamp = 0;
         this.minFallSpeed = 0;
@@ -441,6 +454,18 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         this.maxFallSpeed = c;
 
         this.rb.gravityScale = 0;
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Boat")) {
+            var boat = other.gameObject.GetComponent<Boat>();
+            if (boat == null) return;
+
+            if (boat.playerInBoat && this.isTraveling) {
+                Debug.Log("Player in boat.", this);
+                this.canJump = false;
+            }
+        }
     }
 
     #endregion
