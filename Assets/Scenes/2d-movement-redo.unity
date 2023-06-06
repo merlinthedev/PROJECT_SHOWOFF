@@ -512,14 +512,14 @@ GameObject:
   m_Component:
   - component: {fileID: 624683984}
   - component: {fileID: 624683983}
-  - component: {fileID: 624683986}
   - component: {fileID: 624683987}
   - component: {fileID: 624683988}
   - component: {fileID: 624683990}
   - component: {fileID: 624683989}
+  - component: {fileID: 624683991}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -584,59 +584,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624683982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -69.68, y: 13.48, z: 0}
+  m_LocalPosition: {x: -83.06, y: 15.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &624683986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624683982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76595e8fd0aaf5649911927bd635118d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canMove: 1
-  maxLedgeHeight: 2
-  ledgeGrabDelay: 0
-  ledgeCheckDistance: 0.6
-  ledgeFreezeTime: 1.5
-  onLedgeGrab:
-    m_PersistentCalls:
-      m_Calls: []
-  characterBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.5, y: 0.5, z: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1088
-  detectorCount: 2
-  detectionRayLength: 0.05
-  rayBuffer: 0.3
-  ropeJoint: {fileID: 624683990}
-  rb: {fileID: 624683988}
-  ropeGrabTimeout: 0.5
-  ropeSpeedMultiplier: 1.5
-  acceleration: 90
-  moveClamp: 5
-  deceleration: 60
-  apexBonus: 0.8
-  fallClamp: -20
-  minFallSpeed: 30
-  maxFallSpeed: 50
-  jumpHeight: 12
-  jumpApexThreshold: 10
-  coyoteTimeThreshold: 0.1
-  jumpBuffer: 0.1
-  jumpEndEarlyGravityModifier: 3
-  freeColliderIterations: 50
 --- !u!114 &624683987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,6 +718,52 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: 38.48, y: 3.699}
   m_DampingRatio: 0
   m_Frequency: 0
+--- !u!114 &624683991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624683982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76595e8fd0aaf5649911927bd635118d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMove: 1
+  maxLedgeHeight: 2
+  ledgeGrabDelay: 0
+  ledgeCheckDistance: 0.6
+  ledgeFreezeTime: 0.5
+  onLedgeGrab:
+    m_PersistentCalls:
+      m_Calls: []
+  characterBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  detectorCount: 3
+  detectionRayLength: 0.05
+  rayBuffer: 0.3
+  ropeJoint: {fileID: 624683990}
+  rb: {fileID: 624683988}
+  ropeGrabTimeout: 0.5
+  ropeSpeedMultiplier: 1.5
+  acceleration: 80
+  moveClamp: 5
+  deceleration: 60
+  apexBonus: 0.8
+  fallClamp: -20
+  minFallSpeed: 30
+  maxFallSpeed: 50
+  jumpHeight: 12
+  jumpApexThreshold: 10
+  coyoteTimeThreshold: 0.1
+  jumpBuffer: 0.1
+  jumpEndEarlyGravityModifier: 3
+  freeColliderIterations: 10
 --- !u!1 &724473829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,7 +1332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067402796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.09, y: 14.119998, z: -10}
+  m_LocalPosition: {x: -78.47, y: 15.759999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1907,7 +1907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677281770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -62.639996, y: 12.989998, z: -10.088583}
+  m_LocalPosition: {x: -76.020004, y: 14.629999, z: -10.088583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

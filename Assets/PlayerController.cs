@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -24,7 +25,13 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     private bool active;
     void Awake() => Invoke(nameof(activate), 0.5f);
-    void activate() => active = true;
+
+    void activate() {
+        this.active = true;
+        a = this.fallClamp;
+        b = this.minFallSpeed;
+        c = this.maxFallSpeed;
+    }
 
     private void Update() {
         if (!active) return;
@@ -370,8 +377,8 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     private void calculateJump() {
         // Jump if: grounded or within coyote threshold || sufficient jump buffer
-        if (Input.JumpDown && (canUseCoyote || hasBufferedJump || this.isOnRope)) {
-            currentVerticalSpeed = jumpHeight;
+        if (Input.JumpDown && (canUseCoyote || hasBufferedJump || this.isOnRope || this.inWater)) {
+            currentVerticalSpeed = this.inWater ? this.jumpHeight / 2 : this.jumpHeight;
             endedJumpEarly = false;
             coyoteUsable = false;
             timeLeftGrounded = float.MinValue;
@@ -395,6 +402,45 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         if (colUp) {
             if (currentVerticalSpeed > 0) currentVerticalSpeed = 0;
         }
+    }
+
+    #endregion
+
+    #region Water
+
+    private bool inWater = false;
+    private float a, b, c;
+
+    public void onWaterEnter() {
+        this.inWater = true;
+
+        this.disableManualGravity();
+    }
+
+    public void onWaterExit() {
+        this.inWater = false;
+
+        this.enableManualGravity();
+    }
+
+    public bool isInWater() {
+        return this.inWater;
+    }
+
+    private void disableManualGravity() {
+        this.fallClamp = 0;
+        this.minFallSpeed = 0;
+        this.maxFallSpeed = 0;
+
+        this.rb.gravityScale = 1;
+    }
+
+    private void enableManualGravity() {
+        this.fallClamp = a;
+        this.minFallSpeed = b;
+        this.maxFallSpeed = c;
+
+        this.rb.gravityScale = 0;
     }
 
     #endregion
