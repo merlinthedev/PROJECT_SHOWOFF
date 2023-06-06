@@ -133,7 +133,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.43000793, y: -0.030274391}
+  m_ConnectedAnchor: {x: 0.4300003, y: -0.030274391}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &3910479842993109162
@@ -317,7 +317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7052072812959686205
 Transform:
   m_ObjectHideFlags: 0
@@ -337,7 +337,7 @@ Transform:
   - {fileID: 8522265021308677764}
   - {fileID: 1628249995207136047}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7052072812959686204
 SpriteRenderer:
@@ -399,7 +399,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7052072812959686177}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -580,6 +580,30 @@ MonoBehaviour:
   maxAirSpeed: 3
   acceleration: 90
   deceleration: 60
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   forceScale: {x: 1, y: 1}
   gravityScaleDrop: 10
   groundLayerMask:
@@ -633,6 +657,7 @@ MonoBehaviour:
       m_Calls: []
   cheeseStrength: 2
   isCheesing: 0
+  canJump: 1
 --- !u!114 &774228856724907074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,7 +672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1024
   objectGrabPointTranform: {fileID: 0}
   grabAnchor: {fileID: 3405028337700285670}
 --- !u!114 &4994682683498032186

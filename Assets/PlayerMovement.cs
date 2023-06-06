@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Color = UnityEngine.Color;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour, IPlayerController {
     // Public for external hooks
@@ -45,7 +48,9 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     #region Ledge Grabbing
 
-    [Header("LEDGE GRABBING")] [SerializeField] private float maxLedgeHeight = 2f;
+    [Header("LEDGE GRABBING")] [SerializeField]
+    private float maxLedgeHeight = 2f;
+
     [SerializeField] private float ledgeGrabDelay = 0.2f;
     [SerializeField] private float ledgeCheckDistance = 0.6f;
     [SerializeField] private float ledgeFreezeTime = 0.5f;
@@ -98,10 +103,10 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
-        {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner,
+                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             LeanTween.move(gameObject, path, ledgeFreezeTime);
@@ -111,8 +116,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
-            {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
                 canMove = true;
             });
 
@@ -124,7 +128,6 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     }
 
     #endregion
-    
 
     #region Gather Input
 
@@ -132,7 +135,8 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         Input = new FrameInput {
             JumpDown = UnityEngine.Input.GetButtonDown("Jump"),
             JumpUp = UnityEngine.Input.GetButtonUp("Jump"),
-            X = UnityEngine.Input.GetAxisRaw("Horizontal")
+            X = UnityEngine.Input.GetAxisRaw("Horizontal"),
+            Y = UnityEngine.Input.GetAxisRaw("Vertical")
         };
         if (Input.JumpDown) {
             lastJumpPressed = Time.time;
@@ -226,6 +230,38 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     #endregion
 
+    #region Rope
+
+    [Header("Rope")] [SerializeField] private FixedJoint2D ropeJoint;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float ropeGrabTimeout = 0.5f;
+    [SerializeField] private float ropeSpeedMultiplier = 1.5f;
+    private bool isOnRope = false;
+    private RopeController rope;
+    private float ropeProgress = 0f;
+    private float lastRopeRelease = 0f;
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        //rope check
+        if (collision.gameObject.CompareTag("Rope")) {
+            //if we're not already on a rope
+            if (!isOnRope && Time.time > lastRopeRelease + ropeGrabTimeout) {
+                //Debug.Log("On Rope");
+                //set the rope we're on
+                rope = collision.gameObject.GetComponentInParent<RopeController>();
+                //set how far we are along the rope
+                ropeProgress = rope.GetRopeProgress(transform.position);
+                rb.position = rope.GetRopePoint(ropeProgress);
+                //fix our joint to the rope
+                ropeJoint.enabled = true;
+                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
+                //set the player's onRope bool to true
+                isOnRope = true;
+            }
+        }
+    }
+
+    #endregion
 
     #region Walk
 
@@ -235,6 +271,20 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     [SerializeField] private float apexBonus = 2;
 
     private void calculateWalk() {
+        if (this.isOnRope) {
+            this.currentHorizontalSpeed = 0;
+            if (Input.Y != 0) {
+                this.ropeProgress -= (Input.Y * this.ropeSpeedMultiplier * Time.deltaTime) / this.rope.RopeLength;
+                this.ropeProgress = Mathf.Clamp01(ropeProgress);
+
+                Vector2 ropePosition = this.rope.GetRopePoint(this.ropeProgress);
+                this.rb.position = ropePosition;
+                this.ropeJoint.connectedBody = this.rope.GetRopePart(this.ropeProgress).rigidBody;
+            }
+
+            return;
+        }
+
         if (Input.X != 0) {
             // Set horizontal move speed
             currentHorizontalSpeed += Input.X * acceleration * Time.deltaTime;
@@ -270,6 +320,11 @@ public class PlayerController : MonoBehaviour, IPlayerController {
             // Move out of the ground
             if (currentVerticalSpeed < 0) currentVerticalSpeed = 0;
         } else {
+            if (this.isOnRope) {
+                this.currentVerticalSpeed = 0;
+                return;
+            }
+
             // Add downward force while ascending if we ended the jump early
             var m_FallSpeed = endedJumpEarly && currentVerticalSpeed > 0
                 ? fallSpeed * jumpEndEarlyGravityModifier
@@ -312,13 +367,18 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     private void calculateJump() {
         // Jump if: grounded or within coyote threshold || sufficient jump buffer
-        if (Input.JumpDown && canUseCoyote || hasBufferedJump) {
+        if (Input.JumpDown && (canUseCoyote || hasBufferedJump || this.isOnRope)) {
             currentVerticalSpeed = jumpHeight;
             endedJumpEarly = false;
             coyoteUsable = false;
             timeLeftGrounded = float.MinValue;
             JumpingThisFrame = true;
 
+            if (this.isOnRope) {
+                this.ropeJoint.enabled = false;
+                this.isOnRope = false;
+                this.lastRopeRelease = Time.time;
+            }
         } else {
             JumpingThisFrame = false;
         }
@@ -338,7 +398,8 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     #region Move
 
-    [Header("MOVE")] [SerializeField, Tooltip("Raising this value increases collision accuracy at the cost of performance.")]
+    [Header("MOVE")]
+    [SerializeField, Tooltip("Raising this value increases collision accuracy at the cost of performance.")]
     private int freeColliderIterations = 10;
 
     // We cast our bounds before moving to avoid future collisions
@@ -353,6 +414,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         Collider2D hit = Physics2D.OverlapCircle(furthestPoint, playerRadius, groundLayer);
         if (!hit) {
             transform.position += move;
+            // this.rb.position += (Vector2)move;
             return;
         }
 
@@ -366,12 +428,14 @@ public class PlayerController : MonoBehaviour, IPlayerController {
             // if (Physics2D.OverlapBox(posToTry, characterBounds.size, 0, groundLayer)) {
             if (Physics2D.OverlapCircle(posToTry, playerRadius, groundLayer)) {
                 transform.position = positionToMoveTo;
+                // this.rb.position = positionToMoveTo;
 
                 // We've landed on a corner or hit our head on a ledge. Nudge the player gently
                 if (i == 1) {
                     if (currentVerticalSpeed < 0) currentVerticalSpeed = 0;
                     var dir = transform.position - hit.transform.position;
                     transform.position += dir.normalized * move.magnitude;
+                    // this.rb.position += ((Vector2)dir.normalized * move.magnitude);
                 }
 
                 return;
@@ -382,11 +446,11 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     }
 
     #endregion
-
 }
 
 public struct FrameInput {
     public float X;
+    public float Y;
     public bool JumpDown;
     public bool JumpUp;
 }
