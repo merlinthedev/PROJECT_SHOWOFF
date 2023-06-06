@@ -477,8 +477,9 @@ public class PlayerController : MonoBehaviour, IPlayerController {
             Collider2D c2d = Physics2D.OverlapCircle(posToTry, this.playerRadius, this.groundLayer);
             if (c2d) {
                 if (c2d.gameObject.GetComponent<Rigidbody2D>() != null) {
-                    c2d.gameObject.GetComponent<Rigidbody2D>()
-                        .AddForce(new Vector2(this.currentHorizontalSpeed * 100, 0), ForceMode2D.Force);
+                    // c2d.gameObject.GetComponent<Rigidbody2D>()
+                    //     .AddForce(new Vector2(this.currentHorizontalSpeed * 100, 0), ForceMode2D.Force);
+                    Debug.Log("Should be adding force here.");
                 }
 
                 transform.position = positionToMoveTo;
