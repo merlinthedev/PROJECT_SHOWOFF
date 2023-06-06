@@ -73,9 +73,11 @@ public class PlayerMovementController : MonoBehaviour {
 
     private bool isMoving = false;
 
-    [Header("Cheese")] public float cheeseStrength = 2f;
+    [Header("Cheese")] 
+    public float cheeseStrength = 2f;
     public bool isCheesing = false;
     public bool canJump = true;
+    public bool travelling = true;
 
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
@@ -165,7 +167,7 @@ public class PlayerMovementController : MonoBehaviour {
                 // Apply the opposite force to the ground
                 // Debug.Log("Applying force to ground: " + force + " , " + groundRB + " , " + groundRB.gameObject.name);
                 if (groundRB.gameObject.GetComponent<ObjectGrabbable>() != null) {
-                    if (groundRB.gameObject.GetComponent<ObjectGrabbable>().isWater) {
+                    if (groundRB.gameObject.GetComponent<ObjectGrabbable>().isWater && canJump) {
                         groundRB.AddForce(-force);
                     }
                 }
@@ -317,14 +319,16 @@ public class PlayerMovementController : MonoBehaviour {
                 isOnRope = true;
             }
         }
+
     }
-    // private void OnCollisionStay2D(Collision2D collision) {
-    //     if (collision.gameObject.CompareTag("Boat")) {
-    //         if (collision.gameObject.GetComponent<Boat>().playerInBoat) {
-    //             canJump = false;
-    //         }
-    //     }
-    // }
+    private void OnCollisionStay2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Boat")) {
+            if (collision.gameObject.GetComponent<Boat>().playerInBoat && travelling) {
+                Debug.Log("Player in boat");
+                canJump = false;
+            }
+        }
+    }
 
     #region Input
 
