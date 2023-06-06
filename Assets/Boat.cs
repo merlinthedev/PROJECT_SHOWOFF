@@ -20,7 +20,7 @@ public class Boat : MonoBehaviour {
         bh = boatHitbox.GetComponent<BoatHitbox>();
     }
     private void FixedUpdate() {
-        if (playerInBoat) {
+        if (playerInBoat && rb.mass == boatMass) {
             water.density = 50;
             MoveBoat(boatSpeed);
         }
@@ -48,12 +48,16 @@ public class Boat : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+
+    }
+    private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Trigger") {
-            Debug.Log("triggered");
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-            rb.freezeRotation = true;
             boatSpeed = 0;
-            boatMass = 1;
+        }
+        if (collision.gameObject.tag == "Vodyanoy") {
+            //collision.gameObject.GetComponent<Vodyanoy>().Connect();
+            rb.mass = .1f;
+            boatMass = .1f;
         }
     }
 }

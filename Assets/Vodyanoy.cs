@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
@@ -12,6 +13,10 @@ public class Vodyanoy : MonoBehaviour {
     [Header ("targets")]
     public GameObject riseTarget;
     public GameObject[] targets;
+
+    public FixedJoint2D fj;
+    public GameObject boat;
+    public GameObject player;
 
     //When the object is enabled, it will move to the riseTarget
     private void OnEnable() {
@@ -45,6 +50,18 @@ public class Vodyanoy : MonoBehaviour {
         LTSpline ltSpline = new LTSpline(newTargets);
 
         //Move along spline
-        LeanTween.moveSpline(gameObject, ltSpline, moveDuration).setEase(LeanTweenType.easeInOutQuad);
+        var x = LeanTween.moveSpline(gameObject, ltSpline, moveDuration).setEase(LeanTweenType.easeInOutQuad);
+        x.setOnComplete(() => {
+            EnablePlayerJump();
+        });
+    }
+    
+    private void EnablePlayerJump() {
+        Debug.Log("EnablePlayerJump");
+        player.gameObject.GetComponent<PlayerMovementController>().canJump = true;
+        player.gameObject.GetComponent<PlayerMovementController>().travelling = false;
+    }
+    public void Connect() {
+        fj.connectedBody = boat.GetComponent<Rigidbody2D>();
     }
 }
