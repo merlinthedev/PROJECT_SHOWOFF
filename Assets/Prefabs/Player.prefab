@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134466704180831400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2389605156695322836}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.43, y: -0.03, z: -0.035812818}
+  m_LocalPosition: {x: 0.4300003, y: -0.030274391, z: -0.035812818}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133,7 +133,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.4300003, y: -0.029999733}
+  m_ConnectedAnchor: {x: 0.4300003, y: -0.030274391}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1 &3910479842993109162
@@ -317,7 +317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7052072812959686205
 Transform:
   m_ObjectHideFlags: 0
@@ -337,7 +337,7 @@ Transform:
   - {fileID: 8522265021308677764}
   - {fileID: 1628249995207136047}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7052072812959686204
 SpriteRenderer:
@@ -578,8 +578,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 4.5
   maxAirSpeed: 3
-  acceleration: 12
-  deceleration: 5
+  acceleration: 90
+  deceleration: 60
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -657,6 +657,7 @@ MonoBehaviour:
       m_Calls: []
   cheeseStrength: 2
   isCheesing: 0
+  canJump: 1
 --- !u!114 &774228856724907074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,7 +672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1024
   objectGrabPointTranform: {fileID: 0}
   grabAnchor: {fileID: 3405028337700285670}
 --- !u!114 &4994682683498032186

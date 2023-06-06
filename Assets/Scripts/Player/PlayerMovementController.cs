@@ -73,9 +73,11 @@ public class PlayerMovementController : MonoBehaviour {
 
     private bool isMoving = false;
 
-    [Header("Cheese")] public float cheeseStrength = 2f;
-
+    [Header("Cheese")] 
+    public float cheeseStrength = 2f;
     public bool isCheesing = false;
+    public bool canJump = true;
+    public bool travelling = true;
 
     private void Start() {
         defaultVisualScale = visualsTransform.localScale;
@@ -104,7 +106,7 @@ public class PlayerMovementController : MonoBehaviour {
         isGrounded = false;
 
         RaycastHit2D[] hits =
-            Physics2D.CircleCastAll(groundCheckTransform.position, playerRadius, Vector2.zero, groundLayerMask);
+            Physics2D.CircleCastAll(groundCheckTransform.position, playerRadius + 0.1f, Vector2.zero, groundLayerMask);
 
         for (int i = 0; i < hits.Length; i++) {
             if (hits[i].collider.gameObject != gameObject) {
@@ -119,8 +121,8 @@ public class PlayerMovementController : MonoBehaviour {
 
         #region ledge
 
-        // Ledge stuff, ADD GROUNDED CHECK ONCE IT IS REFACTORED
-        if (!this.isGrounded && !this.inWater && rb.velocity.y <= 0 && !this.player.GetPlayerEventHandler().Grabbing &&
+        // Ledge stuff
+        if (!this.inWater && rb.velocity.y <= 0 && !this.player.GetPlayerEventHandler().Grabbing &&
             !isOnRope &&
             this.lastRopeRelease + 0.5f < Time.time) {
             Debug.Log("Going to check ledge.");
@@ -165,7 +167,7 @@ public class PlayerMovementController : MonoBehaviour {
                 // Apply the opposite force to the ground
                 // Debug.Log("Applying force to ground: " + force + " , " + groundRB + " , " + groundRB.gameObject.name);
                 if (groundRB.gameObject.GetComponent<ObjectGrabbable>() != null) {
-                    if (groundRB.gameObject.GetComponent<ObjectGrabbable>().isWater) {
+                    if (groundRB.gameObject.GetComponent<ObjectGrabbable>().isWater && canJump) {
                         groundRB.AddForce(-force);
                     }
                 }
@@ -317,6 +319,15 @@ public class PlayerMovementController : MonoBehaviour {
                 isOnRope = true;
             }
         }
+
+    }
+    private void OnCollisionStay2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Boat")) {
+            if (collision.gameObject.GetComponent<Boat>().playerInBoat && travelling) {
+                Debug.Log("Player in boat");
+                canJump = false;
+            }
+        }
     }
 
     #region Input
@@ -326,7 +337,7 @@ public class PlayerMovementController : MonoBehaviour {
     }
 
     public void DoJump(InputAction.CallbackContext context) {
-        if (context.performed) {
+        if (context.performed && canJump) {
             if (isGrounded || isOnRope) {
                 //Debug.LogWarning("Jump");
                 // rb.AddForce(Vector2.up * jumpForce * (inWater ? waterJumpForceDebuff : 1) * (isCheesing ? cheeseStrength : 1f),
