@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17448fbc8aed05a45811d65a3885b80c
+guid: fa5c784b56d016a4c91a21abccc1f2f9
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,7 +94,28 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: 1
+  - name: Bridge Planks
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2019
+      y: 279
+      width: 2073
+      height: 187
+    spriteID: 41419dd2564a08b4890cade8205f7625
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 2019, y: 279}
+    spritePosition: {x: 43, y: 0}
+  - name: Bridge Posts
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -102,10 +123,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 5697
-      width: 3387
-      height: 2289
-    spriteID: 46aa2f5a48e090048ada0701d3764339
+      y: 546
+      width: 2099
+      height: 220
+    spriteID: 20140b7b584c506419c5226f4fa8f31f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,9 +134,9 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 5697}
-    spritePosition: {x: 458, y: 1279}
-  - name: 2
+    uvTransform: {x: 4, y: 546}
+    spritePosition: {x: 0, y: 47}
+  - name: Bridge "Railing"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -123,10 +144,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 2851
-      width: 3568
-      height: 2838
-    spriteID: 3327f855a0325344185e4a20b060228e
+      y: 279
+      width: 2007
+      height: 259
+    spriteID: 45d6df76530cc0741a2397789e6529bf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,51 +155,9 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 2851}
-    spritePosition: {x: 269, y: 1160}
-  - name: trunk
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 3590
-      y: 2832
-      width: 1466
-      height: 1785
-    spriteID: 2b533b2062cca1c4f869a7aa1e4d4529
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 3590, y: 2832}
-    spritePosition: {x: 1346, y: 136}
-  - name: '3 '
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 3590
-      y: 4
-      width: 3477
-      height: 2820
-    spriteID: a441b771454932849a381e7c9aabde0d
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 3590, y: 4}
-    spritePosition: {x: 370, y: 1179}
-  - name: backup
+    uvTransform: {x: 4, y: 279}
+    spritePosition: {x: 44, y: 6}
+  - name: Bridge Color
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -187,9 +166,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 3578
-      height: 2839
-    spriteID: 6e71213549d675f4c9b06f28b7319aae
+      width: 2074
+      height: 267
+    spriteID: 5aeb7e105417ec447bb7e43701acb158
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -198,7 +177,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 269, y: 1160}
+    spritePosition: {x: 12, y: 0}
   characterData:
     bones: []
     parts: []
@@ -214,40 +193,7 @@ ScriptedImporter:
     characterGroups: []
     pivot: {x: 0, y: 0}
     boneReadOnly: 0
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    maxTextureSize: 4096
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Server
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
@@ -266,82 +212,42 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Folder 1 Copy
-    spriteName: 
-    isGroup: 1
+  - name: Bridge Planks
+    spriteName: Bridge Planks
+    isGroup: 0
     parentIndex: -1
-    spriteID: ca54793af2ced804b8bc3c10ff9a8e83
-    layerID: 0
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: dwefdaca
-    spriteName: 
-    isGroup: 1
-    parentIndex: 0
-    spriteID: cc4b48592003e594f85efa5c257d3876
-    layerID: -645489625
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: 1
-    spriteName: 1
-    isGroup: 0
-    parentIndex: 1
-    spriteID: 46aa2f5a48e090048ada0701d3764339
-    layerID: 372029325
-    mosaicPosition: {x: 4, y: 5697}
+    spriteID: 41419dd2564a08b4890cade8205f7625
+    layerID: 4
+    mosaicPosition: {x: 2019, y: 279}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: 2
-    spriteName: 2
+  - name: Bridge Posts
+    spriteName: Bridge Posts
     isGroup: 0
-    parentIndex: 1
-    spriteID: 3327f855a0325344185e4a20b060228e
-    layerID: 372029328
-    mosaicPosition: {x: 4, y: 2851}
+    parentIndex: -1
+    spriteID: 20140b7b584c506419c5226f4fa8f31f
+    layerID: 6
+    mosaicPosition: {x: 4, y: 546}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: trunk
-    spriteName: trunk
+  - name: Bridge "Railing"
+    spriteName: Bridge "Railing"
     isGroup: 0
-    parentIndex: 1
-    spriteID: 2b533b2062cca1c4f869a7aa1e4d4529
-    layerID: 1588508940
-    mosaicPosition: {x: 3590, y: 2832}
+    parentIndex: -1
+    spriteID: 45d6df76530cc0741a2397789e6529bf
+    layerID: 3
+    mosaicPosition: {x: 4, y: 279}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: '3 '
-    spriteName: '3 '
+  - name: Bridge Color
+    spriteName: Bridge Color
     isGroup: 0
-    parentIndex: 1
-    spriteID: a441b771454932849a381e7c9aabde0d
-    layerID: 811305487
-    mosaicPosition: {x: 3590, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: backup
-    spriteName: 
-    isGroup: 1
-    parentIndex: 0
-    spriteID: 01350190fd2045e49991abd09f2d1324
-    layerID: 805827148
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: backup
-    spriteName: backup
-    isGroup: 0
-    parentIndex: 6
-    spriteID: 6e71213549d675f4c9b06f28b7319aae
-    layerID: 805827148
+    parentIndex: -1
+    spriteID: 5aeb7e105417ec447bb7e43701acb158
+    layerID: 2
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
@@ -349,7 +255,7 @@ ScriptedImporter:
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638216472407399075
+  platformSettingsDirtyTick: 0
   spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 
