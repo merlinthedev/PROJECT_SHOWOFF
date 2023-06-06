@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17448fbc8aed05a45811d65a3885b80c
+guid: 6498508eab4eec149bbe1c706230bb66
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,91 +94,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: 1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 5697
-      width: 3387
-      height: 2289
-    spriteID: 46aa2f5a48e090048ada0701d3764339
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 5697}
-    spritePosition: {x: 458, y: 1279}
-  - name: 2
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 2851
-      width: 3568
-      height: 2838
-    spriteID: 3327f855a0325344185e4a20b060228e
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 2851}
-    spritePosition: {x: 269, y: 1160}
-  - name: trunk
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 3590
-      y: 2832
-      width: 1466
-      height: 1785
-    spriteID: 2b533b2062cca1c4f869a7aa1e4d4529
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 3590, y: 2832}
-    spritePosition: {x: 1346, y: 136}
-  - name: '3 '
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 3590
-      y: 4
-      width: 3477
-      height: 2820
-    spriteID: a441b771454932849a381e7c9aabde0d
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 3590, y: 4}
-    spritePosition: {x: 370, y: 1179}
-  - name: backup
+  - name: Tree 2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -187,9 +103,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 3578
-      height: 2839
-    spriteID: 6e71213549d675f4c9b06f28b7319aae
+      width: 4788
+      height: 2253
+    spriteID: 080659573c734ee4a80c7a14bd6b5607
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -198,7 +114,49 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 269, y: 1160}
+    spritePosition: {x: 0, y: 140}
+  - name: 'Tree 2 Branches Outline '
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4800
+      y: 4
+      width: 1688
+      height: 1445
+    spriteID: ef781e93bd3b4da4c9b1b258069f1dbb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4800, y: 4}
+    spritePosition: {x: 1392, y: 172}
+  - name: Tree 2 Branches Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 6496
+      y: 4
+      width: 1620
+      height: 1340
+    spriteID: 38d4a942a475a4e4f84424ff0bcdd787
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 6496, y: 4}
+    spritePosition: {x: 1440, y: 1044}
   characterData:
     bones: []
     parts: []
@@ -266,90 +224,60 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: Folder 1 Copy
+  - name: Tree 2
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: ca54793af2ced804b8bc3c10ff9a8e83
-    layerID: 0
+    spriteID: 666c7cd38de79be42989cc60840bc02d
+    layerID: 6
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: dwefdaca
-    spriteName: 
-    isGroup: 1
+  - name: Tree 2
+    spriteName: Tree 2
+    isGroup: 0
     parentIndex: 0
-    spriteID: cc4b48592003e594f85efa5c257d3876
-    layerID: -645489625
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: 1
-    spriteName: 1
-    isGroup: 0
-    parentIndex: 1
-    spriteID: 46aa2f5a48e090048ada0701d3764339
-    layerID: 372029325
-    mosaicPosition: {x: 4, y: 5697}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: 2
-    spriteName: 2
-    isGroup: 0
-    parentIndex: 1
-    spriteID: 3327f855a0325344185e4a20b060228e
-    layerID: 372029328
-    mosaicPosition: {x: 4, y: 2851}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: trunk
-    spriteName: trunk
-    isGroup: 0
-    parentIndex: 1
-    spriteID: 2b533b2062cca1c4f869a7aa1e4d4529
-    layerID: 1588508940
-    mosaicPosition: {x: 3590, y: 2832}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: '3 '
-    spriteName: '3 '
-    isGroup: 0
-    parentIndex: 1
-    spriteID: a441b771454932849a381e7c9aabde0d
-    layerID: 811305487
-    mosaicPosition: {x: 3590, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: backup
-    spriteName: 
-    isGroup: 1
-    parentIndex: 0
-    spriteID: 01350190fd2045e49991abd09f2d1324
-    layerID: 805827148
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: backup
-    spriteName: backup
-    isGroup: 0
-    parentIndex: 6
-    spriteID: 6e71213549d675f4c9b06f28b7319aae
-    layerID: 805827148
+    spriteID: 080659573c734ee4a80c7a14bd6b5607
+    layerID: 5
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
+  - name: 'Tree 2 Branches Outline '
+    spriteName: 'Tree 2 Branches Outline '
+    isGroup: 0
+    parentIndex: 0
+    spriteID: ef781e93bd3b4da4c9b1b258069f1dbb
+    layerID: 4
+    mosaicPosition: {x: 4800, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Tree 2 Branches Color
+    spriteName: Tree 2 Branches Color
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 38d4a942a475a4e4f84424ff0bcdd787
+    layerID: 3
+    mosaicPosition: {x: 6496, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Ebene 0
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e921c1d3dd9e4ef4b9a04ea74459c025
+    layerID: 7
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638216472407399075
+  platformSettingsDirtyTick: 638216594912212003
   spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 
