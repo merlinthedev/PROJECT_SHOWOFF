@@ -59,6 +59,9 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     private float playerRadius = 0.5f;
 
     private void ledgeGrabbing() {
+        // if we are grounded, return
+        if (this.colDown) return;
+        
         Vector2 direction = new Vector2(this.Input.X, 0);
 
         //raycast forwards to check if we hit a ledge
