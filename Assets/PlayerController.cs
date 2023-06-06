@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -379,9 +380,15 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     private void calculateJump() {
         // Jump if: grounded or within coyote threshold || sufficient jump buffer
-        if (!this.canJump) return;
+        if (!this.canJump) {
+            Debug.Log("YOU SHALL NOT JUMP!!!", this);
+            return;
+        }
 
+        Debug.Log("Can jump if check passed", this);
+        
         if (Input.JumpDown && (canUseCoyote || hasBufferedJump || this.isOnRope || this.inWater)) {
+            Debug.Log("Checks have passed, jumping", this);
             currentVerticalSpeed = this.inWater ? this.jumpHeight / 2 : this.jumpHeight;
             endedJumpEarly = false;
             coyoteUsable = false;
@@ -410,6 +417,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     public void setCanJump(bool value) {
         this.canJump = value;
+        Debug.Log("Set canJump to " + value, this);
     }
 
     #endregion
