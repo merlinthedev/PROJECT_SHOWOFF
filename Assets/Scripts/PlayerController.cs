@@ -1,12 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 using Color = UnityEngine.Color;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -386,7 +381,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         }
 
         Debug.Log("Can jump if check passed", this);
-        
+
         if (Input.JumpDown && (canUseCoyote || hasBufferedJump || this.isOnRope || this.inWater)) {
             Debug.Log("Checks have passed, jumping", this);
             currentVerticalSpeed = this.inWater ? this.jumpHeight / 2 : this.jumpHeight;
@@ -522,7 +517,23 @@ public class PlayerController : MonoBehaviour, IPlayerController {
                 if (i == 1) {
                     if (currentVerticalSpeed < 0) currentVerticalSpeed = 0;
                     var dir = transform.position - hit.transform.position;
-                    transform.position += dir.normalized * move.magnitude;
+
+                    // check if dir puts us inside a wall
+                    var hit2 = Physics2D.OverlapCircle(transform.position + dir.normalized * move.magnitude,
+                        playerRadius, groundLayer);
+
+                    if (!hit2) {
+                        transform.position += dir.normalized * move.magnitude;
+                        // this.rb.position += ((Vector2)dir.normalized * move.magnitude);
+                    } else {
+                        // we're inside a wall. Move to the closest point on the wall
+                        var closestPoint = hit2.ClosestPoint(transform.position);
+                        dir = transform.position - (Vector3)closestPoint;
+                        transform.position += dir.normalized * move.magnitude;
+                        
+                        // TODO: This does not work, draw it and fix it at home :)
+                    }
+
                     // this.rb.position += ((Vector2)dir.normalized * move.magnitude);
                 }
 

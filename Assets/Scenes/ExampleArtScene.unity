@@ -19255,6 +19255,10 @@ PrefabInstance:
       propertyPath: groundLayer.m_Bits
       value: 1216
       objectReference: {fileID: 0}
+    - target: {fileID: 2827182121387310351, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: freeColliderIterations
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5293060295423230079, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_SortingLayer
       value: 2
