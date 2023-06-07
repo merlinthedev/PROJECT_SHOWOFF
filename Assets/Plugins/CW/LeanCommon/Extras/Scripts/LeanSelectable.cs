@@ -119,7 +119,7 @@ namespace Lean.Common
 				select.DeselectAll();
 			}
 
-			foreach (var selectable in LeanSelectable.Instances)
+			foreach (var selectable in Instances)
 			{
 				selectable.SelfSelected = false;
 			}

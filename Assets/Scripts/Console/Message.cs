@@ -9,11 +9,11 @@ namespace Console {
         public Message(string message, Object origin, MessageType messageType) {
             this.message = message;
             this.origin = origin;
-            this.type = messageType;
+            type = messageType;
         }
 
         public MessageType getMessageType() {
-            return this.type;
+            return type;
         }
 
         public enum MessageType {

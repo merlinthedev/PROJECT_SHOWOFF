@@ -8,34 +8,34 @@ public class PlayerProjectileController : MonoBehaviour {
     [SerializeField] private Transform holdTransform;
 
     public void UpdateProjectile() {
-        if (this.projectile == null) return;
-        this.projectile.transform.position = this.holdTransform.position;
+        if (projectile == null) return;
+        projectile.transform.position = holdTransform.position;
     }
 
     public bool HasProjectile() {
-        return this.hasProjectile;
+        return hasProjectile;
     }
 
     public void SetProjectileFlag(bool value) {
-        this.hasProjectile = value;
+        hasProjectile = value;
     }
 
     public void ResetProjectile() {
-        this.hasProjectile = false;
-        this.projectile = null;
+        hasProjectile = false;
+        projectile = null;
     }
 
     public GameObject GetProjectile() {
-        return this.projectile;
+        return projectile;
     }
 
     public Transform GetHoldingTransform() {
-        return this.holdTransform;
+        return holdTransform;
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.CompareTag("Pickup")) {
-            var x = this.GetComponent<PlayerEventHandler>();
+            var x = GetComponent<PlayerEventHandler>();
             if (x == null) {
                 Debug.Log("Player has no PlayerEventHandler");
                 return;
@@ -47,9 +47,9 @@ public class PlayerProjectileController : MonoBehaviour {
             }
 
             var pickup = other.gameObject.GetComponent<IPickup>();
-            pickup.OnPickup(this.player);
-            this.hasProjectile = true;
-            this.projectile = other.gameObject;
+            pickup.OnPickup(player);
+            hasProjectile = true;
+            projectile = other.gameObject;
         }
     }
 }

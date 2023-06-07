@@ -61,8 +61,8 @@ public class Vodyanoy : MonoBehaviour {
         // player.gameObject.GetComponent<PlayerMovementController>().canJump = true;
         // player.gameObject.GetComponent<PlayerMovementController>().travelling = false;
 
-        this.player.setCanJump(true);
-        this.player.setTraveling(false);
+        player.setCanJump(true);
+        player.setTraveling(false);
     }
     public void Connect() {
         fj.connectedBody = boat.GetComponent<Rigidbody2D>();
