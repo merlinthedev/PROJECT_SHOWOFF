@@ -20,7 +20,10 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     public bool canMove = true;
 
     private bool active;
-    void Awake() => Invoke(nameof(activate), 0.5f);
+
+    void Awake() {
+        Invoke(nameof(activate), 0.5f);
+    }
 
     void activate() {
         active = true;
