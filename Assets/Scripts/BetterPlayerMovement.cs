@@ -45,8 +45,12 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
     private void FixedUpdate() {
-        horizontalMovement();
-        jumping();
+        if (canMove) {
+            horizontalMovement();
+            jumping();
+        }
+
+        ledgeGrab();
 
         isGrounded = false;
         slopeAngle = 180;
@@ -142,6 +146,84 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool hasJumpBuffer => isGrounded && (jumpButtonPressedTime + jumpBufferTime > Time.time);
     private bool hasCoyoteJump => !isGrounded && (lastGroundedTime + coyoteTime > Time.time);
 
+    private bool canMove = true;
+    private float lastLedgeGrab;
+
+    private void ledgeGrab() {
+        // if we are grounded, return
+        if (isGrounded) return;
+
+        float playerRadius = m_CapsuleCollider2D.size.x / 2f;
+
+        Vector2 direction = new Vector2(movementInput.x, 0);
+
+        //raycast forwards to check if we hit a ledge
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, ledgeGrabDistance, groundLayer);
+
+        // if we didn't hit anything, return
+        if (hit.collider == null) {
+            // Debug.LogError("Did not find ledge collider returning.");
+            return;
+        }
+
+        //move slightly into the ledge and up
+        var circlePosition = new Vector2(
+            hit.point.x + (playerRadius * Mathf.Sign(movementInput.x)),
+            hit.point.y + ledgeGrabHeight);
+
+        // at circlePosition, check if that point is a valid position for our player object
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(circlePosition, playerRadius, groundLayer);
+
+        if (colliders.Length > 0) {
+            Debug.LogError("IDK what the fuck this does but it failed.");
+            for (int i = 0; i < colliders.Length; i++) {
+                Debug.Log("Collider found: " + colliders[i].gameObject.name);
+            }
+
+            return;
+        }
+
+        direction = Vector2.down;
+
+        //raycast downwards to find where the top of the ledge is
+        RaycastHit2D downHit = Physics2D.Raycast(circlePosition, direction, ledgeGrabHeight, groundLayer);
+
+        if (downHit.collider == null) {
+            Debug.LogError("Did not find anywhere to cast down to.");
+            return;
+        }
+
+        // teleport to the top of the ledge
+        // TODO: change this with an animation instead so it looks better
+
+        //this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
+        var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
+        Debug.Log("Found corner for ledging.");
+
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
+            var path = new LTBezierPath(new Vector3[] {
+                transform.position, ledgeCorner, ledgeCorner,
+                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+            });
+            Debug.Log("Calling LT.move");
+            LeanTween.move(gameObject, path, ledgeFreezeTime);
+
+            // CAN MOVE = FALSE;
+            canMove = false;
+
+
+            Debug.Log("Invoking ledge climb ending.");
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
+                canMove = true;
+                m_Rigidbody2D.velocity = Vector2.zero;
+            });
+
+
+            Debug.Log("Setting last ledge grab time.");
+            lastLedgeGrab = Time.time + ledgeFreezeTime;
+            // onLedgeGrab?.Invoke();
+        });
+    }
 
     [Header("DEBUG")] public bool isGrounded = false;
     public float slopeAngle = 180;
