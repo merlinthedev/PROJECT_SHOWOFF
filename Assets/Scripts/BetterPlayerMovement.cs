@@ -132,10 +132,17 @@ public class BetterPlayerMovement : MonoBehaviour {
                         ropeJoint.enabled = false;
                         ropeJoint.connectedBody = null;
                         lastRopeRelease = Time.time;
-                    }
 
-                    currentJumpState = JumpState.Jumping;
-                    m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
+                        if (movementInput.y >= 0) {
+                            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
+                            currentJumpState = JumpState.Jumping;
+                        } else {
+                            currentJumpState = JumpState.Falling;
+                        }
+                    } else {
+                        m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
+                        currentJumpState = JumpState.Jumping;
+                    }
                 }
 
                 if (!isGrounded && !hasCoyoteJump && !isOnRope) {
@@ -290,7 +297,12 @@ public class BetterPlayerMovement : MonoBehaviour {
                 rope = other.gameObject.GetComponentInParent<RopeController>();
                 //set how far we are along the rope
                 ropeProgress = rope.GetRopeProgress(transform.position);
-                m_Rigidbody2D.position = rope.GetRopePoint(ropeProgress);
+                
+                // m_Rigidbody2D.position = rope.GetRopePoint(ropeProgress);
+                
+                LeanTween.move(this.gameObject, rope.GetRopePoint(ropeProgress), 0.1f);
+          
+                
                 //fix our joint to the rope
                 ropeJoint.enabled = true;
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
