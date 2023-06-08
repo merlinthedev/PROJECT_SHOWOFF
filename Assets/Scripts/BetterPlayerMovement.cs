@@ -40,7 +40,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     [Header("ROPE CLIMBING")] [SerializeField]
     private float ropeClimbingSpeed;
 
-    [SerializeField] private float ropeGrabTimeout;
+    [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
 
 
@@ -170,6 +170,7 @@ public class BetterPlayerMovement : MonoBehaviour {
             ropeJoint.connectedBody = null;
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
             m_Rigidbody2D.AddForce(new Vector2(jumpHorizontalImpulse * movementInput.x, 0), ForceMode2D.Impulse);
+            lastRopeRelease = Time.time;
         }
     }
 
