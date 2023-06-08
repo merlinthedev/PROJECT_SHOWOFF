@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class BetterPlayerMovement : MonoBehaviour {
     [Header("HORIZONTAL MOVEMENT")] [SerializeField]
@@ -116,10 +117,13 @@ public class BetterPlayerMovement : MonoBehaviour {
     private float jumpStartHeight;
     private float jumpStartTime;
 
+    public bool noJumpAllowed = false;
 
     private void jumping() {
         switch (currentJumpState) {
             case JumpState.CanJump:
+                if (noJumpAllowed) return;
+                
                 bool canJump = (hasJumpBuffer && jumpButtonPressed) ||
                                (hasCoyoteJump && jumpButtonPressedThisFrame) ||
                                (isOnRope && jumpButtonPressedThisFrame);

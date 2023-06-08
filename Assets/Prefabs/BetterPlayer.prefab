@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1224499228632735635}
   - component: {fileID: 5293060295423230079}
   - component: {fileID: 1558712603448235974}
-  - component: {fileID: 2827182121387310351}
   - component: {fileID: 4931830471806529099}
+  - component: {fileID: 8062336363924862780}
   - component: {fileID: 4218182374741690654}
   - component: {fileID: 1754438079511692130}
   - component: {fileID: 1637527756402505112}
@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 6974232122197123166}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5293060295423230079
 SpriteRenderer:
@@ -117,11 +117,35 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8062336363924862780}
+        m_TargetAssemblyTypeName: BetterPlayerMovement, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e6650fa9-2fa2-4ab9-8bf8-2c8d534c8301
     m_ActionName: Player/Walking[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8062336363924862780}
+        m_TargetAssemblyTypeName: BetterPlayerMovement, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0e23837b-14e8-4170-9b77-efe23396747b
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
@@ -137,57 +161,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2827182121387310351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8445435830689493568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76595e8fd0aaf5649911927bd635118d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canMove: 1
-  maxLedgeHeight: 1.2
-  ledgeGrabDelay: 0
-  ledgeCheckDistance: 0.6
-  ledgeFreezeTime: 0.5
-  onLedgeGrab:
-    m_PersistentCalls:
-      m_Calls: []
-  characterBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.5, y: 0.5, z: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1216
-  detectorCount: 3
-  detectionRayLength: 0.05
-  rayBuffer: 0.3
-  colUp: 0
-  colRight: 0
-  colDown: 0
-  colLeft: 0
-  ropeJoint: {fileID: 1637527756402505112}
-  rb: {fileID: 1754438079511692130}
-  ropeGrabTimeout: 0.5
-  ropeSpeedMultiplier: 1.5
-  acceleration: 80
-  moveClamp: 5
-  deceleration: 60
-  apexBonus: 0.8
-  fallClamp: -20
-  minFallSpeed: 30
-  maxFallSpeed: 50
-  jumpHeight: 12
-  jumpApexThreshold: 10
-  coyoteTimeThreshold: 0.1
-  jumpBuffer: 0.1
-  jumpEndEarlyGravityModifier: 3
-  freeColliderIterations: 10
-  visualsTransform: {fileID: 0}
 --- !u!114 &4931830471806529099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,13 +168,58 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8445435830689493568}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80bca92f9c052594d980adfabaf6fbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6539704772389880691}
-  playerMovementController: {fileID: 2827182121387310351}
+  playerMovementController: {fileID: 0}
+--- !u!114 &8062336363924862780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8445435830689493568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5515c8a28f9d376489fafd27c0e95d49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Rigidbody2D: {fileID: 1754438079511692130}
+  m_CapsuleCollider2D: {fileID: 4218182374741690654}
+  m_PlayerPhysicsMaterial2D: {fileID: 6200000, guid: 73a2f0ff6f465ef49922f8f44377e1eb, type: 2}
+  maximumHorizontalSpeed: 4
+  groundAcceleration: 20
+  airAcceleration: 20
+  maximumGroundAngle: 50
+  affectGroundHorizontalOnly: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1216
+  ledgeGrabDistance: 0.6
+  ledgeGrabHeight: 1.2
+  ledgeGrabDelay: 0
+  ledgeFreezeTime: 0.5
+  pushForce: 5
+  maxObjectMass: 20
+  objectDistance: 0.7
+  maxJumpHeight: 2
+  maxJumpTime: 0.4
+  coyoteTime: 0.2
+  jumpSpeed: 12
+  jumpBufferTime: 0.2
+  maximumFallSpeed: 80
+  rope: {fileID: 0}
+  ropeJoint: {fileID: 1637527756402505112}
+  ropeClimbingSpeed: 1.5
+  ropeGrabTimeout: 0.5
+  jumpHorizontalImpulse: 0
+  currentJumpState: 0
+  isGrounded: 1
+  slopeAngle: 0
+  jumpButtonPressed: 0
 --- !u!70 &4218182374741690654
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -211,13 +229,13 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 8445435830689493568}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 73a2f0ff6f465ef49922f8f44377e1eb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -231,7 +249,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -252,8 +270,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: 73a2f0ff6f465ef49922f8f44377e1eb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -261,8 +279,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 8
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!255 &1637527756402505112
 FixedJoint2D:

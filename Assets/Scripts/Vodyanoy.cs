@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,17 +7,19 @@ using static UnityEditor.PlayerSettings;
 
 public class Vodyanoy : MonoBehaviour {
 
-    [Header ("movespeed")]
+    [Header("movespeed")]
     public float riseDuration;
+
     public float moveDuration;
 
-    [Header ("targets")]
+    [Header("targets")]
     public GameObject riseTarget;
+
     public GameObject[] targets;
 
     public FixedJoint2D fj;
     public GameObject boat;
-    public PlayerController player;
+    public BetterPlayerMovement player;
 
     //When the object is enabled, it will move to the riseTarget
     private void OnEnable() {
@@ -35,8 +38,15 @@ public class Vodyanoy : MonoBehaviour {
 
     //Check if the object has reached the riseTarget. If it has, initiate SplineMove()
     private void CheckPos() {
-        if(transform.position == riseTarget.transform.position) {
+        if (transform.position == riseTarget.transform.position) {
             SplineMove();
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Boat")) {
+            var boat = other.gameObject.GetComponent<Boat>();
+            boat.transform.position = fj.transform.position;
         }
     }
 
@@ -51,20 +61,18 @@ public class Vodyanoy : MonoBehaviour {
 
         //Move along spline
         var x = LeanTween.moveSpline(gameObject, ltSpline, moveDuration).setEase(LeanTweenType.easeInOutQuad);
-        x.setOnComplete(() => {
+        x.setOnComplete(() =>
+        {
             EnablePlayerJump();
         });
     }
-    
+
     private void EnablePlayerJump() {
         Debug.Log("EnablePlayerJump");
         // player.gameObject.GetComponent<PlayerMovementController>().canJump = true;
         // player.gameObject.GetComponent<PlayerMovementController>().travelling = false;
 
-        player.setCanJump(true);
-        player.setTraveling(false);
+        player.noJumpAllowed = false;
     }
-    public void Connect() {
-        fj.connectedBody = boat.GetComponent<Rigidbody2D>();
-    }
+
 }
