@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         moveCharacter();
 
         updateVisuals();
-
     }
 
     #region Ledge Grabbing
@@ -117,10 +116,10 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
-        {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner,
+                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             LeanTween.move(gameObject, path, ledgeFreezeTime);
@@ -130,8 +129,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
-            {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
                 canMove = true;
             });
 
@@ -495,6 +493,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         Vector3 move = rawMovement * Time.deltaTime;
         Vector3 furthestPoint = pos + move;
 
+
         // check furthest movement. If nothing hit, move and don't do extra checks
         // Collider2D hit = Physics2D.OverlapBox(furthestPoint, characterBounds.size, 0, groundLayer);
         Collider2D hit = Physics2D.OverlapCircle(furthestPoint, playerRadius, groundLayer);
@@ -535,8 +534,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     #region Visuals
 
-    [Header("VISUALS")]
-    [SerializeField] private Transform visualsTransform;
+    [Header("VISUALS")] [SerializeField] private Transform visualsTransform;
 
     private Vector3 defaultVisualScale = Vector3.one;
 
@@ -556,7 +554,6 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     }
 
     #endregion
-
 }
 
 public struct FrameInput {
