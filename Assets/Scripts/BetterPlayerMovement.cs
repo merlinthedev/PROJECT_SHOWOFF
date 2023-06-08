@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.SpriteAssetUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -24,7 +25,6 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float ledgeGrabHeight;
     [SerializeField] private float ledgeGrabDelay;
     [SerializeField] private float ledgeFreezeTime;
-    [SerializeField] private float ledgeWidth;
 
     [Header("PUSHING")] [SerializeField] private float pushForce;
     [SerializeField] private float maxObjectMass;
@@ -51,10 +51,32 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
 
         ledgeGrab();
+        pushObject();
+        ropeMovement();
 
         isGrounded = false;
         slopeAngle = 180;
         jumpButtonPressedThisFrame = false;
+    }
+
+    private void pushObject() {
+        if (movementInput.x == 0) return;
+        Vector2 rayPosition = new Vector2(transform.position.x, transform.position.y - m_CapsuleCollider2D.size.y / 3f);
+        RaycastHit2D forwardCheck =
+            Physics2D.Raycast(rayPosition, new Vector2(movementInput.x, 0), objectDistance, groundLayer);
+
+        if (forwardCheck.collider == null) return;
+        Rigidbody2D objectRigidbody = forwardCheck.collider.attachedRigidbody;
+        if (objectRigidbody == null) return;
+        if (objectRigidbody.mass > maxObjectMass) return;
+
+        objectRigidbody.AddForce(new Vector2(movementInput.x * pushForce * (maxObjectMass / objectRigidbody.mass), 0));
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(new Vector2(transform.position.x, transform.position.y - m_CapsuleCollider2D.size.y / 3f),
+            Vector2.right * objectDistance);
     }
 
     private void horizontalMovement() {
@@ -141,6 +163,14 @@ public class BetterPlayerMovement : MonoBehaviour {
 
                 break;
         }
+
+        if (isOnRope && jumpButtonPressedThisFrame) {
+            isOnRope = false;
+            ropeJoint.enabled = false;
+            ropeJoint.connectedBody = null;
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
+            m_Rigidbody2D.AddForce(new Vector2(jumpHorizontalImpulse * movementInput.x, 0), ForceMode2D.Impulse);
+        }
     }
 
     private bool hasJumpBuffer => isGrounded && (jumpButtonPressedTime + jumpBufferTime > Time.time);
@@ -225,10 +255,51 @@ public class BetterPlayerMovement : MonoBehaviour {
         });
     }
 
+    private void ropeMovement() {
+        if (isOnRope) {
+            if (movementInput.y != 0) {
+                ropeProgress -= (movementInput.y * ropeClimbingSpeed * rope.ClimbSpeedMultiplier * Time.deltaTime) / rope.RopeLength;
+                ropeProgress = Mathf.Clamp01(ropeProgress);
+
+                Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
+                m_Rigidbody2D.position = ropePosition;
+                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
+            }
+
+            return;
+        }
+    }
+
     [Header("DEBUG")] public bool isGrounded = false;
     public float slopeAngle = 180;
     private Vector2 slopeNormal = Vector2.up;
     private float lastGroundedTime = 0f;
+
+
+    [Header("ROPE")] private float lastRopeRelease;
+    [SerializeField] private RopeController rope;
+    [SerializeField] private FixedJoint2D ropeJoint;
+    private bool isOnRope = false;
+    private float ropeProgress;
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Rope")) {
+            //if we're not already on a rope
+            if (!isOnRope && Time.time > lastRopeRelease + ropeGrabTimeout) {
+                //Debug.Log("On Rope");
+                //set the rope we're on
+                rope = other.gameObject.GetComponentInParent<RopeController>();
+                //set how far we are along the rope
+                ropeProgress = rope.GetRopeProgress(transform.position);
+                m_Rigidbody2D.position = rope.GetRopePoint(ropeProgress);
+                //fix our joint to the rope
+                ropeJoint.enabled = true;
+                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
+                //set the player's onRope bool to true
+                isOnRope = true;
+            }
+        }
+    }
 
     private void OnCollisionStay2D(Collision2D other) {
         if (Utils.IsInLayerMask(other.gameObject.layer, groundLayer)) {

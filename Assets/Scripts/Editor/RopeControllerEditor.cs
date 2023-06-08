@@ -1,3 +1,4 @@
+using System.Net;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.U2D;
@@ -227,9 +228,11 @@ public class RopeControllerEditor : Editor {
             var ropePart = ropeTarget.getClosestRopePart(mousePosition);
             if (ropePart != null) {
                 if (ropePart.isAnchored) {
-                    Vector3 ropePartPosition = Handles.PositionHandle(ropePart.joint.transform.position, Quaternion.identity);
-                    ropePart.joint.transform.position = ropePartPosition;
+                        Vector3 ropePartPosition =
+                            Handles.PositionHandle(ropePart.joint.transform.position, Quaternion.identity);
+                        ropePart.joint.transform.position = ropePartPosition;
                 }
+
                 //draw lock/unlock button with sprites
                 Handles.BeginGUI();
 
