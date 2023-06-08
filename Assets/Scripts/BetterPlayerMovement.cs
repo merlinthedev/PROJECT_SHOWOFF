@@ -154,7 +154,7 @@ public class BetterPlayerMovement : MonoBehaviour {
             case JumpState.Jumping:
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
                 bool endJump = !jumpButtonPressed ||
-                               // slopeAngle > 90 ||
+                               slopeAngle > 90 ||
                                Time.time > jumpStartTime + maxJumpTime ||
                                transform.position.y > jumpStartHeight + maxJumpHeight;
                 if (endJump) {
@@ -297,12 +297,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                 rope = other.gameObject.GetComponentInParent<RopeController>();
                 //set how far we are along the rope
                 ropeProgress = rope.GetRopeProgress(transform.position);
-                
-                // m_Rigidbody2D.position = rope.GetRopePoint(ropeProgress);
-                
                 LeanTween.move(this.gameObject, rope.GetRopePoint(ropeProgress), 0.1f);
-          
-                
                 //fix our joint to the rope
                 ropeJoint.enabled = true;
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
