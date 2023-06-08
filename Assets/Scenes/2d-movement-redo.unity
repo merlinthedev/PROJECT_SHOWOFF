@@ -580,6 +580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Log
       objectReference: {fileID: 0}
+    - target: {fileID: 6564319791466018554, guid: a2f635647d6361e4d9ea9c0a0e8a36c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -640,11 +644,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808d4e5b77a7364eb7875c42c7e49cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &624683984 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-  m_PrefabInstance: {fileID: 1937156671480597406}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &724473829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,7 +1346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067402796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -67.46001, y: 22.66, z: -10}
+  m_LocalPosition: {x: -66.729996, y: 13.419999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1605,14 +1604,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254730738}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.2304956, w: 0.9730734}
   m_LocalPosition: {x: -70.1549, y: 9.2407, z: 0}
   m_LocalScale: {x: 30.650457, y: 4.1965, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 321353976}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -26.653}
 --- !u!61 &1254730741
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2024,7 +2023,7 @@ MonoBehaviour:
   m_Priority: 9
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 624683984}
+  m_Follow: {fileID: 2111203891}
   m_Lens:
     FieldOfView: 34
     OrthographicSize: 6.5
@@ -2052,7 +2051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677281770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -65.01001, y: 21.53, z: -10.088583}
+  m_LocalPosition: {x: -64.28, y: 12.289999, z: -10.088583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2897,11 +2896,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -99.19
+      value: -71.32
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.613705
+      value: 12.78
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2964,9 +2963,25 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1754438079511692130, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 73a2f0ff6f465ef49922f8f44377e1eb, type: 2}
+    - target: {fileID: 1754438079511692130, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_GravityScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1754438079511692130, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754438079511692130, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218182374741690654, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 73a2f0ff6f465ef49922f8f44377e1eb, type: 2}
     - target: {fileID: 4218182374741690654, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -3029,6 +3044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Rigidbody2D: {fileID: 2111203884}
   m_CapsuleCollider2D: {fileID: 2111203885}
+  m_PlayerPhysicsMaterial2D: {fileID: 6200000, guid: 73a2f0ff6f465ef49922f8f44377e1eb, type: 2}
   maximumHorizontalSpeed: 4
   groundAcceleration: 20
   airAcceleration: 20
@@ -3053,6 +3069,12 @@ MonoBehaviour:
   ropeClimbingSpeed: 0
   ropeGrabTimeout: 0
   jumpHorizontalImpulse: 0
+  slopeAngle: 0
+--- !u!4 &2111203891 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+  m_PrefabInstance: {fileID: 2111203882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1937156671480597406
 PrefabInstance:
   m_ObjectHideFlags: 0
