@@ -38,8 +38,10 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float maximumFallSpeed;
 
     [Header("ROPE CLIMBING")] [SerializeField]
-    private float ropeClimbingSpeed;
+    private RopeController rope;
 
+    [SerializeField] private FixedJoint2D ropeJoint;
+    [SerializeField] private float ropeClimbingSpeed;
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
 
@@ -79,7 +81,19 @@ public class BetterPlayerMovement : MonoBehaviour {
             Vector2.right * objectDistance);
     }
 
+    private void verticalMovement() {
+        // TODO: Rope movement
+        
+    }
+
     private void horizontalMovement() {
+        
+        // TODO: This is very bad... needs a refactor :)
+        if (isOnRope) {
+            verticalMovement();
+            return;
+        }
+
         if (isGrounded) {
             //m_PlayerPhysicsMaterial2D.friction = 1f;
         } else {
@@ -259,7 +273,8 @@ public class BetterPlayerMovement : MonoBehaviour {
     private void ropeMovement() {
         if (isOnRope) {
             if (movementInput.y != 0) {
-                ropeProgress -= (movementInput.y * ropeClimbingSpeed * rope.ClimbSpeedMultiplier * Time.deltaTime) / rope.RopeLength;
+                ropeProgress -= (movementInput.y * ropeClimbingSpeed * rope.ClimbSpeedMultiplier * Time.deltaTime) /
+                                rope.RopeLength;
                 ropeProgress = Mathf.Clamp01(ropeProgress);
 
                 Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
@@ -278,8 +293,6 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
     [Header("ROPE")] private float lastRopeRelease;
-    [SerializeField] private RopeController rope;
-    [SerializeField] private FixedJoint2D ropeJoint;
     private bool isOnRope = false;
     private float ropeProgress;
 

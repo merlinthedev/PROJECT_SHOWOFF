@@ -3131,14 +3131,14 @@ MonoBehaviour:
   jumpSpeed: 12
   jumpBufferTime: 0.2
   maximumFallSpeed: 80
-  ropeClimbingSpeed: 0
+  rope: {fileID: 0}
+  ropeJoint: {fileID: 2111203892}
+  ropeClimbingSpeed: 1.5
   ropeGrabTimeout: 0.5
   jumpHorizontalImpulse: 0
   currentJumpState: 0
   isGrounded: 1
   slopeAngle: 0
-  rope: {fileID: 0}
-  ropeJoint: {fileID: 2111203892}
   jumpButtonPressed: 0
 --- !u!255 &2111203892 stripped
 FixedJoint2D:
