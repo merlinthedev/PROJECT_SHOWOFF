@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro.SpriteAssetUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class BetterPlayerMovement : MonoBehaviour {
     [Header("HORIZONTAL MOVEMENT")] [SerializeField]
@@ -81,19 +76,8 @@ public class BetterPlayerMovement : MonoBehaviour {
             Vector2.right * objectDistance);
     }
 
-    private void verticalMovement() {
-        // TODO: Rope movement
-        
-    }
 
     private void horizontalMovement() {
-        
-        // TODO: This is very bad... needs a refactor :)
-        if (isOnRope) {
-            verticalMovement();
-            return;
-        }
-
         if (isGrounded) {
             //m_PlayerPhysicsMaterial2D.friction = 1f;
         } else {
@@ -137,15 +121,24 @@ public class BetterPlayerMovement : MonoBehaviour {
         switch (currentJumpState) {
             case JumpState.CanJump:
                 bool canJump = (hasJumpBuffer && jumpButtonPressed) ||
-                               (hasCoyoteJump && jumpButtonPressedThisFrame);
+                               (hasCoyoteJump && jumpButtonPressedThisFrame) ||
+                               (isOnRope && jumpButtonPressedThisFrame);
                 if (canJump) {
                     jumpStartHeight = transform.position.y;
                     jumpStartTime = Time.time;
+
+                    if (isOnRope) {
+                        isOnRope = false;
+                        ropeJoint.enabled = false;
+                        ropeJoint.connectedBody = null;
+                        lastRopeRelease = Time.time;
+                    }
+
                     currentJumpState = JumpState.Jumping;
                     m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
                 }
 
-                if (!isGrounded && !hasCoyoteJump) {
+                if (!isGrounded && !hasCoyoteJump && !isOnRope) {
                     currentJumpState = JumpState.Falling;
                 }
 
@@ -164,7 +157,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                 break;
 
             case JumpState.Falling:
-                if (isGrounded) {
+                if (isGrounded || isOnRope) {
                     currentJumpState = JumpState.CanJump;
                 }
 
@@ -176,15 +169,6 @@ public class BetterPlayerMovement : MonoBehaviour {
                 }
 
                 break;
-        }
-
-        if (isOnRope && jumpButtonPressedThisFrame) {
-            isOnRope = false;
-            ropeJoint.enabled = false;
-            ropeJoint.connectedBody = null;
-            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
-            m_Rigidbody2D.AddForce(new Vector2(jumpHorizontalImpulse * movementInput.x, 0), ForceMode2D.Impulse);
-            lastRopeRelease = Time.time;
         }
     }
 
@@ -245,10 +229,10 @@ public class BetterPlayerMovement : MonoBehaviour {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
+        {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner,
-                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             LeanTween.move(gameObject, path, ledgeFreezeTime);
@@ -258,7 +242,8 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
+            {
                 canMove = true;
                 m_Rigidbody2D.velocity = Vector2.zero;
             });
