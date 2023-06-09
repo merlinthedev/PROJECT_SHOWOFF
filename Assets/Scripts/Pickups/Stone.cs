@@ -48,7 +48,7 @@ public class Stone : AProjectile, IPickup {
     private IEnumerator checkForGroundCollision() {
         while (true) {
             Debug.Log("Checking ground collision.");
-            if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+            if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Grass"))) {
                 Debug.Log("Stone collided with ground.");
                 preparePlayerPickup();
             }
