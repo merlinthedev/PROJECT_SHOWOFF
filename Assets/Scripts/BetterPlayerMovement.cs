@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 public class BetterPlayerMovement : MonoBehaviour {
     [Header("HORIZONTAL MOVEMENT")] [SerializeField]
-    private Rigidbody2D m_Rigidbody2D;
+    public Rigidbody2D m_Rigidbody2D;
 
     [SerializeField] private CapsuleCollider2D m_CapsuleCollider2D;
     [SerializeField] private PhysicsMaterial2D m_PlayerPhysicsMaterial2D;

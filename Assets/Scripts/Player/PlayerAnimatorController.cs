@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerAnimatorController : MonoBehaviour {
     [SerializeField] private Animator animator;
-    [SerializeField] private PlayerController playerMovementController;
+    [SerializeField] private BetterPlayerMovement playerMovementController;
 
     // Start is called before the first frame update
     void Start() {
@@ -14,15 +11,15 @@ public class PlayerAnimatorController : MonoBehaviour {
         }
 
         if (playerMovementController == null) {
-            playerMovementController = GetComponent<PlayerController>();
+            playerMovementController = GetComponent<BetterPlayerMovement>();
         }
     }
 
     // Update is called once per frame
     void Update() {
-        animator.SetFloat("xSpeed", Mathf.Abs(playerMovementController.velocity.x));
-        animator.SetFloat("ySpeed", playerMovementController.velocity.y);
-        animator.SetBool("Grounded", playerMovementController.Grounded);
+        animator.SetFloat("xSpeed", Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x));
+        animator.SetFloat("ySpeed", playerMovementController.m_Rigidbody2D.velocity.y);
+        animator.SetBool("Grounded", playerMovementController.isGrounded);
 
     }
 }
