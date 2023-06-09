@@ -7770,6 +7770,11 @@ Transform:
   m_Father: {fileID: 1405717787}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &566074754 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3841797239795438667, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+  m_PrefabInstance: {fileID: 1725523880}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &568672715
 GameObject:
   m_ObjectHideFlags: 0
@@ -27395,6 +27400,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8062336363924862780, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: visualTransform
+      value: 
+      objectReference: {fileID: 566074754}
     - target: {fileID: 8445435830689493568, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_Name
       value: BetterPlayer

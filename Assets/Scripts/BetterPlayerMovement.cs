@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -41,6 +42,23 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
 
+    [Header("VISUAL")] [SerializeField] private Transform visualTransform;
+    private Vector3 initialScale;
+
+    private void updateVisuals() {
+        if (visualTransform == null) return;
+
+        if (movementInput.x > 0) {
+            visualTransform.localScale = initialScale;
+        } else if (movementInput.x < 0) {
+            visualTransform.localScale = Vector3.Scale(initialScale, new Vector3(-1, 1, 1));
+        }
+    }
+
+    private void Start() {
+        initialScale = visualTransform.localScale;
+    }
+
 
     private void FixedUpdate() {
         if (canMove) {
@@ -51,6 +69,8 @@ public class BetterPlayerMovement : MonoBehaviour {
         ledgeGrab();
         pushObject();
         ropeMovement();
+        
+        updateVisuals();
 
         isGrounded = false;
         slopeAngle = 180;
@@ -123,7 +143,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         switch (currentJumpState) {
             case JumpState.CanJump:
                 if (noJumpAllowed) return;
-                
+
                 bool canJump = (hasJumpBuffer && jumpButtonPressed) ||
                                (hasCoyoteJump && jumpButtonPressedThisFrame) ||
                                (isOnRope && jumpButtonPressedThisFrame);
@@ -191,7 +211,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void ledgeGrab() {
         // if we are grounded, return
-        if (isGrounded) return;
+        if (isGrounded || isOnRope) return;
 
         float playerRadius = m_CapsuleCollider2D.size.x / 2f;
 
@@ -240,10 +260,10 @@ public class BetterPlayerMovement : MonoBehaviour {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
-        {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner,
+                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             LeanTween.move(gameObject, path, ledgeFreezeTime);
@@ -253,8 +273,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
-            {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
                 canMove = true;
                 m_Rigidbody2D.velocity = Vector2.zero;
             });
