@@ -2,14 +2,14 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour {
-    [SerializeField] private PlayerMovementController playerMovementController;
+    [SerializeField] private BetterPlayerMovement playerMovementController;
     [SerializeField] private PlayerAnimatorController playerAnimatorController;
     [SerializeField] private PlayerAudioController playerAudioController;
     [SerializeField] private PlayerEventHandler playerEventHandler;
     [SerializeField] private PlayerProjectileController playerProjectileController;
 
     // Getters
-    public PlayerMovementController GetPlayerController() {
+    public BetterPlayerMovement GetPlayerController() {
         return playerMovementController;
     }
 

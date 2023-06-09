@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Utils : MonoBehaviour {
     public static Utils Instance { get; private set; } = null;
+    [SerializeField] private GameObject mainCamRef;
 
     private void Awake() {
         if (Instance == null) {
@@ -9,6 +10,11 @@ public class Utils : MonoBehaviour {
         } else {
             Destroy(this);
         }
+
+        mainCamRef.SetActive(false);
+        InvokeDelayed(0.2f, () => {
+            mainCamRef.SetActive(true);
+        });
     }
 
     // Refactor the code below to also take parameters for the System.Action
