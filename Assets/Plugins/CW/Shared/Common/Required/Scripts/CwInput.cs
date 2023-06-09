@@ -153,7 +153,7 @@ namespace CW.Common
 			{ KeyCode.Menu, NewCode.ContextMenu },
 		};
 
-		[UnityEngine.RuntimeInitializeOnLoadMethod]
+		[RuntimeInitializeOnLoadMethod]
 		static void Enable()
 		{
 			UnityEngine.InputSystem.EnhancedTouch.EnhancedTouchSupport.Enable();
@@ -218,7 +218,7 @@ namespace CW.Common
 #endif
 		}
 
-		public static void GetTouch(int index, out int id, out UnityEngine.Vector2 position, out float pressure, out bool set)
+		public static void GetTouch(int index, out int id, out Vector2 position, out float pressure, out bool set)
 		{
 #if USE_NEW_INPUT_SYSTEM
 			var touch = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches[index];
@@ -243,10 +243,10 @@ namespace CW.Common
 #endif
 		}
 
-		public static UnityEngine.Vector2 GetMousePosition()
+		public static Vector2 GetMousePosition()
 		{
 #if USE_NEW_INPUT_SYSTEM
-			return UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : default(UnityEngine.Vector2);
+			return UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : default(Vector2);
 #else
 			return UnityEngine.Input.mousePosition;
 #endif

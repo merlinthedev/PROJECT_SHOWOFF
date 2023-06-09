@@ -10,9 +10,9 @@ public class Utils : MonoBehaviour {
             Destroy(this);
         }
     }
-    
+
     // Refactor the code below to also take parameters for the System.Action
-    
+
     public void InvokeDelayed(float delay, System.Action action) {
         StartCoroutine(InvokeDelayedCoroutine(delay, action));
     }
@@ -20,5 +20,9 @@ public class Utils : MonoBehaviour {
     private System.Collections.IEnumerator InvokeDelayedCoroutine(float delay, System.Action action) {
         yield return new WaitForSeconds(delay);
         action.Invoke();
+    }
+
+    public static bool IsInLayerMask(int layer, LayerMask layerMask) {
+        return layerMask == (layerMask | (1 << layer));
     }
 }

@@ -85,7 +85,7 @@ public class PlayerMovementController : MonoBehaviour {
 
     private void FixedUpdate() {
         if (movementControlDisabled || Time.time < lastLedgeGrab) {
-            this.rb.velocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
             // Debug.Log("Can't move.", this);
             return;
         }
@@ -112,7 +112,7 @@ public class PlayerMovementController : MonoBehaviour {
             if (hits[i].collider.gameObject != gameObject) {
                 isGrounded = true;
                 moved = false;
-                this.groundCollider = hits[i].collider;
+                groundCollider = hits[i].collider;
                 break;
             }
         }
@@ -122,9 +122,9 @@ public class PlayerMovementController : MonoBehaviour {
         #region ledge
 
         // Ledge stuff
-        if (!this.inWater && rb.velocity.y <= 0 && !this.player.GetPlayerEventHandler().Grabbing &&
+        if (!inWater && rb.velocity.y <= 0 && !player.GetPlayerEventHandler().Grabbing &&
             !isOnRope &&
-            this.lastRopeRelease + 0.5f < Time.time) {
+            lastRopeRelease + 0.5f < Time.time) {
             Debug.Log("Going to check ledge.");
             checkLedge();
         }
@@ -149,19 +149,19 @@ public class PlayerMovementController : MonoBehaviour {
         }
 
         float angle = Vector2.Angle(Vector2.up, hit.normal);
-        // Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
+        Debug.Log("Hit " + hit.collider + " , " + hit.normal + " , " + angle);
 
         return angle < maxClimbAngle;
     }
 
     private void applyMovement(float x) {
-        this.rb.sharedMaterial.friction = movementInput.x == 0 ? 1 : 0;
+        rb.sharedMaterial.friction = movementInput.x == 0 ? 1 : 0;
         x *= (inWater ? waterMovementSpeedDebuff : 1f);
 
         // Debug.Log("Applying movement: " + x);
         //Debug.Log("Current rb force: " + this.rb.velocity);
-        if (this.groundCollider != null) {
-            var groundRB = this.groundCollider.attachedRigidbody;
+        if (groundCollider != null) {
+            var groundRB = groundCollider.attachedRigidbody;
             if (groundRB != null && isGrounded) {
                 var force = Vector2.right * x * forceScale.x * rb.mass;
                 // Apply the opposite force to the ground
@@ -174,7 +174,7 @@ public class PlayerMovementController : MonoBehaviour {
             }
         }
 
-        this.rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
+        rb.AddForce(Vector2.right * x * forceScale.x * rb.mass);
     }
 
     private float move() {
@@ -296,7 +296,7 @@ public class PlayerMovementController : MonoBehaviour {
             visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1, 1, 1));
         }
 
-        this.player.GetPlayerProjectileController().UpdateProjectile();
+        player.GetPlayerProjectileController().UpdateProjectile();
     }
 
     #endregion
@@ -342,15 +342,15 @@ public class PlayerMovementController : MonoBehaviour {
                 //Debug.LogWarning("Jump");
                 // rb.AddForce(Vector2.up * jumpForce * (inWater ? waterJumpForceDebuff : 1) * (isCheesing ? cheeseStrength : 1f),
                 //     ForceMode2D.Impulse);
-                var groundRB = this.groundCollider.attachedRigidbody;
-                if (this.isCheesing) {
-                    this.rb.AddForce(Vector2.up * this.jumpForce * this.cheeseStrength, ForceMode2D.Impulse);
-                } else if (this.inWater) {
-                    this.rb.AddForce(Vector2.up * this.jumpForce * this.waterJumpForceDebuff, ForceMode2D.Impulse);
+                var groundRB = groundCollider.attachedRigidbody;
+                if (isCheesing) {
+                    rb.AddForce(Vector2.up * jumpForce * cheeseStrength, ForceMode2D.Impulse);
+                } else if (inWater) {
+                    rb.AddForce(Vector2.up * jumpForce * waterJumpForceDebuff, ForceMode2D.Impulse);
                 } else {
-                    this.rb.AddForce(Vector2.up * this.jumpForce, ForceMode2D.Impulse);
+                    rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
                     if (groundRB != null)
-                        groundRB.AddForceAtPosition(Vector2.down * this.jumpForce, this.rb.position);
+                        groundRB.AddForceAtPosition(Vector2.down * jumpForce, rb.position);
                 }
             }
 
@@ -419,11 +419,11 @@ public class PlayerMovementController : MonoBehaviour {
     #region getter & setter
 
     public bool IsGrounded() {
-        return this.isGrounded;
+        return isGrounded;
     }
 
     public bool IsInWater() {
-        return this.inWater;
+        return inWater;
     }
 
     public void SetInWater(bool inWater) {

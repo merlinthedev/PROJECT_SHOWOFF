@@ -927,7 +927,7 @@ namespace Lean.Pool.Editor
 
 			property.isExpanded = EditorGUI.Foldout(rectF, property.isExpanded, GUIContent.none);
 
-			UnityEditor.EditorGUI.IntField(rect, title, tempClones.Count);
+			EditorGUI.IntField(rect, title, tempClones.Count);
 
 			if (property.isExpanded == true)
 			{
@@ -938,16 +938,16 @@ namespace Lean.Pool.Editor
 			}
 		}
 
-		[UnityEditor.MenuItem("GameObject/Lean/Pool", false, 1)]
+		[MenuItem("GameObject/Lean/Pool", false, 1)]
 		private static void CreateLocalization()
 		{
 			var gameObject = new GameObject(typeof(LeanGameObjectPool).Name);
 
-			UnityEditor.Undo.RegisterCreatedObjectUndo(gameObject, "Create LeanGameObjectPool");
+			Undo.RegisterCreatedObjectUndo(gameObject, "Create LeanGameObjectPool");
 
 			gameObject.AddComponent<LeanGameObjectPool>();
 
-			UnityEditor.Selection.activeGameObject = gameObject;
+			Selection.activeGameObject = gameObject;
 		}
 	}
 }

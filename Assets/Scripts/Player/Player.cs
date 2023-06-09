@@ -10,22 +10,22 @@ public class Player : MonoBehaviour {
 
     // Getters
     public PlayerMovementController GetPlayerController() {
-        return this.playerMovementController;
+        return playerMovementController;
     }
 
     public PlayerAnimatorController GetPlayerAnimatorController() {
-        return this.playerAnimatorController;
+        return playerAnimatorController;
     }
 
     public PlayerAudioController GetPlayerAudioController() {
-        return this.playerAudioController;
+        return playerAudioController;
     }
 
     public PlayerEventHandler GetPlayerEventHandler() {
-        return this.playerEventHandler;
+        return playerEventHandler;
     }
 
     public PlayerProjectileController GetPlayerProjectileController() {
-        return this.playerProjectileController;
+        return playerProjectileController;
     }
 }

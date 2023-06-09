@@ -316,8 +316,8 @@ namespace Lean.Common.Editor
 
 			Separator();
 
-			var select   = (LeanSelectable)UnityEditor.EditorGUILayout.ObjectField(new GUIContent("Select", "Drop a selectable object here to select it."), null, typeof(LeanSelectable), true);
-			var deselect = (LeanSelectable)UnityEditor.EditorGUILayout.ObjectField(new GUIContent("Deselect", "Drop a selectable object here to deselect it."), null, typeof(LeanSelectable), true);
+			var select   = (LeanSelectable)EditorGUILayout.ObjectField(new GUIContent("Select", "Drop a selectable object here to select it."), null, typeof(LeanSelectable), true);
+			var deselect = (LeanSelectable)EditorGUILayout.ObjectField(new GUIContent("Deselect", "Drop a selectable object here to deselect it."), null, typeof(LeanSelectable), true);
 
 			BeginDisabled();
 				Draw("selectables", "This stores all objects selected by this component.");

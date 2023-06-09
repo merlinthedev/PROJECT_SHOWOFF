@@ -1,11 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 using Color = UnityEngine.Color;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -24,13 +20,18 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     public bool canMove = true;
 
     private bool active;
-    void Awake() => Invoke(nameof(activate), 0.5f);
+
+    void Awake() {
+        Invoke(nameof(activate), 0.5f);
+    }
 
     void activate() {
-        this.active = true;
-        a = this.fallClamp;
-        b = this.minFallSpeed;
-        c = this.maxFallSpeed;
+        active = true;
+        a = fallClamp;
+        b = minFallSpeed;
+        c = maxFallSpeed;
+
+        defaultVisualScale = visualsTransform.localScale;
     }
 
     private void Update() {
@@ -51,6 +52,8 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         calculateJump();
 
         moveCharacter();
+
+        updateVisuals();
     }
 
     #region Ledge Grabbing
@@ -67,9 +70,9 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     private void ledgeGrabbing() {
         // if we are grounded, return
-        if (this.colDown) return;
+        if (colDown) return;
 
-        Vector2 direction = new Vector2(this.Input.X, 0);
+        Vector2 direction = new Vector2(Input.X, 0);
 
         //raycast forwards to check if we hit a ledge
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, ledgeCheckDistance, groundLayer);
@@ -164,7 +167,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     [SerializeField] [Range(0.1f, 0.3f)] private float rayBuffer = 0.1f; // Prevents side detectors hitting the ground
 
     private RayRange raysUp, raysRight, raysDown, raysLeft;
-    private bool colUp, colRight, colDown, colLeft;
+    public bool colUp, colRight, colDown, colLeft;
 
     private float timeLeftGrounded;
 
@@ -281,15 +284,15 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     [SerializeField] private float apexBonus = 2;
 
     private void calculateWalk() {
-        if (this.isOnRope) {
-            this.currentHorizontalSpeed = 0;
+        if (isOnRope) {
+            currentHorizontalSpeed = 0;
             if (Input.Y != 0) {
-                this.ropeProgress -= (Input.Y * this.ropeSpeedMultiplier * Time.deltaTime) / this.rope.RopeLength;
-                this.ropeProgress = Mathf.Clamp01(ropeProgress);
+                ropeProgress -= (Input.Y * ropeSpeedMultiplier * Time.deltaTime) / rope.RopeLength;
+                ropeProgress = Mathf.Clamp01(ropeProgress);
 
-                Vector2 ropePosition = this.rope.GetRopePoint(this.ropeProgress);
-                this.rb.position = ropePosition;
-                this.ropeJoint.connectedBody = this.rope.GetRopePart(this.ropeProgress).rigidBody;
+                Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
+                rb.position = ropePosition;
+                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
             }
 
             return;
@@ -303,7 +306,7 @@ public class PlayerController : MonoBehaviour, IPlayerController {
             currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed, -moveClamp, moveClamp);
 
             // Apply bonus at the apex of a jump
-            var m_ApexBonus = Mathf.Sign(Input.X) * this.apexBonus * apexPoint;
+            var m_ApexBonus = Mathf.Sign(Input.X) * apexBonus * apexPoint;
             currentHorizontalSpeed += m_ApexBonus * Time.deltaTime;
         } else {
             // No input. Let's slow the character down
@@ -330,8 +333,8 @@ public class PlayerController : MonoBehaviour, IPlayerController {
             // Move out of the ground
             if (currentVerticalSpeed < 0) currentVerticalSpeed = 0;
         } else {
-            if (this.isOnRope) {
-                this.currentVerticalSpeed = 0;
+            if (isOnRope) {
+                currentVerticalSpeed = 0;
                 return;
             }
 
@@ -358,12 +361,14 @@ public class PlayerController : MonoBehaviour, IPlayerController {
     [SerializeField] private float jumpBuffer = 0.1f;
     [SerializeField] private float jumpEndEarlyGravityModifier = 3;
 
+    private bool canJump = true;
+
     private bool coyoteUsable;
     private bool endedJumpEarly = true;
     private float apexPoint; // Becomes 1 at the apex of a jump
     private float lastJumpPressed;
     private bool canUseCoyote => coyoteUsable && !colDown && timeLeftGrounded + coyoteTimeThreshold > Time.time;
-    private bool hasBufferedJump => colDown && lastJumpPressed + jumpBuffer > Time.time;
+    private bool hasBufferedJump => colDown && lastJumpPressed + jumpBuffer > Time.time && Time.time > lastLedgeGrab;
 
     private void calculateJumpApex() {
         if (!colDown) {
@@ -377,17 +382,25 @@ public class PlayerController : MonoBehaviour, IPlayerController {
 
     private void calculateJump() {
         // Jump if: grounded or within coyote threshold || sufficient jump buffer
-        if (Input.JumpDown && (canUseCoyote || hasBufferedJump || this.isOnRope || this.inWater)) {
-            currentVerticalSpeed = this.inWater ? this.jumpHeight / 2 : this.jumpHeight;
+        if (!canJump) {
+            Debug.Log("YOU SHALL NOT JUMP!!!", this);
+            return;
+        }
+
+        Debug.Log("Can jump if check passed", this);
+
+        if (Input.JumpDown && (canUseCoyote || hasBufferedJump || isOnRope || inWater)) {
+            Debug.Log("Checks have passed, jumping", this);
+            currentVerticalSpeed = inWater ? jumpHeight / 2 : jumpHeight;
             endedJumpEarly = false;
             coyoteUsable = false;
             timeLeftGrounded = float.MinValue;
             JumpingThisFrame = true;
 
-            if (this.isOnRope) {
-                this.ropeJoint.enabled = false;
-                this.isOnRope = false;
-                this.lastRopeRelease = Time.time;
+            if (isOnRope) {
+                ropeJoint.enabled = false;
+                isOnRope = false;
+                lastRopeRelease = Time.time;
             }
         } else {
             JumpingThisFrame = false;
@@ -404,43 +417,65 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         }
     }
 
+    public void setCanJump(bool value) {
+        canJump = value;
+        Debug.Log("Set canJump to " + value, this);
+    }
+
     #endregion
 
     #region Water
 
     private bool inWater = false;
+    private bool isTraveling = true;
     private float a, b, c;
 
     public void onWaterEnter() {
-        this.inWater = true;
+        inWater = true;
 
-        this.disableManualGravity();
+        disableManualGravity();
     }
 
     public void onWaterExit() {
-        this.inWater = false;
+        inWater = false;
 
-        this.enableManualGravity();
+        enableManualGravity();
     }
 
     public bool isInWater() {
-        return this.inWater;
+        return inWater;
+    }
+
+    public void setTraveling(bool value) {
+        isTraveling = value;
     }
 
     private void disableManualGravity() {
-        this.fallClamp = 0;
-        this.minFallSpeed = 0;
-        this.maxFallSpeed = 0;
+        fallClamp = 0;
+        minFallSpeed = 0;
+        maxFallSpeed = 0;
 
-        this.rb.gravityScale = 1;
+        rb.gravityScale = 1;
     }
 
     private void enableManualGravity() {
-        this.fallClamp = a;
-        this.minFallSpeed = b;
-        this.maxFallSpeed = c;
+        fallClamp = a;
+        minFallSpeed = b;
+        maxFallSpeed = c;
 
-        this.rb.gravityScale = 0;
+        rb.gravityScale = 0;
+    }
+
+    private void OnCollisionStay2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Boat")) {
+            var boat = other.gameObject.GetComponent<Boat>();
+            if (boat == null) return;
+
+            if (boat.playerInBoat && isTraveling) {
+                Debug.Log("Player in boat.", this);
+                canJump = false;
+            }
+        }
     }
 
     #endregion
@@ -458,12 +493,12 @@ public class PlayerController : MonoBehaviour, IPlayerController {
         Vector3 move = rawMovement * Time.deltaTime;
         Vector3 furthestPoint = pos + move;
 
+
         // check furthest movement. If nothing hit, move and don't do extra checks
         // Collider2D hit = Physics2D.OverlapBox(furthestPoint, characterBounds.size, 0, groundLayer);
         Collider2D hit = Physics2D.OverlapCircle(furthestPoint, playerRadius, groundLayer);
         if (!hit) {
             transform.position += move;
-            // this.rb.position += (Vector2)move;
             return;
         }
 
@@ -474,31 +509,48 @@ public class PlayerController : MonoBehaviour, IPlayerController {
             var t = (float)i / freeColliderIterations;
             var posToTry = Vector2.Lerp(pos, furthestPoint, t);
 
-            Collider2D c2d = Physics2D.OverlapCircle(posToTry, this.playerRadius, this.groundLayer);
+            Collider2D c2d = Physics2D.OverlapCircle(posToTry, playerRadius, groundLayer);
             if (c2d) {
-                if (c2d.gameObject.GetComponent<Rigidbody2D>() != null) {
-                    // c2d.gameObject.GetComponent<Rigidbody2D>()
-                    //     .AddForce(new Vector2(this.currentHorizontalSpeed * 100, 0), ForceMode2D.Force);
-                    Debug.Log("Should be adding force here.");
-                }
-
                 transform.position = positionToMoveTo;
-                // this.rb.position = positionToMoveTo;
 
                 // We've landed on a corner or hit our head on a ledge. Nudge the player gently
                 if (i == 1) {
-                    if (currentVerticalSpeed < 0) currentVerticalSpeed = 0;
+                    // if (currentVerticalSpeed < 0) currentVerticalSpeed = 0;
+
                     var dir = transform.position - hit.transform.position;
                     transform.position += dir.normalized * move.magnitude;
-                    // this.rb.position += ((Vector2)dir.normalized * move.magnitude);
+                    // this.rb.velocity = dir.normalized * move.magnitude;
                 }
+
 
                 return;
             }
 
-
             positionToMoveTo = posToTry;
         }
+    }
+
+    #endregion
+
+    #region Visuals
+
+    [Header("VISUALS")] [SerializeField] private Transform visualsTransform;
+
+    private Vector3 defaultVisualScale = Vector3.one;
+
+    private void updateVisuals() {
+        if (visualsTransform == null) {
+            return;
+        }
+
+        //flip our visuals if we are goinf in the other direction
+        if (Input.X > 0) {
+            visualsTransform.localScale = defaultVisualScale;
+        } else if (Input.X < 0) {
+            visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1, 1, 1));
+        }
+
+        // this.player.GetPlayerProjectileController().UpdateProjectile();
     }
 
     #endregion

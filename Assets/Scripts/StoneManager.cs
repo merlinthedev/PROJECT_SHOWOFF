@@ -12,25 +12,25 @@ public class StoneManager : MonoBehaviour {
     }
 
     public void SpawnStone() {
-        if (this.currentStone != null) {
+        if (currentStone != null) {
             Debug.LogError("Cannot spawn stone when another stone still exists.");
             return;
         }
 
-        this.currentStone = Instantiate(this.stonePrefab, this.stoneSpawnPoint.position,
-            this.stonePrefab.transform.rotation);
+        currentStone = Instantiate(stonePrefab, stoneSpawnPoint.position,
+            stonePrefab.transform.rotation);
 
-        var stoneScript = this.currentStone.GetComponent<Stone>();
+        var stoneScript = currentStone.GetComponent<Stone>();
         if (stoneScript == null) {
             Debug.LogError("Stone prefab has no Stone script attached.");
             return;
         }
 
-        stoneScript.SetSpawnerTransform(this.transform);
+        stoneScript.SetSpawnerTransform(transform);
         stoneScript.OnSpawn();
     }
 
     public void ResetCurrentStone() {
-        this.currentStone = null;
+        currentStone = null;
     }
 }

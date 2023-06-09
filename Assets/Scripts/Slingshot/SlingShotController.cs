@@ -25,10 +25,10 @@ public class SlingShotController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (stickInput == Vector2.zero) {
-            this.slingShotTrajectoryPreview.ClearPredictionLine();
+            slingShotTrajectoryPreview.ClearPredictionLine();
         }
 
-        this.aim();
+        aim();
     }
 
 
@@ -47,14 +47,14 @@ public class SlingShotController : MonoBehaviour {
             return;
         }
 
-        slingShotTrajectoryPreview.DrawPredictionLine(shootDirection * shootForce, this.transform.position);
+        slingShotTrajectoryPreview.DrawPredictionLine(shootDirection * shootForce, transform.position);
 
         if (stickInput == Vector2.zero && smoothStickMagnitude >= minShootMagnitude) {
             // Debug.LogError("Shoot Direction: " + shootDirection);
             // Debug.LogError("Shoot Force: " + shootForce);
 
             stickSmoothed = Vector2.zero;
-            this.shoot(shootDirection, shootForce);
+            shoot(shootDirection, shootForce);
         }
     }
 
@@ -82,7 +82,7 @@ public class SlingShotController : MonoBehaviour {
         x.OnThrow(player);
         projectile.Shoot(shootDirection, shootForce);
         player.GetPlayerProjectileController().SetProjectileFlag(false);
-        this.slingShotTrajectoryPreview.ClearPredictionLine();
+        slingShotTrajectoryPreview.ClearPredictionLine();
     }
 
     public void OnStickInput(InputAction.CallbackContext context) {
