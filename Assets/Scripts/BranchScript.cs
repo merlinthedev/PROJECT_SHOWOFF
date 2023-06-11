@@ -36,7 +36,7 @@ public class BranchScript : MonoBehaviour
 
                 Destroy(gameObject);
             }
-            Debug.Log(tmp.a);
+            // Debug.Log(tmp.a);
         }
     }
     //destroy all the fixed joints and fade out each individual the branch
