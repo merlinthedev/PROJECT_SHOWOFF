@@ -19,26 +19,26 @@ public class BetterPlayerMovement : MonoBehaviour {
     [Header("LEDGE GRABBING")] [SerializeField]
     private float ledgeGrabDistance;
 
-    [SerializeField] private float ledgeGrabHeight;
-    [SerializeField] private float ledgeGrabDelay;
-    [SerializeField] private float ledgeFreezeTime;
+    [SerializeField] private float ledgeGrabHeight = 1.2f;
+    [SerializeField] private float ledgeGrabDelay = 0f;
+    [SerializeField] private float ledgeFreezeTime = 0.5f;
 
-    [Header("PUSHING")] [SerializeField] private float pushForce;
-    [SerializeField] private float maxObjectMass;
-    [SerializeField] private float objectDistance;
+    [Header("PUSHING")] [SerializeField] private float pushForce = 5f;
+    [SerializeField] private float maxObjectMass = 20f;
+    [SerializeField] private float objectDistance = 0.7f;
 
-    [Header("JUMPING")] [SerializeField] private float maxJumpHeight;
-    [SerializeField] private float maxJumpTime;
-    [SerializeField] private float coyoteTime;
-    [SerializeField] private float jumpSpeed;
-    [SerializeField] private float jumpBufferTime;
-    [SerializeField] private float maximumFallSpeed;
+    [Header("JUMPING")] [SerializeField] private float maxJumpHeight = 2f;
+    [SerializeField] private float maxJumpTime = 0.4f;
+    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private float jumpSpeed = 12f;
+    [SerializeField] private float jumpBufferTime = 1.2f;
+    [SerializeField] private float maximumFallSpeed = 80f;
 
     [Header("ROPE CLIMBING")] [SerializeField]
     private RopeController rope;
 
     [SerializeField] private FixedJoint2D ropeJoint;
-    [SerializeField] private float ropeClimbingSpeed;
+    [SerializeField] private float ropeClimbingSpeed = 1.5f;
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
 
