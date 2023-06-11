@@ -11,9 +11,11 @@ public class Water : MonoBehaviour {
         var player = other.gameObject.GetComponent<BetterPlayerMovement>();
 
         if (player == null) {
-            Debug.LogError("Player has no PlayerController component", this);
+            Debug.LogError("Player has no BetterPlayerMovement component", this);
             return;
         }
+
+        player.setInWater(true);
 
         Debug.Log("InWater is set to true");
     }
@@ -23,11 +25,13 @@ public class Water : MonoBehaviour {
             var player = other.gameObject.GetComponent<BetterPlayerMovement>();
 
             if (player == null) {
-                Debug.LogError("Player has no PlayerController component", this);
+                Debug.LogError("Player has no BetterPlayerMovement component", this);
                 return;
             }
 
-
+            if (!player.isInWater()) {
+                player.setInWater(true);
+            }
         }
 
         if (other.gameObject.CompareTag("Log")) {
@@ -50,11 +54,11 @@ public class Water : MonoBehaviour {
             var player = other.gameObject.GetComponent<BetterPlayerMovement>();
 
             if (player == null) {
-                Debug.LogError("Player has no PlayerController component", this);
+                Debug.LogError("Player has no BetterPlayerMovement component", this);
                 return;
             }
 
-
+            player.setInWater(false);
         }
 
         if (other.gameObject.CompareTag("Log")) {

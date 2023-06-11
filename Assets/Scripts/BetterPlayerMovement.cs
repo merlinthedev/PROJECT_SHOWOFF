@@ -69,7 +69,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         ledgeGrab();
         pushObject();
         ropeMovement();
-        
+
         updateVisuals();
 
         isGrounded = false;
@@ -209,9 +209,10 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool canMove = true;
     private float lastLedgeGrab;
 
+
     private void ledgeGrab() {
         // if we are grounded, return
-        if (isGrounded || isOnRope) return;
+        if (inWater || isGrounded || isOnRope) return;
 
         float playerRadius = m_CapsuleCollider2D.size.x / 2f;
 
@@ -310,6 +311,22 @@ public class BetterPlayerMovement : MonoBehaviour {
     [Header("ROPE")] private float lastRopeRelease;
     private bool isOnRope = false;
     private float ropeProgress;
+
+    /*
+     *
+     * WATER STUFF
+     * 
+     */
+    
+    public bool inWater = false; // Move to water
+
+    public bool isInWater() {
+        return inWater;
+    }
+
+    public void setInWater(bool value) {
+        inWater = value;
+    }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Rope")) {
