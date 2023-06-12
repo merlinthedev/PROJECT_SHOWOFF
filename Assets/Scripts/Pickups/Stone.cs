@@ -110,6 +110,8 @@ public class Stone : AProjectile, IPickup {
 
         m_Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
         m_Rigidbody2D.velocity = Vector2.zero;
+        m_Rigidbody2D.rotation = -45f;
+        m_Rigidbody2D.angularVelocity = 0f;
 
 
         m_Collider2D.excludeLayers = 0;
