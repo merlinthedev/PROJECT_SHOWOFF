@@ -22472,6 +22472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1120323132}
   - component: {fileID: 1120323131}
+  - component: {fileID: 1120323133}
   m_Layer: 0
   m_Name: UTILS
   m_TagString: Untagged
@@ -22507,6 +22508,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1120323133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120323130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313d172f577270f4db921c5c663fe5c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stonePrefab: {fileID: 5354939265296288652, guid: 1d1e39400847a3e4a8ccd88ecf7e8266, type: 3}
+  stoneSpawnPoint: {fileID: 652680202}
+  stoneSpawnOffset: {x: 0.27, y: 0.12, z: 0}
+  rockCheeseAction:
+    m_Name: Rock Cheese
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e756aba5-e728-4fa3-853a-eee53dd74c86
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3d097185-8057-4517-80e9-e9cafb0c5d83
+      m_Path: <Keyboard>/p
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rock Cheese
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &1124543740
 GameObject:
   m_ObjectHideFlags: 0
