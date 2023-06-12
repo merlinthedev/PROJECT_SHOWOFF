@@ -1,7 +1,11 @@
 using System;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class BetterPlayerMovement : MonoBehaviour {
     [Header("HORIZONTAL MOVEMENT")] [SerializeField]
@@ -12,9 +16,19 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float maximumHorizontalSpeed = 4f;
     [SerializeField] private float groundAcceleration = 20f;
     [SerializeField] private float airAcceleration = 10f;
+    [SerializeField] private float rbStickStrength = 0.5f;
     [SerializeField] private float maximumGroundAngle = 20f;
     [SerializeField] private bool affectGroundHorizontalOnly = true;
     [SerializeField] private LayerMask groundLayer;
+    private bool hasJumpBuffer => isGrounded && (jumpButtonPressedTime + jumpBufferTime > Time.time);
+    private bool hasCoyoteJump => !isGrounded && (lastGroundedTime + coyoteTime > Time.time);
+
+    [Header("GROUNDCHECK")] [SerializeField]
+    private int rayCount = 3;
+
+    [SerializeField] private float rayLength = 0.1f;
+    [SerializeField] private float rayWidth = 0.3f;
+    [SerializeField] private Vector2 rayOffset;
 
     [Header("LEDGE GRABBING")] [SerializeField]
     private float ledgeGrabDistance;
@@ -22,6 +36,8 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float ledgeGrabHeight = 1.2f;
     [SerializeField] private float ledgeGrabDelay = 0f;
     [SerializeField] private float ledgeFreezeTime = 0.5f;
+    private bool canMove = true;
+    private float lastLedgeGrab;
 
     [Header("PUSHING")] [SerializeField] private float pushForce = 5f;
     [SerializeField] private float maxObjectMass = 20f;
@@ -34,6 +50,12 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float jumpBufferTime = 1.2f;
     [SerializeField] private float maximumFallSpeed = 80f;
 
+    public JumpState currentJumpState = JumpState.Falling;
+    private float jumpStartHeight;
+    private float jumpStartTime;
+
+    public bool noJumpAllowed = false;
+
     [Header("ROPE CLIMBING")] [SerializeField]
     private RopeController rope;
 
@@ -44,6 +66,17 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     [Header("VISUAL")] [SerializeField] private Transform visualTransform;
     private Vector3 initialScale;
+
+    [Header("DEBUG")] public bool isGrounded = false;
+    public float slopeAngle = 180;
+    private Vector2 slopeNormal = Vector2.up;
+    private float lastGroundedTime = 0f;
+    private Collider2D lastGroundedCollider;
+
+    [Header("ROPE")] private float lastRopeRelease;
+    private bool isOnRope = false;
+    private float ropeProgress;
+
 
     private void updateVisuals() {
         if (visualTransform == null) return;
@@ -57,10 +90,16 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void Start() {
         initialScale = visualTransform.localScale;
+        m_PlayerPhysicsMaterial2D.friction = 0f;
     }
 
-
     private void FixedUpdate() {
+        //cast rays for ground check if our collider isn't touching anything,
+        //used because we can slightly jump when walking over small rocks or ledges
+        if (!isGrounded) {
+            shootGroundRays();
+        }
+
         if (canMove) {
             horizontalMovement();
             jumping();
@@ -72,6 +111,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         updateVisuals();
 
+        //reset our grounded state for the next physics step
         isGrounded = false;
         slopeAngle = 180;
         jumpButtonPressedThisFrame = false;
@@ -91,18 +131,17 @@ public class BetterPlayerMovement : MonoBehaviour {
         objectRigidbody.AddForce(new Vector2(movementInput.x * pushForce * (maxObjectMass / objectRigidbody.mass), 0));
     }
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(new Vector2(transform.position.x, transform.position.y - m_CapsuleCollider2D.size.y / 3f),
-            Vector2.right * objectDistance);
-    }
-
-
     private void horizontalMovement() {
-        if (isGrounded) {
-            //m_PlayerPhysicsMaterial2D.friction = 1f;
-        } else {
-            m_PlayerPhysicsMaterial2D.friction = 0f;
+        if (lastGroundedCollider != null) {
+            Debug.Log("Last grounded collider: " + lastGroundedCollider.name);
+            if (isGrounded && lastGroundedCollider.attachedRigidbody != null) {
+                Debug.Log("Doing RB velocity stuff...");
+                Vector3 rbVelocity = lastGroundedCollider.attachedRigidbody.velocity;
+                if (rbVelocity.magnitude > 0.1f) {
+                    Vector2 rbStick = new Vector2(rbVelocity.x, rbVelocity.y) * rbStickStrength;
+                    m_Rigidbody2D.AddForce(rbStick, ForceMode2D.Force);
+                }
+            }
         }
 
         float rawXMovement = movementInput.x;
@@ -132,12 +171,6 @@ public class BetterPlayerMovement : MonoBehaviour {
         Jumping,
         Falling
     }
-
-    public JumpState currentJumpState = JumpState.Falling;
-    private float jumpStartHeight;
-    private float jumpStartTime;
-
-    public bool noJumpAllowed = false;
 
     private void jumping() {
         switch (currentJumpState) {
@@ -202,12 +235,6 @@ public class BetterPlayerMovement : MonoBehaviour {
                 break;
         }
     }
-
-    private bool hasJumpBuffer => isGrounded && (jumpButtonPressedTime + jumpBufferTime > Time.time);
-    private bool hasCoyoteJump => !isGrounded && (lastGroundedTime + coyoteTime > Time.time);
-
-    private bool canMove = true;
-    private float lastLedgeGrab;
 
 
     private void ledgeGrab() {
@@ -302,22 +329,13 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
     }
 
-    [Header("DEBUG")] public bool isGrounded = false;
-    public float slopeAngle = 180;
-    private Vector2 slopeNormal = Vector2.up;
-    private float lastGroundedTime = 0f;
-
-
-    [Header("ROPE")] private float lastRopeRelease;
-    private bool isOnRope = false;
-    private float ropeProgress;
 
     /*
      *
      * WATER STUFF
      * 
      */
-    
+
     public bool inWater = false; // Move to water
 
     public bool isInWater() {
@@ -326,6 +344,27 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     public void setInWater(bool value) {
         inWater = value;
+    }
+
+    private void shootGroundRays() {
+        float raySpacing = rayWidth / (rayCount - 1);
+        float rayStart = -rayWidth / 2f;
+
+        for (int i = 0; i < rayCount; i++) {
+            Vector2 rayOrigin = new Vector2(rayStart + i * raySpacing, 0) + (Vector2)transform.position + rayOffset;
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength, groundLayer);
+            Debug.DrawRay(rayOrigin, Vector2.down * rayLength, Color.red);
+            if (hit.collider != null) {
+                if (Utils.IsInLayerMask(hit.collider.gameObject.layer, groundLayer)) {
+                    isGrounded = true;
+                    lastGroundedTime = Time.time;
+                    slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+                    slopeNormal = hit.normal;
+                    lastGroundedCollider = hit.collider;
+                    return;
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -365,6 +404,7 @@ public class BetterPlayerMovement : MonoBehaviour {
             if (newSlopeAngle < slopeAngle) {
                 slopeAngle = newSlopeAngle;
                 slopeNormal = groundNormal;
+                lastGroundedCollider = other.collider;
             }
 
             lastGroundedTime = Time.time;
@@ -394,6 +434,23 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         if (context.canceled) {
             jumpButtonPressed = false;
+        }
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(new Vector2(transform.position.x,
+                transform.position.y - m_CapsuleCollider2D.size.y / 3f + m_CapsuleCollider2D.offset.y),
+            Vector2.right * objectDistance);
+
+        Gizmos.color = Color.magenta;
+        // Draw ground rays
+        float raySpacing = rayWidth / (rayCount - 1);
+        float rayStart = -rayWidth / 2f;
+
+        for (int i = 0; i < rayCount; i++) {
+            Vector2 rayOrigin = new Vector2(rayStart + i * raySpacing, 0) + (Vector2)transform.position + rayOffset;
+            Gizmos.DrawRay(rayOrigin, Vector2.down * rayLength);
         }
     }
 }
