@@ -7,6 +7,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private Player player;
+
     [Header("HORIZONTAL MOVEMENT")] [SerializeField]
     public Rigidbody2D m_Rigidbody2D;
 
@@ -118,7 +119,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         //reset our grounded state for the next physics step
         isGrounded = false;
-        slopeAngle = 180;
+        slopeAngle = 300;
         jumpButtonPressedThisFrame = false;
     }
 
@@ -217,7 +218,7 @@ public class BetterPlayerMovement : MonoBehaviour {
             case JumpState.Jumping:
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
                 bool endJump = !jumpButtonPressed ||
-                               slopeAngle > 90 ||
+                               slopeAngle is > 90 and < 200 ||
                                Time.time > jumpStartTime + maxJumpTime ||
                                transform.position.y > jumpStartHeight + maxJumpHeight;
                 if (endJump) {
@@ -294,10 +295,10 @@ public class BetterPlayerMovement : MonoBehaviour {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
+        {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner,
-                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             LeanTween.move(gameObject, path, ledgeFreezeTime);
@@ -307,7 +308,8 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
+            {
                 canMove = true;
                 m_Rigidbody2D.velocity = Vector2.zero;
             });
