@@ -6,6 +6,8 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 public class BetterPlayerMovement : MonoBehaviour {
+    [SerializeField] private Player player;
+
     [Header("HORIZONTAL MOVEMENT")] [SerializeField]
     public Rigidbody2D m_Rigidbody2D;
 
@@ -58,7 +60,9 @@ public class BetterPlayerMovement : MonoBehaviour {
     [Header("ROPE CLIMBING")] [SerializeField]
     private RopeController rope;
 
-    [SerializeField] private FixedJoint2D ropeJoint;
+    [SerializeField] private HingeJoint2D ropeJoint;
+    [SerializeField] private Rigidbody2D ropeFollower;
+    [SerializeField] private Joint2D ropeSpringJoint;
     [SerializeField] private float ropeClimbingSpeed = 1.5f;
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
@@ -82,7 +86,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         if (visualTransform == null) return;
 
         IsGrounded = isGrounded;
-        
+
         if (movementInput.x > 0) {
             visualTransform.localScale = initialScale;
         } else if (movementInput.x < 0) {
@@ -115,13 +119,14 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         //reset our grounded state for the next physics step
         isGrounded = false;
-        slopeAngle = 180;
+        slopeAngle = 300;
         jumpButtonPressedThisFrame = false;
     }
 
     private void pushObject() {
         if (movementInput.x == 0) return;
-        Vector2 rayPosition = new Vector2(transform.position.x, transform.position.y - m_CapsuleCollider2D.size.y / 3f);
+        Vector2 rayPosition = new Vector2(transform.position.x,
+            transform.position.y - m_CapsuleCollider2D.size.y / 3f + m_CapsuleCollider2D.offset.y);
         RaycastHit2D forwardCheck =
             Physics2D.Raycast(rayPosition, new Vector2(movementInput.x, 0), objectDistance, groundLayer);
 
@@ -135,9 +140,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void horizontalMovement() {
         if (lastGroundedCollider != null) {
-            Debug.Log("Last grounded collider: " + lastGroundedCollider.name);
             if (isGrounded && lastGroundedCollider.attachedRigidbody != null) {
-                Debug.Log("Doing RB velocity stuff...");
                 Vector3 rbVelocity = lastGroundedCollider.attachedRigidbody.velocity;
                 if (rbVelocity.magnitude > 0.1f) {
                     Vector2 rbStick = new Vector2(rbVelocity.x, rbVelocity.y) * rbStickStrength;
@@ -191,6 +194,8 @@ public class BetterPlayerMovement : MonoBehaviour {
                         ropeJoint.enabled = false;
                         ropeJoint.connectedBody = null;
                         lastRopeRelease = Time.time;
+                        ropeSpringJoint.enabled = false;
+                        ropeFollower.bodyType = RigidbodyType2D.Kinematic;
 
                         if (movementInput.y >= 0) {
                             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
@@ -213,7 +218,7 @@ public class BetterPlayerMovement : MonoBehaviour {
             case JumpState.Jumping:
                 m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
                 bool endJump = !jumpButtonPressed ||
-                               slopeAngle > 90 ||
+                               slopeAngle is > 90 and < 200 ||
                                Time.time > jumpStartTime + maxJumpTime ||
                                transform.position.y > jumpStartHeight + maxJumpHeight;
                 if (endJump) {
@@ -290,10 +295,10 @@ public class BetterPlayerMovement : MonoBehaviour {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
+        {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner,
-                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             LeanTween.move(gameObject, path, ledgeFreezeTime);
@@ -303,7 +308,8 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
+            {
                 canMove = true;
                 m_Rigidbody2D.velocity = Vector2.zero;
             });
@@ -323,11 +329,9 @@ public class BetterPlayerMovement : MonoBehaviour {
                 ropeProgress = Mathf.Clamp01(ropeProgress);
 
                 Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
-                m_Rigidbody2D.position = ropePosition;
+                ropeFollower.position = ropePosition;
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
             }
-
-            return;
         }
     }
 
@@ -363,6 +367,10 @@ public class BetterPlayerMovement : MonoBehaviour {
                     slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
                     slopeNormal = hit.normal;
                     lastGroundedCollider = hit.collider;
+
+                    //Set animation
+                    player.GetPlayerAnimatorController().Ground();
+
                     return;
                 }
             }
@@ -378,12 +386,16 @@ public class BetterPlayerMovement : MonoBehaviour {
                 rope = other.gameObject.GetComponentInParent<RopeController>();
                 //set how far we are along the rope
                 ropeProgress = rope.GetRopeProgress(transform.position);
-                LeanTween.move(this.gameObject, rope.GetRopePoint(ropeProgress), 0.1f);
+                //LeanTween.move(this.gameObject, rope.GetRopePoint(ropeProgress), 0.1f);
                 //fix our joint to the rope
                 ropeJoint.enabled = true;
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
                 //set the player's onRope bool to true
                 isOnRope = true;
+
+                ropeSpringJoint.enabled = true;
+                ropeFollower.bodyType = RigidbodyType2D.Dynamic;
+                ropeFollower.position = rope.GetRopePoint(ropeProgress);
             }
         }
     }
@@ -432,6 +444,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         if (context.performed) {
             jumpButtonPressed = true;
+            player.GetPlayerAnimatorController().Jump();
         }
 
         if (context.canceled) {

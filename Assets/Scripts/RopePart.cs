@@ -35,4 +35,12 @@ public class RopePart : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         joint = GetComponent<HingeJoint2D>();
     }
+
+    public void Lock() {
+        Root.LockRopePart(this);
+    }
+
+    public void Unlock() {
+        Root.UnlockRopePart(this);
+    }
 }

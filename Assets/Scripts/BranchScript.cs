@@ -8,6 +8,7 @@ public class BranchScript : MonoBehaviour
     public bool gotBonked = false;
     public bool fade = false;
     [SerializeField] private GameObject enableThis;
+    [SerializeField] private RopePart ropePart;
 
     private void FixedUpdate() {
 
@@ -19,7 +20,12 @@ public class BranchScript : MonoBehaviour
             for (int i = 0; i < transform.childCount; i++) 
             {
                 if (transform.GetChild(i).GetComponent<BranchScript>().gotBonked) {
-                    if (enableThis != null) enableThis.gameObject.SetActive(true);
+                    if (enableThis != null) {
+                        enableThis.gameObject.SetActive(true);
+                    }
+                    if (ropePart != null) {
+                        ropePart.Unlock();
+                    }
                     Destroy();
                 }
             }
@@ -36,7 +42,7 @@ public class BranchScript : MonoBehaviour
 
                 Destroy(gameObject);
             }
-            // Debug.Log(tmp.a);
+            //Debug.Log(tmp.a);
         }
     }
     //destroy all the fixed joints and fade out each individual the branch
