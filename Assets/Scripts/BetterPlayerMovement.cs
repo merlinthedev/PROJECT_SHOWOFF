@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
@@ -36,6 +37,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float ledgeGrabHeight = 1.2f;
     [SerializeField] private float ledgeGrabDelay = 0f;
     [SerializeField] private float ledgeFreezeTime = 0.5f;
+    [SerializeField] private UnityEvent onLedgeGrab;
     private bool canMove = true;
     private float lastLedgeGrab;
 
@@ -192,6 +194,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                     if (isOnRope) {
                         isOnRope = false;
                         ropeJoint.enabled = false;
+                        player.GetPlayerAnimatorController().ResetSpeed();
                         ropeJoint.connectedBody = null;
                         lastRopeRelease = Time.time;
                         ropeSpringJoint.enabled = false;
@@ -321,6 +324,21 @@ public class BetterPlayerMovement : MonoBehaviour {
         });
     }
 
+    public Vector2 MoveInput
+    {
+        get {
+            return movementInput;
+        }
+    }
+
+    public bool IsClimbing
+    {
+        get {
+            return isOnRope;
+        }
+
+    }
+
     private void ropeMovement() {
         if (isOnRope) {
             if (movementInput.y != 0) {
@@ -392,6 +410,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
                 //set the player's onRope bool to true
                 isOnRope = true;
+                player.GetPlayerAnimatorController().RopeClimb();
 
                 ropeSpringJoint.enabled = true;
                 ropeFollower.bodyType = RigidbodyType2D.Dynamic;
