@@ -82,7 +82,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         if (visualTransform == null) return;
 
         IsGrounded = isGrounded;
-        
+
         if (movementInput.x > 0) {
             visualTransform.localScale = initialScale;
         } else if (movementInput.x < 0) {
@@ -121,7 +121,8 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void pushObject() {
         if (movementInput.x == 0) return;
-        Vector2 rayPosition = new Vector2(transform.position.x, transform.position.y - m_CapsuleCollider2D.size.y / 3f);
+        Vector2 rayPosition = new Vector2(transform.position.x,
+            transform.position.y - m_CapsuleCollider2D.size.y / 3f + m_CapsuleCollider2D.offset.y);
         RaycastHit2D forwardCheck =
             Physics2D.Raycast(rayPosition, new Vector2(movementInput.x, 0), objectDistance, groundLayer);
 
