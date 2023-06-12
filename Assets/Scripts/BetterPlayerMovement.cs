@@ -58,7 +58,9 @@ public class BetterPlayerMovement : MonoBehaviour {
     [Header("ROPE CLIMBING")] [SerializeField]
     private RopeController rope;
 
-    [SerializeField] private FixedJoint2D ropeJoint;
+    [SerializeField] private HingeJoint2D ropeJoint;
+    [SerializeField] private Rigidbody2D ropeFollower;
+    [SerializeField] private SpringJoint2D ropeSpringJoint;
     [SerializeField] private float ropeClimbingSpeed = 1.5f;
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
@@ -192,6 +194,8 @@ public class BetterPlayerMovement : MonoBehaviour {
                         ropeJoint.enabled = false;
                         ropeJoint.connectedBody = null;
                         lastRopeRelease = Time.time;
+                        ropeSpringJoint.enabled = false;
+                        ropeFollower.bodyType = RigidbodyType2D.Kinematic;
 
                         if (movementInput.y >= 0) {
                             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
@@ -324,11 +328,9 @@ public class BetterPlayerMovement : MonoBehaviour {
                 ropeProgress = Mathf.Clamp01(ropeProgress);
 
                 Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
-                m_Rigidbody2D.position = ropePosition;
+                ropeFollower.position = ropePosition;
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
             }
-
-            return;
         }
     }
 
@@ -379,12 +381,16 @@ public class BetterPlayerMovement : MonoBehaviour {
                 rope = other.gameObject.GetComponentInParent<RopeController>();
                 //set how far we are along the rope
                 ropeProgress = rope.GetRopeProgress(transform.position);
-                LeanTween.move(this.gameObject, rope.GetRopePoint(ropeProgress), 0.1f);
+                //LeanTween.move(this.gameObject, rope.GetRopePoint(ropeProgress), 0.1f);
                 //fix our joint to the rope
                 ropeJoint.enabled = true;
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
                 //set the player's onRope bool to true
                 isOnRope = true;
+
+                ropeSpringJoint.enabled = true;
+                ropeFollower.bodyType = RigidbodyType2D.Dynamic;
+                ropeFollower.position = rope.GetRopePoint(ropeProgress);
             }
         }
     }
