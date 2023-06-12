@@ -130,6 +130,44 @@ public class RopeController : MonoBehaviour {
         return -1;
     }
 
+    public void LockRopePart(RopePart part) {
+        //check part is in our chain
+        if (!ropeParts.Contains(part)) return;
+        //check part is not already locked
+        if (part.isAnchored) return;
+        //check part is not the first part
+        if (part == ropeParts[0]) return;
+
+        //create rope anchor on rope position
+        var anchor = new GameObject(part.gameObject.name + " Anchor");
+        anchor.transform.parent = part.transform;
+        anchor.transform.position = part.transform.position;
+        
+        //create joint
+        var joint = anchor.AddComponent<HingeJoint2D>();
+        joint.autoConfigureConnectedAnchor = false;
+        joint.connectedBody = part.rigidBody;
+        joint.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        joint.anchor = Vector2.zero;
+        joint.connectedAnchor = Vector2.zero;
+
+
+        part.joint = joint;
+        part.isAnchored = true;
+    }
+
+    public void UnlockRopePart(RopePart part) {
+        //check part is in our chain
+        if (!ropeParts.Contains(part)) return;
+        //check part is not already unlocked
+        if (!part.isAnchored) return;
+
+        //destroy joint
+        DestroyImmediate(part.joint.gameObject);
+        part.joint = null;
+        part.isAnchored = false;
+    }
+
 #if UNITY_EDITOR
 
     public void ClearRope() {
