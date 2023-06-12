@@ -145,6 +145,8 @@ public class RopeControllerEditor : Editor {
                 ropePart.joint = ropePart.AddComponent<HingeJoint2D>();
             ropePart.rigidBody = ropePart.GetComponent<Rigidbody2D>();
             ropePart.Root = ropeTarget;
+            cc.isTrigger = true;
+            ropePart.tag = "Rope";
             if (lastPart != null) {
                 lastPart.joint.connectedBody = ropePart.rigidBody;
             }
