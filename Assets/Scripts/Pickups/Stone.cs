@@ -48,7 +48,7 @@ public class Stone : AProjectile, IPickup {
     private IEnumerator checkForGroundCollision() {
         while (true) {
             Debug.Log("Checking ground collision.");
-            if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+            if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Grass"))) {
                 Debug.Log("Stone collided with ground.");
                 preparePlayerPickup();
             }
@@ -110,6 +110,8 @@ public class Stone : AProjectile, IPickup {
 
         m_Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
         m_Rigidbody2D.velocity = Vector2.zero;
+        m_Rigidbody2D.rotation = -45f;
+        m_Rigidbody2D.angularVelocity = 0f;
 
 
         m_Collider2D.excludeLayers = 0;

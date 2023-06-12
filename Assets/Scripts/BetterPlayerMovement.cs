@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -18,28 +19,45 @@ public class BetterPlayerMovement : MonoBehaviour {
     [Header("LEDGE GRABBING")] [SerializeField]
     private float ledgeGrabDistance;
 
-    [SerializeField] private float ledgeGrabHeight;
-    [SerializeField] private float ledgeGrabDelay;
-    [SerializeField] private float ledgeFreezeTime;
+    [SerializeField] private float ledgeGrabHeight = 1.2f;
+    [SerializeField] private float ledgeGrabDelay = 0f;
+    [SerializeField] private float ledgeFreezeTime = 0.5f;
 
-    [Header("PUSHING")] [SerializeField] private float pushForce;
-    [SerializeField] private float maxObjectMass;
-    [SerializeField] private float objectDistance;
+    [Header("PUSHING")] [SerializeField] private float pushForce = 5f;
+    [SerializeField] private float maxObjectMass = 20f;
+    [SerializeField] private float objectDistance = 0.7f;
 
-    [Header("JUMPING")] [SerializeField] private float maxJumpHeight;
-    [SerializeField] private float maxJumpTime;
-    [SerializeField] private float coyoteTime;
-    [SerializeField] private float jumpSpeed;
-    [SerializeField] private float jumpBufferTime;
-    [SerializeField] private float maximumFallSpeed;
+    [Header("JUMPING")] [SerializeField] private float maxJumpHeight = 2f;
+    [SerializeField] private float maxJumpTime = 0.4f;
+    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private float jumpSpeed = 12f;
+    [SerializeField] private float jumpBufferTime = 1.2f;
+    [SerializeField] private float maximumFallSpeed = 80f;
 
     [Header("ROPE CLIMBING")] [SerializeField]
     private RopeController rope;
 
     [SerializeField] private FixedJoint2D ropeJoint;
-    [SerializeField] private float ropeClimbingSpeed;
+    [SerializeField] private float ropeClimbingSpeed = 1.5f;
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
+
+    [Header("VISUAL")] [SerializeField] private Transform visualTransform;
+    private Vector3 initialScale;
+
+    private void updateVisuals() {
+        if (visualTransform == null) return;
+
+        if (movementInput.x > 0) {
+            visualTransform.localScale = initialScale;
+        } else if (movementInput.x < 0) {
+            visualTransform.localScale = Vector3.Scale(initialScale, new Vector3(-1, 1, 1));
+        }
+    }
+
+    private void Start() {
+        initialScale = visualTransform.localScale;
+    }
 
 
     private void FixedUpdate() {
@@ -51,6 +69,8 @@ public class BetterPlayerMovement : MonoBehaviour {
         ledgeGrab();
         pushObject();
         ropeMovement();
+
+        updateVisuals();
 
         isGrounded = false;
         slopeAngle = 180;
@@ -123,7 +143,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         switch (currentJumpState) {
             case JumpState.CanJump:
                 if (noJumpAllowed) return;
-                
+
                 bool canJump = (hasJumpBuffer && jumpButtonPressed) ||
                                (hasCoyoteJump && jumpButtonPressedThisFrame) ||
                                (isOnRope && jumpButtonPressedThisFrame);
@@ -189,9 +209,10 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool canMove = true;
     private float lastLedgeGrab;
 
+
     private void ledgeGrab() {
         // if we are grounded, return
-        if (isGrounded) return;
+        if (inWater || isGrounded || isOnRope) return;
 
         float playerRadius = m_CapsuleCollider2D.size.x / 2f;
 
@@ -240,10 +261,10 @@ public class BetterPlayerMovement : MonoBehaviour {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
-        {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner,
+                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             LeanTween.move(gameObject, path, ledgeFreezeTime);
@@ -253,8 +274,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
-            {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
                 canMove = true;
                 m_Rigidbody2D.velocity = Vector2.zero;
             });
@@ -291,6 +311,22 @@ public class BetterPlayerMovement : MonoBehaviour {
     [Header("ROPE")] private float lastRopeRelease;
     private bool isOnRope = false;
     private float ropeProgress;
+
+    /*
+     *
+     * WATER STUFF
+     * 
+     */
+    
+    public bool inWater = false; // Move to water
+
+    public bool isInWater() {
+        return inWater;
+    }
+
+    public void setInWater(bool value) {
+        inWater = value;
+    }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Rope")) {

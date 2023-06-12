@@ -11,10 +11,10 @@ public class Utils : MonoBehaviour {
             Destroy(this);
         }
 
-        mainCamRef.SetActive(false);
-        InvokeDelayed(0.2f, () => {
-            mainCamRef.SetActive(true);
-        });
+        // mainCamRef.SetActive(false);
+        // InvokeDelayed(0.2f, () => {
+        //     mainCamRef.SetActive(true);
+        // });
     }
 
     // Refactor the code below to also take parameters for the System.Action
