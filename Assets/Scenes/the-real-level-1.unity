@@ -734,6 +734,8 @@ MonoBehaviour:
     ropePartCount: 2
     ropeSpriteType: 1
     ropeSprite: {fileID: 21300000, guid: 783ca260c5b7e234bb0f2fda671747f1, type: 3}
+    ropeStartSprite: {fileID: 0}
+    ropeEndSprite: {fileID: 0}
     initialRopeCurveAngle: 0
     SpriteSize: {x: 0.02, y: 0.028}
     SpriteOffset: {x: 0, y: 0.51}
@@ -2044,6 +2046,8 @@ MonoBehaviour:
     ropePartCount: 3
     ropeSpriteType: 1
     ropeSprite: {fileID: 21300000, guid: 783ca260c5b7e234bb0f2fda671747f1, type: 3}
+    ropeStartSprite: {fileID: 0}
+    ropeEndSprite: {fileID: 0}
     initialRopeCurveAngle: 5
     SpriteSize: {x: 0.02, y: 0.04}
     SpriteOffset: {x: 0, y: 0.61}
@@ -5090,6 +5094,8 @@ MonoBehaviour:
     ropePartCount: 8
     ropeSpriteType: 1
     ropeSprite: {fileID: 21300000, guid: 783ca260c5b7e234bb0f2fda671747f1, type: 3}
+    ropeStartSprite: {fileID: 0}
+    ropeEndSprite: {fileID: 0}
     initialRopeCurveAngle: 0
     SpriteSize: {x: 0.02, y: 0.028}
     SpriteOffset: {x: 0, y: 0.51}
@@ -5970,6 +5976,8 @@ MonoBehaviour:
     ropePartCount: 12
     ropeSpriteType: 1
     ropeSprite: {fileID: 21300000, guid: 783ca260c5b7e234bb0f2fda671747f1, type: 3}
+    ropeStartSprite: {fileID: 0}
+    ropeEndSprite: {fileID: 0}
     initialRopeCurveAngle: 0
     SpriteSize: {x: 0.02, y: 0.0305}
     SpriteOffset: {x: 0, y: 0.51}
@@ -33030,6 +33038,8 @@ MonoBehaviour:
     ropePartCount: 6
     ropeSpriteType: 1
     ropeSprite: {fileID: 21300000, guid: 783ca260c5b7e234bb0f2fda671747f1, type: 3}
+    ropeStartSprite: {fileID: 0}
+    ropeEndSprite: {fileID: 0}
     initialRopeCurveAngle: 3
     SpriteSize: {x: 0.02, y: 0.028}
     SpriteOffset: {x: 0, y: 0.81}
@@ -48889,21 +48899,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3841797239795438667, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3841797239795438667, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.285
-      objectReference: {fileID: 0}
     - target: {fileID: 6584687516289294733, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 129.7912
+      value: 66.491196
       objectReference: {fileID: 0}
     - target: {fileID: 6584687516289294733, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 12.607175
+      value: 0.27390575
       objectReference: {fileID: 0}
     - target: {fileID: 8062336363924862780, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: pushForce
@@ -52130,6 +52132,8 @@ MonoBehaviour:
     ropePartCount: 3
     ropeSpriteType: 1
     ropeSprite: {fileID: 21300000, guid: 783ca260c5b7e234bb0f2fda671747f1, type: 3}
+    ropeStartSprite: {fileID: 0}
+    ropeEndSprite: {fileID: 0}
     initialRopeCurveAngle: 5
     SpriteSize: {x: 0.02, y: 0.04}
     SpriteOffset: {x: 0, y: 0.61}
