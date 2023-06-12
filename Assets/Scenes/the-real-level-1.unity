@@ -14722,17 +14722,6 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 1754438079511692130, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
   m_PrefabInstance: {fileID: 1640763525}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &652680210 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2111018729843764104, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-  m_PrefabInstance: {fileID: 1640763525}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f64198aebca8f45499c0315ea160e54e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &658922822
 GameObject:
   m_ObjectHideFlags: 0
@@ -45918,43 +45907,6 @@ Transform:
   m_Father: {fileID: 738047889}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1484918504 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2709152571416513576, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-  m_PrefabInstance: {fileID: 1640763525}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1484918507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484918504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42863e59521853d4db61209f6c328b97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundCheckLayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  footstepConfigs:
-  - tag: Grass
-    sound:
-      Guid:
-        Data1: -782530749
-        Data2: 1332893499
-        Data3: 795562412
-        Data4: 1397188922
-      Path: event:/Footstep Grass
-  - tag: Dirt
-    sound:
-      Guid:
-        Data1: -1228697079
-        Data2: 1179121072
-        Data3: -2008264044
-        Data4: -424158088
-      Path: event:/Footstep Gritty
 --- !u!1 &1488451257
 GameObject:
   m_ObjectHideFlags: 0
@@ -52457,7 +52409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613154995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -51.149998, y: 13.01, z: -8.088583}
+  m_LocalPosition: {x: 5.33, y: 20.04, z: -8.088583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -52479,11 +52431,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.6
+      value: 2.88
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13
+      value: 20.03
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -52517,34 +52469,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8062336363924862780, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 652680210}
-    - target: {fileID: 8062336363924862780, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: jumpSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062336363924862780, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: pushForce
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062336363924862780, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: maxJumpHeight
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062336363924862780, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: airAcceleration
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062336363924862780, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: maximumHorizontalSpeed
-      value: 3.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062336363924862780, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: gravityFallingMultiplier
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8445435830689493568, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_Name
       value: BetterPlayer
@@ -52552,10 +52476,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2709152571416513576, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1484918507}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
 --- !u!1 &1641390756
 GameObject:
@@ -57892,7 +57813,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928626197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -53.6, y: 14.14, z: -8}
+  m_LocalPosition: {x: 2.88, y: 21.17, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

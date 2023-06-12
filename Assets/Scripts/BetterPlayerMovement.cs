@@ -62,7 +62,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     [SerializeField] private HingeJoint2D ropeJoint;
     [SerializeField] private Rigidbody2D ropeFollower;
-    [SerializeField] private SpringJoint2D ropeSpringJoint;
+    [SerializeField] private Joint2D ropeSpringJoint;
     [SerializeField] private float ropeClimbingSpeed = 1.5f;
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;

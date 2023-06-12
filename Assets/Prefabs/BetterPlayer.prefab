@@ -105,9 +105,9 @@ HingeJoint2D:
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
+  m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.14, y: -0.59}
+  m_ConnectedAnchor: {x: 2.88, y: 20.03}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 2528290859260353425}
   - component: {fileID: 4218182374741690654}
   - component: {fileID: 1754438079511692130}
-  - component: {fileID: 1015234556790130000}
+  - component: {fileID: 4342844150647429833}
   m_Layer: 3
   m_Name: BetterPlayer
   m_TagString: Player
@@ -528,10 +528,10 @@ MonoBehaviour:
   pushForce: 0
   maxObjectMass: 30
   objectDistance: 1
-  maxJumpHeight: 2
-  maxJumpTime: 0.4
+  maxJumpHeight: 5
+  maxJumpTime: 0.2
   coyoteTime: 0.2
-  jumpSpeed: 10
+  jumpSpeed: 6
   jumpBufferTime: 0.2
   maximumFallSpeed: 80
   gravityFallingMultiplier: 2
@@ -540,7 +540,7 @@ MonoBehaviour:
   rope: {fileID: 0}
   ropeJoint: {fileID: 4932723516212218009}
   ropeFollower: {fileID: 1432543258264753985}
-  ropeSpringJoint: {fileID: 1015234556790130000}
+  ropeSpringJoint: {fileID: 4342844150647429833}
   ropeClimbingSpeed: 1.5
   ropeGrabTimeout: 0.5
   jumpHorizontalImpulse: 0
@@ -674,8 +674,8 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!231 &1015234556790130000
-SpringJoint2D:
+--- !u!232 &4342844150647429833
+DistanceJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -693,8 +693,7 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
-  m_DampingRatio: 1
-  m_Frequency: 3
+  m_MaxDistanceOnly: 0
 --- !u!1 &8700646192056531586
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +796,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 2.9458008, y: 3.2224693}
+  m_ConnectedAnchor: {x: 59.4258, y: 10.25247}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1001 &1742096226487840466
@@ -1140,6 +1139,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2100744883775831063}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4574898549456092188}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
 --- !u!1 &2709152571416513576 stripped
 GameObject:
@@ -1168,6 +1170,38 @@ Animator:
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2100744883775831063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709152571416513576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42863e59521853d4db61209f6c328b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundCheckLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  footstepConfigs:
+  - tag: Grass
+    sound:
+      Guid:
+        Data1: -782530749
+        Data2: 1332893499
+        Data3: 795562412
+        Data4: 1397188922
+      Path: event:/Footstep Grass
+  - tag: Dirt
+    sound:
+      Guid:
+        Data1: -1228697079
+        Data2: 1179121072
+        Data3: -2008264044
+        Data4: -424158088
+      Path: event:/Footstep Gritty
+--- !u!114 &4574898549456092188
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
