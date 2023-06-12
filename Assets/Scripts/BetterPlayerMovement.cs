@@ -138,9 +138,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void horizontalMovement() {
         if (lastGroundedCollider != null) {
-            Debug.Log("Last grounded collider: " + lastGroundedCollider.name);
             if (isGrounded && lastGroundedCollider.attachedRigidbody != null) {
-                Debug.Log("Doing RB velocity stuff...");
                 Vector3 rbVelocity = lastGroundedCollider.attachedRigidbody.velocity;
                 if (rbVelocity.magnitude > 0.1f) {
                     Vector2 rbStick = new Vector2(rbVelocity.x, rbVelocity.y) * rbStickStrength;

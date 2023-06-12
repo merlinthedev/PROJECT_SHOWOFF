@@ -10,7 +10,7 @@ public class RopeController : MonoBehaviour {
 
     public float RopeLength { get; private set; }
 
-    [SerializeField] float ropeDamping = 0f;
+    [SerializeField] float ropeDamping = 1f;
     [HideInInspector]
     float ropeStiffness = 0f;
     [SerializeField] float climbSpeedMultiplier = 1f;
