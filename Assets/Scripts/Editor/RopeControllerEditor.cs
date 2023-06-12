@@ -18,9 +18,6 @@ public class RopeControllerEditor : Editor {
     RopePart selectedRopePart;
     bool draggingRopePart = false;
 
-    Sprite lockedSprite = null;
-    Sprite unlockedSprite = null;
-
 
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
@@ -75,8 +72,15 @@ public class RopeControllerEditor : Editor {
                     case RopeController.RopeSpriteType.None:
                         break;
                     case RopeController.RopeSpriteType.Segmented:
+                        currentConfig.ropeStartSprite = (Sprite)EditorGUILayout.ObjectField("Rope start sprite",
+                            currentConfig.ropeStartSprite, typeof(Sprite), false);
+                        
                         currentConfig.ropeSprite = (Sprite)EditorGUILayout.ObjectField("Rope sprite",
                             currentConfig.ropeSprite, typeof(Sprite), false);
+                        
+                        currentConfig.ropeEndSprite = (Sprite)EditorGUILayout.ObjectField("Rope end sprite",
+                            currentConfig.ropeEndSprite, typeof(Sprite), false);
+                        
                         currentConfig.SpriteSize =
                             EditorGUILayout.Vector2Field("Sprite scale", currentConfig.SpriteSize);
                         currentConfig.SpriteOffset =
@@ -163,7 +167,8 @@ public class RopeControllerEditor : Editor {
 
             //sprite stuff
             if (currentConfig.ropeSprite != null &&
-                currentConfig.ropeSpriteType == RopeController.RopeSpriteType.Segmented && i > 0) {
+                currentConfig.ropeSpriteType == RopeController.RopeSpriteType.Segmented &&
+                i > 0) {
                 var spriteObject = new GameObject("Sprite");
                 spriteObject.transform.parent = ropePart.transform;
                 spriteObject.transform.localPosition = localBoxCenter;
@@ -171,6 +176,8 @@ public class RopeControllerEditor : Editor {
                 spriteObject.transform.localScale = Vector3.one;
                 var spriteRenderer = spriteObject.AddComponent<SpriteRenderer>();
                 spriteRenderer.sprite = currentConfig.ropeSprite;
+                if (i == 1) spriteRenderer.sprite = currentConfig.ropeStartSprite;
+                if (i == currentConfig.ropePartCount - 1) spriteRenderer.sprite = currentConfig.ropeEndSprite;
                 spriteRenderer.drawMode = SpriteDrawMode.Sliced;
                 spriteRenderer.size = localBoxSize * 2;
             }
@@ -192,12 +199,6 @@ public class RopeControllerEditor : Editor {
 
 
             Vector2 localBoxCenter = Vector2.zero, localBoxSize = Vector2.zero;
-            //sprite stuff
-            if (currentConfig.ropeSprite != null) {
-                var spriteBounds = currentConfig.ropeSprite.bounds;
-                localBoxCenter = (Vector2)spriteBounds.center + currentConfig.SpriteOffset;
-                localBoxSize = (Vector2)spriteBounds.size * currentConfig.SpriteSize;
-            }
 
             for (int i = 0; i < currentConfig.ropePartCount; i++) {
                 Handles.color = Color.white;
@@ -207,6 +208,16 @@ public class RopeControllerEditor : Editor {
                 Handles.color = Color.green;
                 if (currentConfig.ropeSpriteType == RopeController.RopeSpriteType.Segmented &&
                     currentConfig.ropeSprite != null && i > 0) {
+                    
+                    //calculate sprite bounds stuff
+                    if (currentConfig.ropeSprite != null &&
+                        currentConfig.ropeStartSprite != null &&
+                        currentConfig.ropeEndSprite != null) {
+                        var sprite = (i == 1) ? (currentConfig.ropeStartSprite) : ((i == currentConfig.ropePartCount - 1) ? (currentConfig.ropeEndSprite) : (currentConfig.ropeSprite));
+                        var spriteBounds = sprite.bounds;
+                        localBoxCenter = (Vector2)spriteBounds.center + currentConfig.SpriteOffset;
+                        localBoxSize = (Vector2)spriteBounds.size * currentConfig.SpriteSize;
+                    }
                     //draw bounding box of potential sprite
                     Quaternion rotationOffset = Quaternion.Euler(0, 0, partAngle - currentConfig.initialRopeCurveAngle);
                     Vector2 center = partPosition + (Vector2)(rotationOffset * localBoxCenter);
@@ -322,9 +333,5 @@ public class RopeControllerEditor : Editor {
 
         editRopeMode = false;
         Tools.current = Tool.Move;
-
-
-        lockedSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Editor/Locked.png");
-        unlockedSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Editor/Unlocked.png");
     }
 }
