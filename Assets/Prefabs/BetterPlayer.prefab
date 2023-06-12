@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5751522060504696755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 52.101997, y: -12.129, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 739733301370520384}
-  lineWidth: 0.5
+  lineWidth: 0.25
 --- !u!120 &739733301370520384
 LineRenderer:
   serializedVersion: 2
@@ -136,8 +136,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1608351049
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Positions: []
   m_Parameters:
@@ -161,8 +161,8 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key1: {r: 1, g: 1, b: 1, a: 0.5142895}
+      key2: {r: 1, g: 1, b: 1, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -170,29 +170,29 @@ LineRenderer:
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 0
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
+      atime0: 31804
+      atime1: 56090
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 1
-    textureScale: {x: 2, y: 1}
+    textureScale: {x: 4, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
@@ -422,13 +422,18 @@ MonoBehaviour:
   m_CapsuleCollider2D: {fileID: 4218182374741690654}
   m_PlayerPhysicsMaterial2D: {fileID: 6200000, guid: 73a2f0ff6f465ef49922f8f44377e1eb, type: 2}
   maximumHorizontalSpeed: 5
-  groundAcceleration: 20
+  groundAcceleration: 70
   airAcceleration: 20
+  rbStickStrength: 0.5
   maximumGroundAngle: 50
   affectGroundHorizontalOnly: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 1216
+  rayCount: 3
+  rayLength: 0.22
+  rayWidth: 0.44
+  rayOffset: {x: 0, y: -0.19}
   ledgeGrabDistance: 0.6
   ledgeGrabHeight: 1.2
   ledgeGrabDelay: 0
@@ -442,15 +447,17 @@ MonoBehaviour:
   jumpSpeed: 12
   jumpBufferTime: 0.2
   maximumFallSpeed: 80
+  currentJumpState: 0
+  noJumpAllowed: 0
   rope: {fileID: 0}
   ropeJoint: {fileID: 1637527756402505112}
   ropeClimbingSpeed: 1.5
   ropeGrabTimeout: 0.5
   jumpHorizontalImpulse: 0
-  currentJumpState: 0
-  noJumpAllowed: 0
+  visualTransform: {fileID: 3841797239795438667}
   isGrounded: 1
   slopeAngle: 0
+  inWater: 0
   jumpButtonPressed: 0
 --- !u!114 &2111018729843764104
 MonoBehaviour:
@@ -547,8 +554,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: -0.002755165, y: 0.44436473}
+  m_Size: {x: 0.51815987, y: 1.5448917}
   m_Direction: 0
 --- !u!50 &1754438079511692130
 Rigidbody2D:
@@ -698,7 +705,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -30.028801, y: -2.092825}
+  m_ConnectedAnchor: {x: 65.9312, y: 0.50717545}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1001 &1742096226487840466
@@ -1006,6 +1013,14 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 40223866718306204, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.32552668
+      objectReference: {fileID: 0}
+    - target: {fileID: 40223866718306204, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09607999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

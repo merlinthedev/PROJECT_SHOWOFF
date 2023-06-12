@@ -4,6 +4,9 @@ public class PlayerAnimatorController : MonoBehaviour {
     [SerializeField] private Animator animator;
     [SerializeField] private BetterPlayerMovement playerMovementController;
 
+    
+    
+    
     // Start is called before the first frame update
     void Start() {
         if (animator == null) {
@@ -19,7 +22,7 @@ public class PlayerAnimatorController : MonoBehaviour {
     void Update() {
         animator.SetFloat("xSpeed", Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x));
         animator.SetFloat("ySpeed", playerMovementController.m_Rigidbody2D.velocity.y);
-        animator.SetBool("Grounded", playerMovementController.isGrounded);
+        animator.SetBool("Grounded", playerMovementController.IsGrounded);
 
     }
 }
