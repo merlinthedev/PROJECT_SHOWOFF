@@ -4,8 +4,7 @@ using UnityEngine;
 //fmod
 using FMODUnity;
 
-public class FootstepSounds : MonoBehaviour
-{
+public class FootstepSounds : MonoBehaviour {
     [SerializeField]
     LayerMask soundCheckLayer;
 
@@ -18,15 +17,13 @@ public class FootstepSounds : MonoBehaviour
         public string tag;
         public EventReference sound;
     }
-   
+
     public void OnFootstep() {
-        Debug.LogWarning("Footstep");
         //circle cast to check trigger colliders we are in
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1f, soundCheckLayer);
 
         //if we are in a collider
-        if(colliders.Length > 0) {
-            Debug.LogWarning("PLAY THE SOUND Footstep");
+        if (colliders.Length > 0) {
             //get the tag of the collider
             string tag = colliders[0].gameObject.tag;
 
@@ -34,9 +31,9 @@ public class FootstepSounds : MonoBehaviour
             FootstepConfig config = footstepConfigs.Find(x => x.tag == tag);
 
             //if we found a config
-            if(config != null) {
+            if (config != null) {
                 //play the sound
-                
+
                 RuntimeManager.PlayOneShot(config.sound, transform.position);
             }
         }
