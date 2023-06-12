@@ -6,6 +6,7 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 public class BetterPlayerMovement : MonoBehaviour {
+    [SerializeField] private Player player;
     [Header("HORIZONTAL MOVEMENT")] [SerializeField]
     public Rigidbody2D m_Rigidbody2D;
 
@@ -364,6 +365,10 @@ public class BetterPlayerMovement : MonoBehaviour {
                     slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
                     slopeNormal = hit.normal;
                     lastGroundedCollider = hit.collider;
+
+                    //Set animation
+                    player.GetPlayerAnimatorController().Ground();
+
                     return;
                 }
             }
@@ -437,6 +442,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         if (context.performed) {
             jumpButtonPressed = true;
+            player.GetPlayerAnimatorController().Jump();
         }
 
         if (context.canceled) {
