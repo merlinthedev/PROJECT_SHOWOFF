@@ -1,5 +1,3 @@
-using System;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -49,6 +47,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float jumpSpeed = 12f;
     [SerializeField] private float jumpBufferTime = 1.2f;
     [SerializeField] private float maximumFallSpeed = 80f;
+    [SerializeField] private float gravityFallingMultiplier = 3f;
 
     public JumpState currentJumpState = JumpState.Falling;
     private float jumpStartHeight;
@@ -67,7 +66,8 @@ public class BetterPlayerMovement : MonoBehaviour {
     [Header("VISUAL")] [SerializeField] private Transform visualTransform;
     private Vector3 initialScale;
 
-    [Header("DEBUG")] public bool isGrounded = false;
+    [Header("DEBUG")] private bool isGrounded = false;
+    public bool IsGrounded = false;
     public float slopeAngle = 180;
     private Vector2 slopeNormal = Vector2.up;
     private float lastGroundedTime = 0f;
@@ -81,6 +81,8 @@ public class BetterPlayerMovement : MonoBehaviour {
     private void updateVisuals() {
         if (visualTransform == null) return;
 
+        IsGrounded = isGrounded;
+        
         if (movementInput.x > 0) {
             visualTransform.localScale = initialScale;
         } else if (movementInput.x < 0) {
@@ -225,7 +227,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                     currentJumpState = JumpState.CanJump;
                 }
 
-                m_Rigidbody2D.AddForce(Vector2.down * (9.81f * 4), ForceMode2D.Force);
+                m_Rigidbody2D.AddForce(Vector2.down * (9.81f * gravityFallingMultiplier), ForceMode2D.Force);
 
                 //clamp fall speed
                 if (m_Rigidbody2D.velocity.y < -maximumFallSpeed) {
