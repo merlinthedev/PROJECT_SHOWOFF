@@ -172,6 +172,8 @@ public class RopeController : MonoBehaviour {
         public int ropePartCount = 2;
         public RopeSpriteType ropeSpriteType = RopeSpriteType.None;
         public Sprite ropeSprite = null;
+        public Sprite ropeStartSprite = null;
+        public Sprite ropeEndSprite = null;
         public float initialRopeCurveAngle = 0f;
         public Vector2 SpriteSize = Vector2.one;
         public Vector2 SpriteOffset = Vector2.zero;
