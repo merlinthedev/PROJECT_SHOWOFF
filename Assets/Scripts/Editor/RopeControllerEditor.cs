@@ -74,13 +74,13 @@ public class RopeControllerEditor : Editor {
                     case RopeController.RopeSpriteType.Segmented:
                         currentConfig.ropeStartSprite = (Sprite)EditorGUILayout.ObjectField("Rope start sprite",
                             currentConfig.ropeStartSprite, typeof(Sprite), false);
-                        
+
                         currentConfig.ropeSprite = (Sprite)EditorGUILayout.ObjectField("Rope sprite",
                             currentConfig.ropeSprite, typeof(Sprite), false);
-                        
+
                         currentConfig.ropeEndSprite = (Sprite)EditorGUILayout.ObjectField("Rope end sprite",
                             currentConfig.ropeEndSprite, typeof(Sprite), false);
-                        
+
                         currentConfig.SpriteSize =
                             EditorGUILayout.Vector2Field("Sprite scale", currentConfig.SpriteSize);
                         currentConfig.SpriteOffset =
@@ -180,6 +180,8 @@ public class RopeControllerEditor : Editor {
                 if (i == currentConfig.ropePartCount - 1) spriteRenderer.sprite = currentConfig.ropeEndSprite;
                 spriteRenderer.drawMode = SpriteDrawMode.Sliced;
                 spriteRenderer.size = localBoxSize * 2;
+                // Rope sorting layer is set to "Ground" to avoid overlapping with player
+                spriteRenderer.sortingLayerName = "Ground";
             }
         }
 
@@ -208,12 +210,16 @@ public class RopeControllerEditor : Editor {
                 Handles.color = Color.green;
                 if (currentConfig.ropeSpriteType == RopeController.RopeSpriteType.Segmented &&
                     currentConfig.ropeSprite != null && i > 0) {
-                    
+
                     //calculate sprite bounds stuff
                     if (currentConfig.ropeSprite != null &&
                         currentConfig.ropeStartSprite != null &&
                         currentConfig.ropeEndSprite != null) {
-                        var sprite = (i == 1) ? (currentConfig.ropeStartSprite) : ((i == currentConfig.ropePartCount - 1) ? (currentConfig.ropeEndSprite) : (currentConfig.ropeSprite));
+                        var sprite = (i == 1)
+                            ? (currentConfig.ropeStartSprite)
+                            : ((i == currentConfig.ropePartCount - 1)
+                                ? (currentConfig.ropeEndSprite)
+                                : (currentConfig.ropeSprite));
                         var spriteBounds = sprite.bounds;
                         localBoxCenter = (Vector2)spriteBounds.center + currentConfig.SpriteOffset;
                         localBoxSize = (Vector2)spriteBounds.size * currentConfig.SpriteSize;
@@ -264,15 +270,15 @@ public class RopeControllerEditor : Editor {
 
                 if (ropePart.isAnchored) {
                     if (GUI.Button(
-                            new Rect(HandleUtility.WorldToGUIPoint(ropePart.transform.position) + new Vector2(-20, 20),
-                                new Vector2(60, 20)), "Unlock")) {
+                        new Rect(HandleUtility.WorldToGUIPoint(ropePart.transform.position) + new Vector2(-20, 20),
+                            new Vector2(60, 20)), "Unlock")) {
                         ropePart.isAnchored = false;
                         DestroyImmediate(ropePart.joint.gameObject);
                     }
                 } else {
                     if (GUI.Button(
-                            new Rect(HandleUtility.WorldToGUIPoint(ropePart.transform.position) + new Vector2(-20, 20),
-                                new Vector2(40, 20)), "Lock")) {
+                        new Rect(HandleUtility.WorldToGUIPoint(ropePart.transform.position) + new Vector2(-20, 20),
+                            new Vector2(40, 20)), "Lock")) {
                         //create rope anchor on rope position
                         var anchor = new GameObject(ropePart.gameObject.name + " Anchor");
                         anchor.transform.parent = ropeTarget.transform;
