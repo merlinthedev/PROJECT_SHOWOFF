@@ -68,6 +68,8 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float ropeClimbingSpeed = 1.5f;
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
+    [SerializeField] private float rotationCheckUpOffset = 0.5f;
+    private float rotationCheckRopeProgressOffset;
 
     [Header("VISUAL")] [SerializeField] private Transform visualTransform;
     private Vector3 initialScale;
@@ -353,12 +355,12 @@ public class BetterPlayerMovement : MonoBehaviour {
             }
 
             //update player visual on rope (rotate based on rope)
-            var topRopePoint = rope.GetRopePoint(ropeProgress + 0.1f);
-            var bottomRopePoint = rope.GetRopePoint(ropeProgress - 0.1f);
+            var topRopePoint = rope.GetRopePoint(ropeProgress + rotationCheckRopeProgressOffset);
+            var bottomRopePoint = rope.GetRopePoint(ropeProgress);
 
             var ropeDirection = topRopePoint - bottomRopePoint;
             var ropeAngle = Mathf.Atan2(ropeDirection.y, ropeDirection.x) * Mathf.Rad2Deg;
-            visualTransform.rotation = Quaternion.Euler(0,0, ropeAngle + 90);
+            visualTransform.rotation = Quaternion.Euler(0,0, ropeAngle - 90);
         }
     }
 
@@ -392,6 +394,8 @@ public class BetterPlayerMovement : MonoBehaviour {
         ropeSpringJoint.enabled = true;
         ropeFollower.bodyType = RigidbodyType2D.Dynamic;
         setRope();
+
+        rotationCheckRopeProgressOffset = - rotationCheckUpOffset / rope.RopeLength;
     }
 
     private void ReleaseRope() {
