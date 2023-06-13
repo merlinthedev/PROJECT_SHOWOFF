@@ -100,9 +100,10 @@ public class RopeController : MonoBehaviour {
         //at which rope part are we
         int ropeIndex = Mathf.FloorToInt(ropeProgress);
         //find the rope part we are below
-        var ropePart = ropeParts[ropeIndex];
-
-        return ropePart;
+        if (ropeIndex < ropeParts.Count - 1)
+            return ropeParts[ropeIndex + 1];
+        else
+            return RopeParts[ropeIndex];
     }
 
     public RopePart GetRopePart(Vector2 point) {
