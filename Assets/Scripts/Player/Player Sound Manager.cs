@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 //fmod
 using FMODUnity;
+using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 public class FootstepSounds : MonoBehaviour {
     [SerializeField]
@@ -20,19 +22,16 @@ public class FootstepSounds : MonoBehaviour {
     }
     public void Update() {
     
-        //find an object with the tag Player
+        
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        // run Onland only once whenever the player becomes grounded and their y velocity becomes 0
-        if (player.GetComponent<Rigidbody2D>().velocity.y == 0 && player.GetComponent<BetterPlayerMovement>().IsGrounded == true) {
-            OnLand();
-            Debug.Log("landed");
+        Animator animator = player.GetComponentInChildren<Animator>();
+        //detect when we finish the jump animation
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") == false) {
+            if (player.GetComponent<Rigidbody2D>().velocity.y == 0 && player.GetComponent<BetterPlayerMovement>().IsGrounded == true) {
+                OnLand();
+                UnityEngine.Debug.Log("landed");
+            }
         }
-        
-        
-        
-
-
-
     }
 
     public void OnFootstep() {
