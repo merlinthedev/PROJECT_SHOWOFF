@@ -24,4 +24,8 @@ public class PlayerAudioController : MonoBehaviour {
     public void PlayJumpSound() {
         audioSource.PlayOneShot(jumpSound);
     }
+
+    public void Test() {
+        Debug.Log("Test");
+    }
 }

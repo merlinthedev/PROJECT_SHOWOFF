@@ -30,4 +30,17 @@ public class RopePart : MonoBehaviour
     public void SetDamping(float damping) {
         rigidBody.drag = damping;
     }
+
+    public void FindRefs() {
+        rigidBody = GetComponent<Rigidbody2D>();
+        joint = GetComponent<HingeJoint2D>();
+    }
+
+    public void Lock() {
+        Root.LockRopePart(this);
+    }
+
+    public void Unlock() {
+        Root.UnlockRopePart(this);
+    }
 }

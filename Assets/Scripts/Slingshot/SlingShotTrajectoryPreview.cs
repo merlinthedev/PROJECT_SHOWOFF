@@ -7,7 +7,7 @@ public class SlingShotTrajectoryPreview : MonoBehaviour {
     [SerializeField] private float lineWidth = 0.2f;
 
     private void Start() {
-        this.lineRenderer.widthMultiplier = lineWidth;
+        lineRenderer.widthMultiplier = lineWidth;
     }
 
     public void DrawPredictionLine(Vector2 direction, Vector2 startPoint) {
@@ -22,7 +22,7 @@ public class SlingShotTrajectoryPreview : MonoBehaviour {
 
         Vector2 gravity = Physics2D.gravity;
         float timestep = Time.fixedDeltaTime;
-        float simLength = 1.5f;
+        float simLength = 0.4f;
 
         Vector2 position = startPoint;
 

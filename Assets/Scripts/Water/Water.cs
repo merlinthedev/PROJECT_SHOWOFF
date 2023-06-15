@@ -8,29 +8,29 @@ public class Water : MonoBehaviour {
             return;
         }
 
-        var player = other.gameObject.GetComponent<PlayerController>();
+        var player = other.gameObject.GetComponent<BetterPlayerMovement>();
 
         if (player == null) {
-            Debug.LogError("Player has no PlayerController component", this);
+            Debug.LogError("Player has no BetterPlayerMovement component", this);
             return;
         }
 
+        player.setInWater(true);
+
         Debug.Log("InWater is set to true");
-        player.onWaterEnter();
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
-            var player = other.gameObject.GetComponent<PlayerController>();
+            var player = other.gameObject.GetComponent<BetterPlayerMovement>();
 
             if (player == null) {
-                Debug.LogError("Player has no PlayerController component", this);
+                Debug.LogError("Player has no BetterPlayerMovement component", this);
                 return;
             }
 
             if (!player.isInWater()) {
-                Debug.Log("InWater set to true from stay");
-                player.onWaterEnter();
+                player.setInWater(true);
             }
         }
 
@@ -51,18 +51,14 @@ public class Water : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
-            var player = other.gameObject.GetComponent<PlayerController>();
+            var player = other.gameObject.GetComponent<BetterPlayerMovement>();
 
             if (player == null) {
-                Debug.LogError("Player has no PlayerController component", this);
+                Debug.LogError("Player has no BetterPlayerMovement component", this);
                 return;
             }
 
-
-            Utils.Instance.InvokeDelayed(0.25f, () => {
-                Debug.Log("InWater has been set to false after 0.5f seconds");
-                player.onWaterExit();
-            });
+            player.setInWater(false);
         }
 
         if (other.gameObject.CompareTag("Log")) {

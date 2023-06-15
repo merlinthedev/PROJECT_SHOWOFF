@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Stone : AProjectile, IPickup {
+public class Stone : AProjectile, IPickup, IReactor {
     private Transform spawnerTransform;
     private Camera mainCameraReference;
 
@@ -11,17 +11,19 @@ public class Stone : AProjectile, IPickup {
     private Collider2D m_Collider2D;
     private Rigidbody2D m_Rigidbody2D;
 
+    private bool shouldDestroyOnNextCollision = false;
+
     private void Start() {
-        this.mainCameraReference = Camera.main;
-        if (this.mainCameraReference == null) {
+        mainCameraReference = Camera.main;
+        if (mainCameraReference == null) {
             Debug.LogError("Camera.main is null", this);
             Destroy(this);
         }
     }
 
     public void OnPickup(Player player) {
-        this.transform.SetParent(player.transform);
-        this.transform.position = player.GetPlayerProjectileController().GetHoldingTransform().position;
+        transform.SetParent(player.transform);
+        transform.position = player.GetPlayerProjectileController().GetHoldingTransform().position;
     }
 
     public void OnDrop() {
@@ -29,28 +31,33 @@ public class Stone : AProjectile, IPickup {
     }
 
     public void OnSpawn() {
-        this.handleGroundCollisionCoroutine = checkForGroundCollision();
-        this.handleViewportPositionCoroutine = handleViewportPosition();
+        handleGroundCollisionCoroutine = checkForGroundCollision();
+        handleViewportPositionCoroutine = handleViewportPosition();
 
-        this.m_Collider2D = this.gameObject.GetComponent<Collider2D>();
-        this.m_Collider2D.isTrigger = false;
-        this.m_Rigidbody2D = this.gameObject.GetComponent<Rigidbody2D>();
-        if (this.m_Rigidbody2D == null) {
+        m_Collider2D = gameObject.GetComponent<Collider2D>();
+        m_Collider2D.isTrigger = false;
+        m_Rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+        if (m_Rigidbody2D == null) {
             Debug.Log("Rigidbody was null", this);
             return;
         }
 
-        this.m_Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        m_Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
 
-        StartCoroutine(this.handleGroundCollisionCoroutine);
+        StartCoroutine(handleGroundCollisionCoroutine);
     }
 
     private IEnumerator checkForGroundCollision() {
         while (true) {
             Debug.Log("Checking ground collision.");
-            if (this.m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+            if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Grass"))) {
                 Debug.Log("Stone collided with ground.");
-                preparePlayerPickup();
+                if (shouldDestroyOnNextCollision) {
+                    // Destroy the object
+                    handleStoneDestruction();
+                } else {
+                    preparePlayerPickup();
+                }
             }
 
             yield return new WaitForSeconds(1f);
@@ -58,39 +65,44 @@ public class Stone : AProjectile, IPickup {
     }
 
     public void OnThrow(Player player) {
-        this.transform.SetParent(null);
+        transform.SetParent(null);
 
-        if (this.m_Collider2D == null) {
+        if (m_Collider2D == null) {
             Debug.LogError("Collider was null", this);
             return;
         }
 
         // Exclude player layer from the collider
         var x = LayerMask.NameToLayer("Player");
-        this.m_Collider2D.excludeLayers = 1 << x;
-        this.m_Collider2D.isTrigger = false;
+        m_Collider2D.excludeLayers = 1 << x;
+        m_Collider2D.isTrigger = false;
 
 
-        if (this.m_Rigidbody2D == null) {
+        if (m_Rigidbody2D == null) {
             Debug.LogError("Rigidbody was null", this);
             return;
         }
 
-        this.m_Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        m_Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
 
         player.GetPlayerProjectileController().ResetProjectile();
 
+        shouldDestroyOnNextCollision = true;
 
-        StartCoroutine(this.handleViewportPositionCoroutine);
+        StartCoroutine(handleViewportPositionCoroutine);
     }
 
     private IEnumerator handleViewportPosition() {
         while (true) {
-            Vector3 stoneViewportPosition = this.mainCameraReference.WorldToViewportPoint(this.transform.position);
+            if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Grass"))) {
+                handleStoneDestruction();
+            }
+
+            Vector3 stoneViewportPosition = mainCameraReference.WorldToViewportPoint(transform.position);
             Debug.Log("Checking viewport position.");
             if (stoneViewportPosition.x < 0 || stoneViewportPosition.x > 1 || stoneViewportPosition.y < 0 ||
                 stoneViewportPosition.y > 1) {
-                this.handleStoneDestruction();
+                handleStoneDestruction();
             }
 
             yield return new WaitForSeconds(1f);
@@ -98,25 +110,30 @@ public class Stone : AProjectile, IPickup {
     }
 
     private void handleStoneDestruction() {
-        this.StopCoroutine(this.handleViewportPositionCoroutine);
-        StoneManager stoneManager = this.spawnerTransform.GetComponent<StoneManager>();
-        stoneManager.ResetCurrentStone();
-        stoneManager.SpawnStone();
-        Destroy(this.gameObject);
+        StopCoroutine(handleViewportPositionCoroutine);
+        StoneManager stoneManager = spawnerTransform.GetComponent<StoneManager>();
+        if (stoneManager != null) {
+            stoneManager.ResetCurrentStone();
+            stoneManager.SpawnStone();
+        }
+
+        Destroy(gameObject);
     }
 
     private void preparePlayerPickup() {
-        StopCoroutine(this.handleGroundCollisionCoroutine);
+        StopCoroutine(handleGroundCollisionCoroutine);
 
-        this.m_Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
-        this.m_Rigidbody2D.velocity = Vector2.zero;
+        m_Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+        m_Rigidbody2D.velocity = Vector2.zero;
+        // m_Rigidbody2D.rotation = -45f;
+        m_Rigidbody2D.angularVelocity = 0f;
 
 
-        this.m_Collider2D.excludeLayers = 0;
-        this.m_Collider2D.isTrigger = true;
+        m_Collider2D.excludeLayers = 0;
+        m_Collider2D.isTrigger = true;
     }
 
     public void SetSpawnerTransform(Transform t) {
-        this.spawnerTransform = t;
+        spawnerTransform = t;
     }
 }

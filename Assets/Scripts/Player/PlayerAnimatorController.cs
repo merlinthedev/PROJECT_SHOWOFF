@@ -1,36 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class PlayerAnimatorController : MonoBehaviour
-{
-    [SerializeField] Animator animator;
-    [SerializeField] Rigidbody2D rb;
-    [FormerlySerializedAs("playerController")] [SerializeField] PlayerMovementController playerMovementController;
+public class PlayerAnimatorController : MonoBehaviour {
+    [SerializeField] private Animator animator;
+    [SerializeField] private BetterPlayerMovement playerMovementController;
+    private int animationJumpTrigger;
+    private int animationGroundedTrigger;
+    private int animationClimbTrigger;
+    private int animationThrowTrigger;
+
 
     // Start is called before the first frame update
-    void Start()
-    {
-        if(animator == null) {
+    void Start() {
+        if (animator == null) {
             animator = GetComponent<Animator>();
         }
 
-        if (rb == null) {
-            rb = GetComponent<Rigidbody2D>();
-        }
-
         if (playerMovementController == null) {
-            playerMovementController = GetComponent<PlayerMovementController>();
+            playerMovementController = GetComponent<BetterPlayerMovement>();
         }
+        animationJumpTrigger = Animator.StringToHash("Jump");
+        animationGroundedTrigger = Animator.StringToHash("Grounded");
+        animationClimbTrigger = Animator.StringToHash("OnClimb");
+        animationThrowTrigger = Animator.StringToHash("Throw");
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        animator.SetFloat("xSpeed", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("ySpeed", rb.velocity.y);
-        animator.SetBool("Grounded", playerMovementController.IsGrounded());
-        
+    void Update() {
+        animator.SetFloat("xSpeed", Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x));
+        animator.SetFloat("ySpeed", playerMovementController.m_Rigidbody2D.velocity.y);
+        animator.SetBool("Grounded", playerMovementController.IsGrounded);
+        animator.SetFloat("moveInputY", playerMovementController.MoveInput.y);
+        animator.SetBool("RopeClimb", playerMovementController.IsClimbing);
+
+        // Change the animator speed based on the player's speed
+        // animator.speed = Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x) / 2;
+        //Q: how do I check whether the animation transition has finished
+        //A: use the normalized time of the animation
+        // animator.GetCurrentAnimatorStateInfo(0).normalizedTime
+    }
+
+    public void ResetSpeed() {
+        animator.speed = 1f;
+    }
+
+    public void RopeClimb() {
+        animator.SetTrigger(animationClimbTrigger);
+    }
+
+    public void Jump() {
+        animator.SetTrigger(animationJumpTrigger);
+    }
+
+    public void Throw() {
+        animator.SetTrigger(animationThrowTrigger);
+    }
+
+    public void Ground() {
+        animator.SetTrigger(animationGroundedTrigger);
     }
 }

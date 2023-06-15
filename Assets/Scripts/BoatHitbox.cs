@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BoatHitbox : MonoBehaviour {
@@ -7,6 +8,12 @@ public class BoatHitbox : MonoBehaviour {
     private void FixedUpdate() {
         if (playerInBoat) {
             playerRigidbody.AddForce(Vector2.down * 10, ForceMode2D.Force);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Player")) {
+            other.gameObject.GetComponent<BetterPlayerMovement>().noJumpAllowed = true;
         }
     }
 

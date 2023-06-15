@@ -1,31 +1,30 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour {
-    [SerializeField] private PlayerMovementController playerMovementController;
+public class Player : MonoBehaviour, IReactor {
+    [SerializeField] private BetterPlayerMovement playerMovementController;
     [SerializeField] private PlayerAnimatorController playerAnimatorController;
     [SerializeField] private PlayerAudioController playerAudioController;
     [SerializeField] private PlayerEventHandler playerEventHandler;
     [SerializeField] private PlayerProjectileController playerProjectileController;
 
     // Getters
-    public PlayerMovementController GetPlayerController() {
-        return this.playerMovementController;
+    public BetterPlayerMovement GetPlayerController() {
+        return playerMovementController;
     }
 
     public PlayerAnimatorController GetPlayerAnimatorController() {
-        return this.playerAnimatorController;
+        return playerAnimatorController;
     }
 
     public PlayerAudioController GetPlayerAudioController() {
-        return this.playerAudioController;
+        return playerAudioController;
     }
 
     public PlayerEventHandler GetPlayerEventHandler() {
-        return this.playerEventHandler;
+        return playerEventHandler;
     }
 
     public PlayerProjectileController GetPlayerProjectileController() {
-        return this.playerProjectileController;
+        return playerProjectileController;
     }
 }

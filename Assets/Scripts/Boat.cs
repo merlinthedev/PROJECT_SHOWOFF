@@ -48,8 +48,8 @@ public class Boat : MonoBehaviour {
         }
         if (collision.gameObject.CompareTag("Vodyanoy")) {
             //collision.gameObject.GetComponent<Vodyanoy>().Connect();
-            rb.mass = 0.1f;
-            boatMass = 0.1f;
+            rb.mass = 1f;
+            boatMass = 1f;
             rb.freezeRotation = true;
         }
     }
