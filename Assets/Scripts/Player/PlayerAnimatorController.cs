@@ -27,15 +27,14 @@ public class PlayerAnimatorController : MonoBehaviour {
         animator.SetFloat("xSpeed", Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x));
         animator.SetFloat("ySpeed", playerMovementController.m_Rigidbody2D.velocity.y);
         animator.SetBool("Grounded", playerMovementController.IsGrounded);
-
+        animator.SetFloat("moveInputY", playerMovementController.MoveInput.y);
         animator.SetBool("RopeClimb", playerMovementController.IsClimbing);
 
         // Change the animator speed based on the player's speed
         // animator.speed = Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x) / 2;
-
-        if (playerMovementController.IsClimbing) {
-            animator.speed = playerMovementController.MoveInput.y != 0 ? 1f : 0f;
-        }
+        //Q: how do I check whether the animation transition has finished
+        //A: use the normalized time of the animation
+        // animator.GetCurrentAnimatorStateInfo(0).normalizedTime
     }
 
     public void ResetSpeed() {
