@@ -114,7 +114,9 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
 
         if (canMove) {
-            horizontalMovement();
+            if(!isOnRope)
+                horizontalMovement();
+
             jumping();
         }
 
