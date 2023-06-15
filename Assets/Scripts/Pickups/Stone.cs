@@ -11,6 +11,8 @@ public class Stone : AProjectile, IPickup, IReactor {
     private Collider2D m_Collider2D;
     private Rigidbody2D m_Rigidbody2D;
 
+    private bool shouldDestroyOnNextCollision = false;
+
     private void Start() {
         mainCameraReference = Camera.main;
         if (mainCameraReference == null) {
@@ -50,7 +52,12 @@ public class Stone : AProjectile, IPickup, IReactor {
             Debug.Log("Checking ground collision.");
             if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Grass"))) {
                 Debug.Log("Stone collided with ground.");
-                preparePlayerPickup();
+                if (shouldDestroyOnNextCollision) {
+                    // Destroy the object
+                    handleStoneDestruction();
+                } else {
+                    preparePlayerPickup();
+                }
             }
 
             yield return new WaitForSeconds(1f);
@@ -80,12 +87,17 @@ public class Stone : AProjectile, IPickup, IReactor {
 
         player.GetPlayerProjectileController().ResetProjectile();
 
+        shouldDestroyOnNextCollision = true;
 
         StartCoroutine(handleViewportPositionCoroutine);
     }
 
     private IEnumerator handleViewportPosition() {
         while (true) {
+            if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Grass"))) {
+                handleStoneDestruction();
+            }
+
             Vector3 stoneViewportPosition = mainCameraReference.WorldToViewportPoint(transform.position);
             Debug.Log("Checking viewport position.");
             if (stoneViewportPosition.x < 0 || stoneViewportPosition.x > 1 || stoneViewportPosition.y < 0 ||
