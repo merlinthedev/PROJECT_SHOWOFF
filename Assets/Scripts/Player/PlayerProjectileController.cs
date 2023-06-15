@@ -42,7 +42,6 @@ public class PlayerProjectileController : MonoBehaviour {
             }
 
             if (!x.Grabbing) {
-                Debug.Log("Player is not grabbing");
                 return;
             }
 
