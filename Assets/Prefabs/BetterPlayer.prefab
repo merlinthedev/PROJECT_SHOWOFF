@@ -275,7 +275,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -71.1, y: 14.19}
+  m_ConnectedAnchor: {x: 22.06, y: 28.26}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -846,7 +846,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -14.554199, y: 4.412469}
+  m_ConnectedAnchor: {x: 78.6058, y: 18.48247}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1001 &2485732144891080085
@@ -1070,7 +1070,10 @@ PrefabInstance:
       addedObject: {fileID: 5532260294241933316}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7191047439568541760}
+      addedObject: {fileID: 3954622827240131756}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2356559826825607657}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
 --- !u!1 &2709152571416513576 stripped
 GameObject:
@@ -1098,7 +1101,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7191047439568541760
+--- !u!114 &3954622827240131756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1113,7 +1116,38 @@ MonoBehaviour:
   soundCheckLayer:
     serializedVersion: 2
     m_Bits: 8192
-  footstepConfigs: []
+  footstepConfigs:
+  - tag: Grass
+    sound:
+      Guid:
+        Data1: -782530749
+        Data2: 1332893499
+        Data3: 795562412
+        Data4: 1397188922
+      Path: event:/Footstep Grass
+  - tag: Dirt
+    sound:
+      Guid:
+        Data1: -1228697079
+        Data2: 1179121072
+        Data3: -2008264044
+        Data4: -424158088
+      Path: event:/Footstep Gritty
+--- !u!114 &2356559826825607657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709152571416513576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097b551f2844b054290f18a39bf892e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Solvers: []
+  m_Weight: 1
+  m_SolverEditorData: []
 --- !u!4 &3841797239795438667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
