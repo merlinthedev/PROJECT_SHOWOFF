@@ -9,7 +9,8 @@ using Vector3 = UnityEngine.Vector3;
 public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private Player player;
 
-    [Header("HORIZONTAL MOVEMENT")] [SerializeField]
+    [Header("HORIZONTAL MOVEMENT")]
+    [SerializeField]
     public Rigidbody2D m_Rigidbody2D;
 
     [SerializeField] private CapsuleCollider2D m_CapsuleCollider2D;
@@ -24,14 +25,16 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool hasJumpBuffer => isGrounded && (jumpButtonPressedTime + jumpBufferTime > Time.time);
     private bool hasCoyoteJump => !isGrounded && (lastGroundedTime + coyoteTime > Time.time);
 
-    [Header("GROUNDCHECK")] [SerializeField]
+    [Header("GROUNDCHECK")]
+    [SerializeField]
     private int rayCount = 3;
 
     [SerializeField] private float rayLength = 0.1f;
     [SerializeField] private float rayWidth = 0.3f;
     [SerializeField] private Vector2 rayOffset;
 
-    [Header("LEDGE GRABBING")] [SerializeField]
+    [Header("LEDGE GRABBING")]
+    [SerializeField]
     private float ledgeGrabDistance;
 
     [SerializeField] private float ledgeGrabHeight = 1.2f;
@@ -41,11 +44,11 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool canMove = true;
     private float lastLedgeGrab;
 
-    [Header("PUSHING")] [SerializeField] private float pushForce = 5f;
+    [Header("PUSHING")][SerializeField] private float pushForce = 5f;
     [SerializeField] private float maxObjectMass = 20f;
     [SerializeField] private float objectDistance = 0.7f;
 
-    [Header("JUMPING")] [SerializeField] private float maxJumpHeight = 2f;
+    [Header("JUMPING")][SerializeField] private float maxJumpHeight = 2f;
     [SerializeField] private float maxJumpTime = 0.4f;
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private float jumpSpeed = 12f;
@@ -59,7 +62,8 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     public bool noJumpAllowed = false;
 
-    [Header("ROPE CLIMBING")] [SerializeField]
+    [Header("ROPE CLIMBING")]
+    [SerializeField]
     private RopeController rope;
 
     [SerializeField] private HingeJoint2D ropeJoint;
@@ -69,9 +73,11 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
     [SerializeField] private float rotationCheckUpOffset = 0.5f;
+    [SerializeField] private float rotationAngleOffset = 90f;
     private float rotationCheckRopeProgressOffset;
 
-    [Header("VISUAL")] [SerializeField] private Transform visualTransform;
+    [Header("VISUAL")][SerializeField] private Transform visualTransform;
+    private Vector3 originalVisualsPosition;
     private Vector3 initialScale;
 
     [Header("DEBUG")] private bool isGrounded = false;
@@ -100,6 +106,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void Start() {
         initialScale = visualTransform.localScale;
+        originalVisualsPosition = visualTransform.localPosition;
         m_PlayerPhysicsMaterial2D.friction = 0f;
     }
 
@@ -295,8 +302,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
-        {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
                 transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
@@ -308,8 +314,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
-            {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
                 canMove = true;
                 m_Rigidbody2D.velocity = Vector2.zero;
             });
@@ -321,15 +326,13 @@ public class BetterPlayerMovement : MonoBehaviour {
         });
     }
 
-    public Vector2 MoveInput
-    {
+    public Vector2 MoveInput {
         get {
             return movementInput;
         }
     }
 
-    public bool IsClimbing
-    {
+    public bool IsClimbing {
         get {
             return isOnRope;
         }
@@ -341,13 +344,13 @@ public class BetterPlayerMovement : MonoBehaviour {
             if (movementInput.y != 0) {
                 ropeProgress -= (movementInput.y * ropeClimbingSpeed * rope.ClimbSpeedMultiplier * Time.deltaTime) /
                                 rope.RopeLength;
-                
-                if(ropeProgress is > 1 or < 0) {
+
+                if (ropeProgress is > 1 or < 0) {
                     ReleaseRope();
                     return;
                 }
                 ropeProgress = Mathf.Clamp01(ropeProgress);
-                
+
 
                 Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
                 ropeFollower.position = ropePosition;
@@ -360,7 +363,9 @@ public class BetterPlayerMovement : MonoBehaviour {
 
             var ropeDirection = topRopePoint - bottomRopePoint;
             var ropeAngle = Mathf.Atan2(ropeDirection.y, ropeDirection.x) * Mathf.Rad2Deg;
-            visualTransform.rotation = Quaternion.Euler(0,0, ropeAngle - 90);
+            visualTransform.rotation = Quaternion.Euler(0, 0, ropeAngle - rotationAngleOffset);
+            //position visual exactly between the two points
+            visualTransform.position = Vector3.Lerp(topRopePoint, bottomRopePoint, 0.5f);
         }
     }
 
@@ -395,7 +400,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         ropeFollower.bodyType = RigidbodyType2D.Dynamic;
         setRope();
 
-        rotationCheckRopeProgressOffset = - rotationCheckUpOffset / rope.RopeLength;
+        rotationCheckRopeProgressOffset = -rotationCheckUpOffset / rope.RopeLength;
     }
 
     private void ReleaseRope() {
@@ -408,6 +413,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         ropeFollower.bodyType = RigidbodyType2D.Kinematic;
 
         visualTransform.rotation = Quaternion.identity;
+        visualTransform.localPosition = originalVisualsPosition;
     }
 
 
