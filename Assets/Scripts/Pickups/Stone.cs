@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Stone : AProjectile, IPickup {
+public class Stone : AProjectile, IPickup, IReactor {
     private Transform spawnerTransform;
     private Camera mainCameraReference;
 
@@ -10,6 +10,8 @@ public class Stone : AProjectile, IPickup {
 
     private Collider2D m_Collider2D;
     private Rigidbody2D m_Rigidbody2D;
+
+    private bool shouldDestroyOnNextCollision = false;
 
     private void Start() {
         mainCameraReference = Camera.main;
@@ -50,7 +52,12 @@ public class Stone : AProjectile, IPickup {
             Debug.Log("Checking ground collision.");
             if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Grass"))) {
                 Debug.Log("Stone collided with ground.");
-                preparePlayerPickup();
+                if (shouldDestroyOnNextCollision) {
+                    // Destroy the object
+                    handleStoneDestruction();
+                } else {
+                    preparePlayerPickup();
+                }
             }
 
             yield return new WaitForSeconds(1f);
@@ -80,12 +87,17 @@ public class Stone : AProjectile, IPickup {
 
         player.GetPlayerProjectileController().ResetProjectile();
 
+        shouldDestroyOnNextCollision = true;
 
         StartCoroutine(handleViewportPositionCoroutine);
     }
 
     private IEnumerator handleViewportPosition() {
         while (true) {
+            if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Grass"))) {
+                handleStoneDestruction();
+            }
+
             Vector3 stoneViewportPosition = mainCameraReference.WorldToViewportPoint(transform.position);
             Debug.Log("Checking viewport position.");
             if (stoneViewportPosition.x < 0 || stoneViewportPosition.x > 1 || stoneViewportPosition.y < 0 ||
@@ -100,8 +112,11 @@ public class Stone : AProjectile, IPickup {
     private void handleStoneDestruction() {
         StopCoroutine(handleViewportPositionCoroutine);
         StoneManager stoneManager = spawnerTransform.GetComponent<StoneManager>();
-        stoneManager.ResetCurrentStone();
-        stoneManager.SpawnStone();
+        if (stoneManager != null) {
+            stoneManager.ResetCurrentStone();
+            stoneManager.SpawnStone();
+        }
+
         Destroy(gameObject);
     }
 

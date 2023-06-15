@@ -69,9 +69,11 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
     [SerializeField] private float rotationCheckUpOffset = 0.5f;
+    [SerializeField] private float rotationAngleOffset = 90f;
     private float rotationCheckRopeProgressOffset;
 
     [Header("VISUAL")] [SerializeField] private Transform visualTransform;
+    private Vector3 originalVisualsPosition;
     private Vector3 initialScale;
 
     [Header("DEBUG")] private bool isGrounded = false;
@@ -100,6 +102,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void Start() {
         initialScale = visualTransform.localScale;
+        originalVisualsPosition = visualTransform.localPosition;
         m_PlayerPhysicsMaterial2D.friction = 0f;
     }
 
@@ -156,7 +159,8 @@ public class BetterPlayerMovement : MonoBehaviour {
         float rawXMovement = movementInput.x;
 
         if (rawXMovement != 0 || isGrounded) {
-            float desiredHorizontalSpeed = rawXMovement * maximumHorizontalSpeed;
+            float desiredHorizontalSpeed =
+                rawXMovement * (inWater ? maximumHorizontalSpeed * waterSpeedDebuff : maximumHorizontalSpeed);
             float velocityGap = desiredHorizontalSpeed - m_Rigidbody2D.velocity.x;
 
             float acceleration = isGrounded ? groundAcceleration : airAcceleration;
@@ -190,7 +194,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                                (hasCoyoteJump && jumpButtonPressedThisFrame) ||
                                (isOnRope && jumpButtonPressedThisFrame);
                 if (canJump) {
-                    jumpStartHeight = transform.position.y;
+                    jumpStartHeight = transform.position.y - (inWater ? (1 - waterJumpDebuff) * maxJumpHeight : 0f);
                     jumpStartTime = Time.time;
                     jumpRequested = false;
 
@@ -216,7 +220,8 @@ public class BetterPlayerMovement : MonoBehaviour {
                 break;
 
             case JumpState.Jumping:
-                m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
+                m_Rigidbody2D.velocity =
+                    new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed * (inWater ? waterJumpDebuff : 1f));
                 bool endJump = !jumpButtonPressed ||
                                slopeAngle is > 90 and < 200 ||
                                Time.time > jumpStartTime + maxJumpTime ||
@@ -295,10 +300,10 @@ public class BetterPlayerMovement : MonoBehaviour {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
-        {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner,
+                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             LeanTween.move(gameObject, path, ledgeFreezeTime);
@@ -308,8 +313,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
-            {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
                 canMove = true;
                 m_Rigidbody2D.velocity = Vector2.zero;
             });
@@ -321,19 +325,16 @@ public class BetterPlayerMovement : MonoBehaviour {
         });
     }
 
-    public Vector2 MoveInput
-    {
+    public Vector2 MoveInput {
         get {
             return movementInput;
         }
     }
 
-    public bool IsClimbing
-    {
+    public bool IsClimbing {
         get {
             return isOnRope;
         }
-
     }
 
     private void ropeMovement() {
@@ -341,13 +342,14 @@ public class BetterPlayerMovement : MonoBehaviour {
             if (movementInput.y != 0) {
                 ropeProgress -= (movementInput.y * ropeClimbingSpeed * rope.ClimbSpeedMultiplier * Time.deltaTime) /
                                 rope.RopeLength;
-                
-                if(ropeProgress is > 1 or < 0) {
+
+                if (ropeProgress is > 1 or < 0) {
                     ReleaseRope();
                     return;
                 }
+
                 ropeProgress = Mathf.Clamp01(ropeProgress);
-                
+
 
                 Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
                 ropeFollower.position = ropePosition;
@@ -360,7 +362,9 @@ public class BetterPlayerMovement : MonoBehaviour {
 
             var ropeDirection = topRopePoint - bottomRopePoint;
             var ropeAngle = Mathf.Atan2(ropeDirection.y, ropeDirection.x) * Mathf.Rad2Deg;
-            visualTransform.rotation = Quaternion.Euler(0,0, ropeAngle - 90);
+            visualTransform.rotation = Quaternion.Euler(0, 0, ropeAngle - rotationAngleOffset);
+            //position visual exactly between the two points
+            visualTransform.position = Vector3.Lerp(topRopePoint, bottomRopePoint, 0.5f);
         }
     }
 
@@ -395,7 +399,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         ropeFollower.bodyType = RigidbodyType2D.Dynamic;
         setRope();
 
-        rotationCheckRopeProgressOffset = - rotationCheckUpOffset / rope.RopeLength;
+        rotationCheckRopeProgressOffset = -rotationCheckUpOffset / rope.RopeLength;
     }
 
     private void ReleaseRope() {
@@ -408,6 +412,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         ropeFollower.bodyType = RigidbodyType2D.Kinematic;
 
         visualTransform.rotation = Quaternion.identity;
+        visualTransform.localPosition = originalVisualsPosition;
     }
 
 
@@ -418,6 +423,8 @@ public class BetterPlayerMovement : MonoBehaviour {
      */
 
     public bool inWater = false; // Move to water
+    [SerializeField] private float waterJumpDebuff = 0.6f;
+    [SerializeField] private float waterSpeedDebuff = 0.4f;
 
     public bool isInWater() {
         return inWater;
