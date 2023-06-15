@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour, IReactor {
     [SerializeField] private BetterPlayerMovement playerMovementController;
     [SerializeField] private PlayerAnimatorController playerAnimatorController;
     [SerializeField] private PlayerAudioController playerAudioController;

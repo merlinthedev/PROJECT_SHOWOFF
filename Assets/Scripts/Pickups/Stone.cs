@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Stone : AProjectile, IPickup {
+public class Stone : AProjectile, IPickup, IReactor {
     private Transform spawnerTransform;
     private Camera mainCameraReference;
 
