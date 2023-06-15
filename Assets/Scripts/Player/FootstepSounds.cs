@@ -18,6 +18,22 @@ public class FootstepSounds : MonoBehaviour {
         public EventReference sound;
         public EventReference landSound;
     }
+    public void Update() {
+    
+        //find an object with the tag Player
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        // run Onland only once whenever the player becomes grounded and their y velocity becomes 0
+        if (player.GetComponent<Rigidbody2D>().velocity.y == 0 && player.GetComponent<BetterPlayerMovement>().IsGrounded == true) {
+            OnLand();
+            Debug.Log("landed");
+        }
+        
+        
+        
+
+
+
+    }
 
     public void OnFootstep() {
         //circle cast to check trigger colliders we are in
