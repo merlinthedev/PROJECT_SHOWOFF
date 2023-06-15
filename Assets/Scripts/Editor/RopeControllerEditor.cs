@@ -248,7 +248,6 @@ public class RopeControllerEditor : Editor {
             }
         }
 
-        Debug.Log("Editing rope.");
         if (editRopeMode) {
             Vector3 mousePosition = Event.current.mousePosition;
             Ray ray = HandleUtility.GUIPointToWorldRay(mousePosition);

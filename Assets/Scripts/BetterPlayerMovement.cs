@@ -68,6 +68,8 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float ropeClimbingSpeed = 1.5f;
     [SerializeField] private float ropeGrabTimeout = 0.5f;
     [SerializeField] private float jumpHorizontalImpulse;
+    [SerializeField] private float rotationCheckUpOffset = 0.5f;
+    private float rotationCheckRopeProgressOffset;
 
     [Header("VISUAL")] [SerializeField] private Transform visualTransform;
     private Vector3 initialScale;
@@ -184,21 +186,16 @@ public class BetterPlayerMovement : MonoBehaviour {
             case JumpState.CanJump:
                 if (noJumpAllowed) return;
 
-                bool canJump = (hasJumpBuffer && jumpButtonPressed) ||
+                bool canJump = (hasJumpBuffer && jumpRequested) ||
                                (hasCoyoteJump && jumpButtonPressedThisFrame) ||
                                (isOnRope && jumpButtonPressedThisFrame);
                 if (canJump) {
                     jumpStartHeight = transform.position.y;
                     jumpStartTime = Time.time;
+                    jumpRequested = false;
 
                     if (isOnRope) {
-                        isOnRope = false;
-                        ropeJoint.enabled = false;
-                        player.GetPlayerAnimatorController().ResetSpeed();
-                        ropeJoint.connectedBody = null;
-                        lastRopeRelease = Time.time;
-                        ropeSpringJoint.enabled = false;
-                        ropeFollower.bodyType = RigidbodyType2D.Kinematic;
+                        ReleaseRope();
 
                         if (movementInput.y >= 0) {
                             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
@@ -344,13 +341,73 @@ public class BetterPlayerMovement : MonoBehaviour {
             if (movementInput.y != 0) {
                 ropeProgress -= (movementInput.y * ropeClimbingSpeed * rope.ClimbSpeedMultiplier * Time.deltaTime) /
                                 rope.RopeLength;
+                
+                if(ropeProgress is > 1 or < 0) {
+                    ReleaseRope();
+                    return;
+                }
                 ropeProgress = Mathf.Clamp01(ropeProgress);
+                
 
                 Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
                 ropeFollower.position = ropePosition;
                 ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
             }
+
+            //update player visual on rope (rotate based on rope)
+            var topRopePoint = rope.GetRopePoint(ropeProgress + rotationCheckRopeProgressOffset);
+            var bottomRopePoint = rope.GetRopePoint(ropeProgress);
+
+            var ropeDirection = topRopePoint - bottomRopePoint;
+            var ropeAngle = Mathf.Atan2(ropeDirection.y, ropeDirection.x) * Mathf.Rad2Deg;
+            visualTransform.rotation = Quaternion.Euler(0,0, ropeAngle - 90);
         }
+    }
+
+    private void setRope() {
+        if (isOnRope) {
+            ropeProgress -= (movementInput.y * ropeClimbingSpeed * rope.ClimbSpeedMultiplier * Time.deltaTime) /
+                            rope.RopeLength;
+            ropeProgress = Mathf.Clamp01(ropeProgress);
+
+            Vector2 ropePosition = rope.GetRopePoint(ropeProgress);
+            ropeFollower.position = ropePosition;
+            ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
+        }
+    }
+
+    private void GrabRope(RopeController newRope) {
+        //Debug.Log("On Rope");
+        //set the rope we're on
+        rope = newRope;
+        //set how far we are along the rope
+        ropeProgress = rope.GetRopeProgress(transform.position);
+        ropeProgress = Mathf.Clamp01(ropeProgress);
+        //LeanTween.move(this.gameObject, rope.GetRopePoint(ropeProgress), 0.1f);
+        //fix our joint to the rope
+        ropeJoint.enabled = true;
+        ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
+        //set the player's onRope bool to true
+        isOnRope = true;
+        player.GetPlayerAnimatorController().RopeClimb();
+
+        ropeSpringJoint.enabled = true;
+        ropeFollower.bodyType = RigidbodyType2D.Dynamic;
+        setRope();
+
+        rotationCheckRopeProgressOffset = - rotationCheckUpOffset / rope.RopeLength;
+    }
+
+    private void ReleaseRope() {
+        isOnRope = false;
+        ropeJoint.enabled = false;
+        player.GetPlayerAnimatorController().ResetSpeed();
+        ropeJoint.connectedBody = null;
+        lastRopeRelease = Time.time;
+        ropeSpringJoint.enabled = false;
+        ropeFollower.bodyType = RigidbodyType2D.Kinematic;
+
+        visualTransform.rotation = Quaternion.identity;
     }
 
 
@@ -399,22 +456,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         if (other.gameObject.CompareTag("Rope")) {
             //if we're not already on a rope
             if (!isOnRope && Time.time > lastRopeRelease + ropeGrabTimeout) {
-                //Debug.Log("On Rope");
-                //set the rope we're on
-                rope = other.gameObject.GetComponentInParent<RopeController>();
-                //set how far we are along the rope
-                ropeProgress = rope.GetRopeProgress(transform.position);
-                //LeanTween.move(this.gameObject, rope.GetRopePoint(ropeProgress), 0.1f);
-                //fix our joint to the rope
-                ropeJoint.enabled = true;
-                ropeJoint.connectedBody = rope.GetRopePart(ropeProgress).rigidBody;
-                //set the player's onRope bool to true
-                isOnRope = true;
-                player.GetPlayerAnimatorController().RopeClimb();
-
-                ropeSpringJoint.enabled = true;
-                ropeFollower.bodyType = RigidbodyType2D.Dynamic;
-                ropeFollower.position = rope.GetRopePoint(ropeProgress);
+                GrabRope(other.gameObject.GetComponentInParent<RopeController>());
             }
         }
     }
@@ -451,6 +493,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         movementInput = context.ReadValue<Vector2>();
     }
 
+    private bool jumpRequested = false;
     public bool jumpButtonPressed = false;
     private bool jumpButtonPressedThisFrame = false;
     private float jumpButtonPressedTime = 0f;
@@ -459,6 +502,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         if (context.started) {
             jumpButtonPressedTime = Time.time;
             jumpButtonPressedThisFrame = true;
+            jumpRequested = true;
         }
 
         if (context.performed) {
@@ -468,6 +512,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         if (context.canceled) {
             jumpButtonPressed = false;
+            jumpRequested = false;
         }
     }
 

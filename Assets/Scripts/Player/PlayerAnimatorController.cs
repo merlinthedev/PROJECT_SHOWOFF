@@ -50,6 +50,10 @@ public class PlayerAnimatorController : MonoBehaviour {
         animator.SetTrigger(animationJumpTrigger);
     }
 
+    public void Throw() {
+        animator.SetTrigger(animationThrowTrigger);
+    }
+
     public void Ground() {
         animator.SetTrigger(animationGroundedTrigger);
     }
