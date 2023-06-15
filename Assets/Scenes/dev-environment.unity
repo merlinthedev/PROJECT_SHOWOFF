@@ -365,6 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 242051349}
   - component: {fileID: 242051350}
+  - component: {fileID: 242051351}
   m_Layer: 0
   m_Name: Utils
   m_TagString: Untagged
@@ -400,6 +401,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamRef: {fileID: 0}
+--- !u!114 &242051351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242051348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313d172f577270f4db921c5c663fe5c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stonePrefab: {fileID: 5354939265296288652, guid: 1d1e39400847a3e4a8ccd88ecf7e8266, type: 3}
+  stoneSpawnPoint: {fileID: 965088765}
+  stoneSpawnOffset: {x: -2, y: 2, z: 0}
+  rockCheeseAction:
+    m_Name: Rock Cheese
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0de8ab1e-e4f1-4474-bbba-01be187401da
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: faaf3a07-b5bc-4aaf-8711-b0f5b0fe9104
+      m_Path: <Keyboard>/p
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Rock Cheese
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &352612755
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +739,7 @@ GameObject:
   - component: {fileID: 401113729}
   - component: {fileID: 401113730}
   - component: {fileID: 401113731}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,8 +754,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401113728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.9263, y: -0.4888, z: 0}
-  m_LocalScale: {x: 9.273742, y: 1.9776, z: 1}
+  m_LocalPosition: {x: -6.9604, y: -0.4888, z: 0}
+  m_LocalScale: {x: 13.342132, y: 1.9776, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1380113350}
@@ -1136,11 +1169,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -134.61714
+      value: -128.85
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.4337015
+      value: 7.51
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1199,6 +1232,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+--- !u!4 &965088765 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+  m_PrefabInstance: {fileID: 743107943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1354177919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,11 +1815,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -122.673
+      value: -123.02
       objectReference: {fileID: 0}
     - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.195
+      value: 13.58
       objectReference: {fileID: 0}
     - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_LocalPosition.z
