@@ -15,8 +15,8 @@ public class SlingShotController : MonoBehaviour {
     [SerializeField] private float minShootForce = 1f;
     private float shootForce = 0f;
 
-    [SerializeField] private AProjectile projectilePrefab;
     [SerializeField] private SlingShotTrajectoryPreview slingShotTrajectoryPreview;
+    [SerializeField] private Player player;
 
 
     // Start is called before the first frame update
@@ -47,7 +47,11 @@ public class SlingShotController : MonoBehaviour {
             return;
         }
 
-        slingShotTrajectoryPreview.DrawPredictionLine(shootDirection * shootForce, transform.position);
+
+        if (player.GetPlayerProjectileController().HasProjectile()) {
+            slingShotTrajectoryPreview.DrawPredictionLine(shootDirection * shootForce, transform.position);
+        }
+
 
         if (stickInput == Vector2.zero && smoothStickMagnitude >= minShootMagnitude) {
             // Debug.LogError("Shoot Direction: " + shootDirection);

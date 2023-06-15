@@ -100,8 +100,11 @@ public class Stone : AProjectile, IPickup, IReactor {
     private void handleStoneDestruction() {
         StopCoroutine(handleViewportPositionCoroutine);
         StoneManager stoneManager = spawnerTransform.GetComponent<StoneManager>();
-        stoneManager.ResetCurrentStone();
-        stoneManager.SpawnStone();
+        if (stoneManager != null) {
+            stoneManager.ResetCurrentStone();
+            stoneManager.SpawnStone();
+        }
+
         Destroy(gameObject);
     }
 
