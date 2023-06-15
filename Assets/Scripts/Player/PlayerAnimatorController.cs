@@ -6,6 +6,7 @@ public class PlayerAnimatorController : MonoBehaviour {
     private int animationJumpTrigger;
     private int animationGroundedTrigger;
     private int animationClimbTrigger;
+    private int animationThrowTrigger;
 
 
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class PlayerAnimatorController : MonoBehaviour {
         animationJumpTrigger = Animator.StringToHash("Jump");
         animationGroundedTrigger = Animator.StringToHash("Grounded");
         animationClimbTrigger = Animator.StringToHash("OnClimb");
+        animationThrowTrigger = Animator.StringToHash("Throw");
     }
 
     // Update is called once per frame
@@ -47,6 +49,10 @@ public class PlayerAnimatorController : MonoBehaviour {
 
     public void Jump() {
         animator.SetTrigger(animationJumpTrigger);
+    }
+
+    public void Throw() {
+        animator.SetTrigger(animationThrowTrigger);
     }
 
     public void Ground() {
