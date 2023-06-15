@@ -43530,11 +43530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7664d5ef520364ea1ac1c5992af169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterAnimator: {fileID: 0}
-  onMonsterActivation:
-    m_PersistentCalls:
-      m_Calls: []
-  monsterActivationOffset: {x: 0, y: 0, z: 0}
 --- !u!4 &1306869220
 Transform:
   m_ObjectHideFlags: 0
@@ -59642,7 +59637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613154995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -84.86, y: 11.49, z: -8.088583}
+  m_LocalPosition: {x: -130.39, y: 7.8100004, z: -8.088583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59902,11 +59897,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -87.31
+      value: -132.84
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.48
+      value: 7.8
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60042,11 +60037,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -87.31
+      value: -132.84
       objectReference: {fileID: 0}
     - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 11.48
+      value: 7.8
       objectReference: {fileID: 0}
     - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_AutoConfigureConnectedAnchor
@@ -60062,11 +60057,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584687516289294733, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -30.764198
+      value: -76.2942
       objectReference: {fileID: 0}
     - target: {fileID: 6584687516289294733, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 1.7024689
+      value: -1.9775305
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].tag
+      value: Grass
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].sound.Path
+      value: event:/Footstep Grass
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].landSound.Path
+      value: event:/jump_grass
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].sound.Guid.Data1
+      value: -782530749
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].sound.Guid.Data2
+      value: 1332893499
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].sound.Guid.Data3
+      value: 795562412
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].sound.Guid.Data4
+      value: 1397188922
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].landSound.Guid.Data1
+      value: -1501194820
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].landSound.Guid.Data2
+      value: 1191949423
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].landSound.Guid.Data3
+      value: -1034049616
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191047439568541760, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[0].landSound.Guid.Data4
+      value: 442571527
       objectReference: {fileID: 0}
     - target: {fileID: 8445435830689493568, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_Name
@@ -65611,7 +65654,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928626197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -87.31, y: 12.62, z: -8}
+  m_LocalPosition: {x: -132.84, y: 8.940001, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
