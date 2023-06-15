@@ -24,9 +24,7 @@ public class Birb : SwampMonster {
     private void moveTowardsTarget() {
         // Tween to the target
         var target = transform.position + new Vector3(flyDistance, flyAngle, 0);
-        LeanTween.move(gameObject, target, flyTime).setEase(LeanTweenType.easeInOutQuad);
-
-        Utils.Instance.InvokeDelayed(flyTime, () => {
+        LeanTween.move(gameObject, target, flyTime).setEase(LeanTweenType.easeInOutQuad).setOnComplete(() => {
             Destroy(gameObject);
         });
     }
