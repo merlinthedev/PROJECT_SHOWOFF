@@ -9,6 +9,6 @@ public class ExternalPlayerController : MonoBehaviour {
     }
 
     private void Move(Vector3 destination) {
-        
+        player.GetPlayerController().externalLocomotion(destination);
     }
 }

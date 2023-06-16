@@ -39,7 +39,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float ledgeGrabDelay = 0f;
     [SerializeField] private float ledgeFreezeTime = 0.5f;
     [SerializeField] private UnityEvent onLedgeGrab;
-    private bool canMove = true;
+    [Header("CAN MOVE")] public bool canMove = true;
     private float lastLedgeGrab;
 
     [Header("PUSHING")] [SerializeField] private float pushForce = 5f;
@@ -180,6 +180,17 @@ public class BetterPlayerMovement : MonoBehaviour {
 
             m_Rigidbody2D.AddForce(accelerationVector, ForceMode2D.Impulse);
         }
+    }
+
+    public void externalLocomotion(Vector3 destination) {
+        canMove = false;
+
+        player.GetPlayerAnimatorController().playAnimation();
+
+        LeanTween.move(this.gameObject, destination, 6f).setEase(LeanTweenType.easeInOutQuad)
+            .setOnComplete(() => {
+                canMove = true;
+            });
     }
 
     public enum JumpState {
