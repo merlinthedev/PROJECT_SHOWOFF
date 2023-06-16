@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerAnimatorController : MonoBehaviour {
     [SerializeField] private Animator animator;
@@ -7,6 +8,7 @@ public class PlayerAnimatorController : MonoBehaviour {
     private int animationGroundedTrigger;
     private int animationClimbTrigger;
     private int animationThrowTrigger;
+    [SerializeField] private UnityEvent OnLand;
 
 
     // Start is called before the first frame update
@@ -56,6 +58,7 @@ public class PlayerAnimatorController : MonoBehaviour {
     }
 
     public void Ground() {
+        OnLand?.Invoke();
         animator.SetTrigger(animationGroundedTrigger);
     }
 }

@@ -20,19 +20,6 @@ public class FootstepSounds : MonoBehaviour {
         public EventReference sound;
         public EventReference landSound;
     }
-    public void Update() {
-    
-        
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Animator animator = player.GetComponentInChildren<Animator>();
-        //detect when we finish the jump animation
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Jump") == false) {
-            if (player.GetComponent<Rigidbody2D>().velocity.y == 0 && player.GetComponent<BetterPlayerMovement>().IsGrounded == true) {
-                OnLand();
-                UnityEngine.Debug.Log("landed");
-            }
-        }
-    }
 
     public void OnFootstep() {
         //circle cast to check trigger colliders we are in
