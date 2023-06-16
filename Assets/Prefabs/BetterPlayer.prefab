@@ -275,7 +275,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 22.06, y: 28.26}
+  m_ConnectedAnchor: {x: -71.1, y: 14.19}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -361,7 +361,7 @@ Transform:
   - {fileID: 5655820394634305605}
   - {fileID: 384491701393886615}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5293060295423230079
 SpriteRenderer:
@@ -846,7 +846,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 78.6058, y: 18.48247}
+  m_ConnectedAnchor: {x: -14.554199, y: 4.412469}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!1001 &2485732144891080085
@@ -1125,6 +1125,13 @@ MonoBehaviour:
         Data3: 795562412
         Data4: 1397188922
       Path: event:/Footstep Grass
+    landSound:
+      Guid:
+        Data1: -1501194820
+        Data2: 1191949423
+        Data3: -1034049616
+        Data4: 442571527
+      Path: event:/jump_grass
   - tag: Dirt
     sound:
       Guid:
@@ -1133,6 +1140,13 @@ MonoBehaviour:
         Data3: -2008264044
         Data4: -424158088
       Path: event:/Footstep Gritty
+    landSound:
+      Guid:
+        Data1: -1501194820
+        Data2: 1191949423
+        Data3: -1034049616
+        Data4: 442571527
+      Path: event:/jump_grass
 --- !u!114 &2356559826825607657
 MonoBehaviour:
   m_ObjectHideFlags: 0
