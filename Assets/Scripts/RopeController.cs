@@ -6,13 +6,12 @@ using UnityEngine.U2D;
 
 public class RopeController : MonoBehaviour {
     [SerializeField] List<RopePart> ropeParts = new();
-    public List<RopePart> RopeParts { get { return ropeParts;} }
+    public List<RopePart> RopeParts { get { return ropeParts; } }
 
     public float RopeLength { get; private set; }
 
     [SerializeField] float ropeDamping = 1f;
-    [HideInInspector]
-    float ropeStiffness = 0f;
+    [HideInInspector] float ropeStiffness = 0f;
     [SerializeField] float climbSpeedMultiplier = 1f;
     public float ClimbSpeedMultiplier { get => climbSpeedMultiplier; }
     [SerializeField] bool startEnabled = true;
@@ -22,6 +21,7 @@ public class RopeController : MonoBehaviour {
             foreach (var part in ropeParts) {
                 if (part.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Dynamic) return true;
             }
+
             return false;
         }
         set {
@@ -29,6 +29,7 @@ public class RopeController : MonoBehaviour {
             foreach (var part in ropeParts) {
                 part.GetComponent<Rigidbody2D>().bodyType = value ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
             }
+
             ropeParts[0].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
     }
@@ -60,6 +61,7 @@ public class RopeController : MonoBehaviour {
         if (ropeIndex >= ropePartCount - 1) {
             return ropePart.transform.position;
         }
+
         var nextRopePart = ropeParts[ropeIndex + 1];
         return Vector2.Lerp(ropePart.transform.position, nextRopePart.transform.position, partProgress);
     }
@@ -77,7 +79,8 @@ public class RopeController : MonoBehaviour {
             var relPosition = point - (Vector2)ropePart.transform.position;
             float posDot = Mathf.Clamp01(Vector2.Dot(partVector.normalized, relPosition) / partVector.magnitude);
 
-            Vector2 closestPartPoint = Vector2.Lerp(ropePart.transform.position, nextRopePart.transform.position, posDot);
+            Vector2 closestPartPoint =
+                Vector2.Lerp(ropePart.transform.position, nextRopePart.transform.position, posDot);
 
             if (Vector2.Distance(point, closestPartPoint) < Vector2.Distance(point, closestPoint)) {
                 closestPartProgress = i + posDot;
@@ -121,6 +124,7 @@ public class RopeController : MonoBehaviour {
                 closestPart = part;
             }
         }
+
         return closestPart;
     }
 
@@ -128,6 +132,7 @@ public class RopeController : MonoBehaviour {
         for (int i = 0; i < ropeParts.Count; i++) {
             if (ropeParts[i].gameObject == part) return i;
         }
+
         return -1;
     }
 
@@ -143,7 +148,7 @@ public class RopeController : MonoBehaviour {
         var anchor = new GameObject(part.gameObject.name + " Anchor");
         anchor.transform.parent = part.transform;
         anchor.transform.position = part.transform.position;
-        
+
         //create joint
         var joint = anchor.AddComponent<HingeJoint2D>();
         joint.autoConfigureConnectedAnchor = false;
@@ -164,7 +169,15 @@ public class RopeController : MonoBehaviour {
         if (!part.isAnchored) return;
 
         //destroy joint
-        DestroyImmediate(part.joint.gameObject);
+
+        // Q: Can I check whether I should use Destroy()  or DestroyImmediate()?
+        // A: DestroyImmediate() is used in the editor, Destroy() is used in the game
+        if (Application.isPlaying) {
+            Destroy(part.joint.gameObject);
+        } else {
+            DestroyImmediate(part.joint.gameObject);
+        }
+
         part.joint = null;
         part.isAnchored = false;
     }
@@ -218,8 +231,7 @@ public class RopeController : MonoBehaviour {
         public Vector2 SpriteOffset = Vector2.zero;
     }
 
-    [HideInInspector]
-    public CreatorConfiguration creatorConfiguration = new CreatorConfiguration();
+    [HideInInspector] public CreatorConfiguration creatorConfiguration = new CreatorConfiguration();
 
 #endif
 }
