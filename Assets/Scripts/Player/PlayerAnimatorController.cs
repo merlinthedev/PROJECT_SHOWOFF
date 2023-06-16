@@ -21,6 +21,7 @@ public class PlayerAnimatorController : MonoBehaviour {
         if (playerMovementController == null) {
             playerMovementController = GetComponent<BetterPlayerMovement>();
         }
+
         animationJumpTrigger = Animator.StringToHash("Jump");
         animationGroundedTrigger = Animator.StringToHash("Grounded");
         animationClimbTrigger = Animator.StringToHash("OnClimb");
@@ -30,7 +31,10 @@ public class PlayerAnimatorController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        animator.SetFloat("xSpeed", Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x));
+        if (playerMovementController.canMove) {
+            animator.SetFloat("xSpeed", Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x));
+        }
+
         animator.SetFloat("ySpeed", playerMovementController.m_Rigidbody2D.velocity.y);
         animator.SetBool("Grounded", playerMovementController.IsGrounded);
         animator.SetFloat("moveInputY", playerMovementController.MoveInput.y);
@@ -41,6 +45,12 @@ public class PlayerAnimatorController : MonoBehaviour {
         //Q: how do I check whether the animation transition has finished
         //A: use the normalized time of the animation
         // animator.GetCurrentAnimatorStateInfo(0).normalizedTime
+    }
+
+    public void playAnimation() {
+        // loop the animation for the given time
+        animator.SetFloat("xSpeed", 1);
+        
     }
 
     public void ResetSpeed() {

@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -38,7 +39,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float ledgeGrabDelay = 0f;
     [SerializeField] private float ledgeFreezeTime = 0.5f;
     [SerializeField] private UnityEvent onLedgeGrab;
-    private bool canMove = true;
+    [Header("CAN MOVE")] public bool canMove = true;
     private float lastLedgeGrab;
 
     [Header("PUSHING")] [SerializeField] private float pushForce = 5f;
@@ -114,7 +115,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
 
         if (canMove) {
-            if(!isOnRope)
+            if (!isOnRope)
                 horizontalMovement();
 
             jumping();
@@ -181,6 +182,17 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
     }
 
+    public void externalLocomotion(Vector3 destination) {
+        canMove = false;
+
+        player.GetPlayerAnimatorController().playAnimation();
+
+        LeanTween.move(this.gameObject, destination, 6f).setEase(LeanTweenType.easeInOutQuad)
+            .setOnComplete(() => {
+                canMove = true;
+            });
+    }
+
     public enum JumpState {
         CanJump,
         Jumping,
@@ -237,7 +249,7 @@ public class BetterPlayerMovement : MonoBehaviour {
             case JumpState.Falling:
                 if (isGrounded || isOnRope) {
                     currentJumpState = JumpState.CanJump;
-                    if(isGrounded){
+                    if (isGrounded) {
                         player.GetPlayerAnimatorController().Ground();
                     }
                 }
@@ -543,5 +555,9 @@ public class BetterPlayerMovement : MonoBehaviour {
             Vector2 rayOrigin = new Vector2(rayStart + i * raySpacing, 0) + (Vector2)transform.position + rayOffset;
             Gizmos.DrawRay(rayOrigin, Vector2.down * rayLength);
         }
+    }
+
+    public void setCanMove(bool canMove) {
+        this.canMove = canMove;
     }
 }
