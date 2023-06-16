@@ -115,8 +115,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
 
         if (canMove) {
-            if (!isOnRope)
-                horizontalMovement();
+            horizontalMovement();
 
             jumping();
         }
@@ -375,7 +374,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
             //update player visual on rope (rotate based on rope)
             var topRopePoint = rope.GetRopePoint(ropeProgress + rotationCheckRopeProgressOffset);
-            var bottomRopePoint = rope.GetRopePoint(ropeProgress);
+            var bottomRopePoint = rope.GetRopePoint(ropeProgress - rotationCheckRopeProgressOffset * 0.01f);
 
             var ropeDirection = topRopePoint - bottomRopePoint;
             var ropeAngle = Mathf.Atan2(ropeDirection.y, ropeDirection.x) * Mathf.Rad2Deg;
@@ -417,6 +416,17 @@ public class BetterPlayerMovement : MonoBehaviour {
         setRope();
 
         rotationCheckRopeProgressOffset = -rotationCheckUpOffset / rope.RopeLength;
+        
+        //update player visual on rope (rotate based on rope)
+        var topRopePoint = rope.GetRopePoint(ropeProgress + rotationCheckRopeProgressOffset);
+        var bottomRopePoint = rope.GetRopePoint(ropeProgress - rotationCheckRopeProgressOffset * 0.01f);
+        
+        var ropeDirection = topRopePoint - bottomRopePoint;
+        var ropeAngle = Mathf.Atan2(ropeDirection.y, ropeDirection.x) * Mathf.Rad2Deg;
+        visualTransform.rotation = Quaternion.Euler(0, 0, ropeAngle - rotationAngleOffset);
+        //position visual exactly between the two points
+        visualTransform.position = Vector3.Lerp(topRopePoint, bottomRopePoint, 0.5f);
+        
     }
 
     private void ReleaseRope() {
