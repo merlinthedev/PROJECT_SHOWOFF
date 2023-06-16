@@ -237,6 +237,9 @@ public class BetterPlayerMovement : MonoBehaviour {
             case JumpState.Falling:
                 if (isGrounded || isOnRope) {
                     currentJumpState = JumpState.CanJump;
+                    if(isGrounded){
+                        player.GetPlayerAnimatorController().Ground();
+                    }
                 }
 
                 m_Rigidbody2D.AddForce(Vector2.down * (9.81f * gravityFallingMultiplier), ForceMode2D.Force);
