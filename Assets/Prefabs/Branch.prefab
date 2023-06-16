@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8349470419659856591}
   - component: {fileID: 4182364796797052905}
+  - component: {fileID: 2480799337739005727}
   m_Layer: 0
   m_Name: Branch
   m_TagString: Untagged
@@ -24,10 +25,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876388848795820715}
-  m_LocalRotation: {x: -0, y: -0, z: 0.23686737, w: 0.97154206}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2368635, w: 0.97154295}
   m_LocalPosition: {x: 225.92, y: -6.79, z: 0}
-  m_LocalScale: {x: 0.5669, y: 0.5669, z: 0.5669}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.024, y: 0.024, z: 0.024}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5790044043220538359}
   - {fileID: 7113811136624870144}
@@ -36,7 +37,7 @@ Transform:
   - {fileID: 2034187199092971507}
   - {fileID: 8580416226139865641}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 27.403}
 --- !u!114 &4182364796797052905
 MonoBehaviour:
@@ -55,6 +56,61 @@ MonoBehaviour:
   fade: 0
   enableThis: {fileID: 0}
   ropePart: {fileID: 0}
+  joint: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  fadeTime: 2
+--- !u!60 &2480799337739005727
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876388848795820715}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 32759
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -1.7223815, y: -7.7845354}
+      - {x: 12.963476, y: -2.9671094}
+      - {x: 46.421234, y: 8.757664}
+      - {x: 59.459915, y: 39.104946}
+      - {x: 50.08857, y: 45.201633}
+      - {x: 14.004952, y: 46.70557}
+      - {x: -14.114763, y: -2.9669766}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1307534317274064277
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,8 +139,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307534317274064277}
-  m_LocalRotation: {x: -0, y: -0, z: -0.23694728, w: 0.97152257}
-  m_LocalPosition: {x: -4.310691, y: 2.7019362, z: 0}
+  m_LocalRotation: {x: -0, y: 0, z: -0.23694724, w: 0.9715225}
+  m_LocalPosition: {x: -4.310719, y: 2.7019389, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -186,7 +242,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 223.0455, y: -6.554886}
+  m_ConnectedAnchor: {x: 12.383423, y: 17.89097}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &901424838337110693
@@ -206,6 +262,9 @@ MonoBehaviour:
   fade: 0
   enableThis: {fileID: 0}
   ropePart: {fileID: 0}
+  joint: {fileID: 9103327059628822082}
+  spriteRenderer: {fileID: 7370047008794216356}
+  fadeTime: 2
 --- !u!60 &6211929488361906408
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -364,8 +423,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2798827430717012084}
-  m_LocalRotation: {x: -0, y: -0, z: -0.23694728, w: 0.97152257}
-  m_LocalPosition: {x: 10.7, y: 14.9, z: 0}
+  m_LocalRotation: {x: -0, y: 0, z: -0.23463258, w: 0.9720842}
+  m_LocalPosition: {x: 10.638122, y: 14.976975, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -467,7 +526,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 2.4775457, y: 5.700971}
+  m_ConnectedAnchor: {x: 2.4485123, y: 5.7137785}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &5678489387020877568
@@ -487,6 +546,9 @@ MonoBehaviour:
   fade: 0
   enableThis: {fileID: 0}
   ropePart: {fileID: 0}
+  joint: {fileID: 2109599249841860723}
+  spriteRenderer: {fileID: 190637041787149657}
+  fadeTime: 2
 --- !u!60 &7739130509602641173
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -678,11 +740,6 @@ PolygonCollider2D:
       - {x: -1.8249999, y: -4.0699997}
       - {x: -1.775, y: -4.0099998}
       - {x: -1.775, y: -3.9299998}
-    - - {x: -2.0149999, y: -4.0099998}
-      - {x: -1.935, y: -3.9599998}
-      - {x: -1.995, y: -3.98}
-      - {x: -2.0349998, y: -4.0299997}
-      - {x: -2.0249999, y: -4.0299997}
   m_UseDelaunayMesh: 0
 --- !u!1 &3593465219856113773
 GameObject:
@@ -712,8 +769,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3593465219856113773}
-  m_LocalRotation: {x: -0, y: -0, z: -0.23694728, w: 0.97152257}
-  m_LocalPosition: {x: 16.57, y: 10.94, z: 0}
+  m_LocalRotation: {x: -0, y: 0, z: -0.23694724, w: 0.9715225}
+  m_LocalPosition: {x: 16.57002, y: 10.940008, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -815,7 +872,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 231.40503, y: 3.039362}
+  m_ConnectedAnchor: {x: 12.856476, y: 17.63319}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &469701027443311769
@@ -835,6 +892,9 @@ MonoBehaviour:
   fade: 0
   enableThis: {fileID: 0}
   ropePart: {fileID: 0}
+  joint: {fileID: 3646960563618883087}
+  spriteRenderer: {fileID: 56792038537376178}
+  fadeTime: 2
 --- !u!60 &4631063249059309257
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -980,8 +1040,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6542066391328390831}
-  m_LocalRotation: {x: -0, y: -0, z: -0.23694728, w: 0.97152257}
-  m_LocalPosition: {x: 34.4, y: 17.4, z: 0}
+  m_LocalRotation: {x: -0, y: 0, z: -0.23423684, w: 0.97217965}
+  m_LocalPosition: {x: 34.32323, y: 17.611515, z: -5.0000005}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1083,7 +1143,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 6.3914456, y: 4.219901}
+  m_ConnectedAnchor: {x: 6.3874927, y: 4.225699}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &7712930504217451363
@@ -1103,6 +1163,9 @@ MonoBehaviour:
   fade: 0
   enableThis: {fileID: 0}
   ropePart: {fileID: 0}
+  joint: {fileID: 6108462434911766504}
+  spriteRenderer: {fileID: 3037947574384342485}
+  fadeTime: 2
 --- !u!60 &4168379147672816355
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1258,8 +1321,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6938661603640805763}
-  m_LocalRotation: {x: -0, y: -0, z: -0.23694728, w: 0.97152257}
-  m_LocalPosition: {x: 39.1, y: 29.5, z: 0}
+  m_LocalRotation: {x: -0, y: 0, z: -0.23443335, w: 0.9721322}
+  m_LocalPosition: {x: 38.961864, y: 29.724901, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1361,7 +1424,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 5.9419737, y: 8.367314}
+  m_ConnectedAnchor: {x: 5.938272, y: 8.370038}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &1527259992562291180
@@ -1381,6 +1444,9 @@ MonoBehaviour:
   fade: 0
   enableThis: {fileID: 0}
   ropePart: {fileID: 0}
+  joint: {fileID: 4000692961913207511}
+  spriteRenderer: {fileID: 8718095280184623354}
+  fadeTime: 2
 --- !u!60 &479798229284356054
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1630,8 +1696,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8068767505988671265}
-  m_LocalRotation: {x: -0, y: -0, z: 0.34636202, w: 0.93810093}
-  m_LocalPosition: {x: 17.5, y: 32, z: 0}
+  m_LocalRotation: {x: -0, y: 0, z: 0.34886596, w: 0.93717265}
+  m_LocalPosition: {x: 17.34615, y: 32.114655, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1733,7 +1799,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.5901683, y: 5.8845773}
+  m_ConnectedAnchor: {x: -0.59395754, y: 5.8846135}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &1697745772326121669
@@ -1753,6 +1819,9 @@ MonoBehaviour:
   fade: 0
   enableThis: {fileID: 0}
   ropePart: {fileID: 0}
+  joint: {fileID: 7214020362495180041}
+  spriteRenderer: {fileID: 6880030146747404390}
+  fadeTime: 2
 --- !u!60 &3333862146688008533
 PolygonCollider2D:
   m_ObjectHideFlags: 0
