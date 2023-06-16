@@ -296,7 +296,7 @@ public class PlayerMovementController : MonoBehaviour {
             visualsTransform.localScale = Vector3.Scale(defaultVisualScale, new Vector3(-1, 1, 1));
         }
 
-        player.GetPlayerProjectileController().UpdateProjectile();
+        //player.GetPlayerProjectileController().UpdateProjectile();
     }
 
     #endregion
