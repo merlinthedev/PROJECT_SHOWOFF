@@ -49,9 +49,7 @@ public class Stone : AProjectile, IPickup, IReactor {
 
     private IEnumerator checkForGroundCollision() {
         while (true) {
-            Debug.Log("Checking ground collision.");
             if (m_Collider2D.IsTouchingLayers(LayerMask.GetMask("Grass"))) {
-                Debug.Log("Stone collided with ground.");
                 if (shouldDestroyOnNextCollision) {
                     // Destroy the object
                     handleStoneDestruction();
@@ -99,7 +97,6 @@ public class Stone : AProjectile, IPickup, IReactor {
             }
 
             Vector3 stoneViewportPosition = mainCameraReference.WorldToViewportPoint(transform.position);
-            Debug.Log("Checking viewport position.");
             if (stoneViewportPosition.x < 0 || stoneViewportPosition.x > 1 || stoneViewportPosition.y < 0 ||
                 stoneViewportPosition.y > 1) {
                 handleStoneDestruction();
