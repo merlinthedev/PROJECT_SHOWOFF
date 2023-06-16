@@ -8,6 +8,7 @@ public class PlayerAnimatorController : MonoBehaviour {
     private int animationGroundedTrigger;
     private int animationClimbTrigger;
     private int animationThrowTrigger;
+    private int animationPickupTrigger;
     [SerializeField] private UnityEvent OnLand;
 
 
@@ -24,6 +25,7 @@ public class PlayerAnimatorController : MonoBehaviour {
         animationGroundedTrigger = Animator.StringToHash("Grounded");
         animationClimbTrigger = Animator.StringToHash("OnClimb");
         animationThrowTrigger = Animator.StringToHash("Throw");
+        animationPickupTrigger = Animator.StringToHash("Pickup");
     }
 
     // Update is called once per frame
@@ -55,6 +57,10 @@ public class PlayerAnimatorController : MonoBehaviour {
 
     public void Throw() {
         animator.SetTrigger(animationThrowTrigger);
+    }
+
+    public void Pickup() {
+        animator.SetTrigger(animationPickupTrigger);
     }
 
     public void Ground() {

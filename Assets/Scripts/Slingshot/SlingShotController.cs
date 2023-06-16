@@ -83,10 +83,17 @@ public class SlingShotController : MonoBehaviour {
             return;
         }
 
-        x.OnThrow(player);
-        projectile.Shoot(shootDirection, shootForce);
-        player.GetPlayerProjectileController().SetProjectileFlag(false);
         slingShotTrajectoryPreview.ClearPredictionLine();
+        player.GetPlayerAnimatorController().Throw();
+
+        Utils.Instance.InvokeDelayed(0.15f, () => {
+            x.OnThrow(player);
+            projectile.Shoot(shootDirection, shootForce);
+            player.GetPlayerProjectileController().SetProjectileFlag(false);
+
+        });
+
+
     }
 
     public void OnStickInput(InputAction.CallbackContext context) {

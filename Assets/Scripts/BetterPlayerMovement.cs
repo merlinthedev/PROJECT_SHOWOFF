@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -114,7 +115,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
 
         if (canMove) {
-            if(!isOnRope)
+            if (!isOnRope)
                 horizontalMovement();
 
             jumping();
@@ -237,7 +238,7 @@ public class BetterPlayerMovement : MonoBehaviour {
             case JumpState.Falling:
                 if (isGrounded || isOnRope) {
                     currentJumpState = JumpState.CanJump;
-                    if(isGrounded){
+                    if (isGrounded) {
                         player.GetPlayerAnimatorController().Ground();
                     }
                 }
@@ -543,5 +544,9 @@ public class BetterPlayerMovement : MonoBehaviour {
             Vector2 rayOrigin = new Vector2(rayStart + i * raySpacing, 0) + (Vector2)transform.position + rayOffset;
             Gizmos.DrawRay(rayOrigin, Vector2.down * rayLength);
         }
+    }
+
+    public void setCanMove(bool canMove) {
+        this.canMove = canMove;
     }
 }
