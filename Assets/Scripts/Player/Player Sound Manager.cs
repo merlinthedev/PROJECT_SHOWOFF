@@ -7,9 +7,10 @@ using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
 public class FootstepSounds : MonoBehaviour {
-    [SerializeField]
     LayerMask soundCheckLayer;
 
+    [SerializeField]
+    EventReference climbSound;
     //fmod sound reference
     [SerializeField]
     List<FootstepConfig> footstepConfigs = new List<FootstepConfig>();
@@ -61,5 +62,8 @@ public class FootstepSounds : MonoBehaviour {
                 RuntimeManager.PlayOneShot(config.landSound, transform.position);
             }
         }
+    }
+    public void OnClimb() {
+        RuntimeManager.PlayOneShot(climbSound, transform.position);
     }
 }
