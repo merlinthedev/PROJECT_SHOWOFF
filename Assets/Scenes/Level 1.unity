@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 1175142}
   - component: {fileID: 1175145}
   - component: {fileID: 1175144}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 4
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -594,7 +594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 16072146}
   - component: {fileID: 16072147}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 27901013}
   - component: {fileID: 27901014}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -896,7 +896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 37317793}
   - component: {fileID: 37317794}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope 2 - Stump section
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1426,7 +1426,7 @@ GameObject:
   - component: {fileID: 83579390}
   - component: {fileID: 83579393}
   - component: {fileID: 83579391}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 1
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -2007,38 +2007,6 @@ Transform:
   m_Father: {fileID: 17404942}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &112222576 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2709152571416513576, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-  m_PrefabInstance: {fileID: 1640763525}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &112222581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112222576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26f36d2666d7b044486c08bf28aa7fc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onPickup:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 652680206}
-        m_TargetAssemblyTypeName: PlayerProjectileController, Assembly-CSharp
-        m_MethodName: AnimateRock
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &118135933
 GameObject:
   m_ObjectHideFlags: 0
@@ -3323,7 +3291,7 @@ GameObject:
   - component: {fileID: 179948233}
   - component: {fileID: 179948236}
   - component: {fileID: 179948235}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -3463,7 +3431,7 @@ GameObject:
   - component: {fileID: 194743442}
   - component: {fileID: 194743441}
   - component: {fileID: 194743440}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3547,7 +3515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216966353}
   - component: {fileID: 216966354}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3634,7 +3602,7 @@ GameObject:
   - component: {fileID: 219663184}
   - component: {fileID: 219663187}
   - component: {fileID: 219663185}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 1
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -3776,7 +3744,7 @@ GameObject:
   - component: {fileID: 222827760}
   - component: {fileID: 222827762}
   - component: {fileID: 222827761}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 2
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -4001,7 +3969,7 @@ GameObject:
   m_Component:
   - component: {fileID: 243974237}
   - component: {fileID: 243974238}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4293,7 +4261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 265899703}
   - component: {fileID: 265899704}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4380,7 +4348,7 @@ GameObject:
   - component: {fileID: 270988103}
   - component: {fileID: 270988106}
   - component: {fileID: 270988104}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 9
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -4605,7 +4573,7 @@ GameObject:
   - component: {fileID: 286970804}
   - component: {fileID: 286970806}
   - component: {fileID: 286970805}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 11
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -4903,7 +4871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 304076255}
   - component: {fileID: 304076256}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope 3 - First branch puzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5084,7 +5052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 315426319}
   - component: {fileID: 315426320}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6382,7 +6350,7 @@ GameObject:
   - component: {fileID: 361066059}
   - component: {fileID: 361066062}
   - component: {fileID: 361066060}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -6716,7 +6684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 399762080}
   - component: {fileID: 399762081}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6923,7 +6891,7 @@ GameObject:
   - component: {fileID: 424407463}
   - component: {fileID: 424407462}
   - component: {fileID: 424407461}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 2 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7135,7 +7103,7 @@ GameObject:
   - component: {fileID: 456327699}
   - component: {fileID: 456327702}
   - component: {fileID: 456327700}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 7
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -7387,7 +7355,7 @@ GameObject:
   - component: {fileID: 462886148}
   - component: {fileID: 462886147}
   - component: {fileID: 462886146}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 2 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7471,7 +7439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 468092674}
   - component: {fileID: 468092675}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope 6 - Right tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7543,7 +7511,7 @@ GameObject:
   - component: {fileID: 477782227}
   - component: {fileID: 477782229}
   - component: {fileID: 477782228}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7627,7 +7595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 484488974}
   - component: {fileID: 484488975}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7798,7 +7766,7 @@ GameObject:
   - component: {fileID: 505481022}
   - component: {fileID: 505481025}
   - component: {fileID: 505481023}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 4
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -7941,7 +7909,7 @@ GameObject:
   - component: {fileID: 511812789}
   - component: {fileID: 511812788}
   - component: {fileID: 511812787}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 7
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -13821,7 +13789,7 @@ GameObject:
   - component: {fileID: 573141547}
   - component: {fileID: 573141546}
   - component: {fileID: 573141545}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 7
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -14133,7 +14101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 581216123}
   - component: {fileID: 581216124}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15218,17 +15186,6 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 1754438079511692130, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
   m_PrefabInstance: {fileID: 1640763525}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &652680206 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4218625082870408761, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-  m_PrefabInstance: {fileID: 1640763525}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75cee08f6ca7070428ff649433ed68e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &658922822
 GameObject:
   m_ObjectHideFlags: 0
@@ -15239,7 +15196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 658922823}
   - component: {fileID: 658922824}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16115,7 +16072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 672246704}
   - component: {fileID: 672246705}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16199,7 +16156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 672299936}
   - component: {fileID: 672299937}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17410,7 +17367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 717442142}
   - component: {fileID: 717442143}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17683,7 +17640,7 @@ GameObject:
   - component: {fileID: 763581787}
   - component: {fileID: 763581786}
   - component: {fileID: 763581785}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 2
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -18240,7 +18197,7 @@ GameObject:
   - component: {fileID: 781894478}
   - component: {fileID: 781894477}
   - component: {fileID: 781894476}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18589,7 +18546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 813407717}
   - component: {fileID: 813407718}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19208,7 +19165,7 @@ GameObject:
   - component: {fileID: 836544894}
   - component: {fileID: 836544897}
   - component: {fileID: 836544895}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 1
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -19620,7 +19577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 842968831}
   - component: {fileID: 842968832}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19707,7 +19664,7 @@ GameObject:
   - component: {fileID: 852071760}
   - component: {fileID: 852071759}
   - component: {fileID: 852071758}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 8
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -19850,7 +19807,7 @@ GameObject:
   - component: {fileID: 856768365}
   - component: {fileID: 856768368}
   - component: {fileID: 856768366}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 10
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -19993,7 +19950,7 @@ GameObject:
   - component: {fileID: 856814881}
   - component: {fileID: 856814884}
   - component: {fileID: 856814882}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 6
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -20514,7 +20471,7 @@ GameObject:
   - component: {fileID: 869999218}
   - component: {fileID: 869999221}
   - component: {fileID: 869999219}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 5
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -20657,7 +20614,7 @@ GameObject:
   - component: {fileID: 879191816}
   - component: {fileID: 879191819}
   - component: {fileID: 879191817}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20881,7 +20838,7 @@ GameObject:
   - component: {fileID: 928775060}
   - component: {fileID: 928775059}
   - component: {fileID: 928775058}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 3 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21958,7 +21915,7 @@ GameObject:
   - component: {fileID: 996485062}
   - component: {fileID: 996485065}
   - component: {fileID: 996485063}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 5
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -22182,7 +22139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1008254718}
   - component: {fileID: 1008254719}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22266,7 +22223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1009283595}
   - component: {fileID: 1009283596}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22437,7 +22394,7 @@ GameObject:
   - component: {fileID: 1016090932}
   - component: {fileID: 1016090931}
   - component: {fileID: 1016090930}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 6
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -22724,7 +22681,7 @@ GameObject:
   - component: {fileID: 1028852767}
   - component: {fileID: 1028852766}
   - component: {fileID: 1028852765}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 2
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -23614,7 +23571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1038106666}
   - component: {fileID: 1038106667}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23943,7 +23900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1052993342}
   - component: {fileID: 1052993343}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope 1 - Stump section
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24249,7 +24206,7 @@ GameObject:
   - component: {fileID: 1072233646}
   - component: {fileID: 1072233649}
   - component: {fileID: 1072233647}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 10
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -24389,7 +24346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1076744813}
   - component: {fileID: 1076744814}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24473,7 +24430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1086661196}
   - component: {fileID: 1086661197}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24560,7 +24517,7 @@ GameObject:
   - component: {fileID: 1104108450}
   - component: {fileID: 1104108449}
   - component: {fileID: 1104108448}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 1
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -29534,7 +29491,7 @@ GameObject:
   - component: {fileID: 1110692993}
   - component: {fileID: 1110692996}
   - component: {fileID: 1110692994}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 3
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -29676,7 +29633,7 @@ GameObject:
   - component: {fileID: 1116415453}
   - component: {fileID: 1116415455}
   - component: {fileID: 1116415454}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 5
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -29990,6 +29947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1640763526}
   destination: {fileID: 1780981358}
+  shouldIntro: 0
 --- !u!1 &1124543740
 GameObject:
   m_ObjectHideFlags: 0
@@ -35086,7 +35044,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150374074}
   - component: {fileID: 1150374075}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35257,7 +35215,7 @@ GameObject:
   - component: {fileID: 1156160109}
   - component: {fileID: 1156160112}
   - component: {fileID: 1156160110}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 4
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -35481,7 +35439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158086423}
   - component: {fileID: 1158086424}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35732,7 +35690,7 @@ GameObject:
   - component: {fileID: 1184949161}
   - component: {fileID: 1184949160}
   - component: {fileID: 1184949159}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 3
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -36115,7 +36073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1188522631}
   - component: {fileID: 1188522632}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36202,7 +36160,7 @@ GameObject:
   - component: {fileID: 1190474363}
   - component: {fileID: 1190474366}
   - component: {fileID: 1190474365}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -36341,7 +36299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1192970269}
   - component: {fileID: 1192970270}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36427,7 +36385,7 @@ GameObject:
   - component: {fileID: 1198111791}
   - component: {fileID: 1198111793}
   - component: {fileID: 1198111792}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 1
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -36542,7 +36500,7 @@ GameObject:
   - component: {fileID: 1204377309}
   - component: {fileID: 1204377308}
   - component: {fileID: 1204377307}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 1 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36629,7 +36587,7 @@ GameObject:
   - component: {fileID: 1220128108}
   - component: {fileID: 1220128107}
   - component: {fileID: 1220128106}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -36769,7 +36727,7 @@ GameObject:
   - component: {fileID: 1225049996}
   - component: {fileID: 1225049995}
   - component: {fileID: 1225049994}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 4 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36937,7 +36895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1242238671}
   - component: {fileID: 1242238672}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37021,7 +36979,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1259563850}
   - component: {fileID: 1259563851}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37437,7 +37395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1288554151}
   - component: {fileID: 1288554152}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37845,7 +37803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1318723652}
   - component: {fileID: 1318723653}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope 4 - Log puzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37907,7 +37865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1324300022}
   - component: {fileID: 1324300023}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38142,7 +38100,7 @@ GameObject:
   - component: {fileID: 1329335853}
   - component: {fileID: 1329335856}
   - component: {fileID: 1329335854}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 6
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -38409,7 +38367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1345504922}
   - component: {fileID: 1345504923}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope 5 - Left tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38479,7 +38437,7 @@ GameObject:
   - component: {fileID: 1351824506}
   - component: {fileID: 1351824504}
   - component: {fileID: 1351824503}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 1
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -43450,7 +43408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1379192816}
   - component: {fileID: 1379192817}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43863,7 +43821,7 @@ GameObject:
   - component: {fileID: 1400027852}
   - component: {fileID: 1400027851}
   - component: {fileID: 1400027850}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 9
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -44809,7 +44767,7 @@ GameObject:
   - component: {fileID: 1419596451}
   - component: {fileID: 1419596450}
   - component: {fileID: 1419596449}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 1 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45151,7 +45109,7 @@ GameObject:
   - component: {fileID: 1423898500}
   - component: {fileID: 1423898503}
   - component: {fileID: 1423898501}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -45332,7 +45290,7 @@ GameObject:
   - component: {fileID: 1430461195}
   - component: {fileID: 1430461194}
   - component: {fileID: 1430461193}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 3
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -45809,8 +45767,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1fe13b86ab92e4cb915648ed01ed4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  cameraPriority: 5
+  vcam: {fileID: 0}
+  mixCam: {fileID: 0}
+  playerInRange: 0
+  blendStart: 5
+  blendEnd: 1
+  blendCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1445341460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45854,7 +45839,7 @@ GameObject:
   - component: {fileID: 1466750362}
   - component: {fileID: 1466750365}
   - component: {fileID: 1466750363}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -45993,7 +45978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1468795757}
   - component: {fileID: 1468795758}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46263,7 +46248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1488451258}
   - component: {fileID: 1488451259}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51796,7 +51781,7 @@ GameObject:
   - component: {fileID: 1536927670}
   - component: {fileID: 1536927672}
   - component: {fileID: 1536927671}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 0 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52178,7 +52163,7 @@ GameObject:
   - component: {fileID: 1575551562}
   - component: {fileID: 1575551560}
   - component: {fileID: 1575551559}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 1
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -52319,7 +52304,7 @@ GameObject:
   - component: {fileID: 1576037199}
   - component: {fileID: 1576037201}
   - component: {fileID: 1576037200}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 2 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52638,7 +52623,7 @@ GameObject:
   - component: {fileID: 1605617824}
   - component: {fileID: 1605617827}
   - component: {fileID: 1605617825}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 8
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -52779,7 +52764,7 @@ GameObject:
   - component: {fileID: 1608727670}
   - component: {fileID: 1608727672}
   - component: {fileID: 1608727671}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 5 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52918,7 +52903,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613154995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -145.12001, y: 8.008465, z: -8.088583}
+  m_LocalPosition: {x: 16.29, y: 13.098464, z: -8.088583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -52955,11 +52940,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -147.57
+      value: 13.84
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5
+      value: 11.59
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -52993,55 +52978,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2504480031589435498, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504480031589435498, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: grabAnchor
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2504480031589435498, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: objectGrabPointTranform
-      value: 
-      objectReference: {fileID: 1640763526}
-    - target: {fileID: 4218625082870408761, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: holdTransform
-      value: 
-      objectReference: {fileID: 1640763526}
-    - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: -51.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 13.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6584687516289294733, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 5.2458
-      objectReference: {fileID: 0}
-    - target: {fileID: 6584687516289294733, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 3.622469
-      objectReference: {fileID: 0}
-    - target: {fileID: 8385349942149478993, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.347
-      objectReference: {fileID: 0}
     - target: {fileID: 8445435830689493568, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_Name
       value: BetterPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 8700646192056531586, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-    - {fileID: 3774289825453086631, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2709152571416513576, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 112222581}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
 --- !u!114 &1640763526 stripped
 MonoBehaviour:
@@ -53287,7 +53231,7 @@ GameObject:
   - component: {fileID: 1645750525}
   - component: {fileID: 1645750524}
   - component: {fileID: 1645750523}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 2
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -54435,7 +54379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1708650187}
   - component: {fileID: 1708650188}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55521,7 +55465,7 @@ GameObject:
   - component: {fileID: 1750269771}
   - component: {fileID: 1750269770}
   - component: {fileID: 1750269769}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 11
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -55893,7 +55837,7 @@ GameObject:
   - component: {fileID: 1774300695}
   - component: {fileID: 1774300698}
   - component: {fileID: 1774300696}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 2
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -56033,7 +55977,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780410529}
   - component: {fileID: 1780410530}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56148,7 +56092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1795918968}
   - component: {fileID: 1795918969}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56317,7 +56261,7 @@ GameObject:
   - component: {fileID: 1804009335}
   - component: {fileID: 1804009334}
   - component: {fileID: 1804009333}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 1 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57707,7 +57651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1878098236}
   - component: {fileID: 1878098237}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58060,7 +58004,7 @@ GameObject:
   - component: {fileID: 1909305828}
   - component: {fileID: 1909305830}
   - component: {fileID: 1909305829}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 11 Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58612,7 +58556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928626197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -134.70528, y: 8.99235, z: -8}
+  m_LocalPosition: {x: 13.84, y: 14.228464, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59458,7 +59402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1955004518}
   - component: {fileID: 1955004519}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59698,7 +59642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1970045051}
   - component: {fileID: 1970045052}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60874,7 +60818,7 @@ GameObject:
   - component: {fileID: 2019010850}
   - component: {fileID: 2019010853}
   - component: {fileID: 2019010851}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 3
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -61127,7 +61071,7 @@ GameObject:
   - component: {fileID: 2037506976}
   - component: {fileID: 2037506975}
   - component: {fileID: 2037506974}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 4
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -61461,7 +61405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2063753681}
   - component: {fileID: 2063753682}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope 5 - Left tree (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62684,7 +62628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2089007355}
   - component: {fileID: 2089007356}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63041,7 +62985,7 @@ GameObject:
   - component: {fileID: 2111731328}
   - component: {fileID: 2111731331}
   - component: {fileID: 2111731329}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 2
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -63184,7 +63128,7 @@ GameObject:
   - component: {fileID: 2112149278}
   - component: {fileID: 2112149277}
   - component: {fileID: 2112149276}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rope part 5
   m_TagString: Rope
   m_Icon: {fileID: 0}
@@ -63972,7 +63916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2135907880}
   - component: {fileID: 2135907881}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
