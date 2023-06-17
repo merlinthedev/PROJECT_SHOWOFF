@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class PlayerProjectileController : MonoBehaviour {
@@ -8,6 +9,7 @@ public class PlayerProjectileController : MonoBehaviour {
     private bool hasProjectile = false;
     private GameObject projectile = null;
     [SerializeField] private Transform holdTransform;
+    [SerializeField] private bool grabbing = false;
 
     private void Update() {
         UpdateProjectile();
@@ -43,16 +45,18 @@ public class PlayerProjectileController : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.CompareTag("Pickup")) {
-            var x = GetComponent<PlayerEventHandler>();
-            if (x == null) {
-                Debug.Log("Player has no PlayerEventHandler");
+            //var x = GetComponent<PlayerEventHandler>();
+            //if (x == null) {
+            //    Debug.Log("Player has no PlayerEventHandler");
+            //    return;
+            //}
+
+            //if (!x.Grabbing) {
+            //    return;
+            //}
+            if(!grabbing) {
                 return;
             }
-
-            if (!x.Grabbing) {
-                return;
-            }
-
             player.GetPlayerAnimatorController().Pickup();
             p = other.gameObject.GetComponent<IPickup>();
             g = other.gameObject;
@@ -65,5 +69,16 @@ public class PlayerProjectileController : MonoBehaviour {
         hasProjectile = true;
         p.OnPickup(player);
         projectile = g;
+    }
+
+    public void OnGrab(InputAction.CallbackContext callbackContext) {
+        if (callbackContext.started) {
+            grabbing = true;
+        }
+
+        if (callbackContext.canceled) {
+            grabbing = false;
+
+        }
     }
 }
