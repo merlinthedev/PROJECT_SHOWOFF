@@ -180,8 +180,7 @@ public class RopeControllerEditor : Editor {
                 if (i == currentConfig.ropePartCount - 1) spriteRenderer.sprite = currentConfig.ropeEndSprite;
                 spriteRenderer.drawMode = SpriteDrawMode.Sliced;
                 spriteRenderer.size = localBoxSize * 2;
-                // Rope sorting layer is set to "Ground" to avoid overlapping with player
-                spriteRenderer.sortingLayerName = "Ground";
+                spriteRenderer.sortingLayerName = "Rope";
             }
         }
 
