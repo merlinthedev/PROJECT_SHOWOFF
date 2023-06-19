@@ -22,6 +22,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float maximumGroundAngle = 20f;
     [SerializeField] private bool affectGroundHorizontalOnly = true;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask ledgeGrabLayer;
     private bool hasJumpBuffer => isGrounded && (jumpButtonPressedTime + jumpBufferTime > Time.time);
     private bool hasCoyoteJump => !isGrounded && (lastGroundedTime + coyoteTime > Time.time);
 
@@ -269,12 +270,14 @@ public class BetterPlayerMovement : MonoBehaviour {
         // if we are grounded, return
         if (inWater || isGrounded || isOnRope) return;
 
+        if (m_Rigidbody2D.velocity.y > 0) return;
+
         float playerRadius = m_CapsuleCollider2D.size.x / 2f;
 
         Vector2 direction = new Vector2(movementInput.x, 0);
 
         //raycast forwards to check if we hit a ledge
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, ledgeGrabDistance, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, ledgeGrabDistance, ledgeGrabLayer);
 
         // if we didn't hit anything, return
         if (hit.collider == null) {
@@ -322,10 +325,14 @@ public class BetterPlayerMovement : MonoBehaviour {
                 new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
-            LeanTween.move(gameObject, path, ledgeFreezeTime);
-
-            // CAN MOVE = FALSE;
+            // Utils.Instance.InvokeDelayed(1f, () => );
+            // set the player position to the final ledge position
             canMove = false;
+            m_Rigidbody2D.velocity = Vector2.zero;
+            m_Rigidbody2D.isKinematic = true;
+
+            Utils.Instance.InvokeDelayed(0.6f, () => LeanTween.move(gameObject, path, ledgeFreezeTime + 0.4f));
+            // CAN MOVE = FALSE;
 
 
             Debug.Log("Invoking ledge climb ending.");
@@ -338,8 +345,19 @@ public class BetterPlayerMovement : MonoBehaviour {
             Debug.Log("Setting last ledge grab time.");
             lastLedgeGrab = Time.time + ledgeFreezeTime;
             // onLedgeGrab?.Invoke();
+            if (!hasTriggered) {
+                player.GetPlayerAnimatorController().LedgeClimb();
+                hasTriggered = true;
+            }
+
+            Utils.Instance.InvokeDelayed(2.3f, () => {
+                m_Rigidbody2D.isKinematic = false;
+                hasTriggered = false;
+            });
         });
     }
+
+    private bool hasTriggered = false;
 
     public Vector2 MoveInput {
         get {
@@ -416,17 +434,16 @@ public class BetterPlayerMovement : MonoBehaviour {
         setRope();
 
         rotationCheckRopeProgressOffset = -rotationCheckUpOffset / rope.RopeLength;
-        
+
         //update player visual on rope (rotate based on rope)
         var topRopePoint = rope.GetRopePoint(ropeProgress + rotationCheckRopeProgressOffset);
         var bottomRopePoint = rope.GetRopePoint(ropeProgress - rotationCheckRopeProgressOffset * 0.01f);
-        
+
         var ropeDirection = topRopePoint - bottomRopePoint;
         var ropeAngle = Mathf.Atan2(ropeDirection.y, ropeDirection.x) * Mathf.Rad2Deg;
         visualTransform.rotation = Quaternion.Euler(0, 0, ropeAngle - rotationAngleOffset);
         //position visual exactly between the two points
         visualTransform.position = Vector3.Lerp(topRopePoint, bottomRopePoint, 0.5f);
-        
     }
 
     private void ReleaseRope() {
