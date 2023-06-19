@@ -265,10 +265,12 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
     }
 
+    private bool isLedgeClimbing = false;
+
 
     private void ledgeGrab() {
         // if we are grounded, return
-        if (inWater || isGrounded || isOnRope) return;
+        if (inWater || isGrounded || isOnRope || isLedgeClimbing) return;
 
         if (m_Rigidbody2D.velocity.y > 0) return;
 
@@ -318,6 +320,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         //this.transform.position = new Vector2(downHit.point.x, downHit.point.y + playerRadius);
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
+        isLedgeClimbing = true;
 
         Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
@@ -353,6 +356,7 @@ public class BetterPlayerMovement : MonoBehaviour {
             Utils.Instance.InvokeDelayed(2.3f, () => {
                 m_Rigidbody2D.isKinematic = false;
                 hasTriggered = false;
+                isLedgeClimbing = false;
             });
         });
     }
