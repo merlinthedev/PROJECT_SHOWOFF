@@ -9,6 +9,7 @@ public class PlayerAnimatorController : MonoBehaviour {
     private int animationClimbTrigger;
     private int animationThrowTrigger;
     private int animationPickupTrigger;
+    private int animationLedgeClimbTrigger;
     [SerializeField] private UnityEvent OnLand;
 
 
@@ -27,6 +28,7 @@ public class PlayerAnimatorController : MonoBehaviour {
         animationClimbTrigger = Animator.StringToHash("OnClimb");
         animationThrowTrigger = Animator.StringToHash("Throw");
         animationPickupTrigger = Animator.StringToHash("Pickup");
+        animationLedgeClimbTrigger = Animator.StringToHash("LedgeClimb");
     }
 
     // Update is called once per frame
@@ -55,6 +57,10 @@ public class PlayerAnimatorController : MonoBehaviour {
 
     public void ResetSpeed() {
         animator.speed = 1f;
+    }
+
+    public void LedgeClimb() {
+        animator.SetTrigger(animationLedgeClimbTrigger);
     }
 
     public void RopeClimb() {

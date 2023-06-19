@@ -322,10 +322,14 @@ public class BetterPlayerMovement : MonoBehaviour {
                 new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
-            LeanTween.move(gameObject, path, ledgeFreezeTime);
-
-            // CAN MOVE = FALSE;
+            // Utils.Instance.InvokeDelayed(1f, () => );
+            // set the player position to the final ledge position
             canMove = false;
+            m_Rigidbody2D.velocity = Vector2.zero;
+            m_Rigidbody2D.isKinematic = true;
+
+            Utils.Instance.InvokeDelayed(0.6f, () => LeanTween.move(gameObject, path, ledgeFreezeTime + 0.4f));
+            // CAN MOVE = FALSE;
 
 
             Debug.Log("Invoking ledge climb ending.");
@@ -338,8 +342,19 @@ public class BetterPlayerMovement : MonoBehaviour {
             Debug.Log("Setting last ledge grab time.");
             lastLedgeGrab = Time.time + ledgeFreezeTime;
             // onLedgeGrab?.Invoke();
+            if (!hasTriggered) {
+                player.GetPlayerAnimatorController().LedgeClimb();
+                hasTriggered = true;
+            }
+
+            Utils.Instance.InvokeDelayed(2.3f, () => {
+                m_Rigidbody2D.isKinematic = false;
+                hasTriggered = false;
+            });
         });
     }
+
+    private bool hasTriggered = false;
 
     public Vector2 MoveInput {
         get {
@@ -416,17 +431,16 @@ public class BetterPlayerMovement : MonoBehaviour {
         setRope();
 
         rotationCheckRopeProgressOffset = -rotationCheckUpOffset / rope.RopeLength;
-        
+
         //update player visual on rope (rotate based on rope)
         var topRopePoint = rope.GetRopePoint(ropeProgress + rotationCheckRopeProgressOffset);
         var bottomRopePoint = rope.GetRopePoint(ropeProgress - rotationCheckRopeProgressOffset * 0.01f);
-        
+
         var ropeDirection = topRopePoint - bottomRopePoint;
         var ropeAngle = Mathf.Atan2(ropeDirection.y, ropeDirection.x) * Mathf.Rad2Deg;
         visualTransform.rotation = Quaternion.Euler(0, 0, ropeAngle - rotationAngleOffset);
         //position visual exactly between the two points
         visualTransform.position = Vector3.Lerp(topRopePoint, bottomRopePoint, 0.5f);
-        
     }
 
     private void ReleaseRope() {
