@@ -17,9 +17,14 @@ public class Toad : SwampMonster {
     private float lastActivationTime = 0f;
     private float moveTime = 2f;
 
+
     private void FixedUpdate() {
         if (Time.time > lastActivationTime + moveTime) {
-            shouldMove = false;
+            if (shouldMove) {
+                shouldMove = false;
+                monsterAnimator.SetTrigger("Walk");
+                Debug.Log("Setting trigger to walk.");
+            }
         }
 
         if (shouldMove) {
@@ -54,11 +59,15 @@ public class Toad : SwampMonster {
 
         shouldMove = true;
         lastActivationTime = Time.time;
+        monsterAnimator.SetTrigger("Run");
 
         var pointOfImpact = other.ClosestPoint(transform.position);
         // get what side the pointOfImpact is on compared to our transform
-        var signedAngle = Vector2.SignedAngle(Vector2.up, pointOfImpact - (Vector2) transform.position);
+        var signedAngle = Vector2.SignedAngle(Vector2.up, pointOfImpact - (Vector2)transform.position);
 
         direction = Mathf.Sign(signedAngle);
+
+        // flip sprite
+        GetComponent<SpriteRenderer>().flipX = direction < 0;
     }
 }
