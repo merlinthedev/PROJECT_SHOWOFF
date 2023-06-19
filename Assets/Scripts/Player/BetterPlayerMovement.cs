@@ -270,6 +270,8 @@ public class BetterPlayerMovement : MonoBehaviour {
         // if we are grounded, return
         if (inWater || isGrounded || isOnRope) return;
 
+        if (m_Rigidbody2D.velocity.y > 0) return;
+
         float playerRadius = m_CapsuleCollider2D.size.x / 2f;
 
         Vector2 direction = new Vector2(movementInput.x, 0);
