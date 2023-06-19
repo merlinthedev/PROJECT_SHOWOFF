@@ -22,6 +22,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private float maximumGroundAngle = 20f;
     [SerializeField] private bool affectGroundHorizontalOnly = true;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask ledgeGrabLayer;
     private bool hasJumpBuffer => isGrounded && (jumpButtonPressedTime + jumpBufferTime > Time.time);
     private bool hasCoyoteJump => !isGrounded && (lastGroundedTime + coyoteTime > Time.time);
 
@@ -274,7 +275,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         Vector2 direction = new Vector2(movementInput.x, 0);
 
         //raycast forwards to check if we hit a ledge
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, ledgeGrabDistance, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, ledgeGrabDistance, ledgeGrabLayer);
 
         // if we didn't hit anything, return
         if (hit.collider == null) {
