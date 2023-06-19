@@ -1,4 +1,7 @@
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerProjectileController : MonoBehaviour {
     [SerializeField] private Player player;
@@ -6,8 +9,12 @@ public class PlayerProjectileController : MonoBehaviour {
     private bool hasProjectile = false;
     private GameObject projectile = null;
     [SerializeField] private Transform holdTransform;
+    [SerializeField] private bool grabbing = false;
 
-    public void UpdateProjectile() {
+    private void Update() {
+        UpdateProjectile();
+    }
+    private void UpdateProjectile() {
         if (projectile == null) return;
         projectile.transform.position = holdTransform.position;
     }
@@ -33,23 +40,45 @@ public class PlayerProjectileController : MonoBehaviour {
         return holdTransform;
     }
 
+    IPickup p;
+    GameObject g;
+
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.CompareTag("Pickup")) {
-            var x = GetComponent<PlayerEventHandler>();
-            if (x == null) {
-                Debug.Log("Player has no PlayerEventHandler");
+            //var x = GetComponent<PlayerEventHandler>();
+            //if (x == null) {
+            //    Debug.Log("Player has no PlayerEventHandler");
+            //    return;
+            //}
+
+            //if (!x.Grabbing) {
+            //    return;
+            //}
+            if(!grabbing) {
                 return;
             }
+            player.GetPlayerAnimatorController().Pickup();
+            p = other.gameObject.GetComponent<IPickup>();
+            g = other.gameObject;
 
-            if (!x.Grabbing) {
-                Debug.Log("Player is not grabbing");
-                return;
-            }
+        }
 
-            var pickup = other.gameObject.GetComponent<IPickup>();
-            pickup.OnPickup(player);
-            hasProjectile = true;
-            projectile = other.gameObject;
+    }
+
+    public void AnimateRock() {
+        hasProjectile = true;
+        p.OnPickup(player);
+        projectile = g;
+    }
+
+    public void OnGrab(InputAction.CallbackContext callbackContext) {
+        if (callbackContext.started) {
+            grabbing = true;
+        }
+
+        if (callbackContext.canceled) {
+            grabbing = false;
+
         }
     }
 }

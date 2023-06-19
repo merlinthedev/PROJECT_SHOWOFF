@@ -36,31 +36,27 @@ public class PlayerEventHandler : MonoBehaviour {
         }
     }
 
-    public void OnGrab(InputAction.CallbackContext callbackContext) {
-        if (callbackContext.started) {
-            Debug.Log("Started grabbing context");
+    //public void OnGrab(InputAction.CallbackContext callbackContext) {
+    //    if (callbackContext.started) {
 
-            grabbing = true;
+    //        grabbing = true;
             
-            Debug.Log("Grabbing object");
 
-            if (nearObject != null) {
-                grabAnchor.anchor = grabAnchor.transform.InverseTransformPoint(nearObjectHit.point);
-                grabAnchor.connectedBody = nearObject.GetComponent<Rigidbody2D>();
-                grabAnchor.enabled = true;
-                Debug.Log("Found stuff");
-            }
-        }
+    //        if (nearObject != null) {
+    //            grabAnchor.anchor = grabAnchor.transform.InverseTransformPoint(nearObjectHit.point);
+    //            grabAnchor.connectedBody = nearObject.GetComponent<Rigidbody2D>();
+    //            grabAnchor.enabled = true;
+    //            Debug.Log("Found stuff");
+    //        }
+    //    }
 
-        if (callbackContext.canceled) {
-            Debug.Log("Stopped grabbing context");
-            grabbing = false;
-            grabAnchor.connectedBody = null;
-            grabAnchor.enabled = false;
-            Debug.Log("Grab is false");
+    //    if (callbackContext.canceled) {
+    //        grabbing = false;
+    //        grabAnchor.connectedBody = null;
+    //        grabAnchor.enabled = false;
 
-        }
-    }
+    //    }
+    //}
 
     public void Death() {
         gameObject.transform.position = GameObject.FindGameObjectsWithTag("Respawn")[0].transform.position;
