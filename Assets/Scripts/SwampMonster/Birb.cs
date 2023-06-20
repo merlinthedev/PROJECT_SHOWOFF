@@ -24,6 +24,7 @@ public class Birb : SwampMonster {
         // Get the direction to fly
 
         monsterAnimator.SetTrigger("GoFly");
+
         var signedAngle = Mathf.Clamp(Vector2.SignedAngle(Vector2.up, flyDirection), -45f, 45f);
 
         flyDirection = Quaternion.Euler(0, 0, signedAngle) * Vector2.up;
