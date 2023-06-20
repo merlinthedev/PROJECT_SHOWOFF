@@ -32068,12 +32068,13 @@ EdgeCollider2D:
   - {x: -19.017012, y: 21.78117}
   - {x: -18.888268, y: 21.879965}
   - {x: -13.11039, y: 21.763382}
-  - {x: -12.020042, y: 21.806046}
+  - {x: -12.007233, y: 21.825253}
   - {x: -11.91964, y: 21.678467}
   - {x: -11.040129, y: 21.292255}
   - {x: -10.393143, y: 21.320862}
   - {x: -9.887222, y: 21.378624}
-  - {x: -9.95752, y: 22.550678}
+  - {x: -9.975449, y: 22.434158}
+  - {x: -9.06851, y: 22.65134}
   - {x: -8.206434, y: 22.662628}
   - {x: -6.2753735, y: 22.533413}
   - {x: -2.4611816, y: 22.567245}
@@ -64092,12 +64093,24 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8187132660329751831, guid: d7ca9fa187a4dd24cb9470fa9a8735c3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4419
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187132660329751831, guid: d7ca9fa187a4dd24cb9470fa9a8735c3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4419
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187132660329751831, guid: d7ca9fa187a4dd24cb9470fa9a8735c3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4419
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187132660329751831, guid: d7ca9fa187a4dd24cb9470fa9a8735c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -117.54
+      value: -118.69
       objectReference: {fileID: 0}
     - target: {fileID: 8187132660329751831, guid: d7ca9fa187a4dd24cb9470fa9a8735c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.27
+      value: 7.11
       objectReference: {fileID: 0}
     - target: {fileID: 8187132660329751831, guid: d7ca9fa187a4dd24cb9470fa9a8735c3, type: 3}
       propertyPath: m_LocalPosition.z
