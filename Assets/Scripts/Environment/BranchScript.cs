@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Events;
 
 public class BranchScript : MonoBehaviour {
     [SerializeField] private bool isParent = false;
@@ -15,6 +16,7 @@ public class BranchScript : MonoBehaviour {
     [SerializeField] private float fadeTime = 2f;
     private Rigidbody2D rb;
     private BranchScript root;
+    [SerializeField] private UnityEvent OnBonk;
 
     private List<BranchScript> childBranches = new();
 
@@ -70,6 +72,7 @@ public class BranchScript : MonoBehaviour {
     //destroy all the fixed joints and fade out each individual the branch
     public void Destroy() {
         if (isParent) {
+            OnBonk?.Invoke();
             childBranches.ForEach(b => {
                 b.Fade();
             });
