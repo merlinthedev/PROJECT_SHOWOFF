@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Toad : SwampMonster {
@@ -76,16 +77,26 @@ public class Toad : SwampMonster {
     }
 
     private void raycasting() {
-        var left = Physics.Raycast(transform.position, Vector3.left, 5f, playerMask);
-        var right = Physics.Raycast(transform.position, Vector3.right, 5f, playerMask);
-        
+        Debug.Log("Raycasting.");
+        var left = Physics2D.Raycast(transform.position, new Vector3(-1, 0, 0), 5f, playerMask);
+        var right = Physics2D.Raycast(transform.position, new Vector3(1, 0, 0), 5f, playerMask);
+
         if (left || right) {
+            Debug.Log("Raycast hit.");
             if (!shouldMove) {
                 shouldMove = true;
-                monsterAnimator.SetTrigger("GoHop");
-                Debug.Log("Setting trigger to hop.");
+                monsterAnimator.SetTrigger("Run");
+                Debug.Log("Setting trigger to Run.");
                 lastActivationTime = Time.time;
+
+                direction = left ? 1f : -1f;
             }
         }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawRay(transform.position, Vector3.left * 5f);
+        Gizmos.DrawRay(transform.position, Vector3.right * 5f);
     }
 }
