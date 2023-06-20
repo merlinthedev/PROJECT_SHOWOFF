@@ -33818,7 +33818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ea4db3fe5b922db4aaa8e47f3d02cc5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.860001
+      value: 5.760001
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ea4db3fe5b922db4aaa8e47f3d02cc5c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -82446,7 +82446,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 34559
+    m_Bits: 36607
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -82478,7 +82478,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 2303
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -84949,7 +84949,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613154995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55.95, y: 15.409999, z: -7.088583}
+  m_LocalPosition: {x: -120.850006, y: 7.01, z: -7.088583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -90524,17 +90524,25 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -254272755
       objectReference: {fileID: 0}
+    - target: {fileID: 912533274357171062, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 912533274357171062, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -254272755
+      objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -58.4
+      value: -123.3
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -90646,11 +90654,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -135.82
+      value: -43.2
       objectReference: {fileID: 0}
     - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 6.75
+      value: 13.7
       objectReference: {fileID: 0}
     - target: {fileID: 5804260204408823940, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: player
@@ -104998,7 +105006,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 264
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -105030,7 +105038,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 264
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -105503,7 +105511,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928626197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -58.4, y: 16.539999, z: -7}
+  m_LocalPosition: {x: -123.3, y: 8.14, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -110802,15 +110810,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_LocalScale.x
-      value: -0.11000001
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.11000001
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.11000001
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -110859,6 +110867,10 @@ PrefabInstance:
     - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_Name
       value: Birb (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671721462681689769, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
