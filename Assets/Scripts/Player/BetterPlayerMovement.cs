@@ -512,6 +512,10 @@ public class BetterPlayerMovement : MonoBehaviour {
             }
         }
     }
+    
+    public void setVelocity(Vector2 velocity) {
+        m_Rigidbody2D.velocity = velocity;
+    }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Rope")) {

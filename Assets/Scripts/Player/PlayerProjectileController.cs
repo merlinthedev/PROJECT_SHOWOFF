@@ -74,6 +74,8 @@ public class PlayerProjectileController : MonoBehaviour {
     public void OnGrab(InputAction.CallbackContext callbackContext) {
         if (callbackContext.started) {
             grabbing = true;
+            player.GetPlayerController().canMove = false;
+            player.GetPlayerController().setVelocity(Vector2.zero);
         }
 
         if (callbackContext.canceled) {
