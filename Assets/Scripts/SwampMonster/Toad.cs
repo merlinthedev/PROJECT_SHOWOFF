@@ -28,6 +28,8 @@ public class Toad : SwampMonster {
             }
         }
 
+        raycasting();
+
         if (shouldMove) {
             Debug.Log("Should move.");
             move();
@@ -45,6 +47,7 @@ public class Toad : SwampMonster {
 
     [SerializeField] private bool outOfBounds = false;
     [SerializeField] private float direction = 0f;
+    [SerializeField] private LayerMask playerMask;
 
     private void move() {
         if (direction == 0) return;
@@ -72,20 +75,17 @@ public class Toad : SwampMonster {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.GetComponent<IReactor>() == null) {
-            return;
+    private void raycasting() {
+        var left = Physics.Raycast(transform.position, Vector3.left, 5f, playerMask);
+        var right = Physics.Raycast(transform.position, Vector3.right, 5f, playerMask);
+        
+        if (left || right) {
+            if (!shouldMove) {
+                shouldMove = true;
+                monsterAnimator.SetTrigger("GoHop");
+                Debug.Log("Setting trigger to hop.");
+                lastActivationTime = Time.time;
+            }
         }
-
-        shouldMove = true;
-        lastActivationTime = Time.time;
-        monsterAnimator.SetTrigger("Run");
-        Debug.Log("Setting trigger to run.");
-
-        var pointOfImpact = other.ClosestPoint(transform.position);
-        // get what side the pointOfImpact is on compared to our transform
-        var signedAngle = Vector2.SignedAngle(Vector2.up, pointOfImpact - (Vector2)transform.position);
-
-        direction = Mathf.Sign(signedAngle);
     }
 }

@@ -29,10 +29,13 @@ public class Birb : SwampMonster {
 
         flyDirection = Quaternion.Euler(0, 0, signedAngle) * Vector2.up;
 
+        var spriteRenderer = GetComponent<SpriteRenderer>();
 
         // flip the sprite basic on the direction
-        if (signedAngle > 0) {
-            GetComponent<SpriteRenderer>().flipX = true;
+        if (!spriteRenderer.flipX && signedAngle > 0) {
+            spriteRenderer.flipX = true;
+        } else if (spriteRenderer.flipX && signedAngle < 0) {
+            spriteRenderer.flipX = false;
         }
 
 
