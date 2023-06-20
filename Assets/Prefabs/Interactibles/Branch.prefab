@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8349470419659856591}
   - component: {fileID: 4182364796797052905}
   - component: {fileID: 2480799337739005727}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Branch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 876388848795820715}
   m_LocalRotation: {x: 0, y: 0, z: 0.2368635, w: 0.97154295}
   m_LocalPosition: {x: 225.92, y: -6.79, z: 0}
-  m_LocalScale: {x: 0.024, y: 0.024, z: 0.024}
+  m_LocalScale: {x: 0.034619182, y: 0.03648378, z: 0.031500623}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5790044043220538359}
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 2034187199092971507}
   - {fileID: 8580416226139865641}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 27.403}
 --- !u!114 &4182364796797052905
 MonoBehaviour:
@@ -59,6 +59,21 @@ MonoBehaviour:
   joint: {fileID: 0}
   spriteRenderer: {fileID: 0}
   fadeTime: 2
+  OnBonk:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TutorialTrigger, Assembly-CSharp
+        m_MethodName: DeleteTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!60 &2480799337739005727
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -107,7 +122,7 @@ PolygonCollider2D:
       - {x: 12.963476, y: -2.9671094}
       - {x: 46.421234, y: 8.757664}
       - {x: 59.459915, y: 39.104946}
-      - {x: 50.08857, y: 45.201633}
+      - {x: 35.74872, y: 62.029316}
       - {x: 14.004952, y: 46.70557}
       - {x: -14.114763, y: -2.9669766}
   m_UseDelaunayMesh: 0
@@ -125,7 +140,7 @@ GameObject:
   - component: {fileID: 9103327059628822082}
   - component: {fileID: 901424838337110693}
   - component: {fileID: 6211929488361906408}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: trunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,8 +154,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307534317274064277}
-  m_LocalRotation: {x: -0, y: 0, z: -0.23694724, w: 0.9715225}
-  m_LocalPosition: {x: -4.310719, y: 2.7019389, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: -0.23694734, w: 0.9715225}
+  m_LocalPosition: {x: -4.3182235, y: 2.6955957, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -242,7 +257,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 12.383423, y: 17.89097}
+  m_ConnectedAnchor: {x: -44.979046, y: 11.317431}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &901424838337110693
@@ -265,6 +280,9 @@ MonoBehaviour:
   joint: {fileID: 9103327059628822082}
   spriteRenderer: {fileID: 7370047008794216356}
   fadeTime: 2
+  OnBonk:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!60 &6211929488361906408
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -409,7 +427,7 @@ GameObject:
   - component: {fileID: 2109599249841860723}
   - component: {fileID: 5678489387020877568}
   - component: {fileID: 7739130509602641173}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,8 +441,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2798827430717012084}
-  m_LocalRotation: {x: -0, y: 0, z: -0.23633413, w: 0.9716719}
-  m_LocalPosition: {x: 10.68091, y: 14.923821, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: -0.1535206, w: 0.9881454}
+  m_LocalPosition: {x: 8.360456, y: 17.357882, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -526,7 +544,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 2.4685838, y: 5.7049456}
+  m_ConnectedAnchor: {x: 1.3157527, y: 6.0283775}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &5678489387020877568
@@ -549,6 +567,9 @@ MonoBehaviour:
   joint: {fileID: 2109599249841860723}
   spriteRenderer: {fileID: 190637041787149657}
   fadeTime: 2
+  OnBonk:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!60 &7739130509602641173
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -755,7 +776,7 @@ GameObject:
   - component: {fileID: 3646960563618883087}
   - component: {fileID: 469701027443311769}
   - component: {fileID: 4631063249059309257}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: branch bottom right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,8 +790,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3593465219856113773}
-  m_LocalRotation: {x: -0, y: 0, z: -0.23694721, w: 0.97152257}
-  m_LocalPosition: {x: 16.57002, y: 10.940008, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: -0.1415129, w: 0.9899364}
+  m_LocalPosition: {x: 14.968446, y: 14.661686, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -866,13 +887,13 @@ FixedJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
+  m_ConnectedRigidBody: {fileID: 8710862347766340295}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 12.856476, y: 17.63319}
+  m_ConnectedAnchor: {x: 2.2892425, y: -0.2152748}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &469701027443311769
@@ -895,6 +916,9 @@ MonoBehaviour:
   joint: {fileID: 3646960563618883087}
   spriteRenderer: {fileID: 56792038537376178}
   fadeTime: 2
+  OnBonk:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!60 &4631063249059309257
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1026,7 +1050,7 @@ GameObject:
   - component: {fileID: 6108462434911766504}
   - component: {fileID: 7712930504217451363}
   - component: {fileID: 4168379147672816355}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: branch top right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,8 +1064,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6542066391328390831}
-  m_LocalRotation: {x: -0, y: 0, z: -0.23588705, w: 0.97178054}
-  m_LocalPosition: {x: 34.37458, y: 17.47825, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: -0.15658022, w: 0.98766524}
+  m_LocalPosition: {x: 31.324125, y: 23.48048, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1143,7 +1167,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 6.3869243, y: 4.226432}
+  m_ConnectedAnchor: {x: 6.371374, y: 4.0184555}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &7712930504217451363
@@ -1166,6 +1190,9 @@ MonoBehaviour:
   joint: {fileID: 6108462434911766504}
   spriteRenderer: {fileID: 3037947574384342485}
   fadeTime: 2
+  OnBonk:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!60 &4168379147672816355
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1307,7 +1334,7 @@ GameObject:
   - component: {fileID: 4000692961913207511}
   - component: {fileID: 1527259992562291180}
   - component: {fileID: 479798229284356054}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: base top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1321,8 +1348,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6938661603640805763}
-  m_LocalRotation: {x: -0, y: 0, z: -0.2362771, w: 0.97168577}
-  m_LocalPosition: {x: 39.060513, y: 29.563347, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: -0.14199322, w: 0.9898677}
+  m_LocalPosition: {x: 33.31803, y: 36.97601, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1424,7 +1451,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 5.9408736, y: 8.368079}
+  m_ConnectedAnchor: {x: 5.599007, y: 8.35604}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &1527259992562291180
@@ -1447,6 +1474,9 @@ MonoBehaviour:
   joint: {fileID: 4000692961913207511}
   spriteRenderer: {fileID: 8718095280184623354}
   fadeTime: 2
+  OnBonk:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!60 &479798229284356054
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1682,7 +1712,7 @@ GameObject:
   - component: {fileID: 7214020362495180041}
   - component: {fileID: 1697745772326121669}
   - component: {fileID: 3333862146688008533}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: branch top left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1696,8 +1726,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8068767505988671265}
-  m_LocalRotation: {x: -0, y: 0, z: 0.34722462, w: 0.93778205}
-  m_LocalPosition: {x: 17.448856, y: 32.0379, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: 0.42483786, w: 0.9052695}
+  m_LocalPosition: {x: 12.010157, y: 35.30387, z: 0}
   m_LocalScale: {x: 3.1116238, y: 3.1116238, z: 3.1116238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1799,7 +1829,7 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.59397066, y: 5.884602}
+  m_ConnectedAnchor: {x: -0.7228605, y: 5.860793}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!114 &1697745772326121669
@@ -1822,6 +1852,9 @@ MonoBehaviour:
   joint: {fileID: 7214020362495180041}
   spriteRenderer: {fileID: 6880030146747404390}
   fadeTime: 2
+  OnBonk:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!60 &3333862146688008533
 PolygonCollider2D:
   m_ObjectHideFlags: 0

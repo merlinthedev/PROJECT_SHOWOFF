@@ -6,6 +6,7 @@ public class TutorialTrigger : MonoBehaviour
 {
     public int tutorialNumber;
     public bool repeatable;
+    public bool mustHoldStone;
 
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
@@ -13,5 +14,9 @@ public class TutorialTrigger : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
+    }
+
+    public void DeleteTutorial() {
+        Destroy(gameObject);
     }
 }
