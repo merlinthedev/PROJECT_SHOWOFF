@@ -11,6 +11,8 @@ public class Stone : AProjectile, IPickup, IReactor {
     private Collider2D m_Collider2D;
     private Rigidbody2D m_Rigidbody2D;
 
+    [SerializeField] private GameObject particleeffect;
+
     private bool shouldDestroyOnNextCollision = false;
 
     private void Start() {
@@ -24,6 +26,7 @@ public class Stone : AProjectile, IPickup, IReactor {
     public void OnPickup(Player player) {
         transform.SetParent(player.transform);
         transform.position = player.GetPlayerProjectileController().GetHoldingTransform().position;
+        particleeffect.SetActive(false);
     }
 
     public void OnDrop() {
