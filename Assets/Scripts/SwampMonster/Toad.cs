@@ -24,21 +24,31 @@ public class Toad : SwampMonster {
                 shouldMove = false;
                 monsterAnimator.SetTrigger("Walk");
                 Debug.Log("Setting trigger to walk.");
+                direction = 0f;
             }
         }
 
         if (shouldMove) {
+            Debug.Log("Should move.");
             move();
+
+            if (!outOfBounds) {
+                boundsCheck();
+            } else {
+                // check when we go back in bounds
+                if (transform.position.x > leftBound.position.x && transform.position.x < rightBound.position.x) {
+                    outOfBounds = false;
+                }
+            }
         }
     }
 
-    private void boundsCheck() {
-    }
-
-    private float direction = 0f;
+    [SerializeField] private bool outOfBounds = false;
+    [SerializeField] private float direction = 0f;
 
     private void move() {
         if (direction == 0) return;
+
         float desiredVelocity = direction * movementSpeed;
         float velocityGap = desiredVelocity - m_Rigidbody2D.velocity.x;
 
@@ -48,8 +58,18 @@ public class Toad : SwampMonster {
         float accelerationMagnitude = Mathf.Min(Mathf.Abs(velocityGap), accelerationThisFrame);
 
         Vector2 accelerationVector = new() { x = accelerationMagnitude * accelerationSign, y = 0 };
+        GetComponent<SpriteRenderer>().flipX = direction < 0;
 
         m_Rigidbody2D.AddForce(accelerationVector, ForceMode2D.Impulse);
+    }
+
+    private void boundsCheck() {
+        outOfBounds = transform.position.x < leftBound.position.x || transform.position.x > rightBound.position.x;
+
+        if (outOfBounds) {
+            // flip the direction
+            direction *= -1;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -60,14 +80,12 @@ public class Toad : SwampMonster {
         shouldMove = true;
         lastActivationTime = Time.time;
         monsterAnimator.SetTrigger("Run");
+        Debug.Log("Setting trigger to run.");
 
         var pointOfImpact = other.ClosestPoint(transform.position);
         // get what side the pointOfImpact is on compared to our transform
         var signedAngle = Vector2.SignedAngle(Vector2.up, pointOfImpact - (Vector2)transform.position);
 
         direction = Mathf.Sign(signedAngle);
-
-        // flip sprite
-        GetComponent<SpriteRenderer>().flipX = direction < 0;
     }
 }
