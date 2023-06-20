@@ -86,7 +86,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     private Collider2D lastGroundedCollider;
 
     [Header("ROPE")] private float lastRopeRelease;
-    private bool isOnRope = false;
+    [SerializeField] private bool isOnRope = false;
     private float ropeProgress;
 
 
@@ -369,11 +369,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
     }
 
-    public bool IsClimbing {
-        get {
-            return isOnRope;
-        }
-    }
+    public bool IsClimbing => isOnRope;
 
     private void ropeMovement() {
         if (isOnRope) {
@@ -381,7 +377,10 @@ public class BetterPlayerMovement : MonoBehaviour {
                 ropeProgress -= (movementInput.y * ropeClimbingSpeed * rope.ClimbSpeedMultiplier * Time.deltaTime) /
                                 rope.RopeLength;
 
+                Debug.Log("Rope progress: " + ropeProgress);
+
                 if (ropeProgress is > 1 or < 0) {
+                    Debug.Log("Releasing rope.");
                     ReleaseRope();
                     return;
                 }
@@ -461,18 +460,25 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         visualTransform.rotation = Quaternion.identity;
         visualTransform.localPosition = originalVisualsPosition;
+
+        Debug.Log("Off Rope");
+        Debug.Log("IsClmbing: " + IsClimbing);
     }
 
 
-    /*
-     *
-     * WATER STUFF
-     * 
-     */
+/*
+ *
+ * WATER STUFF
+ * 
+ */
 
     public bool inWater = false; // Move to water
-    [SerializeField] private float waterJumpDebuff = 0.6f;
-    [SerializeField] private float waterSpeedDebuff = 0.4f;
+
+    [SerializeField] private float waterJumpDebuff =
+        0.6f;
+
+    [SerializeField] private float waterSpeedDebuff =
+        0.4f;
 
     public bool isInWater() {
         return inWater;
