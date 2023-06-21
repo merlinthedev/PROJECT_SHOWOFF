@@ -661,12 +661,37 @@ MonoBehaviour:
   rope: {fileID: 0}
   ropeJoint: {fileID: 4932723516212218009}
   ropeFollower: {fileID: 1432543258264753985}
-  ropeSpringJoint: {fileID: 4342844150647429833}
+  ropeDistanceJoint: {fileID: 4342844150647429833}
   ropeClimbingSpeed: 1.5
   ropeGrabTimeout: 0.5
   jumpHorizontalImpulse: 0
   rotationCheckUpOffset: 1
   rotationAngleOffset: 90
+  ropeGrabSmoothTime: 2
+  ropeGrabSmoothCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.2657723
+      outSlope: 3.2657723
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.030331753
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   visualTransform: {fileID: 384491701393886615}
   IsGrounded: 0
   slopeAngle: 0
