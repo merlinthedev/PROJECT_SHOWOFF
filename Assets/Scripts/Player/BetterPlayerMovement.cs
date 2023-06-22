@@ -10,8 +10,7 @@ using Vector3 = UnityEngine.Vector3;
 public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private Player player;
 
-    [Header("HORIZONTAL MOVEMENT")]
-    [SerializeField]
+    [Header("HORIZONTAL MOVEMENT")] [SerializeField]
     public Rigidbody2D m_Rigidbody2D;
 
     [SerializeField] private CapsuleCollider2D m_CapsuleCollider2D;
@@ -27,16 +26,14 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool hasJumpBuffer => isGrounded && (jumpButtonPressedTime + jumpBufferTime > Time.time);
     private bool hasCoyoteJump => !isGrounded && (lastGroundedTime + coyoteTime > Time.time);
 
-    [Header("GROUNDCHECK")]
-    [SerializeField]
+    [Header("GROUNDCHECK")] [SerializeField]
     private int rayCount = 3;
 
     [SerializeField] private float rayLength = 0.1f;
     [SerializeField] private float rayWidth = 0.3f;
     [SerializeField] private Vector2 rayOffset;
 
-    [Header("LEDGE GRABBING")]
-    [SerializeField]
+    [Header("LEDGE GRABBING")] [SerializeField]
     private float ledgeGrabDistance;
 
     [SerializeField] private float ledgeGrabHeight = 1.2f;
@@ -46,11 +43,11 @@ public class BetterPlayerMovement : MonoBehaviour {
     [Header("CAN MOVE")] public bool canMove = true;
     private float lastLedgeGrab;
 
-    [Header("PUSHING")][SerializeField] private float pushForce = 5f;
+    [Header("PUSHING")] [SerializeField] private float pushForce = 5f;
     [SerializeField] private float maxObjectMass = 20f;
     [SerializeField] private float objectDistance = 0.7f;
 
-    [Header("JUMPING")][SerializeField] private float maxJumpHeight = 2f;
+    [Header("JUMPING")] [SerializeField] private float maxJumpHeight = 2f;
     [SerializeField] private float maxJumpTime = 0.4f;
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private float jumpSpeed = 12f;
@@ -64,8 +61,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     public bool noJumpAllowed = false;
 
-    [Header("ROPE CLIMBING")]
-    [SerializeField]
+    [Header("ROPE CLIMBING")] [SerializeField]
     private RopeController rope;
 
     [SerializeField] private HingeJoint2D ropeJoint;
@@ -84,7 +80,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     private Quaternion ropeGrabStartRotation;
     private Vector3 ropeGrabStartPosition;
 
-    [Header("VISUAL")][SerializeField] private Transform visualTransform;
+    [Header("VISUAL")] [SerializeField] private Transform visualTransform;
     private Vector3 originalVisualsPosition;
     private Vector3 initialScale;
 
@@ -413,7 +409,8 @@ public class BetterPlayerMovement : MonoBehaviour {
             var ropeAngle = Mathf.Atan2(ropeDirection.y, ropeDirection.x) * Mathf.Rad2Deg;
 
             if (SmoothToRopeGrab) {
-                float animationProgress = ropeGrabSmoothCurve.Evaluate(Mathf.Clamp01((Time.time - ropeGrabStartTime) / ropeGrabSmoothTime));
+                float animationProgress =
+                    ropeGrabSmoothCurve.Evaluate(Mathf.Clamp01((Time.time - ropeGrabStartTime) / ropeGrabSmoothTime));
                 visualTransform.rotation = Quaternion.Lerp(ropeGrabStartRotation,
                     Quaternion.Euler(0, 0, ropeAngle - rotationAngleOffset), animationProgress);
                 visualTransform.position = Vector3.Lerp(ropeGrabStartPosition,
@@ -500,12 +497,10 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     public bool inWater = false; // Move to water
 
-    [SerializeField]
-    private float waterJumpDebuff =
+    [SerializeField] private float waterJumpDebuff =
         0.6f;
 
-    [SerializeField]
-    private float waterSpeedDebuff =
+    [SerializeField] private float waterSpeedDebuff =
         0.4f;
 
     public bool isInWater() {
@@ -600,7 +595,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         if (context.performed) {
             jumpButtonPressed = true;
-            player.GetPlayerAnimatorController().Jump();
+            if (!noJumpAllowed) player.GetPlayerAnimatorController().Jump();
         }
 
         if (context.canceled) {
