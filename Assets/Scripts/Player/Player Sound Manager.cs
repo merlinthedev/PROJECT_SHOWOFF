@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
 public class FootstepSounds : MonoBehaviour {
-    LayerMask soundCheckLayer;
+    [SerializeField] LayerMask soundCheckLayer;
 
     [SerializeField]
     EventReference climbSound;

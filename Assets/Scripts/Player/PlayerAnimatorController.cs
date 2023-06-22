@@ -11,6 +11,7 @@ public class PlayerAnimatorController : MonoBehaviour {
     private int animationPickupTrigger;
     private int animationLedgeClimbTrigger;
     [SerializeField] private UnityEvent OnLand;
+    [SerializeField] private float minJumpDuration = 0.3f;
 
 
     // Start is called before the first frame update
@@ -79,8 +80,9 @@ public class PlayerAnimatorController : MonoBehaviour {
         animator.SetTrigger(animationPickupTrigger);
     }
 
-    public void Ground() {
-        OnLand?.Invoke();
+    public void Ground(float jumpDuration = 0) {
         animator.SetTrigger(animationGroundedTrigger);
+        if (jumpDuration < minJumpDuration) return;
+        OnLand?.Invoke();
     }
 }
