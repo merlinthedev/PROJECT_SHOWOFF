@@ -331,6 +331,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         var ledgeCorner = new Vector3(transform.position.x, downHit.point.y + playerRadius, 0);
         Debug.Log("Found corner for ledging.");
         isLedgeClimbing = true;
+        noJumpAllowed = true;
 
         Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
@@ -367,6 +368,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                 m_Rigidbody2D.isKinematic = false;
                 hasTriggered = false;
                 isLedgeClimbing = false;
+                noJumpAllowed = false;
             });
         });
     }
