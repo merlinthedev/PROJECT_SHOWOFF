@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -14,6 +15,7 @@ public class PlayerProjectileController : MonoBehaviour {
     private void Update() {
         UpdateProjectile();
     }
+
     private void UpdateProjectile() {
         if (projectile == null) return;
         projectile.transform.position = holdTransform.position;
@@ -45,24 +47,16 @@ public class PlayerProjectileController : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.CompareTag("Pickup")) {
-            //var x = GetComponent<PlayerEventHandler>();
-            //if (x == null) {
-            //    Debug.Log("Player has no PlayerEventHandler");
-            //    return;
-            //}
-
-            //if (!x.Grabbing) {
-            //    return;
-            //}
-            if(!grabbing) {
+            if (!grabbing) {
                 return;
             }
+
             player.GetPlayerAnimatorController().Pickup();
             p = other.gameObject.GetComponent<IPickup>();
             g = other.gameObject;
 
+            freezePlayerAfterRockPickup();
         }
-
     }
 
     public void AnimateRock() {
@@ -74,14 +68,16 @@ public class PlayerProjectileController : MonoBehaviour {
     public void OnGrab(InputAction.CallbackContext callbackContext) {
         if (callbackContext.started) {
             grabbing = true;
-            player.GetPlayerController().canMove = false;
-            player.GetPlayerController().setVelocity(Vector2.zero);
-            player.GetPlayerController().m_Rigidbody2D.isKinematic = true;
         }
 
         if (callbackContext.canceled) {
             grabbing = false;
-
         }
+    }
+
+    private void freezePlayerAfterRockPickup() {
+        player.GetPlayerController().canMove = false;
+        player.GetPlayerController().setVelocity(Vector2.zero);
+        player.GetPlayerController().m_Rigidbody2D.isKinematic = true;
     }
 }
