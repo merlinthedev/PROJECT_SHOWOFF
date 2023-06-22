@@ -436,7 +436,12 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
     }
 
-    private void GrabRope(RopeController newRope) {
+    private RopeController lastRope;
+
+    private void TryGrabRope(RopeController newRope) {
+        if (newRope == lastRope && Time.time < lastRopeRelease + ropeGrabTimeout) return;
+        if (isOnRope) return;
+
         //set the rope we're on
         rope = newRope;
 
@@ -483,6 +488,9 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         visualTransform.rotation = Quaternion.identity;
         visualTransform.localPosition = originalVisualsPosition;
+        lastRope = rope;
+        rope = null;
+
 
         Debug.Log("Off Rope");
         Debug.Log("IsClmbing: " + IsClimbing);
@@ -543,9 +551,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Rope")) {
             //if we're not already on a rope
-            if (!isOnRope && Time.time > lastRopeRelease + ropeGrabTimeout) {
-                GrabRope(other.gameObject.GetComponentInParent<RopeController>());
-            }
+            TryGrabRope(other.gameObject.GetComponentInParent<RopeController>());
         }
     }
 
