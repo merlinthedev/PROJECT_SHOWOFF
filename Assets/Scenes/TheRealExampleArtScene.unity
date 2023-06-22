@@ -5169,7 +5169,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.8717728, y: 2.9663434}
+  m_Offset: {x: -2.8717728, y: 0.65496445}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5180,7 +5180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 16.603867, y: 6.551755}
+  m_Size: {x: 16.603867, y: 1.928997}
   m_EdgeRadius: 0
 --- !u!1 &167032141
 GameObject:
@@ -23445,9 +23445,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1130318248}
     - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: gotBonked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
       propertyPath: enableThis
       value: 
       objectReference: {fileID: 2063753680}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: bonkSound.Path
+      value: event:/Branch Break
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: bonkSound.Guid.Data1
+      value: 1805642119
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: bonkSound.Guid.Data2
+      value: 1154718479
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: bonkSound.Guid.Data3
+      value: 2055599543
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: bonkSound.Guid.Data4
+      value: 1658137486
+      objectReference: {fileID: 0}
     - target: {fileID: 5790044043220538359, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.310719
@@ -27217,9 +27241,57 @@ PrefabInstance:
       value: Branch (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: bonkSound.Path
+      value: event:/Branch Break
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: bonkSound.Guid.Data1
+      value: 1805642119
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: bonkSound.Guid.Data2
+      value: 1154718479
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: bonkSound.Guid.Data3
+      value: 2055599543
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: bonkSound.Guid.Data4
+      value: 1658137486
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: OnBonk.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: OnBonk.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
       propertyPath: OnBonk.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 826129744}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: OnBonk.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 826129744}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: OnBonk.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: OnBonk.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DeleteTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: OnBonk.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: TutorialTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182364796797052905, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
+      propertyPath: OnBonk.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8349470419659856591, guid: bc78a94e178e11d41bd6123d7efcc9f8, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -31077,7 +31149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4105244550956318735, guid: 4ea77dd9d8343b545853592a5ff35147, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4105244550956318735, guid: 4ea77dd9d8343b545853592a5ff35147, type: 3}
       propertyPath: m_LocalPosition.x
@@ -42990,6 +43062,69 @@ Transform:
   - {fileID: 448291945}
   m_Father: {fileID: 973555665}
   m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &937501579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 937501581}
+  - component: {fileID: 937501580}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &937501580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937501579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1904126661
+      Data2: 1104639733
+      Data3: -42607705
+      Data4: -758860519
+    Path: event:/Waterfall
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!4 &937501581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937501579}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -53.12, y: 13.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &938384359
 GameObject:
@@ -74797,7 +74932,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439114829}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -124.75, y: 8.81, z: -7}
+  m_LocalPosition: {x: 16.32, y: 13.29, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82592,7 +82727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541395676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -124.75, y: 8.81, z: -7}
+  m_LocalPosition: {x: 16.32, y: 13.29, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -85067,7 +85202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613154995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -122.3, y: 7.6800003, z: -7.088583}
+  m_LocalPosition: {x: 18.77, y: 12.16, z: -7.088583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -90679,11 +90814,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -124.75
+      value: 16.32
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.67
+      value: 12.15
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -90778,6 +90913,26 @@ PrefabInstance:
       value: -254272755
       objectReference: {fileID: 0}
     - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ropeSound.Path
+      value: event:/Rope Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ropeSound.Guid.Data1
+      value: 1531302969
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ropeSound.Guid.Data2
+      value: 1276254948
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ropeSound.Guid.Data3
+      value: 1420517262
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ropeSound.Guid.Data4
+      value: -882098354
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: soundCheckLayer.m_Bits
       value: 8192
       objectReference: {fileID: 0}
@@ -90807,11 +90962,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -88.23
+      value: 16.32
       objectReference: {fileID: 0}
     - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 9.79
+      value: 12.15
       objectReference: {fileID: 0}
     - target: {fileID: 5804260204408823940, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: player
@@ -105308,7 +105463,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916580031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -124.75, y: 8.81, z: -7}
+  m_LocalPosition: {x: 16.32, y: 13.29, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -105784,7 +105939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928626197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -124.75, y: 8.81, z: -7}
+  m_LocalPosition: {x: 16.32, y: 13.29, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

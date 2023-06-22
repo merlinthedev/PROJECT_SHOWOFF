@@ -4,8 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Events;
+using FMODUnity;
 
 public class BranchScript : MonoBehaviour {
+
+    [SerializeField] EventReference bonkSound;
     [SerializeField] private bool isParent = false;
     public bool gotBonked = false;
     public bool fade = false;
@@ -72,6 +75,7 @@ public class BranchScript : MonoBehaviour {
     //destroy all the fixed joints and fade out each individual the branch
     public void Destroy() {
         if (isParent) {
+            RuntimeManager.PlayOneShot(bonkSound, transform.position);
             OnBonk?.Invoke();
             childBranches.ForEach(b => {
                 b.Fade();
@@ -85,6 +89,9 @@ public class BranchScript : MonoBehaviour {
             gotBonked = true;
             root.Bonk();
             Destroy(collision.gameObject);
+            //play bonk sound
+            Debug.Log("bonk sound played?");
+
         }
     }
 }
