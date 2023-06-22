@@ -1206,7 +1206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &603013878
 Transform:
   m_ObjectHideFlags: 0
@@ -3575,6 +3575,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5511577335410315053, guid: 76d24aa6e72720d4c90fa89a6e8eba18, type: 3}
+      propertyPath: raycastDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6419899163454594218, guid: 76d24aa6e72720d4c90fa89a6e8eba18, type: 3}
       propertyPath: m_Name
       value: TOADPREFAB

@@ -76,6 +76,7 @@ public class PlayerProjectileController : MonoBehaviour {
             grabbing = true;
             player.GetPlayerController().canMove = false;
             player.GetPlayerController().setVelocity(Vector2.zero);
+            player.GetPlayerController().m_Rigidbody2D.isKinematic = true;
         }
 
         if (callbackContext.canceled) {
