@@ -79,6 +79,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     private float ropeGrabStartTime = 0f;
     private Quaternion ropeGrabStartRotation;
     private Vector3 ropeGrabStartPosition;
+    [SerializeField] private float minimumJumpInput = -0.2f;
 
     [Header("VISUAL")] [SerializeField] private Transform visualTransform;
     private Vector3 originalVisualsPosition;
@@ -221,7 +222,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                     if (isOnRope) {
                         ReleaseRope();
 
-                        if (movementInput.y >= 0) {
+                        if (movementInput.y >= minimumJumpInput) {
                             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed);
                             currentJumpState = JumpState.Jumping;
                         } else {
