@@ -11,6 +11,8 @@ public class FootstepSounds : MonoBehaviour {
 
     [SerializeField]
     EventReference climbSound;
+    [SerializeField]
+    EventReference ropeSound;
     //fmod sound reference
     [SerializeField]
     List<FootstepConfig> footstepConfigs = new List<FootstepConfig>();
@@ -65,5 +67,9 @@ public class FootstepSounds : MonoBehaviour {
     }
     public void OnClimb() {
         RuntimeManager.PlayOneShot(climbSound, transform.position);
+        
+    }
+    public void OnRope() {
+        RuntimeManager.PlayOneShot(ropeSound, transform.position);
     }
 }
