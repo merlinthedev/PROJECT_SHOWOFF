@@ -16,15 +16,15 @@ public class ColliderCameraTrigger : MonoBehaviour
     [SerializeField] AnimationCurve blendCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
 
 
-    //private void Update() {
-    //    if(playerInRange) {
-    //        float distance = Vector2.Distance(transform.position, player.transform.position);
-    //        float blendWeight = blendCurve.Evaluate(Mathf.InverseLerp(blendStart, blendEnd, distance));
-    //        mixCam.SetWeight(vcam, blendWeight);
-    //    } else {
-    //        mixCam.SetWeight(vcam, 0);
-    //    }
-    //}
+    private void Update() {
+        if (playerInRange) {
+            float distance = Vector2.Distance(transform.position, player.transform.position);
+            float blendWeight = blendCurve.Evaluate(Mathf.InverseLerp(blendStart, blendEnd, distance));
+            mixCam.SetWeight(vcam, blendWeight);
+        } else {
+            mixCam.SetWeight(vcam, 0);
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {

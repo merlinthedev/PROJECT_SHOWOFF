@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2470432738943215830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.48, z: 0}
+  m_LocalPosition: {x: 0, y: 0.392, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,6 +106,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 56c808ef3532d8c4e8a5cf2226d57842, type: 3}
   - {fileID: 21300000, guid: 213afd4f1fcdce74f8bc04e138999a90, type: 3}
   - {fileID: 21300000, guid: f297e0ff7eb3446439db360be62e082d, type: 3}
+  player: {fileID: 0}
 --- !u!58 &1158148919152762889
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -385,7 +386,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -134.97, y: 6.69}
+  m_ConnectedAnchor: {x: -126.01, y: 7.133495}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -468,7 +469,7 @@ Transform:
   - {fileID: 384491701393886615}
   - {fileID: 2173589545506642785}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1558712603448235974
 MonoBehaviour:
@@ -617,7 +618,10 @@ MonoBehaviour:
   affectGroundHorizontalOnly: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1216
+    m_Bits: 3264
+  ledgeGrabLayer:
+    serializedVersion: 2
+    m_Bits: 192
   rayCount: 3
   rayLength: 0.22
   rayWidth: 0.44
@@ -657,15 +661,41 @@ MonoBehaviour:
   rope: {fileID: 0}
   ropeJoint: {fileID: 4932723516212218009}
   ropeFollower: {fileID: 1432543258264753985}
-  ropeSpringJoint: {fileID: 4342844150647429833}
+  ropeDistanceJoint: {fileID: 4342844150647429833}
   ropeClimbingSpeed: 1.5
   ropeGrabTimeout: 0.5
   jumpHorizontalImpulse: 0
   rotationCheckUpOffset: 1
   rotationAngleOffset: 90
+  ropeGrabSmoothTime: 2
+  ropeGrabSmoothCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.2657723
+      outSlope: 3.2657723
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.030331753
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   visualTransform: {fileID: 384491701393886615}
   IsGrounded: 0
   slopeAngle: 0
+  isOnRope: 0
   inWater: 0
   waterJumpDebuff: 0.6
   waterSpeedDebuff: 0.4
@@ -1240,6 +1270,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onPickupEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7980781802118559070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,6 +1300,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onPickupEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &3841797239795438667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 21985906af486c44ea52294ed16d22c1, type: 3}
