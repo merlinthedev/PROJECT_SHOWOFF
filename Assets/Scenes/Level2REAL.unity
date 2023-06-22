@@ -1905,7 +1905,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1360827100214647173, guid: 2bd33828f7e4a5d439d9b2c3b05247f4, type: 3}
       propertyPath: m_Mass
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2072241149877549198, guid: 2bd33828f7e4a5d439d9b2c3b05247f4, type: 3}
       propertyPath: water
@@ -12307,6 +12307,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 34.2
       objectReference: {fileID: 0}
+    - target: {fileID: 8062336363924862780, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: pushForce
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8445435830689493568, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_Name
       value: BetterPlayer
@@ -17617,7 +17621,7 @@ BuoyancyEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_SurfaceLevel: 4.34
-  m_Density: 3
+  m_Density: 2
   m_LinearDrag: 5
   m_AngularDrag: 5
   m_FlowAngle: 0

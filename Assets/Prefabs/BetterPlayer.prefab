@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -254272755
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -106,7 +106,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 56c808ef3532d8c4e8a5cf2226d57842, type: 3}
   - {fileID: 21300000, guid: 213afd4f1fcdce74f8bc04e138999a90, type: 3}
   - {fileID: 21300000, guid: f297e0ff7eb3446439db360be62e082d, type: 3}
-  player: {fileID: 0}
+  - {fileID: 21300000, guid: 55eab3cb392b7e343b376be33b993344, type: 3}
+  player: {fileID: 8445435830689493568}
 --- !u!58 &1158148919152762889
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -386,7 +387,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -126.01, y: 7.133495}
+  m_ConnectedAnchor: {x: -69.21, y: 12.71}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -469,7 +470,7 @@ Transform:
   - {fileID: 384491701393886615}
   - {fileID: 2173589545506642785}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1558712603448235974
 MonoBehaviour:
@@ -1272,7 +1273,19 @@ MonoBehaviour:
         m_CallState: 2
   onPickupEnd:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8062336363924862780}
+        m_TargetAssemblyTypeName: BetterPlayerMovement, Assembly-CSharp
+        m_MethodName: setCanMove
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &7980781802118559070
 MonoBehaviour:
   m_ObjectHideFlags: 0
