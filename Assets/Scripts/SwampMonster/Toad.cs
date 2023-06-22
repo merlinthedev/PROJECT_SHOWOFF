@@ -1,10 +1,11 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class Toad : SwampMonster {
-    [Header("ACTIVATION BOX")] [SerializeField]
-    private Collider2D collisionTriggerCollider;
+    [Header("ACTIVATION")] [SerializeField]
+    private float raycastDistance = 5f;
 
     [Header("MOVEMENT")] [SerializeField] private Rigidbody2D m_Rigidbody2D;
     [SerializeField] private float movementSpeed = 5f;
@@ -78,8 +79,11 @@ public class Toad : SwampMonster {
 
     private void raycasting() {
         Debug.Log("Raycasting.");
-        var left = Physics2D.Raycast(transform.position, new Vector3(-1, 0, 0), 5f, playerMask);
-        var right = Physics2D.Raycast(transform.position, new Vector3(1, 0, 0), 5f, playerMask);
+        var left = Physics2D.Raycast(transform.position, Vector3.left, raycastDistance, playerMask);
+        var right = Physics2D.Raycast(transform.position, Vector3.right, raycastDistance, playerMask);
+
+        Debug.DrawRay(transform.position, Vector3.left * raycastDistance, Color.red);
+        Debug.DrawRay(transform.position, Vector3.right * raycastDistance, Color.red);
 
         if (left || right) {
             Debug.Log("Raycast hit.");
@@ -94,9 +98,9 @@ public class Toad : SwampMonster {
         }
     }
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawRay(transform.position, Vector3.left * 5f);
-        Gizmos.DrawRay(transform.position, Vector3.right * 5f);
-    }
+    // private void OnDrawGizmos() {
+    //     Gizmos.color = Color.cyan;
+    //     Gizmos.DrawRay(transform.position, Vector3.left * raycastDistance);
+    //     Gizmos.DrawRay(transform.position, Vector3.right * raycastDistance);
+    // }
 }
