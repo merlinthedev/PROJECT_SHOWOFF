@@ -378,6 +378,83 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &3621073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3621074}
+  - component: {fileID: 3621075}
+  m_Layer: 13
+  m_Name: Water Layer 3 (2)
+  m_TagString: Water
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3621074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3621073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 155.6, y: 4.84, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1186629008}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &3621075
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3621073}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.4056435, y: -0.4366145}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.5084686, y: 0.8181429}
+  m_EdgeRadius: 0
 --- !u!1 &11596483
 GameObject:
   m_ObjectHideFlags: 0
@@ -10659,6 +10736,26 @@ PrefabInstance:
       propertyPath: flyTime
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Path
+      value: event:/BirdFlyingAway
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data1
+      value: -23825402
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data2
+      value: 1206669031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data3
+      value: -1077499771
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data4
+      value: -1868605296
+      objectReference: {fileID: 0}
     - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_Name
       value: Birb (1)
@@ -13266,8 +13363,8 @@ GameObject:
   - component: {fileID: 405299209}
   - component: {fileID: 405299210}
   m_Layer: 13
-  m_Name: Grass layer (5)
-  m_TagString: Grass
+  m_Name: Rock layer
+  m_TagString: Gravel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13319,7 +13416,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.7798615, y: 0.018259048}
+  m_Offset: {x: -1.4152603, y: 0.29691935}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -13330,7 +13427,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.566635, y: 0.9247093}
+  m_Size: {x: 7.785568, y: 1.4820299}
   m_EdgeRadius: 0
 --- !u!1001 &409126431
 PrefabInstance:
@@ -14669,6 +14766,83 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &438164552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438164553}
+  - component: {fileID: 438164554}
+  m_Layer: 13
+  m_Name: Wood layer (3)
+  m_TagString: Wood
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &438164553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438164552}
+  m_LocalRotation: {x: -0, y: -0, z: -0.007231299, w: 0.9999739}
+  m_LocalPosition: {x: 143.85, y: 18.59, z: 0}
+  m_LocalScale: {x: 4.1760716, y: 1.264545, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1186629008}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.829}
+--- !u!61 &438164554
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438164552}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.2512982, y: -0.5040153}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.7989888, y: 0.65151095}
+  m_EdgeRadius: 0
 --- !u!1 &442709076
 GameObject:
   m_ObjectHideFlags: 0
@@ -17072,7 +17246,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -6.3603706, y: 0.25154948}
+  m_Offset: {x: -6.0412636, y: 0.25154948}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -17083,7 +17257,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.396553, y: 1.1221671}
+  m_Size: {x: 7.034767, y: 1.1221671}
   m_EdgeRadius: 0
 --- !u!1 &508926315
 GameObject:
@@ -17460,6 +17634,26 @@ PrefabInstance:
     - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: flyDistance
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Path
+      value: event:/BirdFlyingAway
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data1
+      value: -23825402
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data2
+      value: 1206669031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data3
+      value: -1077499771
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data4
+      value: -1868605296
       objectReference: {fileID: 0}
     - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_Name
@@ -24525,6 +24719,83 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &592193192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592193193}
+  - component: {fileID: 592193194}
+  m_Layer: 13
+  m_Name: Wood layer (5)
+  m_TagString: Wood
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &592193193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592193192}
+  m_LocalRotation: {x: -0, y: -0, z: 0.13209341, w: 0.9912373}
+  m_LocalPosition: {x: 157.79, y: 22.74, z: 0}
+  m_LocalScale: {x: 3.4666803, y: 1.264545, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1186629008}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.181}
+--- !u!61 &592193194
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592193192}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.13008398, y: -0.5040153}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.5565605, y: 0.65151095}
+  m_EdgeRadius: 0
 --- !u!1 &593510604
 GameObject:
   m_ObjectHideFlags: 0
@@ -27228,6 +27499,127 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 1754438079511692130, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
   m_PrefabInstance: {fileID: 1640763525}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &654745279
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1670195907}
+    m_Modifications:
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.077030614
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.077030614
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.077030614
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -86.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flyTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flyDistance
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Path
+      value: event:/BirdFlyingAway
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data1
+      value: -23825402
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data2
+      value: 1206669031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data3
+      value: -1077499771
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data4
+      value: -1868605296
+      objectReference: {fileID: 0}
+    - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_Name
+      value: Birb (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671721462681689769, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671721462681689769, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671721462681689769, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671721462681689769, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1889300295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
 --- !u!1001 &660666752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29650,6 +30042,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 17448fbc8aed05a45811d65a3885b80c, type: 3}
   m_PrefabInstance: {fileID: 701675923}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &702344503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 702344504}
+  - component: {fileID: 702344505}
+  m_Layer: 13
+  m_Name: Rock layer (2)
+  m_TagString: Gravel
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &702344504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702344503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 159.57, y: 4.75, z: 0}
+  m_LocalScale: {x: 0.7476328, y: 0.9340625, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1186629008}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &702344505
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702344503}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.4152603, y: 0.29691935}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.785568, y: 1.4820299}
+  m_EdgeRadius: 0
 --- !u!1 &703528900
 GameObject:
   m_ObjectHideFlags: 0
@@ -36577,6 +37046,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 17448fbc8aed05a45811d65a3885b80c, type: 3}
   m_PrefabInstance: {fileID: 865506027}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &872148809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 872148810}
+  - component: {fileID: 872148811}
+  m_Layer: 13
+  m_Name: Rock layer (1)
+  m_TagString: Gravel
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &872148810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872148809}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 89.69, y: 3.65, z: 0}
+  m_LocalScale: {x: 0.3875, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1186629008}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &872148811
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872148809}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.4152603, y: 0.29691935}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.785568, y: 1.4820299}
+  m_EdgeRadius: 0
 --- !u!1 &875430388
 GameObject:
   m_ObjectHideFlags: 0
@@ -37827,7 +38373,7 @@ GameObject:
   - component: {fileID: 912098095}
   - component: {fileID: 912098096}
   m_Layer: 13
-  m_Name: Grass layer (17)
+  m_Name: Wood layer 2
   m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43156,7 +43702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &937501580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43172,11 +43718,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1904126661
-      Data2: 1104639733
-      Data3: -42607705
-      Data4: -758860519
-    Path: event:/Waterfall
+      Data1: 1191255277
+      Data2: 1083117717
+      Data3: -1668426310
+      Data4: 1067367408
+    Path: event:/Birds-chirping-04-6771
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -43185,9 +43731,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideAttenuation: 1
+  OverrideMinDistance: 61.553894
+  OverrideMaxDistance: 66.88295
 --- !u!4 &937501581
 Transform:
   m_ObjectHideFlags: 0
@@ -43196,7 +43742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937501579}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -53.12, y: 13.54, z: 0}
+  m_LocalPosition: {x: -95.1, y: 10.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61334,6 +61880,14 @@ Transform:
   - {fileID: 469591529}
   - {fileID: 121658906}
   - {fileID: 912098095}
+  - {fileID: 1378368753}
+  - {fileID: 3621074}
+  - {fileID: 872148810}
+  - {fileID: 702344504}
+  - {fileID: 1810362246}
+  - {fileID: 438164553}
+  - {fileID: 1277874928}
+  - {fileID: 592193193}
   m_Father: {fileID: 1329725543}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63850,6 +64404,83 @@ Transform:
   m_Father: {fileID: 304076255}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1277874927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1277874928}
+  - component: {fileID: 1277874929}
+  m_Layer: 13
+  m_Name: Wood layer (4)
+  m_TagString: Wood
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1277874928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277874927}
+  m_LocalRotation: {x: -0, y: -0, z: -0.007231299, w: 0.9999739}
+  m_LocalPosition: {x: 165.9, y: 24.28, z: 0}
+  m_LocalScale: {x: 2.6753442, y: 1.264545, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1186629008}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.829}
+--- !u!61 &1277874929
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277874927}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.23650128, y: -0.5040153}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.8285828, y: 0.65151095}
+  m_EdgeRadius: 0
 --- !u!1 &1282582266
 GameObject:
   m_ObjectHideFlags: 0
@@ -72111,6 +72742,83 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1378368752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1378368753}
+  - component: {fileID: 1378368754}
+  m_Layer: 13
+  m_Name: Wood layer (1)
+  m_TagString: Gravel
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1378368753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378368752}
+  m_LocalRotation: {x: -0, y: -0, z: 0.16686906, w: 0.9859791}
+  m_LocalPosition: {x: 55.67, y: 1.09, z: 0}
+  m_LocalScale: {x: 2.9082017, y: 4.006054, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1186629008}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 19.212}
+--- !u!61 &1378368754
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378368752}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.2512982, y: -0.5040153}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.7989888, y: 0.65151095}
+  m_EdgeRadius: 0
 --- !u!1 &1378813269
 GameObject:
   m_ObjectHideFlags: 0
@@ -75010,7 +75718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439114829}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.8, y: 15.940001, z: -7}
+  m_LocalPosition: {x: 12.5, y: 13.440001, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82635,6 +83343,26 @@ PrefabInstance:
       propertyPath: flyTime
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Path
+      value: event:/BirdFlyingAway
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data1
+      value: -23825402
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data2
+      value: 1206669031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data3
+      value: -1077499771
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data4
+      value: -1868605296
+      objectReference: {fileID: 0}
     - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_Name
       value: Birb (3)
@@ -82805,7 +83533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541395676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.8, y: 15.940001, z: -7}
+  m_LocalPosition: {x: 12.5, y: 13.440001, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -85280,7 +86008,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613154995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.35, y: 14.81, z: -7.088583}
+  m_LocalPosition: {x: 14.95, y: 12.31, z: -7.088583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -90892,11 +91620,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40.8
+      value: 12.5
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.8
+      value: 12.3
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -91013,6 +91741,54 @@ PrefabInstance:
     - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: soundCheckLayer.m_Bits
       value: 8192
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].tag
+      value: Gravel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].sound.Path
+      value: event:/Footstep Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].landSound.Path
+      value: event:/jump_water
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].sound.Guid.Data1
+      value: -1325319342
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].sound.Guid.Data2
+      value: 1165969997
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].sound.Guid.Data3
+      value: 1972138661
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].sound.Guid.Data4
+      value: 539298867
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].landSound.Guid.Data1
+      value: -1789065344
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].landSound.Guid.Data2
+      value: 1330805675
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].landSound.Guid.Data3
+      value: -490322780
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: footstepConfigs.Array.data[4].landSound.Guid.Data4
+      value: -896798631
       objectReference: {fileID: 0}
     - target: {fileID: 4362900472004917176, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_SortingLayer
@@ -91371,7 +92147,7 @@ GameObject:
   - component: {fileID: 1642206024}
   - component: {fileID: 1642206025}
   m_Layer: 13
-  m_Name: Grass layer (16)
+  m_Name: Wood layer
   m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92200,6 +92976,7 @@ Transform:
   - {fileID: 1311860262}
   - {fileID: 1180717084}
   - {fileID: 291354028}
+  - {fileID: 1991431046}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -96636,6 +97413,26 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Path
+      value: event:/BirdFlyingAway
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data1
+      value: -23825402
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data2
+      value: 1206669031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data3
+      value: -1077499771
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data4
+      value: -1868605296
+      objectReference: {fileID: 0}
     - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_Name
       value: Birb (5)
@@ -96729,6 +97526,83 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1810362245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1810362246}
+  - component: {fileID: 1810362247}
+  m_Layer: 13
+  m_Name: Wood layer (2)
+  m_TagString: Wood
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1810362246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810362245}
+  m_LocalRotation: {x: -0, y: -0, z: -0.007231299, w: 0.9999739}
+  m_LocalPosition: {x: 140.64, y: 13.5, z: 0}
+  m_LocalScale: {x: 4.4544287, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1186629008}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.829}
+--- !u!61 &1810362247
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810362245}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.2512982, y: -0.5040153}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.7989888, y: 0.65151095}
+  m_EdgeRadius: 0
 --- !u!1 &1810860644
 GameObject:
   m_ObjectHideFlags: 0
@@ -103320,6 +104194,26 @@ PrefabInstance:
       propertyPath: flyTime
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Path
+      value: event:/BirdFlyingAway
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data1
+      value: -23825402
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data2
+      value: 1206669031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data3
+      value: -1077499771
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data4
+      value: -1868605296
+      objectReference: {fileID: 0}
     - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_Name
       value: Birb
@@ -105541,7 +106435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916580031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.8, y: 15.940001, z: -7}
+  m_LocalPosition: {x: 12.5, y: 13.440001, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106017,7 +106911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928626197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.8, y: 15.940001, z: -7}
+  m_LocalPosition: {x: 12.5, y: 13.440001, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106256,7 +107150,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.0561333, y: -0.0071122646}
+  m_Offset: {x: -2.794464, y: -0.0071122646}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -106267,7 +107161,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4714127, y: 0.6048436}
+  m_Size: {x: 1.9480743, y: 0.6048436}
   m_EdgeRadius: 0
 --- !u!1 &1948318455
 GameObject:
@@ -107062,6 +107956,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5375802209820891840, guid: 640a78bf1e8e0354990bda4411dc0da3, type: 3}
   m_PrefabInstance: {fileID: 1982558852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1991431046 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+  m_PrefabInstance: {fileID: 654745279}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1998405571
 GameObject:
@@ -111443,6 +112342,26 @@ PrefabInstance:
     - target: {fileID: 3194762021275342771, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Path
+      value: event:/BirdFlyingAway
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data1
+      value: -23825402
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data2
+      value: 1206669031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data3
+      value: -1077499771
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483343387064265239, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: flySound.Guid.Data4
+      value: -1868605296
       objectReference: {fileID: 0}
     - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_Name
