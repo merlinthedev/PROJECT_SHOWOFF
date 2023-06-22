@@ -625,6 +625,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     }
 
     public void setCanMove(bool canMove) {
+        m_Rigidbody2D.isKinematic = false;
         this.canMove = canMove;
     }
 }
