@@ -1,9 +1,11 @@
+using FMODUnity;
 using UnityEngine;
 
 public class Birb : SwampMonster {
     [SerializeField] private Collider2D collisionTriggerCollider;
     [SerializeField] private float flyDistance = 50f;
     [SerializeField] private float flyTime = 10f;
+    [SerializeField] EventReference flySound;
     private Vector3 flyDirection;
 
     private bool isFlying = false;
@@ -22,7 +24,8 @@ public class Birb : SwampMonster {
         isFlying = true;
 
         // Get the direction to fly
-
+        
+        RuntimeManager.PlayOneShot(flySound, transform.position);
         monsterAnimator.SetTrigger("GoFly");
 
         var signedAngle = Mathf.Clamp(Vector2.SignedAngle(Vector2.up, flyDirection), -45f, 45f);
