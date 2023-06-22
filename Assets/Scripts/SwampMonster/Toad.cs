@@ -1,11 +1,10 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
 
 public class Toad : SwampMonster {
     [Header("ACTIVATION")] [SerializeField]
     private float raycastDistance = 5f;
+
+    [SerializeField] private float activationCooldown = 6f;
 
     [Header("MOVEMENT")] [SerializeField] private Rigidbody2D m_Rigidbody2D;
     [SerializeField] private float movementSpeed = 5f;
@@ -30,7 +29,9 @@ public class Toad : SwampMonster {
             }
         }
 
-        raycasting();
+        if (Time.time > lastActivationTime + activationCooldown) {
+            raycasting();
+        }
 
         if (shouldMove) {
             Debug.Log("Should move.");
@@ -97,10 +98,4 @@ public class Toad : SwampMonster {
             }
         }
     }
-
-    // private void OnDrawGizmos() {
-    //     Gizmos.color = Color.cyan;
-    //     Gizmos.DrawRay(transform.position, Vector3.left * raycastDistance);
-    //     Gizmos.DrawRay(transform.position, Vector3.right * raycastDistance);
-    // }
 }
