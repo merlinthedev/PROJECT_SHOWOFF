@@ -260,7 +260,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                 if (isGrounded || isOnRope) {
                     currentJumpState = JumpState.CanJump;
                     if (isGrounded) {
-                        player.GetPlayerAnimatorController().Ground();
+                        player.GetPlayerAnimatorController().Ground(Time.time - jumpStartTime);
                     }
                 }
 
@@ -531,7 +531,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                     lastGroundedCollider = hit.collider;
 
                     //Set animation
-                    player.GetPlayerAnimatorController().Ground();
+                    player.GetPlayerAnimatorController().Ground(0);
 
                     return;
                 }
