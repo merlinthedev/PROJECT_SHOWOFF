@@ -10,20 +10,16 @@ public class Boat : MonoBehaviour {
     public BuoyancyEffector2D water;
 
     [Header("Boat Properties")]
-    public float boatMass = 1;
 
     public float boatSpeed = 1;
     public bool playerInBoat = false;
 
     private void FixedUpdate() {
-        if (playerInBoat && rb.mass == boatMass) {
-            water.density = 50;
+        if (playerInBoat) {
             MoveBoat(boatSpeed);
         }
 
         playerInBoat = bh.playerInBoat;
-
-        if (rb.mass != boatMass) ReetCast();
 
     }
 
@@ -33,7 +29,6 @@ public class Boat : MonoBehaviour {
         hit = Physics2D.Raycast(reet.transform.position, Vector2.down, .5f);
         if (hit.collider.gameObject.CompareTag("Water")) {
             Debug.Log("me heavy now");
-            rb.mass = boatMass;
             MoveBoat(1);
         }
     }
@@ -48,8 +43,6 @@ public class Boat : MonoBehaviour {
         }
         if (collision.gameObject.CompareTag("Vodyanoy")) {
             //collision.gameObject.GetComponent<Vodyanoy>().Connect();
-            rb.mass = 1f;
-            boatMass = 1f;
             rb.freezeRotation = true;
         }
     }
