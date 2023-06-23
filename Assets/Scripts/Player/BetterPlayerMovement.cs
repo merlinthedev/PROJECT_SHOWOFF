@@ -302,7 +302,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(circlePosition, playerRadius, groundLayer);
 
         if (colliders.Length > 0) {
-            Debug.LogError("IDK what the fuck this does but it failed.");
+            Debug.Log("Tried to ledgeGrab but ledge not wide enough.");
             for (int i = 0; i < colliders.Length; i++) {
                 Debug.Log("Collider found: " + colliders[i].gameObject.name);
             }
