@@ -1,8 +1,6 @@
-using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -361,7 +359,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                 hasTriggered = true;
             }
 
-            Utils.Instance.InvokeDelayed(2.3f, () => {
+            Utils.Instance.InvokeDelayed(2.05f, () => {
                 m_Rigidbody2D.isKinematic = false;
                 hasTriggered = false;
                 isLedgeClimbing = false;
