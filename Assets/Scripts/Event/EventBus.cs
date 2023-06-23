@@ -1,8 +1,12 @@
-
 namespace EventBus {
-    public abstract class Event { }
+    public abstract class Event {
+    }
 
-    public class RockReceivedEvent : Event { }
+    public class RockReceivedEvent : Event {
+    }
+
+    public class NewSceneTriggeredEvent : Event {
+    }
 }
 
 public class EventBus<T> where T : EventBus.Event {
