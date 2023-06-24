@@ -79,7 +79,6 @@ public class Toad : SwampMonster {
     }
 
     private void raycasting() {
-        Debug.Log("Raycasting.");
         var left = Physics2D.Raycast(transform.position, Vector3.left, raycastDistance, playerMask);
         var right = Physics2D.Raycast(transform.position, Vector3.right, raycastDistance, playerMask);
 
