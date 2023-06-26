@@ -19,7 +19,7 @@ public class InteractableAutoSelect : MonoBehaviour {
         navigate.action.performed -= OnPerformed;
     }
 
-    void OnPerformed(InputAction.CallbackContext ctx) {
+    public void OnPerformed(InputAction.CallbackContext ctx = default) {
         if (EventSystem.current.currentSelectedGameObject == null || !EventSystem.current.currentSelectedGameObject.activeInHierarchy || !EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>().IsInteractable()) {
             foreach (Selectable selectable in selectables) {
                 if (selectable.IsInteractable() && selectable.isActiveAndEnabled) {
