@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 10917091}
   - component: {fileID: 10917092}
+  - component: {fileID: 10917093}
   m_Layer: 5
   m_Name: SFX
   m_TagString: Untagged
@@ -350,6 +351,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &10917093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10917090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee8adab50eff7c4aa55b204d642791b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 10917092}
+  busName: Sound Effects
 --- !u!1 &28751002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +1872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 738873494}
   - component: {fileID: 738873495}
+  - component: {fileID: 738873496}
   m_Layer: 5
   m_Name: Ambience
   m_TagString: Untagged
@@ -1939,6 +1955,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &738873496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738873493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee8adab50eff7c4aa55b204d642791b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 738873495}
+  busName: Ambience
 --- !u!1 &754368523
 GameObject:
   m_ObjectHideFlags: 0
@@ -3018,6 +3048,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1506907738}
   - component: {fileID: 1506907739}
+  - component: {fileID: 1506907740}
   m_Layer: 5
   m_Name: Master
   m_TagString: Untagged
@@ -3100,6 +3131,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1506907740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506907737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee8adab50eff7c4aa55b204d642791b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1506907739}
+  busName: 
 --- !u!1 &1550631043
 GameObject:
   m_ObjectHideFlags: 0
@@ -3627,6 +3672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1719112772}
   - component: {fileID: 1719112773}
+  - component: {fileID: 1719112774}
   m_Layer: 5
   m_Name: Music
   m_TagString: Untagged
@@ -3709,6 +3755,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1719112774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719112771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee8adab50eff7c4aa55b204d642791b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1719112773}
+  busName: Music
 --- !u!1 &1734947221
 GameObject:
   m_ObjectHideFlags: 0
