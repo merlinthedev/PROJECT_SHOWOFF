@@ -18,6 +18,7 @@ public class RopeController : MonoBehaviour {
 
     public bool RopeEnabled {
         get {
+            if (ropeParts == null) return false;
             foreach (var part in ropeParts) {
                 if (part.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Dynamic) return true;
             }
@@ -25,6 +26,7 @@ public class RopeController : MonoBehaviour {
             return false;
         }
         set {
+            if (ropeParts == null) return;
             if (ropeParts.Count == 0) return;
             foreach (var part in ropeParts) {
                 part.GetComponent<Rigidbody2D>().bodyType = value ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
