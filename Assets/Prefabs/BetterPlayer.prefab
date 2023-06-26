@@ -1240,11 +1240,11 @@ MonoBehaviour:
     Path: event:/Climb Cloth Sound
   ropeSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1531302969
+      Data2: 1276254948
+      Data3: 1420517262
+      Data4: -882098354
+    Path: event:/Rope Sound
   footstepConfigs:
   - tag: Grass
     sound:
@@ -1253,14 +1253,14 @@ MonoBehaviour:
         Data2: 1332893499
         Data3: 795562412
         Data4: 1397188922
-      Path: event:/Footstep Grass
+      Path: event:/Footsteps/Footstep Grass
     landSound:
       Guid:
         Data1: -1501194820
         Data2: 1191949423
         Data3: -1034049616
         Data4: 442571527
-      Path: event:/jump_grass
+      Path: event:/Footsteps/jump_grass
   - tag: Dirt
     sound:
       Guid:
@@ -1268,14 +1268,14 @@ MonoBehaviour:
         Data2: 1179121072
         Data3: -2008264044
         Data4: -424158088
-      Path: event:/Footstep Gritty
+      Path: event:/Footsteps/Footstep Gritty
     landSound:
       Guid:
-        Data1: -1501194820
-        Data2: 1191949423
-        Data3: -1034049616
-        Data4: 442571527
-      Path: event:/jump_grass
+        Data1: 955925558
+        Data2: 1179820985
+        Data3: 935824017
+        Data4: -1990370873
+      Path: event:/Footsteps/jump_gritty
   - tag: Wood
     sound:
       Guid:
@@ -1283,14 +1283,14 @@ MonoBehaviour:
         Data2: 1128791571
         Data3: -1260534346
         Data4: -86615762
-      Path: event:/Footstep Wood
+      Path: event:/Footsteps/Footstep Wood
     landSound:
       Guid:
-        Data1: -1501194820
-        Data2: 1191949423
-        Data3: -1034049616
-        Data4: 442571527
-      Path: event:/jump_grass
+        Data1: 1229672169
+        Data2: 1164894874
+        Data3: 2015095974
+        Data4: -1564396578
+      Path: event:/Footsteps/jump_wood
   - tag: Water
     sound:
       Guid:
@@ -1306,6 +1306,21 @@ MonoBehaviour:
         Data3: -490322780
         Data4: -896798631
       Path: event:/jump_water
+  - tag: Gravel
+    sound:
+      Guid:
+        Data1: -1228697079
+        Data2: 1179121072
+        Data3: -2008264044
+        Data4: -424158088
+      Path: event:/Footsteps/Footstep Gritty
+    landSound:
+      Guid:
+        Data1: 955925558
+        Data2: 1179820985
+        Data3: 935824017
+        Data4: -1990370873
+      Path: event:/Footsteps/jump_gritty
 --- !u!114 &2356559826825607657
 MonoBehaviour:
   m_ObjectHideFlags: 0

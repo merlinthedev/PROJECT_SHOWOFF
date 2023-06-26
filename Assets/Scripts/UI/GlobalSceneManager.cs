@@ -6,7 +6,9 @@ using UnityEngine.UI;
 using static UnityEngine.SceneManagement.SceneManager;
 
 public class GlobalSceneManager : MonoBehaviour {
+    [SerializeField] private InteractableAutoSelect autoSelect;
     [SerializeField] private GameObject mainMenuObject;
+    [SerializeField] private GameObject settingsMenuObject;
     [SerializeField] private GameObject loadingScreenObject;
     [SerializeField] private Image fadeImage;
     private float fadeTime = 1f;
@@ -41,6 +43,18 @@ public class GlobalSceneManager : MonoBehaviour {
         sceneLoaded += OnSceneLoaded;
     }
 
+    public void SettingsNav() {
+        mainMenuObject.SetActive(false);
+        settingsMenuObject.SetActive(true);
+        autoSelect.OnPerformed();
+
+    }
+
+    public void MainNav() {
+        mainMenuObject.SetActive(true);
+        settingsMenuObject.SetActive(false);
+        autoSelect.OnPerformed();
+    }
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1) {
         loadingScreenObject.SetActive(false);
         fadeIn();

@@ -15,6 +15,10 @@ public class ColliderCameraTrigger : MonoBehaviour
 
     [SerializeField] AnimationCurve blendCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
 
+    private void Start() {
+        if (vcam == null || mixCam == null) this.enabled = false;
+    }
+
 
     private void Update() {
         if (playerInRange) {
