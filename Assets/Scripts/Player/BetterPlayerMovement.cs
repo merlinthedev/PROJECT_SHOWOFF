@@ -124,6 +124,17 @@ public class BetterPlayerMovement : MonoBehaviour {
             horizontalMovement();
 
             jumping();
+        } else if (externalMovement) {
+            float rawX = -(transform.position.x - externalMovementDestination.x);
+            rawX = Mathf.Clamp(rawX, -1, 1);
+
+            // if the rawX is close to 0, we are close to the destination, so we can stop moving
+            if (Mathf.Abs(rawX) < 0.1f) {
+                setExternalMovement(false);
+                return;
+            }
+
+            applyMovement(rawX);
         }
 
         ledgeGrab();
@@ -166,9 +177,13 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         float rawXMovement = movementInput.x;
 
-        if (rawXMovement != 0 || isGrounded) {
+        applyMovement(rawXMovement);
+    }
+
+    private void applyMovement(float xMovement) {
+        if (xMovement != 0 || isGrounded) {
             float desiredHorizontalSpeed =
-                rawXMovement * (inWater ? maximumHorizontalSpeed * waterSpeedDebuff : maximumHorizontalSpeed);
+                xMovement * (inWater ? maximumHorizontalSpeed * waterSpeedDebuff : maximumHorizontalSpeed);
             float velocityGap = desiredHorizontalSpeed - m_Rigidbody2D.velocity.x;
 
             float acceleration = isGrounded ? groundAcceleration : airAcceleration;
@@ -187,15 +202,36 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
     }
 
+    private void setExternalMovement(bool value) {
+        if (value) {
+            canMove = false;
+            externalMovement = true;
+        } else {
+            canMove = true;
+            externalMovement = false;
+            externalMovementDestination = Vector3.zero;
+        }
+    }
+
+    private bool externalMovement = false;
+    private Vector3 externalMovementDestination;
+
+    public bool isExternallyControlled {
+        get { return externalMovement; }
+    }
+
     public void externalLocomotion(Vector3 destination) {
-        canMove = false;
+        setExternalMovement(true);
+        externalMovementDestination = destination;
 
-        player.GetPlayerAnimatorController().playAnimation();
-
-        LeanTween.move(this.gameObject, destination, 6f).setEase(LeanTweenType.easeInOutQuad)
-            .setOnComplete(() => {
-                canMove = true;
-            });
+        // player.GetPlayerAnimatorController().playAnimation();
+        //
+        // LeanTween.move(this.gameObject, destination, 6f).setEase(LeanTweenType.easeInOutQuad)
+        //     .setOnComplete(() => {
+        //         canMove = true;
+        //     });
+        //
+        //
     }
 
     public enum JumpState {
