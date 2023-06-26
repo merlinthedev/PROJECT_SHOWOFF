@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace EventBus {
     public abstract class Event {
     }
@@ -6,6 +8,13 @@ namespace EventBus {
     }
 
     public class NewSceneTriggeredEvent : Event {
+    }
+
+    public class VodyanoyFinishedWalkingEvent : Event {
+    }
+
+    public class NextJumpIsCutsceneEvent : Event {
+        public Transform destination;
     }
 }
 

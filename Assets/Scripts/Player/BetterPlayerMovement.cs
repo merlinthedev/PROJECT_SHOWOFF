@@ -1,3 +1,5 @@
+using EventBus;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -94,6 +96,14 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private bool isOnRope = false;
     private float ropeProgress;
 
+    private void OnEnable() {
+        EventBus<NextJumpIsCutsceneEvent>.Subscribe(onNextJumpIsCutsceneEvent);
+    }
+
+    private void OnDisable() {
+        EventBus<NextJumpIsCutsceneEvent>.Unsubscribe(onNextJumpIsCutsceneEvent);
+    }
+
 
     private void updateVisuals() {
         if (visualTransform == null) return;
@@ -122,8 +132,6 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         if (canMove) {
             horizontalMovement();
-
-            jumping();
         } else if (externalMovement) {
             float rawX = -(transform.position.x - externalMovementDestination.x);
             rawX = Mathf.Clamp(rawX, -1, 1);
@@ -136,6 +144,9 @@ public class BetterPlayerMovement : MonoBehaviour {
 
             applyMovement(rawX);
         }
+
+        jumping();
+
 
         ledgeGrab();
         pushObject();
@@ -223,15 +234,13 @@ public class BetterPlayerMovement : MonoBehaviour {
     public void externalLocomotion(Vector3 destination) {
         setExternalMovement(true);
         externalMovementDestination = destination;
+    }
 
-        // player.GetPlayerAnimatorController().playAnimation();
-        //
-        // LeanTween.move(this.gameObject, destination, 6f).setEase(LeanTweenType.easeInOutQuad)
-        //     .setOnComplete(() => {
-        //         canMove = true;
-        //     });
-        //
-        //
+    private bool nextJumpIsCutscene = false;
+
+    private void onNextJumpIsCutsceneEvent(NextJumpIsCutsceneEvent e) {
+        externalMovementDestination = e.destination.position;
+        nextJumpIsCutscene = true;
     }
 
     public enum JumpState {
@@ -277,10 +286,18 @@ public class BetterPlayerMovement : MonoBehaviour {
             case JumpState.Jumping:
                 m_Rigidbody2D.velocity =
                     new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed * (inWater ? waterJumpDebuff : 1f));
-                bool endJump = !jumpButtonPressed ||
-                               slopeAngle is > 90 and < 200 ||
-                               Time.time > jumpStartTime + maxJumpTime ||
-                               transform.position.y > jumpStartHeight + maxJumpHeight;
+
+                bool endJump = false;
+
+                if (!externalMovement) {
+                    endJump = !jumpButtonPressed ||
+                              slopeAngle is > 90 and < 200 ||
+                              Time.time > jumpStartTime + maxJumpTime ||
+                              transform.position.y > jumpStartHeight + maxJumpHeight;
+                } else {
+                    endJump = Time.time > jumpStartTime + maxJumpTime;
+                }
+
                 if (endJump) {
                     currentJumpState = JumpState.Falling;
                 }
@@ -632,6 +649,12 @@ public class BetterPlayerMovement : MonoBehaviour {
             jumpButtonPressedTime = Time.time;
             jumpButtonPressedThisFrame = true;
             jumpRequested = true;
+
+            if (nextJumpIsCutscene) {
+                // initialize the jump and movement to destination
+                setExternalMovement(true);
+                nextJumpIsCutscene = false;
+            }
         }
 
         if (context.performed) {

@@ -1,14 +1,12 @@
+using EventBus;
 using UnityEngine;
 
 public class Vodyanoy : MonoBehaviour {
-
-    [Header("movespeed")]
-    public float riseDuration;
+    [Header("movespeed")] public float riseDuration;
 
     public float moveDuration;
 
-    [Header("targets")]
-    public GameObject riseTarget;
+    [Header("targets")] public GameObject riseTarget;
 
     public GameObject[] targets;
 
@@ -52,13 +50,14 @@ public class Vodyanoy : MonoBehaviour {
         for (int i = 0; i < targets.Length; i++) {
             newTargets[i] = targets[i].transform.position;
         }
+
         LTSpline ltSpline = new LTSpline(newTargets);
 
         //Move along spline
         var x = LeanTween.moveSpline(gameObject, ltSpline, moveDuration).setEase(LeanTweenType.easeInOutQuad);
-        x.setOnComplete(() =>
-        {
+        x.setOnComplete(() => {
             EnablePlayerJump();
+            EventBus<VodyanoyFinishedWalkingEvent>.Raise(new VodyanoyFinishedWalkingEvent());
         });
     }
 
@@ -69,5 +68,4 @@ public class Vodyanoy : MonoBehaviour {
 
         player.noJumpAllowed = false;
     }
-
 }
