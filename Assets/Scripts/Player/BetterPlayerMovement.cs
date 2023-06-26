@@ -630,4 +630,8 @@ public class BetterPlayerMovement : MonoBehaviour {
         m_Rigidbody2D.isKinematic = false;
         this.canMove = canMove;
     }
+
+    public bool IsOnRope() {
+        return isOnRope;
+    }
 }
