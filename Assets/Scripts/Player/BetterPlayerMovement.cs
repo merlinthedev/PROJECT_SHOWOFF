@@ -147,8 +147,10 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         jumping();
 
+        if (!((inWater || isGrounded || isOnRope || isLedgeClimbing) & m_Rigidbody2D.velocity.y > 0)) {
+            ledgeGrab();
+        }
 
-        ledgeGrab();
         pushObject();
         ropeMovement();
 
@@ -162,7 +164,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void pushObject() {
         if (movementInput.x == 0) return;
-        Vector2 rayPosition = new Vector2(transform.position.x,
+        Vector2 rayPosition = new(transform.position.x,
             transform.position.y - m_CapsuleCollider2D.size.y / 3f + m_CapsuleCollider2D.offset.y);
         RaycastHit2D forwardCheck =
             Physics2D.Raycast(rayPosition, new Vector2(movementInput.x, 0), objectDistance, groundLayer);
@@ -326,11 +328,9 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool isLedgeClimbing = false;
 
 
-    private void ledgeGrab() {
+    private bool ledgeGrab() {
         // if we are grounded, return
-        if (inWater || isGrounded || isOnRope || isLedgeClimbing) return;
 
-        if (m_Rigidbody2D.velocity.y > 0) return;
 
         float playerRadius = m_CapsuleCollider2D.size.x / 2f;
 
@@ -342,7 +342,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         // if we didn't hit anything, return
         if (hit.collider == null) {
             // Debug.LogError("Did not find ledge collider returning.");
-            return;
+            return false;
         }
 
         //move slightly into the ledge and up
@@ -359,7 +359,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                 Debug.Log("Collider found: " + colliders[i].gameObject.name);
             }
 
-            return;
+            return false;
         }
 
         direction = Vector2.down;
@@ -369,7 +369,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         if (downHit.collider == null) {
             Debug.LogError("Did not find anywhere to cast down to.");
-            return;
+            return false;
         }
 
         // teleport to the top of the ledge
@@ -417,8 +417,12 @@ public class BetterPlayerMovement : MonoBehaviour {
                 hasTriggered = false;
                 isLedgeClimbing = false;
                 noJumpAllowed = false;
+                if (isOnRope) {
+                    ReleaseRope();
+                }
             });
         });
+        return true;
     }
 
     private bool hasTriggered = false;
@@ -439,8 +443,13 @@ public class BetterPlayerMovement : MonoBehaviour {
 
                 Debug.Log("Rope progress: " + ropeProgress);
 
-                if (ropeProgress is > 1 or < 0) {
+                if (ropeProgress > 1) {
                     Debug.Log("Releasing rope.");
+                    ReleaseRope();
+                    return;
+                }
+
+                if (ropeProgress < 0 && ledgeGrab()) {
                     ReleaseRope();
                     return;
                 }
