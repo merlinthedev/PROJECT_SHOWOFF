@@ -1,3 +1,5 @@
+using EventBus;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +10,22 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private GameObject player;
+    private bool fadeIn = false;
     private bool inTutorial = false;
 
+    private void Update() {
+
+    }
     private void FixedUpdate() {
-        if(!inTutorial) {
+        if (fadeIn) {
+            if (spriteRenderer.color.a <= 1) spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a + 0.02f);
+        } else if (!fadeIn) {
+            if (spriteRenderer.color.a >= 0) {
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a - 0.02f);
+                if (spriteRenderer.color.a < 0.02) spriteRenderer.enabled = false;
+            }
+        }
+        if (!inTutorial) {
             DisableTutorial();
         }
     }
@@ -38,8 +52,8 @@ public class Tutorial : MonoBehaviour
         tutorialNumber = TutorialNumber;
         spriteRenderer.enabled = true;
         spriteRenderer.sprite = sprites[tutorialNumber];
+        fadeIn = true;
     }
-
     public void CallTutorial(Collider2D collision) {
         inTutorial = true;
         if (!collision.GetComponent<TutorialTrigger>().mustHoldStone) {
@@ -55,8 +69,9 @@ public class Tutorial : MonoBehaviour
     }
 
     public void DisableTutorial() {
-        spriteRenderer.enabled = false;
+
         inTutorial = false;
+        fadeIn = false;
     }
 
 
