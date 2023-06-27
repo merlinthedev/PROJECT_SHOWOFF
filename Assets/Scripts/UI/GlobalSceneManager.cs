@@ -24,6 +24,8 @@ public class GlobalSceneManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
+        
+        fadeImage.gameObject.SetActive(false);
     }
 
     private void OnEnable() {
