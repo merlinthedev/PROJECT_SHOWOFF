@@ -55,12 +55,19 @@ public class GlobalSceneManager : MonoBehaviour {
         settingsMenuObject.SetActive(false);
         autoSelect.OnPerformed();
     }
+
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1) {
         loadingScreenObject.SetActive(false);
         fadeIn();
     }
 
     public void LoadLevelFromString(string s) {
+        if (s == "MainMenu") {
+            LoadSceneAsync(s);
+            mainMenuObject.SetActive(true);
+            return;
+        }
+
         if (levelStrings.Contains(s)) {
             LoadSceneAsync(s);
         }

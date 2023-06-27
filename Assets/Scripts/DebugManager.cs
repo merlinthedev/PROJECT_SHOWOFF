@@ -4,7 +4,15 @@ using UnityEngine.InputSystem;
 public class DebugManager : MonoBehaviour {
     [SerializeField] private InputAction resetSceneAction;
 
+    private static DebugManager instance;
+
     private void Awake() {
+        if (instance == null) {
+            instance = this;
+        } else {
+            Destroy(gameObject);
+        }
+
         DontDestroyOnLoad(this);
         resetSceneAction.Enable();
         resetSceneAction.performed += ctx => resetScene();
