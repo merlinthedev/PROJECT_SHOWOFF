@@ -33,6 +33,7 @@ public class SlingShotController : MonoBehaviour {
 
 
     private void aim() {
+        if (player.GetPlayerController().IsOnRope()) return;
         //update smoothed stick
         Vector2 smoothDelta = stickSmoothed - stickInput;
         stickSmoothed -= smoothDelta * Mathf.Clamp01(stickSmoothSpeed * Time.deltaTime);
@@ -90,10 +91,7 @@ public class SlingShotController : MonoBehaviour {
             x.OnThrow(player);
             projectile.Shoot(shootDirection, shootForce);
             player.GetPlayerProjectileController().SetProjectileFlag(false);
-
         });
-
-
     }
 
     public void OnStickInput(InputAction.CallbackContext context) {

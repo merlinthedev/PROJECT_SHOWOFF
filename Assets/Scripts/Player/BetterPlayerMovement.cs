@@ -1,3 +1,5 @@
+using EventBus;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -94,6 +96,14 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private bool isOnRope = false;
     private float ropeProgress;
 
+    private void OnEnable() {
+        EventBus<NextJumpIsCutsceneEvent>.Subscribe(onNextJumpIsCutsceneEvent);
+    }
+
+    private void OnDisable() {
+        EventBus<NextJumpIsCutsceneEvent>.Unsubscribe(onNextJumpIsCutsceneEvent);
+    }
+
 
     private void updateVisuals() {
         if (visualTransform == null) return;
@@ -122,11 +132,25 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         if (canMove) {
             horizontalMovement();
+        } else if (externalMovement) {
+            float rawX = -(transform.position.x - externalMovementDestination.x);
+            rawX = Mathf.Clamp(rawX, -1, 1);
 
-            jumping();
+            // if the rawX is close to 0, we are close to the destination, so we can stop moving
+            if (Mathf.Abs(rawX) < 0.1f) {
+                setExternalMovement(false);
+                return;
+            }
+
+            applyMovement(rawX);
         }
 
-        ledgeGrab();
+        jumping();
+
+        if (!((inWater || isGrounded || isOnRope || isLedgeClimbing) & m_Rigidbody2D.velocity.y > 0)) {
+            ledgeGrab();
+        }
+
         pushObject();
         ropeMovement();
 
@@ -140,7 +164,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void pushObject() {
         if (movementInput.x == 0) return;
-        Vector2 rayPosition = new Vector2(transform.position.x,
+        Vector2 rayPosition = new(transform.position.x,
             transform.position.y - m_CapsuleCollider2D.size.y / 3f + m_CapsuleCollider2D.offset.y);
         RaycastHit2D forwardCheck =
             Physics2D.Raycast(rayPosition, new Vector2(movementInput.x, 0), objectDistance, groundLayer);
@@ -166,9 +190,13 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         float rawXMovement = movementInput.x;
 
-        if (rawXMovement != 0 || isGrounded) {
+        applyMovement(rawXMovement);
+    }
+
+    private void applyMovement(float xMovement) {
+        if (xMovement != 0 || isGrounded) {
             float desiredHorizontalSpeed =
-                rawXMovement * (inWater ? maximumHorizontalSpeed * waterSpeedDebuff : maximumHorizontalSpeed);
+                xMovement * (inWater ? maximumHorizontalSpeed * waterSpeedDebuff : maximumHorizontalSpeed);
             float velocityGap = desiredHorizontalSpeed - m_Rigidbody2D.velocity.x;
 
             float acceleration = isGrounded ? groundAcceleration : airAcceleration;
@@ -187,15 +215,34 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
     }
 
+    private void setExternalMovement(bool value) {
+        if (value) {
+            canMove = false;
+            externalMovement = true;
+        } else {
+            canMove = true;
+            externalMovement = false;
+            externalMovementDestination = Vector3.zero;
+        }
+    }
+
+    private bool externalMovement = false;
+    private Vector3 externalMovementDestination;
+
+    public bool isExternallyControlled {
+        get { return externalMovement; }
+    }
+
     public void externalLocomotion(Vector3 destination) {
-        canMove = false;
+        setExternalMovement(true);
+        externalMovementDestination = destination;
+    }
 
-        player.GetPlayerAnimatorController().playAnimation();
+    private bool nextJumpIsCutscene = false;
 
-        LeanTween.move(this.gameObject, destination, 6f).setEase(LeanTweenType.easeInOutQuad)
-            .setOnComplete(() => {
-                canMove = true;
-            });
+    private void onNextJumpIsCutsceneEvent(NextJumpIsCutsceneEvent e) {
+        externalMovementDestination = e.destination.position;
+        nextJumpIsCutscene = true;
     }
 
     public enum JumpState {
@@ -241,10 +288,18 @@ public class BetterPlayerMovement : MonoBehaviour {
             case JumpState.Jumping:
                 m_Rigidbody2D.velocity =
                     new Vector2(m_Rigidbody2D.velocity.x, jumpSpeed * (inWater ? waterJumpDebuff : 1f));
-                bool endJump = !jumpButtonPressed ||
-                               slopeAngle is > 90 and < 200 ||
-                               Time.time > jumpStartTime + maxJumpTime ||
-                               transform.position.y > jumpStartHeight + maxJumpHeight;
+
+                bool endJump = false;
+
+                if (!externalMovement) {
+                    endJump = !jumpButtonPressed ||
+                              slopeAngle is > 90 and < 200 ||
+                              Time.time > jumpStartTime + maxJumpTime ||
+                              transform.position.y > jumpStartHeight + maxJumpHeight;
+                } else {
+                    endJump = Time.time > jumpStartTime + maxJumpTime;
+                }
+
                 if (endJump) {
                     currentJumpState = JumpState.Falling;
                 }
@@ -273,11 +328,9 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool isLedgeClimbing = false;
 
 
-    private void ledgeGrab() {
+    private bool ledgeGrab() {
         // if we are grounded, return
-        if (inWater || isGrounded || isOnRope || isLedgeClimbing) return;
 
-        if (m_Rigidbody2D.velocity.y > 0) return;
 
         float playerRadius = m_CapsuleCollider2D.size.x / 2f;
 
@@ -289,7 +342,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         // if we didn't hit anything, return
         if (hit.collider == null) {
             // Debug.LogError("Did not find ledge collider returning.");
-            return;
+            return false;
         }
 
         //move slightly into the ledge and up
@@ -306,7 +359,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                 Debug.Log("Collider found: " + colliders[i].gameObject.name);
             }
 
-            return;
+            return false;
         }
 
         direction = Vector2.down;
@@ -316,7 +369,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         if (downHit.collider == null) {
             Debug.LogError("Did not find anywhere to cast down to.");
-            return;
+            return false;
         }
 
         // teleport to the top of the ledge
@@ -364,8 +417,12 @@ public class BetterPlayerMovement : MonoBehaviour {
                 hasTriggered = false;
                 isLedgeClimbing = false;
                 noJumpAllowed = false;
+                if (isOnRope) {
+                    ReleaseRope();
+                }
             });
         });
+        return true;
     }
 
     private bool hasTriggered = false;
@@ -386,8 +443,13 @@ public class BetterPlayerMovement : MonoBehaviour {
 
                 Debug.Log("Rope progress: " + ropeProgress);
 
-                if (ropeProgress is > 1 or < 0) {
+                if (ropeProgress > 1) {
                     Debug.Log("Releasing rope.");
+                    ReleaseRope();
+                    return;
+                }
+
+                if (ropeProgress < 0 && ledgeGrab()) {
                     ReleaseRope();
                     return;
                 }
@@ -596,6 +658,12 @@ public class BetterPlayerMovement : MonoBehaviour {
             jumpButtonPressedTime = Time.time;
             jumpButtonPressedThisFrame = true;
             jumpRequested = true;
+
+            if (nextJumpIsCutscene) {
+                // initialize the jump and movement to destination
+                setExternalMovement(true);
+                nextJumpIsCutscene = false;
+            }
         }
 
         if (context.performed) {
@@ -629,5 +697,9 @@ public class BetterPlayerMovement : MonoBehaviour {
     public void setCanMove(bool canMove) {
         m_Rigidbody2D.isKinematic = false;
         this.canMove = canMove;
+    }
+
+    public bool IsOnRope() {
+        return isOnRope;
     }
 }

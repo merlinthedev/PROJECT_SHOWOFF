@@ -11,7 +11,7 @@ public class Water : MonoBehaviour {
         var player = other.gameObject.GetComponent<BetterPlayerMovement>();
 
         if (player == null) {
-            Debug.LogError("Player has no BetterPlayerMovement component", this);
+            //Debug.LogError("Player has no BetterPlayerMovement component", this);
             return;
         }
 
@@ -25,7 +25,7 @@ public class Water : MonoBehaviour {
             var player = other.gameObject.GetComponent<BetterPlayerMovement>();
 
             if (player == null) {
-                Debug.LogError("Player has no BetterPlayerMovement component", this);
+                //Debug.LogError("Player has no BetterPlayerMovement component", this);
                 return;
             }
 
@@ -38,12 +38,12 @@ public class Water : MonoBehaviour {
             var log = other.gameObject.GetComponent<ObjectGrabbable>();
 
             if (log == null) {
-                Debug.LogError("Log has no ObjectGrabbable component", this);
+                //Debug.LogError("Log has no ObjectGrabbable component", this);
                 return;
             }
 
             if (!log.isWater) {
-                Debug.Log("Log is in water");
+                //Debug.Log("Log is in water");
                 log.isWater = true;
             }
         }
@@ -54,7 +54,7 @@ public class Water : MonoBehaviour {
             var player = other.gameObject.GetComponent<BetterPlayerMovement>();
 
             if (player == null) {
-                Debug.LogError("Player has no BetterPlayerMovement component", this);
+                //Debug.LogError("Player has no BetterPlayerMovement component", this);
                 return;
             }
 
@@ -65,7 +65,7 @@ public class Water : MonoBehaviour {
             var log = other.gameObject.GetComponent<ObjectGrabbable>();
 
             if (log == null) {
-                Debug.LogError("Log has no ObjectGrabbable component", this);
+                //Debug.LogError("Log has no ObjectGrabbable component", this);
                 return;
             }
 

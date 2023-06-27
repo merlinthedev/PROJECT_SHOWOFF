@@ -34,7 +34,7 @@ public class PlayerAnimatorController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (playerMovementController.canMove) {
+        if (playerMovementController.canMove || playerMovementController.isExternallyControlled) {
             animator.SetFloat("xSpeed", Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x));
         }
 
@@ -50,11 +50,6 @@ public class PlayerAnimatorController : MonoBehaviour {
         // animator.GetCurrentAnimatorStateInfo(0).normalizedTime
     }
 
-    public void playAnimation() {
-        // loop the animation for the given time
-        animator.SetFloat("xSpeed", 1);
-        
-    }
 
     public void ResetSpeed() {
         animator.speed = 1f;

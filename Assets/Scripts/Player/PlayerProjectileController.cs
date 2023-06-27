@@ -51,6 +51,8 @@ public class PlayerProjectileController : MonoBehaviour {
                 return;
             }
 
+            if (hasProjectile) return;
+
             player.GetPlayerAnimatorController().Pickup();
             p = other.gameObject.GetComponent<IPickup>();
             g = other.gameObject;
