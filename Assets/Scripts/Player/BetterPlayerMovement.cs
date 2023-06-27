@@ -150,9 +150,15 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         jumping();
 
-        if (!((inWater || isGrounded || isOnRope || isLedgeClimbing) & m_Rigidbody2D.velocity.y > 0)) {
+        if (!((inWater || isGrounded || isOnRope || isLedgeClimbing)) && m_Rigidbody2D.velocity.y < 0) {
             ledgeGrab();
         }
+
+        // if (!inWater || !isGrounded || !isOnRope || !isLedgeClimbing) {
+        //     if (m_Rigidbody2D.velocity.y < 0) {
+        //         ledgeGrab();
+        //     }
+        // }
 
         pushObject();
 
