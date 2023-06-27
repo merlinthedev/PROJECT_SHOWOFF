@@ -2603,7 +2603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2072241149877549198, guid: 2bd33828f7e4a5d439d9b2c3b05247f4, type: 3}
       propertyPath: boatSpeed
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2516991465258313351, guid: 2bd33828f7e4a5d439d9b2c3b05247f4, type: 3}
       propertyPath: m_Layer
@@ -7547,6 +7547,18 @@ PrefabInstance:
       propertyPath: destination
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9119629920205819053, guid: 4ea77dd9d8343b545853592a5ff35147, type: 3}
+      propertyPath: destinations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119629920205819053, guid: 4ea77dd9d8343b545853592a5ff35147, type: 3}
+      propertyPath: destinations.Array.data[0]
+      value: 
+      objectReference: {fileID: 926710442}
+    - target: {fileID: 9119629920205819053, guid: 4ea77dd9d8343b545853592a5ff35147, type: 3}
+      propertyPath: destinations.Array.data[1]
+      value: 
+      objectReference: {fileID: 939384086}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22174,8 +22186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e505d20ac62c84dbe5d4675b3a8a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  riseDuration: 15
-  moveDuration: 10
+  riseDuration: 4
+  moveDuration: 3
   riseTarget: {fileID: 696096513}
   targets:
   - {fileID: 1004608097}

@@ -10,6 +10,7 @@ public class ExternalPlayerController : MonoBehaviour {
     [SerializeField] private List<Transform> destinations = new();
 
     [SerializeField] private bool shouldIntro = false;
+    private Transform currentDestination;
 
     private void OnEnable() {
         EventBus<VodyanoyFinishedWalkingEvent>.Subscribe(eventBasedMovement);
@@ -20,7 +21,11 @@ public class ExternalPlayerController : MonoBehaviour {
     }
 
     private void Start() {
-        if (shouldIntro) Utils.Instance.InvokeDelayed(0.5f, () => Move(destinations[0].gameObject.transform.position));
+        if (shouldIntro) {
+            Utils.Instance.InvokeDelayed(0.5f, () => Move(destinations[0].gameObject.transform.position));
+        }
+
+        currentDestination = destinations[0];
     }
 
     private void Move(Vector3 destination) {
@@ -28,6 +33,9 @@ public class ExternalPlayerController : MonoBehaviour {
     }
 
     private void eventBasedMovement(VodyanoyFinishedWalkingEvent e) {
-        EventBus<NextJumpIsCutsceneEvent>.Raise(new NextJumpIsCutsceneEvent { destination = destinations[0] });
+        EventBus<NextJumpIsCutsceneEvent>.Raise(new NextJumpIsCutsceneEvent {
+            destination = currentDestination,
+            callback = () => player.GetPlayerController().JumpIntoDestinationMovement(destinations[1])
+        });
     }
 }
