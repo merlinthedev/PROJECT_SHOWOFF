@@ -139,6 +139,9 @@ public class BetterPlayerMovement : MonoBehaviour {
             // if the rawX is close to 0, we are close to the destination, so we can stop moving
             if (Mathf.Abs(rawX) < 0.1f) {
                 setExternalMovement(false);
+                if (callback != null) { callback.Invoke(); }
+
+                callback = null;
                 return;
             }
 
@@ -152,7 +155,8 @@ public class BetterPlayerMovement : MonoBehaviour {
         }
 
         pushObject();
-        ropeMovement();
+
+        if (isOnRope) ropeMovement();
 
         updateVisuals();
 
@@ -238,12 +242,23 @@ public class BetterPlayerMovement : MonoBehaviour {
         externalMovementDestination = destination;
     }
 
+    public void JumpIntoDestinationMovement(Transform t) {
+        Debug.Log("JumpIntoDestinationMovement");
+        setExternalMovement(true);
+        externalMovementDestination = t.position;
+        externalJumpRequested = true;
+    }
+
     private bool nextJumpIsCutscene = false;
+    private bool externalJumpRequested = false;
 
     private void onNextJumpIsCutsceneEvent(NextJumpIsCutsceneEvent e) {
         externalMovementDestination = e.destination.position;
         nextJumpIsCutscene = true;
+        callback = e.callback;
     }
+
+    private System.Action callback;
 
     public enum JumpState {
         CanJump,
@@ -258,7 +273,8 @@ public class BetterPlayerMovement : MonoBehaviour {
 
                 bool canJump = (hasJumpBuffer && jumpRequested) ||
                                (hasCoyoteJump && jumpButtonPressedThisFrame) ||
-                               (isOnRope && jumpButtonPressedThisFrame);
+                               (isOnRope && jumpButtonPressedThisFrame) ||
+                               externalJumpRequested;
                 if (canJump) {
                     jumpStartHeight = transform.position.y - (inWater ? (1 - waterJumpDebuff) * maxJumpHeight : 0f);
                     jumpStartTime = Time.time;
@@ -298,6 +314,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                               transform.position.y > jumpStartHeight + maxJumpHeight;
                 } else {
                     endJump = Time.time > jumpStartTime + maxJumpTime;
+                    externalJumpRequested = false;
                 }
 
                 if (endJump) {
@@ -534,7 +551,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         SmoothToRopeGrab = true;
     }
 
-    void SetRopeDistanceJointLength(float value) {
+    private void SetRopeDistanceJointLength(float value) {
         ropeDistanceJoint.distance = value;
     }
 
