@@ -11,7 +11,7 @@ public class GlobalSceneManager : MonoBehaviour {
     [SerializeField] private GameObject settingsMenuObject;
     [SerializeField] private GameObject loadingScreenObject;
     [SerializeField] private Image fadeImage;
-    private float fadeTime = 1f;
+    private float fadeTime = 2.5f;
 
     [SerializeField] private List<string> levelStrings = new();
 

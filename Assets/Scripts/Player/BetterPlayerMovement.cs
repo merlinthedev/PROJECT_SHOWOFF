@@ -139,8 +139,12 @@ public class BetterPlayerMovement : MonoBehaviour {
             // if the rawX is close to 0, we are close to the destination, so we can stop moving
             if (Mathf.Abs(rawX) < 0.1f) {
                 setExternalMovement(false);
-                if (callback != null) { callback.Invoke(); }
 
+                // This is a bit of a hack, but it works
+                if (callback != null) { callback.Invoke(); }
+                if (externalLocomotionCallback != null) { externalLocomotionCallback.Invoke(); }
+
+                externalLocomotionCallback = null;
                 callback = null;
                 return;
             }
@@ -239,14 +243,17 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool externalMovement = false;
     private Vector3 externalMovementDestination;
 
-    public bool isExternallyControlled {
+    public bool isExternallyControlled
+    {
         get { return externalMovement; }
     }
 
-    public void externalLocomotion(Vector3 destination) {
+    public void externalLocomotion(Vector3 destination, System.Action callback) {
         setExternalMovement(true);
         externalMovementDestination = destination;
     }
+
+    private System.Action externalLocomotionCallback;
 
     public void JumpIntoDestinationMovement(Transform t) {
         Debug.Log("JumpIntoDestinationMovement");
@@ -404,10 +411,10 @@ public class BetterPlayerMovement : MonoBehaviour {
         isLedgeClimbing = true;
         noJumpAllowed = true;
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
+        {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner,
-                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             // Utils.Instance.InvokeDelayed(1f, () => );
@@ -421,7 +428,8 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
+            {
                 canMove = true;
                 m_Rigidbody2D.velocity = Vector2.zero;
             });
@@ -435,7 +443,8 @@ public class BetterPlayerMovement : MonoBehaviour {
                 hasTriggered = true;
             }
 
-            Utils.Instance.InvokeDelayed(2.05f, () => {
+            Utils.Instance.InvokeDelayed(2.05f, () =>
+            {
                 m_Rigidbody2D.isKinematic = false;
                 hasTriggered = false;
                 isLedgeClimbing = false;
@@ -450,7 +459,8 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private bool hasTriggered = false;
 
-    public Vector2 MoveInput {
+    public Vector2 MoveInput
+    {
         get {
             return movementInput;
         }
