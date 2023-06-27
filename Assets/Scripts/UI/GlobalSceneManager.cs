@@ -24,7 +24,7 @@ public class GlobalSceneManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
-        
+
         fadeImage.gameObject.SetActive(false);
     }
 
@@ -66,6 +66,7 @@ public class GlobalSceneManager : MonoBehaviour {
     public void LoadLevelFromString(string s) {
         if (s == "MainMenu") {
             LoadSceneAsync(s);
+            fadeImage.gameObject.SetActive(false);
             mainMenuObject.SetActive(true);
             return;
         }
