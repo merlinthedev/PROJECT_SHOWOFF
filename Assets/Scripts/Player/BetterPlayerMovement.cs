@@ -139,6 +139,9 @@ public class BetterPlayerMovement : MonoBehaviour {
             // if the rawX is close to 0, we are close to the destination, so we can stop moving
             if (Mathf.Abs(rawX) < 0.1f) {
                 setExternalMovement(false);
+                if (callback != null) { callback.Invoke(); }
+
+                callback = null;
                 return;
             }
 
@@ -147,10 +150,13 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         jumping();
 
+        if (!((inWater || isGrounded || isOnRope || isLedgeClimbing) & m_Rigidbody2D.velocity.y > 0)) {
+            ledgeGrab();
+        }
 
-        ledgeGrab();
         pushObject();
-        ropeMovement();
+
+        if (isOnRope) ropeMovement();
 
         updateVisuals();
 
@@ -162,7 +168,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void pushObject() {
         if (movementInput.x == 0) return;
-        Vector2 rayPosition = new Vector2(transform.position.x,
+        Vector2 rayPosition = new(transform.position.x,
             transform.position.y - m_CapsuleCollider2D.size.y / 3f + m_CapsuleCollider2D.offset.y);
         RaycastHit2D forwardCheck =
             Physics2D.Raycast(rayPosition, new Vector2(movementInput.x, 0), objectDistance, groundLayer);
@@ -236,12 +242,23 @@ public class BetterPlayerMovement : MonoBehaviour {
         externalMovementDestination = destination;
     }
 
+    public void JumpIntoDestinationMovement(Transform t) {
+        Debug.Log("JumpIntoDestinationMovement");
+        setExternalMovement(true);
+        externalMovementDestination = t.position;
+        externalJumpRequested = true;
+    }
+
     private bool nextJumpIsCutscene = false;
+    private bool externalJumpRequested = false;
 
     private void onNextJumpIsCutsceneEvent(NextJumpIsCutsceneEvent e) {
         externalMovementDestination = e.destination.position;
         nextJumpIsCutscene = true;
+        callback = e.callback;
     }
+
+    private System.Action callback;
 
     public enum JumpState {
         CanJump,
@@ -256,7 +273,8 @@ public class BetterPlayerMovement : MonoBehaviour {
 
                 bool canJump = (hasJumpBuffer && jumpRequested) ||
                                (hasCoyoteJump && jumpButtonPressedThisFrame) ||
-                               (isOnRope && jumpButtonPressedThisFrame);
+                               (isOnRope && jumpButtonPressedThisFrame) ||
+                               externalJumpRequested;
                 if (canJump) {
                     jumpStartHeight = transform.position.y - (inWater ? (1 - waterJumpDebuff) * maxJumpHeight : 0f);
                     jumpStartTime = Time.time;
@@ -296,6 +314,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                               transform.position.y > jumpStartHeight + maxJumpHeight;
                 } else {
                     endJump = Time.time > jumpStartTime + maxJumpTime;
+                    externalJumpRequested = false;
                 }
 
                 if (endJump) {
@@ -326,11 +345,9 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool isLedgeClimbing = false;
 
 
-    private void ledgeGrab() {
+    private bool ledgeGrab() {
         // if we are grounded, return
-        if (inWater || isGrounded || isOnRope || isLedgeClimbing) return;
 
-        if (m_Rigidbody2D.velocity.y > 0) return;
 
         float playerRadius = m_CapsuleCollider2D.size.x / 2f;
 
@@ -342,7 +359,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         // if we didn't hit anything, return
         if (hit.collider == null) {
             // Debug.LogError("Did not find ledge collider returning.");
-            return;
+            return false;
         }
 
         //move slightly into the ledge and up
@@ -359,7 +376,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                 Debug.Log("Collider found: " + colliders[i].gameObject.name);
             }
 
-            return;
+            return false;
         }
 
         direction = Vector2.down;
@@ -369,7 +386,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
         if (downHit.collider == null) {
             Debug.LogError("Did not find anywhere to cast down to.");
-            return;
+            return false;
         }
 
         // teleport to the top of the ledge
@@ -417,8 +434,12 @@ public class BetterPlayerMovement : MonoBehaviour {
                 hasTriggered = false;
                 isLedgeClimbing = false;
                 noJumpAllowed = false;
+                if (isOnRope) {
+                    ReleaseRope();
+                }
             });
         });
+        return true;
     }
 
     private bool hasTriggered = false;
@@ -439,8 +460,13 @@ public class BetterPlayerMovement : MonoBehaviour {
 
                 Debug.Log("Rope progress: " + ropeProgress);
 
-                if (ropeProgress is > 1 or < 0) {
+                if (ropeProgress > 1) {
                     Debug.Log("Releasing rope.");
+                    ReleaseRope();
+                    return;
+                }
+
+                if (ropeProgress < 0 && ledgeGrab()) {
                     ReleaseRope();
                     return;
                 }
@@ -525,7 +551,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         SmoothToRopeGrab = true;
     }
 
-    void SetRopeDistanceJointLength(float value) {
+    private void SetRopeDistanceJointLength(float value) {
         ropeDistanceJoint.distance = value;
     }
 

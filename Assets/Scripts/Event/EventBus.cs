@@ -15,6 +15,7 @@ namespace EventBus {
 
     public class NextJumpIsCutsceneEvent : Event {
         public Transform destination;
+        public System.Action callback;
     }
 }
 
