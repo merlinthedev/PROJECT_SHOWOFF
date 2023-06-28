@@ -31,6 +31,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MaskTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -40,6 +44,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RenderTexture:
+        m_Texture: {fileID: 8400000, guid: d1196955d43e9e84286664af6f47b4d1, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -58,12 +66,21 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _NoiseScale: 9
+    - _NoiseStrength: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReflectionStrength: 0
+    - _ScrollSpeed: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ScrollSpeed: {r: -1, g: 0, b: 0, a: 0}
+    - _Tint: {r: 0.41411534, g: 0.6226415, b: 0.57795733, a: 0}
+    - _WaveScale: {r: 3, g: 3, b: 0, a: 0}
+    - _WaveSpeed: {r: 3, g: 1, b: 0, a: 0}
+    - _WaveStrength: {r: 0, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7264793961329382083
 MonoBehaviour:

@@ -191,7 +191,6 @@ public class BetterPlayerMovement : MonoBehaviour {
             Physics2D.Raycast(rayPosition, new Vector2(movementInput.x, 0), objectDistance, groundLayer);
 
         if (forwardCheck.collider == null) {
-            Debug.Log("No object to push");
             if (IsPushing) {
                 IsPushing = false;
             }
