@@ -10,6 +10,7 @@ public class PlayerAnimatorController : MonoBehaviour {
     private int animationThrowTrigger;
     private int animationPickupTrigger;
     private int animationLedgeClimbTrigger;
+    private int animationPushTrigger;
     [SerializeField] private UnityEvent OnLand;
     [SerializeField] private float minJumpDuration = 0.3f;
 
@@ -30,6 +31,7 @@ public class PlayerAnimatorController : MonoBehaviour {
         animationThrowTrigger = Animator.StringToHash("Throw");
         animationPickupTrigger = Animator.StringToHash("Pickup");
         animationLedgeClimbTrigger = Animator.StringToHash("LedgeClimb");
+        animationPushTrigger = Animator.StringToHash("StartPush");
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class PlayerAnimatorController : MonoBehaviour {
         animator.SetBool("Grounded", playerMovementController.IsGrounded);
         animator.SetFloat("moveInputY", playerMovementController.MoveInput.y);
         animator.SetBool("RopeClimb", playerMovementController.IsClimbing);
+        animator.SetBool("Pushing", playerMovementController.IsPushing);
 
         // Change the animator speed based on the player's speed
         // animator.speed = Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x) / 2;
@@ -61,6 +64,10 @@ public class PlayerAnimatorController : MonoBehaviour {
 
     public void RopeClimb() {
         animator.SetTrigger(animationClimbTrigger);
+    }
+
+    public void StartPush() {
+        animator.SetTrigger(animationPushTrigger);
     }
 
     public void Jump() {
