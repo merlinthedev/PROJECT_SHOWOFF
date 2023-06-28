@@ -2,7 +2,7 @@
 
 public abstract class AProjectile : MonoBehaviour {
     // Shoot method
-    public void Shoot(Vector2 direction, float force) {
+    public virtual void Shoot(Vector2 direction, float force) {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
 

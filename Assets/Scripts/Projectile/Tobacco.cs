@@ -1,7 +1,21 @@
+using EventBus;
+using System;
 using UnityEngine;
 
 
 public class Tobacco : AProjectile, IPickup {
+
+    private void OnEnable() {
+        EventBus<VodyanoyLocationEvent>.Subscribe(onVodyanoyLocationReceived);
+    }
+
+    private void OnDisable() {
+        EventBus<VodyanoyLocationEvent>.Unsubscribe(onVodyanoyLocationReceived);
+    }
+
+    private void onVodyanoyLocationReceived(VodyanoyLocationEvent e) {
+        
+    }
 
     public void OnPickup(Player player) {
         transform.SetParent(player.transform);
@@ -26,6 +40,10 @@ public class Tobacco : AProjectile, IPickup {
         player.GetPlayerProjectileController().ResetProjectile();
 
     }
+    
 
+    public override void Shoot(Vector2 direction, float force) {
+        EventBus<TobaccoThrowEvent>.Raise(new TobaccoThrowEvent());
+    }
 
 }

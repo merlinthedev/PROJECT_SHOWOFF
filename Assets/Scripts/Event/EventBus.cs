@@ -4,9 +4,6 @@ namespace EventBus {
     public abstract class Event {
     }
 
-    public class RockReceivedEvent : Event {
-    }
-
     public class NewSceneTriggeredEvent : Event {
     }
 
@@ -20,6 +17,14 @@ namespace EventBus {
         public Transform destination;
         public System.Action callback;
     }
+
+    public class TobaccoThrowEvent : Event {
+    }
+
+    public class VodyanoyLocationEvent : Event {
+        public Vector3 location;
+    }
+
 }
 
 public class EventBus<T> where T : EventBus.Event {
