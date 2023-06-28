@@ -106,6 +106,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     }
 
     private void resetActions(NewSceneLoadedEvent e) {
+        Debug.Log("Resetting actions");
         callback = null;
         externalLocomotionCallback = null;
     }

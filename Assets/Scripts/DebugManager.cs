@@ -24,9 +24,4 @@ public class DebugManager : MonoBehaviour {
         // unload and load the scene
         UnityEngine.SceneManagement.SceneManager.LoadScene(scene.name);
     }
-
-    private void hardResetEverything() {
-        
-
-    }
 }

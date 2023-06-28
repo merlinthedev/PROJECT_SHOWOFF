@@ -24,6 +24,7 @@ public class ExternalPlayerController : MonoBehaviour {
 
     private void Start() {
         if (shouldIntro) {
+            Debug.Log("Introduction cutscene started");
             Utils.Instance.InvokeDelayed(0.5f, () => move(destinations[0].gameObject.transform.position));
             currentDestination = destinations[1];
         } else {
