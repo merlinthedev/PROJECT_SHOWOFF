@@ -1,5 +1,4 @@
 using EventBus;
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -98,10 +97,17 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void OnEnable() {
         EventBus<NextJumpIsCutsceneEvent>.Subscribe(onNextJumpIsCutsceneEvent);
+        EventBus<NewSceneLoadedEvent>.Subscribe(resetActions);
     }
 
     private void OnDisable() {
         EventBus<NextJumpIsCutsceneEvent>.Unsubscribe(onNextJumpIsCutsceneEvent);
+        EventBus<NewSceneLoadedEvent>.Unsubscribe(resetActions);
+    }
+
+    private void resetActions(NewSceneLoadedEvent e) {
+        callback = null;
+        externalLocomotionCallback = null;
     }
 
 

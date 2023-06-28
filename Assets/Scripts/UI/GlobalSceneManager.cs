@@ -65,6 +65,7 @@ public class GlobalSceneManager : MonoBehaviour {
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1) {
         loadingScreenObject.SetActive(false);
+        EventBus<NewSceneLoadedEvent>.Raise(new NewSceneLoadedEvent());
         fadeIn();
     }
 

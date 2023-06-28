@@ -10,6 +10,9 @@ namespace EventBus {
     public class NewSceneTriggeredEvent : Event {
     }
 
+    public class NewSceneLoadedEvent : Event {
+    }
+
     public class VodyanoyFinishedWalkingEvent : Event {
     }
 
