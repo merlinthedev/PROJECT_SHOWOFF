@@ -7,7 +7,7 @@ public class Trigger : MonoBehaviour
     public GameObject[] objectsToActivate;
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        Activate();
+        if(collision.CompareTag("Player")) Activate();
     }
     public void Activate() {
         foreach (GameObject obj in objectsToActivate) {
