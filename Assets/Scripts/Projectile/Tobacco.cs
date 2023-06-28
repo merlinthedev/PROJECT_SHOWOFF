@@ -14,7 +14,11 @@ public class Tobacco : AProjectile, IPickup {
     }
 
     private void onVodyanoyLocationReceived(VodyanoyLocationEvent e) {
+        Vector2 direction = e.location - transform.position;
+        direction.Normalize();
+        float force = 10f;
         
+        base.Shoot(direction, force);
     }
 
     public void OnPickup(Player player) {
