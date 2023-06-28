@@ -11,7 +11,7 @@ public class GlobalSceneManager : MonoBehaviour {
     [SerializeField] private GameObject settingsMenuObject;
     [SerializeField] private GameObject loadingScreenObject;
     [SerializeField] private Image fadeImage;
-    private float fadeTime = 1f;
+    private float fadeTime = 2.5f;
 
     [SerializeField] private List<string> levelStrings = new();
 
@@ -24,6 +24,8 @@ public class GlobalSceneManager : MonoBehaviour {
         } else {
             Destroy(gameObject);
         }
+
+        fadeImage.gameObject.SetActive(false);
     }
 
     private void OnEnable() {
@@ -55,12 +57,20 @@ public class GlobalSceneManager : MonoBehaviour {
         settingsMenuObject.SetActive(false);
         autoSelect.OnPerformed();
     }
+
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1) {
         loadingScreenObject.SetActive(false);
         fadeIn();
     }
 
     public void LoadLevelFromString(string s) {
+        if (s == "MainMenu") {
+            LoadSceneAsync(s);
+            fadeImage.gameObject.SetActive(false);
+            mainMenuObject.SetActive(true);
+            return;
+        }
+
         if (levelStrings.Contains(s)) {
             LoadSceneAsync(s);
         }

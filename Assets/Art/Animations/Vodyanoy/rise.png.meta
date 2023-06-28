@@ -1,0 +1,3622 @@
+fileFormatVersion: 2
+guid: f604d22215a522d4897a66e6626608e8
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rise_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60dae93b5a0fcd243b46950bc057d831
+      internalID: 156260896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_1
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaba5683dcfdd13489bdf1b4ae5477e3
+      internalID: -1184270827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_2
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43c3ab2d579efb43a3edb72adcd383b
+      internalID: -1344675898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_3
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b10b5195719f1164a80ecc2d16aae4e8
+      internalID: -1205578917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_4
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f75aaa864c5de104fb8680e0dc244c6e
+      internalID: -420429399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_5
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cccb5f0480f02ab48b180beb297def48
+      internalID: -165829282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_6
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0938e43572de59b4eaf6ca0fd30cfd62
+      internalID: 1661739356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_7
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0994df371e17bf5418d754a9e6060c0d
+      internalID: 455646370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_8
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3ff730c038bf574dbb7d65f8b10deb1
+      internalID: -1539373410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_9
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41ad31dc0afa75845a05ae4c04617ff2
+      internalID: -2125025283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_10
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb7bcc2f26b85844c9b40bd0ac1aa433
+      internalID: 1870029442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_11
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 984c46aecaeb52f42b857363e4a4fad3
+      internalID: 1805859077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_12
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 12312
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fdf1f26b03f5e54cbe048d9e9b7635e
+      internalID: -325874951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27049cd98b2526a46b77f67e0de7b078
+      internalID: 1044727708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_14
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ae39420cf60354980226810e032fc8
+      internalID: 405043689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_15
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc53ba9c46efc0a429946910806c43b2
+      internalID: 945625617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_16
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e947249e6e6cd147941c278ab453667
+      internalID: 1236225982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_17
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f7048d76dc21324cab0f23d94a5a38b
+      internalID: 891053213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_18
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04489c78bc4c5374e80ad4ff88611f26
+      internalID: 2049097989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_19
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a6ec21e41e44bd46ac586e47bf7d098
+      internalID: 1541882998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_20
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a095d4cd62d8d8458ebcb7aebc32858
+      internalID: -1674379798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_21
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58e30ecf68661ef4eaca518c2fd99100
+      internalID: 739721667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_22
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45fadc497e886624f821f196480ef1bf
+      internalID: -2137458132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_23
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 080521449dfd3d440867cd6a87a3f303
+      internalID: -72681159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_24
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a840a375d2af57f4b8ce6f56bb0689f4
+      internalID: -192133645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_25
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 11286
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a37182e9facb93469170d723adc6c0a
+      internalID: -253775988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d199003305c85140b9b6bd0248025df
+      internalID: -1954866436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_27
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e6d7fd5675efa043be88837c7c5cc00
+      internalID: 744079434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_28
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44364d7dd7a91384791f50a076bf5325
+      internalID: -228366691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_29
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0a9639f9dc8c5846b9d2e1f0de532bd
+      internalID: 306948036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_30
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c8bc5d2cba4ad64da7b258a16a37979
+      internalID: 1707740812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_31
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0404926594ee19546a85b4cae3191e4c
+      internalID: -1832695927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_32
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd1789b48f36a7046ab14f38e8e68f3f
+      internalID: -1468529055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_33
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c9153c4348e4144db75b68d928dabce
+      internalID: -1027419058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_34
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6ed0ffdcd258594caf75c4c940c27c7
+      internalID: -1195516587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_35
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11ec27b710bc0334a890ab6f75e996c7
+      internalID: 147787961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_36
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b8fd3a2d75eda245bee71620f675455
+      internalID: 1264614874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_37
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8b4965463d1c0948906fbe64a4183ff
+      internalID: 222830294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_38
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 10260
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fe761d343061324daa84f52aa594efc
+      internalID: -361187703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 143cdf913815e2a499b2a4f0f9fe1a9e
+      internalID: -198379844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_40
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 620e7f70259b1534991dda7d6292b8dd
+      internalID: 26097335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_41
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98099b45cd6766f489c076b14c58e85a
+      internalID: 1316184941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_42
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30fd7d815a07c514e847b3060e809a92
+      internalID: 709554020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_43
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67ee2953eb0a292428c1bfc6d5001621
+      internalID: 382440327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_44
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 757a729fb0e04f74d8f4386b7a701c01
+      internalID: -1246229714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_45
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf3b6f24b72686a47b966e2f7155a846
+      internalID: 1800351323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_46
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7303b76efc8ea2f41bc66207bc79485d
+      internalID: 1597356810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_47
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d0ff2dcdd0f9d74d88ced7084ff9a48
+      internalID: -1281033978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_48
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 603f238c8ee3e5c4da4aaee815b66c3b
+      internalID: 851598902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_49
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48307cf28aac39146a22c6dded835662
+      internalID: -997852260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_50
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0da2d6efd9e6f54bbc28f8274f130d0
+      internalID: -850405141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_51
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 9234
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36afb69174dbca04f84c9e54aed0f915
+      internalID: -1771238295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a543c7fc6db15af44b38498bb21cbed7
+      internalID: -1994547477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_53
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 465fd489545b26044adc7616b0c6c2b1
+      internalID: -1306437778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_54
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0cad363ce4a8fd4f9f198e1d6cb0505
+      internalID: -389437628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_55
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8043c6ae0a094d5448fbe0cbd26fe614
+      internalID: 1977166225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_56
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7893e982340b4524cb6ec32981d66840
+      internalID: 941437100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_57
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 155776b6aa8c0c34797d36766a26ae60
+      internalID: -194724982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_58
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7196eab1011f574c81970a49fc1057c
+      internalID: 1132389042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_59
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c08efadcc381e5a46be40780c6422a1a
+      internalID: 1016983794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_60
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96cf97736679cbe4c87004b60e5d1b2b
+      internalID: 400824127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_61
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78e63f6567b30bc479e045d1a182b436
+      internalID: 69414108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_62
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd4cf44dfb7bdf4ab024f8837a35299
+      internalID: 1161525458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_63
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 425f457f3dc21884a8facffa38d32b82
+      internalID: 712402718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_64
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 8208
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a2222bf94a6db444bed4b55037f06cf
+      internalID: -1534825677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 442c0aca7812bf0499aab2f2dfa322d4
+      internalID: 288967179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_66
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2f4d3508aa41a24cb8acf3459ae9450
+      internalID: -1790333363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_67
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72aa0b722dd10e948a34c161445a8089
+      internalID: 1381949021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_68
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d1c1d5c680395348a9f39f2158f2284
+      internalID: -1475587274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_69
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e46cabc42738a14093cb8fef020d259
+      internalID: -1002460301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_70
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86b0080b4daffbf4791a7483bdb37f2a
+      internalID: -2103078044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_71
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f6bf92e2c8f2874081d39aebf5ead0c
+      internalID: -470637039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_72
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 999c8c6a71678ea4394eaccf57279d9b
+      internalID: -1399166064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_73
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 060ca17a5f0b18443971c13dcc4d2f77
+      internalID: 60301014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_74
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 141b68670c7700f4e897ca0807e87f29
+      internalID: 624451467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_75
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d09eabe355a2484ea42536f50d3b7ec
+      internalID: -909895555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_76
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 765b8b9a837dd8c4c81106e8c2c9fa23
+      internalID: -594294781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_77
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 7182
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 771ee73a28508724a88dda807488a2ce
+      internalID: -1943781964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_78
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13617db2f9769a24f8d6c3dbd858ef7b
+      internalID: -1678847748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_79
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a850301cd034c214f87d9236e703e60c
+      internalID: 533719074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_80
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3887453586122b44eabd1fbafae34fb4
+      internalID: -1954400666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_81
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b51789c77ff3174eb70d1bbb27a6bba
+      internalID: -986037104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_82
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7903bdf408c86447b3432d429997373
+      internalID: -1395743103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_83
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b05bdd9515ef0eb438cdf6d1b7bc3104
+      internalID: 1954935674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_84
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5adf1992abb72241ba205d00b4ee697
+      internalID: 1544077393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_85
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebe60aa13f1bbe647876d46ab0a9a21c
+      internalID: -1286943147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_86
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8c17af947495374b87185d8199a8744
+      internalID: 624950197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_87
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 239061577dbbdfe40841947a916b77e5
+      internalID: 263159292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_88
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1758cd91b0ffe1479c658b1b8259c9e
+      internalID: 1303592248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_89
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61dc92d971b71a847af02e4e3f56cdc2
+      internalID: -956699431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_90
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 6156
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2df0f7104cb6ddf46b61845fdcedcff6
+      internalID: 553513581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_91
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5a4a61b832408d44ad703966abec7e3
+      internalID: -877539322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_92
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90a684c52c663f942b808473fce49ba5
+      internalID: -555379990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_93
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f5759f17525f1f4fa598ffb7c272ea7
+      internalID: 1997546670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_94
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c21501a857d4d94d971e50d7010ed7e
+      internalID: -493367293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_95
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00e8cba977a8b844bb8b7170b1f5be43
+      internalID: -294106773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_96
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf7d433cc80acb74295d5a28cd1dc7ab
+      internalID: 1628718966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_97
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bd512d956092e34fb6982fd5042c6b1
+      internalID: 1531243753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_98
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c8a8672c6d1a6a45b63f915710f7942
+      internalID: 719947953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_99
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 334f5d3fdd5b08e4e95486c4d48b68e5
+      internalID: -2018666655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_100
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8937a4dd9c867194fa60131bc6b81c05
+      internalID: -1475230202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_101
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19d44a3bc75bae34e86da8e07a654e47
+      internalID: -76219424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_102
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c982c137c7664d49bf9bff725d7acf9
+      internalID: -745349244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_103
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 5130
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0443a06f73e0aba44a237d5f6f70e90e
+      internalID: -1727734763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_104
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83be89bfcb482954d8e94c7a5d180d07
+      internalID: 971631248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_105
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c41d956ca1ed841843c3a8aa13e672
+      internalID: 2091305880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_106
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6c28570d1c6c704abb8d46bb70eeb1b
+      internalID: 1388517136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_107
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db123aa50525efc47a5e1a238dd65edd
+      internalID: 287509426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_108
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c60affbb257d2a4f9b0f54243922472
+      internalID: 648584936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_109
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d44f2f68ea72bf4b98c87b3df9c29de
+      internalID: -202629989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_110
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca173639e33c53408d45af9125df1be
+      internalID: -1209566237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_111
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698ec5bc21e46524a84e2f559a32afdc
+      internalID: -1638521801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_112
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87a8840beff47d24f859cedc98a5a5e6
+      internalID: 1489982372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_113
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd21e228424a91448858f687fb9640b
+      internalID: -2062542877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_114
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61b3533f252b75c4197eea53a00f822f
+      internalID: -1697417629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_115
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce1d7b2dcb8a1242afdcb04488efe44
+      internalID: 237029899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_116
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 4104
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61cf01b85ebd7274cb8c249c55fb3e9f
+      internalID: 462261874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_117
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92dc9f3feca8f8b4e9f57f5389757d72
+      internalID: -1053042795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_118
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1841ccce47832f48853e783eeb7e44f
+      internalID: -718746268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_119
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37499fe290827b9459cea27bd275ce4b
+      internalID: 1653532826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_120
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b82372da43267746a7c05944fa6c167
+      internalID: -750277714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_121
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88ca24853385cca43b3ca628ebd17eb6
+      internalID: -1271360638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_122
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac2444d69654ae0459f9e6a3c96a55fd
+      internalID: 435563118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_123
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11a365b2ce5b7464f97161a80fb92598
+      internalID: 1933714826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_124
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4184eed41b43e584fafaac66e68c5c0d
+      internalID: 466134760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_125
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fd6fba289f229a45a701688426086bf
+      internalID: -1780856112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_126
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07bd958469726cf4cb9a56bc7521dd39
+      internalID: -458232451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_127
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 461ce02bd55ed3541a7773262971effb
+      internalID: -2113570538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_128
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6c406a9d0f241b47bcd19c436afea78
+      internalID: -1624303957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_129
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 3078
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edb54b1ccb3376d40ba2a43ca062e0d9
+      internalID: 2115869200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_130
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ef5d6b6488cc64dbe4f7cf4513be6b
+      internalID: 483187334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_131
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c321aefab528b647a63911af9f0d8c3
+      internalID: -2023673575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_132
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1f0efb2afa0838428de305dd090c510
+      internalID: 1955394191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_133
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0149d04787989c84fb5e08a3318393b8
+      internalID: 1736654168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_134
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc256b38d8c674479710dee6766ee7c
+      internalID: 275102058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_135
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be43dca154f86084f8313751b737f6ab
+      internalID: 1483658290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_136
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aaf12c2bb8b0a54c888a2cc455c1917
+      internalID: -1221918200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_137
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6375e48b32915fd479d1e15ed1eab299
+      internalID: 1998153227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_138
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d2ce2087e8b30e4e961d45ab8ae0850
+      internalID: -845932483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_139
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f258d1b3abb023f4285ea61326a2b1ee
+      internalID: -1588448199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_140
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6512bd58b6347b64d8a3987a70bc28ff
+      internalID: 1742446475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_141
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe14868dbba6e8646b66f7074498ed04
+      internalID: 1079158130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_142
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 2052
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3740163a6e79ad94384392fd491e51c6
+      internalID: -743855758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_143
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cb4eb462fbf08444b92b24d30effaf5
+      internalID: 766666533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_144
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05689374a8f5a5d419f2a7b850590547
+      internalID: 1190322914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_145
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af581c5de92796848b1b8c4ec0ad2ea6
+      internalID: 1708407224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_146
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15ad42de8384fd0419c1f837a3805956
+      internalID: -2068548726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_147
+      rect:
+        serializedVersion: 2
+        x: 4104
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7321b8e1a0e14145a80cd842221c108
+      internalID: -776770530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_148
+      rect:
+        serializedVersion: 2
+        x: 5130
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb8f351f4783adb4a99ddfe179591f59
+      internalID: -1048176153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_149
+      rect:
+        serializedVersion: 2
+        x: 6156
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3571cf8879838144082f694dd5c4d19b
+      internalID: 1392480253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_150
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be0f1e55eb8d5fa46a9df7abf4ae982a
+      internalID: -890215248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_151
+      rect:
+        serializedVersion: 2
+        x: 8208
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 878558c63e6e6e5488bf867d710a64a5
+      internalID: -1620212260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_152
+      rect:
+        serializedVersion: 2
+        x: 9234
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0793e6230ae7ad3409c2700faea79a85
+      internalID: 2069479850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_153
+      rect:
+        serializedVersion: 2
+        x: 10260
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f74d1ba068408e44b3044413450f52d
+      internalID: 2136606487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_154
+      rect:
+        serializedVersion: 2
+        x: 11286
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d81a2042fc9df64591b6070c5372a75
+      internalID: 1944675199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_155
+      rect:
+        serializedVersion: 2
+        x: 12312
+        y: 1026
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b73fd0973f33a94393cd2877eb60e7a
+      internalID: -1572240418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_156
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 629b765b471057b488ddfa4ed214a07b
+      internalID: 395698623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_157
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 0
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2a9e88e01ee20b44afe689561eb1b92
+      internalID: 105805633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rise_158
+      rect:
+        serializedVersion: 2
+        x: 2052
+        y: 0
+        width: 1026
+        height: 1026
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6c5dfa7d5ca76f44ac224e92ef05a5e
+      internalID: -406012087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      rise_0: 156260896
+      rise_1: -1184270827
+      rise_10: 1870029442
+      rise_100: -1475230202
+      rise_101: -76219424
+      rise_102: -745349244
+      rise_103: -1727734763
+      rise_104: 971631248
+      rise_105: 2091305880
+      rise_106: 1388517136
+      rise_107: 287509426
+      rise_108: 648584936
+      rise_109: -202629989
+      rise_11: 1805859077
+      rise_110: -1209566237
+      rise_111: -1638521801
+      rise_112: 1489982372
+      rise_113: -2062542877
+      rise_114: -1697417629
+      rise_115: 237029899
+      rise_116: 462261874
+      rise_117: -1053042795
+      rise_118: -718746268
+      rise_119: 1653532826
+      rise_12: -325874951
+      rise_120: -750277714
+      rise_121: -1271360638
+      rise_122: 435563118
+      rise_123: 1933714826
+      rise_124: 466134760
+      rise_125: -1780856112
+      rise_126: -458232451
+      rise_127: -2113570538
+      rise_128: -1624303957
+      rise_129: 2115869200
+      rise_13: 1044727708
+      rise_130: 483187334
+      rise_131: -2023673575
+      rise_132: 1955394191
+      rise_133: 1736654168
+      rise_134: 275102058
+      rise_135: 1483658290
+      rise_136: -1221918200
+      rise_137: 1998153227
+      rise_138: -845932483
+      rise_139: -1588448199
+      rise_14: 405043689
+      rise_140: 1742446475
+      rise_141: 1079158130
+      rise_142: -743855758
+      rise_143: 766666533
+      rise_144: 1190322914
+      rise_145: 1708407224
+      rise_146: -2068548726
+      rise_147: -776770530
+      rise_148: -1048176153
+      rise_149: 1392480253
+      rise_15: 945625617
+      rise_150: -890215248
+      rise_151: -1620212260
+      rise_152: 2069479850
+      rise_153: 2136606487
+      rise_154: 1944675199
+      rise_155: -1572240418
+      rise_156: 395698623
+      rise_157: 105805633
+      rise_158: -406012087
+      rise_16: 1236225982
+      rise_17: 891053213
+      rise_18: 2049097989
+      rise_19: 1541882998
+      rise_2: -1344675898
+      rise_20: -1674379798
+      rise_21: 739721667
+      rise_22: -2137458132
+      rise_23: -72681159
+      rise_24: -192133645
+      rise_25: -253775988
+      rise_26: -1954866436
+      rise_27: 744079434
+      rise_28: -228366691
+      rise_29: 306948036
+      rise_3: -1205578917
+      rise_30: 1707740812
+      rise_31: -1832695927
+      rise_32: -1468529055
+      rise_33: -1027419058
+      rise_34: -1195516587
+      rise_35: 147787961
+      rise_36: 1264614874
+      rise_37: 222830294
+      rise_38: -361187703
+      rise_39: -198379844
+      rise_4: -420429399
+      rise_40: 26097335
+      rise_41: 1316184941
+      rise_42: 709554020
+      rise_43: 382440327
+      rise_44: -1246229714
+      rise_45: 1800351323
+      rise_46: 1597356810
+      rise_47: -1281033978
+      rise_48: 851598902
+      rise_49: -997852260
+      rise_5: -165829282
+      rise_50: -850405141
+      rise_51: -1771238295
+      rise_52: -1994547477
+      rise_53: -1306437778
+      rise_54: -389437628
+      rise_55: 1977166225
+      rise_56: 941437100
+      rise_57: -194724982
+      rise_58: 1132389042
+      rise_59: 1016983794
+      rise_6: 1661739356
+      rise_60: 400824127
+      rise_61: 69414108
+      rise_62: 1161525458
+      rise_63: 712402718
+      rise_64: -1534825677
+      rise_65: 288967179
+      rise_66: -1790333363
+      rise_67: 1381949021
+      rise_68: -1475587274
+      rise_69: -1002460301
+      rise_7: 455646370
+      rise_70: -2103078044
+      rise_71: -470637039
+      rise_72: -1399166064
+      rise_73: 60301014
+      rise_74: 624451467
+      rise_75: -909895555
+      rise_76: -594294781
+      rise_77: -1943781964
+      rise_78: -1678847748
+      rise_79: 533719074
+      rise_8: -1539373410
+      rise_80: -1954400666
+      rise_81: -986037104
+      rise_82: -1395743103
+      rise_83: 1954935674
+      rise_84: 1544077393
+      rise_85: -1286943147
+      rise_86: 624950197
+      rise_87: 263159292
+      rise_88: 1303592248
+      rise_89: -956699431
+      rise_9: -2125025283
+      rise_90: 553513581
+      rise_91: -877539322
+      rise_92: -555379990
+      rise_93: 1997546670
+      rise_94: -493367293
+      rise_95: -294106773
+      rise_96: 1628718966
+      rise_97: 1531243753
+      rise_98: 719947953
+      rise_99: -2018666655
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

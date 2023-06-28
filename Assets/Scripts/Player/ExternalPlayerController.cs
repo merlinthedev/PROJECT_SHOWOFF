@@ -23,13 +23,18 @@ public class ExternalPlayerController : MonoBehaviour {
     private void Start() {
         if (shouldIntro) {
             Utils.Instance.InvokeDelayed(0.5f, () => Move(destinations[0].gameObject.transform.position));
+            currentDestination = destinations[1];
+        } else {
+            currentDestination = destinations[0];
         }
-
-        currentDestination = destinations[0];
     }
 
     private void Move(Vector3 destination) {
-        player.GetPlayerController().externalLocomotion(destination);
+        player.GetPlayerController().externalLocomotion(destination, enableMovement);
+    }
+
+    private void enableMovement() {
+        player.GetPlayerController().canMove = true;
     }
 
     private void eventBasedMovement(VodyanoyFinishedWalkingEvent e) {
