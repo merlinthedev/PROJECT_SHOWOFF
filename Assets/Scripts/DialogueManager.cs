@@ -64,7 +64,18 @@ public class DialogueManager : MonoBehaviour {
 
     
     public void NextScene(string sceneName) {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        //fadeout all text over 1.6 seconds
+        for (int i = 0; i < entries.Length; i++) {
+            var textCol = entries[i].text.color;
+            LeanTween.value(entries[i].text.gameObject, textCol.a, 0f, 1.6f).setOnUpdate((float val) => {
+                entries[i].text.color = new Color(textCol.r, textCol.g, textCol.b, val);
+            });
+        }
+        //after the fadeout is done, load the next scene
+        StartCoroutine(InvokeDelayedCoroutine(() => {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        }, 2f));
+
         //GlobalSceneManager.GetInstance().LoadLevelFromString(sceneName);
     }
 
