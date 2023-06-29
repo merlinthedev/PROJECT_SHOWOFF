@@ -5,6 +5,8 @@ public class BoatHitbox : MonoBehaviour {
     public bool playerInBoat = false;
     private Rigidbody2D playerRigidbody;
 
+    private Player player;
+
     private void FixedUpdate() {
         if (playerInBoat) {
             playerRigidbody.AddForce(Vector2.down * 10, ForceMode2D.Force);
@@ -13,7 +15,9 @@ public class BoatHitbox : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
-            other.gameObject.GetComponent<BetterPlayerMovement>().noJumpAllowed = true;
+            player = other.gameObject.GetComponent<Player>();
+
+            player.GetPlayerController().noJumpAllowed = true;
         }
     }
 
@@ -38,5 +42,9 @@ public class BoatHitbox : MonoBehaviour {
             playerRigidbody = null;
             playerInBoat = false;
         }
+    }
+
+    public Player GetPlayer() {
+        return this.player;
     }
 }

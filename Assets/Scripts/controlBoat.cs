@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class controlBoat : MonoBehaviour
-{
+public class controlBoat : MonoBehaviour {
     [SerializeField] private GameObject boat;
     [SerializeField] private GameObject riseTarget;
     private Transform tr;
@@ -14,7 +13,7 @@ public class controlBoat : MonoBehaviour
     public float downSpeed;
     public float slightDownSpeed;
 
-    public enum State { Rising, Up, Down, Slightdown, Idle}
+    public enum State { Rising, Up, Down, Slightdown, Idle }
     public State currentState;
     //make states
 
@@ -22,22 +21,22 @@ public class controlBoat : MonoBehaviour
         if (risen) {
             MoveBoat();
         }
-            switch (currentState) {
-                case State.Rising:
-                    GoUp();
-                    break;
-                case State.Up:
-                    GoUp();
-                    break;
-                case State.Down:
-                    GoDown();
-                    break;
-                case State.Slightdown:
-                    GoSlightDown();
-                    break;
-                case State.Idle:
-                    break;
-            
+        switch (currentState) {
+            case State.Rising:
+                GoUp();
+                break;
+            case State.Up:
+                GoUp();
+                break;
+            case State.Down:
+                GoDown();
+                break;
+            case State.Slightdown:
+                GoSlightDown();
+                break;
+            case State.Idle:
+                break;
+
         }
     }
     private void Start() {
