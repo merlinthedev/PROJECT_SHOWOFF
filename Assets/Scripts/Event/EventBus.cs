@@ -33,6 +33,8 @@ namespace EventBus {
     public class PlayerBoatEnter : Event { }
 
     public class VodyanoyAwakeEvent : Event { }
+
+    public class TobaccoPickupEvent : Event { }
 }
 
 public class EventBus<T> where T : EventBus.Event {

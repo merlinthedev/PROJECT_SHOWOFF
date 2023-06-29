@@ -26,6 +26,8 @@ public class Tobacco : AProjectile, IPickup {
     public void OnPickup(Player player) {
         transform.SetParent(player.transform);
         transform.position = player.GetPlayerProjectileController().GetHoldingTransform().position;
+
+        EventBus<TobaccoPickupEvent>.Raise(new TobaccoPickupEvent());
     }
 
     public void OnDrop() {
