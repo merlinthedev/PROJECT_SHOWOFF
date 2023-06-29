@@ -3855,11 +3855,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7318454498094961167, guid: 62324b3aae48f67419a873c6a64988fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -48.42
+      value: -43.48
       objectReference: {fileID: 0}
     - target: {fileID: 7318454498094961167, guid: 62324b3aae48f67419a873c6a64988fc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.55
+      value: 45.6
       objectReference: {fileID: 0}
     - target: {fileID: 7318454498094961167, guid: 62324b3aae48f67419a873c6a64988fc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4080,11 +4080,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -111.47
+      value: -44.29
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.19
+      value: 33.42
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13881,6 +13881,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1318433906}
     - target: {fileID: 1750190321989284914, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
+      propertyPath: shouldIdleOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750190321989284914, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
       propertyPath: targets.Array.data[0]
       value: 
       objectReference: {fileID: 1560302923}
@@ -13928,9 +13932,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3566896959887109615, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4606065358533513303, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
       propertyPath: m_Name
       value: Vodyanoy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591271830536652811, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.956
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
