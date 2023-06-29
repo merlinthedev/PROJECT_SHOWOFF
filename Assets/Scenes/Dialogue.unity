@@ -924,6 +924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1647026062}
   - component: {fileID: 1647026061}
+  - component: {fileID: 1647026063}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -943,19 +944,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479c03183c978444390d889cb839db37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - When I was young, I lived together with my granpda at the edge of a great forest.
-  - At night, I used to hear strange howling noises. I called them the Whispers of
-    the swamp.
-  - "When I\u2019d ask my grandpa about these noises, he\u2019d deny their existence
-    and tell me I was just hearing the wind pass through the trees."
-  - One day, at the first light of dawn, I decided to investigate.
-  delay: 1
-  text:
-  - {fileID: 89030259}
-  - {fileID: 51240794}
-  - {fileID: 790792497}
-  - {fileID: 800658161}
+  entries:
+  - dialogue: When I was young, I lived together with my granpda at the edge of a
+      great forest.
+    endDelay: 2
+    text: {fileID: 89030259}
+    sound:
+      Guid:
+        Data1: 118420488
+        Data2: 1295394988
+        Data3: 1950082465
+        Data4: 708805898
+      Path: event:/dialogue/pt1
+  - dialogue: At night, I used to hear strange howling noises. I called them the
+      Whispers of the swamp.
+    endDelay: 7
+    text: {fileID: 51240794}
+    sound:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+  - dialogue: "When I\u2019d ask my grandpa about these noises, he\u2019d deny their
+      existence and tell me I was just hearing the wind pass through the trees."
+    endDelay: 5
+    text: {fileID: 790792497}
+    sound:
+      Guid:
+        Data1: -603723801
+        Data2: 1166743745
+        Data3: -255015786
+        Data4: -1829864806
+      Path: event:/dialogue/pt2
+  - dialogue: One day, at the first light of dawn, I decided to investigate.
+    endDelay: 0
+    text: {fileID: 800658161}
+    sound:
+      Guid:
+        Data1: 2059727621
+        Data2: 1239326725
+        Data3: -1503690824
+        Data4: -847197026
+      Path: event:/dialogue/pt3
 --- !u!4 &1647026062
 Transform:
   m_ObjectHideFlags: 0
@@ -971,6 +1003,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1647026063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647026060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadEvent: 1
+  UnloadEvent: 2
+  Banks:
+  - dialogue
+  CollisionTag: 
+  PreloadSamples: 0
 --- !u!1 &2031924698
 GameObject:
   m_ObjectHideFlags: 0
