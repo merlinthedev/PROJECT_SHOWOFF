@@ -13,6 +13,8 @@ public class FootstepSounds : MonoBehaviour {
     EventReference climbSound;
     [SerializeField]
     EventReference ropeSound;
+    [SerializeField]
+    EventReference jumpSound;
     //fmod sound reference
     [SerializeField]
     List<FootstepConfig> footstepConfigs = new List<FootstepConfig>();
@@ -22,6 +24,7 @@ public class FootstepSounds : MonoBehaviour {
         public string tag;
         public EventReference sound;
         public EventReference landSound;
+        
     }
 
     public void OnFootstep() {
@@ -71,5 +74,9 @@ public class FootstepSounds : MonoBehaviour {
     }
     public void OnRope() {
         RuntimeManager.PlayOneShot(ropeSound, transform.position);
+    }
+    public void OnJump() {
+        RuntimeManager.PlayOneShot(jumpSound, transform.position);
+        UnityEngine.Debug.Log("We jumping");
     }
 }
