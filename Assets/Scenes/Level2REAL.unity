@@ -337,6 +337,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4430251653829209992, guid: acd16b6dbdebf7841a1bea72b10a1e6a, type: 3}
+      propertyPath: maxTriggerDelay
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430251653829209992, guid: acd16b6dbdebf7841a1bea72b10a1e6a, type: 3}
+      propertyPath: minTriggerDelay
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4822912492716965712, guid: acd16b6dbdebf7841a1bea72b10a1e6a, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -13789,6 +13797,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1772684250313631744, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266717000127851937, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3232769089311945781, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
