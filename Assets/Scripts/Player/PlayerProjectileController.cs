@@ -1,8 +1,5 @@
-using JetBrains.Annotations;
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class PlayerProjectileController : MonoBehaviour {
     [SerializeField] private Player player;
@@ -56,9 +53,12 @@ public class PlayerProjectileController : MonoBehaviour {
             player.GetPlayerAnimatorController().Pickup();
             p = other.gameObject.GetComponent<IPickup>();
             g = other.gameObject;
+            
+            Debug.Log("Picked up a pickup!");
 
             freezePlayerAfterRockPickup();
         }
+        
     }
 
     public void AnimateRock() {

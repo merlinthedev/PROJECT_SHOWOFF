@@ -38,7 +38,7 @@ public class GlobalSceneManager : MonoBehaviour {
 
     public void StartGame() {
         loadingScreenObject.SetActive(true);
-        mainMenuObject.SetActive(false);
+        mainMenuObject.gameObject.transform.parent.gameObject.SetActive(false);
 
         LoadSceneAsync(levelStrings[0]);
 
@@ -46,10 +46,15 @@ public class GlobalSceneManager : MonoBehaviour {
     }
 
     public void SettingsNav() {
-        mainMenuObject.SetActive(false);
         settingsMenuObject.SetActive(true);
-        autoSelect.OnPerformed();
+        mainMenuObject.SetActive(false);
 
+        try {
+            autoSelect.OnPerformed();
+        } catch (System.Exception e) {
+            Debug.Log("No auto select found");
+            Debug.Log(e.Message);
+        }
     }
 
     public void MainNav() {
@@ -60,6 +65,7 @@ public class GlobalSceneManager : MonoBehaviour {
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1) {
         loadingScreenObject.SetActive(false);
+        EventBus<NewSceneLoadedEvent>.Raise(new NewSceneLoadedEvent());
         fadeIn();
     }
 
@@ -67,7 +73,7 @@ public class GlobalSceneManager : MonoBehaviour {
         if (s == "MainMenu") {
             LoadSceneAsync(s);
             fadeImage.gameObject.SetActive(false);
-            mainMenuObject.SetActive(true);
+            mainMenuObject.gameObject.transform.parent.gameObject.SetActive(true);
             return;
         }
 

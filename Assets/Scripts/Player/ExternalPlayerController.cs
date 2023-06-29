@@ -14,22 +14,25 @@ public class ExternalPlayerController : MonoBehaviour {
 
     private void OnEnable() {
         EventBus<VodyanoyFinishedWalkingEvent>.Subscribe(eventBasedMovement);
+        EventBus<NewSceneTriggeredEvent>.Subscribe(nextSceneMovement);
     }
 
     private void OnDisable() {
         EventBus<VodyanoyFinishedWalkingEvent>.Unsubscribe(eventBasedMovement);
+        EventBus<NewSceneTriggeredEvent>.Unsubscribe(nextSceneMovement);
     }
 
     private void Start() {
         if (shouldIntro) {
-            Utils.Instance.InvokeDelayed(0.5f, () => Move(destinations[0].gameObject.transform.position));
+            Debug.Log("Introduction cutscene started");
+            Utils.Instance.InvokeDelayed(0.5f, () => move(destinations[0].gameObject.transform.position));
             currentDestination = destinations[1];
         } else {
             currentDestination = destinations[0];
         }
     }
 
-    private void Move(Vector3 destination) {
+    private void move(Vector3 destination) {
         player.GetPlayerController().externalLocomotion(destination, enableMovement);
     }
 
@@ -42,5 +45,9 @@ public class ExternalPlayerController : MonoBehaviour {
             destination = currentDestination,
             callback = () => player.GetPlayerController().JumpIntoDestinationMovement(destinations[1])
         });
+    }
+
+    private void nextSceneMovement(NewSceneTriggeredEvent e) {
+        move(destinations[destinations.Count - 1].gameObject.transform.position);
     }
 }

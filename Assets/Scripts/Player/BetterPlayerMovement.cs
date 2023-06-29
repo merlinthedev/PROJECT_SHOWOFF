@@ -1,5 +1,4 @@
 using EventBus;
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -98,10 +97,18 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private void OnEnable() {
         EventBus<NextJumpIsCutsceneEvent>.Subscribe(onNextJumpIsCutsceneEvent);
+        EventBus<NewSceneLoadedEvent>.Subscribe(resetActions);
     }
 
     private void OnDisable() {
         EventBus<NextJumpIsCutsceneEvent>.Unsubscribe(onNextJumpIsCutsceneEvent);
+        EventBus<NewSceneLoadedEvent>.Unsubscribe(resetActions);
+    }
+
+    private void resetActions(NewSceneLoadedEvent e) {
+        Debug.Log("Resetting actions");
+        callback = null;
+        externalLocomotionCallback = null;
     }
 
 
@@ -142,6 +149,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
                 // This is a bit of a hack, but it works
                 if (callback != null) { callback.Invoke(); }
+
                 if (externalLocomotionCallback != null) { externalLocomotionCallback.Invoke(); }
 
                 externalLocomotionCallback = null;
@@ -183,12 +191,38 @@ public class BetterPlayerMovement : MonoBehaviour {
         RaycastHit2D forwardCheck =
             Physics2D.Raycast(rayPosition, new Vector2(movementInput.x, 0), objectDistance, groundLayer);
 
-        if (forwardCheck.collider == null) return;
+        if (forwardCheck.collider == null) {
+            if (IsPushing) {
+                IsPushing = false;
+            }
+
+            return;
+        }
+
         Rigidbody2D objectRigidbody = forwardCheck.collider.attachedRigidbody;
-        if (objectRigidbody == null) return;
-        if (objectRigidbody.mass > maxObjectMass) return;
+
+        if (objectRigidbody == null) {
+            Debug.Log("Object has no rigidbody");
+            return;
+        }
+
+        if (objectRigidbody.mass > maxObjectMass) {
+            Debug.Log("Object is too heavy");
+            return;
+        }
+
+        Debug.Log("Pushing object, IsPushing is true");
+        if (!IsPushing) {
+            IsPushing = true;
+            player.GetPlayerAnimatorController().StartPush();
+        }
 
         objectRigidbody.AddForce(new Vector2(movementInput.x * pushForce * (maxObjectMass / objectRigidbody.mass), 0));
+    }
+
+    public bool IsPushing {
+        get;
+        private set;
     }
 
     private void horizontalMovement() {
@@ -243,8 +277,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     private bool externalMovement = false;
     private Vector3 externalMovementDestination;
 
-    public bool isExternallyControlled
-    {
+    public bool isExternallyControlled {
         get { return externalMovement; }
     }
 
@@ -411,10 +444,10 @@ public class BetterPlayerMovement : MonoBehaviour {
         isLedgeClimbing = true;
         noJumpAllowed = true;
 
-        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () =>
-        {
+        Utils.Instance.InvokeDelayed(ledgeGrabDelay, () => {
             var path = new LTBezierPath(new Vector3[] {
-                transform.position, ledgeCorner, ledgeCorner, new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
+                transform.position, ledgeCorner, ledgeCorner,
+                new Vector3(downHit.point.x, downHit.point.y + playerRadius, 0)
             });
             Debug.Log("Calling LT.move");
             // Utils.Instance.InvokeDelayed(1f, () => );
@@ -428,8 +461,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
 
             Debug.Log("Invoking ledge climb ending.");
-            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () =>
-            {
+            Utils.Instance.InvokeDelayed(ledgeFreezeTime, () => {
                 canMove = true;
                 m_Rigidbody2D.velocity = Vector2.zero;
             });
@@ -443,8 +475,7 @@ public class BetterPlayerMovement : MonoBehaviour {
                 hasTriggered = true;
             }
 
-            Utils.Instance.InvokeDelayed(2.05f, () =>
-            {
+            Utils.Instance.InvokeDelayed(2.05f, () => {
                 m_Rigidbody2D.isKinematic = false;
                 hasTriggered = false;
                 isLedgeClimbing = false;
@@ -459,8 +490,7 @@ public class BetterPlayerMovement : MonoBehaviour {
 
     private bool hasTriggered = false;
 
-    public Vector2 MoveInput
-    {
+    public Vector2 MoveInput {
         get {
             return movementInput;
         }
