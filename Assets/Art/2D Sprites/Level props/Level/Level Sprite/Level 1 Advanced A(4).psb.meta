@@ -1,0 +1,989 @@
+fileFormatVersion: 2
+guid: 83ed94fffa1b76744b53dcf9a658e719
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: Tree Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 15589
+      y: 3807
+      width: 538
+      height: 767
+    spriteID: c91e95ba8ea0c244d82cb5b4c12a0723
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 15589, y: 3807}
+    spritePosition: {x: 7670, y: 305}
+  - name: Tree Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 5579
+      width: 530
+      height: 764
+    spriteID: 97a1aeb6ca0722e4b979a296e0c973dd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 5579}
+    spritePosition: {x: 7674, y: 307}
+  - name: Grass Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 2587
+      width: 10943
+      height: 1212
+    spriteID: 86332aecb1fa14049baff11bee67ed5c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 2587}
+    spritePosition: {x: 0, y: 643}
+  - name: Grass Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1366
+      width: 10939
+      height: 1213
+    spriteID: abff37da4622d2241afc46a176ae6021
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 1366}
+    spritePosition: {x: 0, y: 643}
+  - name: Stone Edge Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 14702
+      y: 3807
+      width: 879
+      height: 789
+    spriteID: 1a2c918213129e14e839d093582cdd07
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 14702, y: 3807}
+    spritePosition: {x: 7960, y: 1105}
+  - name: Stone Edge Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 14777
+      y: 4
+      width: 923
+      height: 725
+    spriteID: afb419a6e0f43ad4f91bc4f2d2afe12c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 14777, y: 4}
+    spritePosition: {x: 7911, y: 1106}
+  - name: Cave Stone Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 10955
+      y: 3137
+      width: 635
+      height: 458
+    spriteID: 7b35468cf8d84f143846e506aea4cc61
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 10955, y: 3137}
+    spritePosition: {x: 8148, y: 1313}
+  - name: Cave Stone Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 15722
+      y: 4833
+      width: 628
+      height: 468
+    spriteID: d3f91f3a14780134381f5929e4c791b7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 15722, y: 4833}
+    spritePosition: {x: 8152, y: 1310}
+  - name: Cave Dirt Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 11598
+      y: 3137
+      width: 500
+      height: 423
+    spriteID: 5dfd238b6d49ed743a4a6f1189cf93c5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 11598, y: 3137}
+    spritePosition: {x: 8160, y: 1328}
+  - name: Cave Dirt Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 15708
+      y: 4
+      width: 611
+      height: 519
+    spriteID: f8189434ad9003143a7238dd2f422383
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 15708, y: 4}
+    spritePosition: {x: 8092, y: 1278}
+  - name: Moss Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 10951
+      y: 2097
+      width: 3537
+      height: 182
+    spriteID: 85d2cd259b696694e93e9620213f39b3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 10951, y: 2097}
+    spritePosition: {x: 11228, y: 1172}
+  - name: Moss Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 10951
+      y: 2287
+      width: 3536
+      height: 178
+    spriteID: a476d1c2db726a54ab108f9e0c3d5a8c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 10951, y: 2287}
+    spritePosition: {x: 11229, y: 1174}
+  - name: Stone Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 3807
+      width: 7343
+      height: 1018
+    spriteID: 14c28ced3c09c6a448d050906fdcb72e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 3807}
+    spritePosition: {x: 4144, y: 465}
+  - name: Stone Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 10951
+      y: 1366
+      width: 2293
+      height: 723
+    spriteID: f5e1cadca65fe574c9f99bce0e9f8318
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 10951, y: 1366}
+    spritePosition: {x: 11903, y: 572}
+  - name: Stone Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 13429
+      y: 4833
+      width: 2285
+      height: 726
+    spriteID: 615edf03d76678649b4fe20e7719fbc0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 13429, y: 4833}
+    spritePosition: {x: 11906, y: 574}
+  - name: Dirt Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 14722
+      y: 1366
+      width: 1502
+      height: 341
+    spriteID: a503692d8a99b5a48857fda6562ccc96
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 14722, y: 1366}
+    spritePosition: {x: 12313, y: 493}
+  - name: Dirt Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 14412
+      y: 2587
+      width: 1491
+      height: 350
+    spriteID: 48995ee43f601594fbc66b2f3d6d7695
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 14412, y: 2587}
+    spritePosition: {x: 12321, y: 494}
+  - name: Water BG Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 14777
+      y: 737
+      width: 1466
+      height: 358
+    spriteID: 19c55d984e76f104aa4afa4a380b93de
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 14777, y: 737}
+    spritePosition: {x: 12308, y: 510}
+  - name: Water BG Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 13252
+      y: 1366
+      width: 1462
+      height: 354
+    spriteID: ab3e0e11f57a1404b94063080c0bef00
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 13252, y: 1366}
+    spritePosition: {x: 12310, y: 512}
+  - name: Stone Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 7355
+      y: 3807
+      width: 7339
+      height: 847
+    spriteID: 5e18c0fdfae3ecd4eaed415e56c8d64d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 7355, y: 3807}
+    spritePosition: {x: 4148, y: 465}
+  - name: Dirt Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 6737
+      y: 4833
+      width: 6684
+      height: 723
+    spriteID: 56ae26b3a35c7764688e3ef28a9510ec
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 6737, y: 4833}
+    spritePosition: {x: 4641, y: 434}
+  - name: Dirt Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4833
+      width: 6725
+      height: 738
+    spriteID: 39fb910beb64e144cb4f8feed504e45a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4833}
+    spritePosition: {x: 4639, y: 436}
+  - name: Water BG Outline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 15589
+      y: 4582
+      width: 245
+      height: 41
+    spriteID: a089190f7cde632439033f3e48706dca
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 15589, y: 4582}
+    spritePosition: {x: 5503, y: 768}
+  - name: Water BG Color
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 10955
+      y: 2587
+      width: 3449
+      height: 542
+    spriteID: 9a5678ea8e284784c8aef73a439d6907
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 10955, y: 2587}
+    spritePosition: {x: 5491, y: 751}
+  - name: Earth
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 14765
+      height: 1354
+    spriteID: e1ebf4cc38efe02468f05b4994c067ff
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 0, y: 0}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  sharedRigSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  skeletonAssetReferenceID: 
+  padding: 4
+  spriteSizeExpand: 0
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: Part One
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 8a58ad62191971947b8b0a7f9dfb34b0
+    layerID: 168
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Tree Outline
+    spriteName: Tree Outline
+    isGroup: 0
+    parentIndex: 0
+    spriteID: c91e95ba8ea0c244d82cb5b4c12a0723
+    layerID: 137
+    mosaicPosition: {x: 15589, y: 3807}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Tree Color
+    spriteName: Tree Color
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 97a1aeb6ca0722e4b979a296e0c973dd
+    layerID: 159
+    mosaicPosition: {x: 4, y: 5579}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Grass Outline
+    spriteName: Grass Outline
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 86332aecb1fa14049baff11bee67ed5c
+    layerID: 122
+    mosaicPosition: {x: 4, y: 2587}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Grass Color
+    spriteName: Grass Color
+    isGroup: 0
+    parentIndex: 0
+    spriteID: abff37da4622d2241afc46a176ae6021
+    layerID: 149
+    mosaicPosition: {x: 4, y: 1366}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Cave
+    spriteName: 
+    isGroup: 1
+    parentIndex: 0
+    spriteID: 575c3e9bf25e8ad49a613421caae5821
+    layerID: 207
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Stone Edge Outline
+    spriteName: Stone Edge Outline
+    isGroup: 0
+    parentIndex: 5
+    spriteID: 1a2c918213129e14e839d093582cdd07
+    layerID: 208
+    mosaicPosition: {x: 14702, y: 3807}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Stone Edge Color
+    spriteName: Stone Edge Color
+    isGroup: 0
+    parentIndex: 5
+    spriteID: afb419a6e0f43ad4f91bc4f2d2afe12c
+    layerID: 210
+    mosaicPosition: {x: 14777, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Cave Stone Outline
+    spriteName: Cave Stone Outline
+    isGroup: 0
+    parentIndex: 5
+    spriteID: 7b35468cf8d84f143846e506aea4cc61
+    layerID: 206
+    mosaicPosition: {x: 10955, y: 3137}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Cave Stone Color
+    spriteName: Cave Stone Color
+    isGroup: 0
+    parentIndex: 5
+    spriteID: d3f91f3a14780134381f5929e4c791b7
+    layerID: 205
+    mosaicPosition: {x: 15722, y: 4833}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Cave Dirt Outline
+    spriteName: Cave Dirt Outline
+    isGroup: 0
+    parentIndex: 5
+    spriteID: 5dfd238b6d49ed743a4a6f1189cf93c5
+    layerID: 204
+    mosaicPosition: {x: 11598, y: 3137}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Cave Dirt Color
+    spriteName: Cave Dirt Color
+    isGroup: 0
+    parentIndex: 5
+    spriteID: f8189434ad9003143a7238dd2f422383
+    layerID: 203
+    mosaicPosition: {x: 15708, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Moss Outline
+    spriteName: Moss Outline
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 85d2cd259b696694e93e9620213f39b3
+    layerID: 134
+    mosaicPosition: {x: 10951, y: 2097}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Moss Color
+    spriteName: Moss Color
+    isGroup: 0
+    parentIndex: 0
+    spriteID: a476d1c2db726a54ab108f9e0c3d5a8c
+    layerID: 152
+    mosaicPosition: {x: 10951, y: 2287}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Stone Outline
+    spriteName: Stone Outline
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 14c28ced3c09c6a448d050906fdcb72e
+    layerID: 128
+    mosaicPosition: {x: 4, y: 3807}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Pond
+    spriteName: 
+    isGroup: 1
+    parentIndex: 0
+    spriteID: b8958a18019b5de4aa6a47894dbaaa29
+    layerID: 193
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Stone Outline
+    spriteName: Stone Outline
+    isGroup: 0
+    parentIndex: 15
+    spriteID: f5e1cadca65fe574c9f99bce0e9f8318
+    layerID: 196
+    mosaicPosition: {x: 10951, y: 1366}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Stone Color
+    spriteName: Stone Color
+    isGroup: 0
+    parentIndex: 15
+    spriteID: 615edf03d76678649b4fe20e7719fbc0
+    layerID: 197
+    mosaicPosition: {x: 13429, y: 4833}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Dirt Outline
+    spriteName: Dirt Outline
+    isGroup: 0
+    parentIndex: 15
+    spriteID: a503692d8a99b5a48857fda6562ccc96
+    layerID: 198
+    mosaicPosition: {x: 14722, y: 1366}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Dirt Color
+    spriteName: Dirt Color
+    isGroup: 0
+    parentIndex: 15
+    spriteID: 48995ee43f601594fbc66b2f3d6d7695
+    layerID: 199
+    mosaicPosition: {x: 14412, y: 2587}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Water BG Outline
+    spriteName: Water BG Outline
+    isGroup: 0
+    parentIndex: 15
+    spriteID: 19c55d984e76f104aa4afa4a380b93de
+    layerID: 191
+    mosaicPosition: {x: 14777, y: 737}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Water BG Color
+    spriteName: Water BG Color
+    isGroup: 0
+    parentIndex: 15
+    spriteID: ab3e0e11f57a1404b94063080c0bef00
+    layerID: 192
+    mosaicPosition: {x: 13252, y: 1366}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Stone Color
+    spriteName: Stone Color
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 5e18c0fdfae3ecd4eaed415e56c8d64d
+    layerID: 153
+    mosaicPosition: {x: 7355, y: 3807}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Dirt Outline
+    spriteName: Dirt Outline
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 56ae26b3a35c7764688e3ef28a9510ec
+    layerID: 129
+    mosaicPosition: {x: 6737, y: 4833}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Dirt Color
+    spriteName: Dirt Color
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 39fb910beb64e144cb4f8feed504e45a
+    layerID: 158
+    mosaicPosition: {x: 4, y: 4833}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Water BG Outline
+    spriteName: Water BG Outline
+    isGroup: 0
+    parentIndex: 0
+    spriteID: a089190f7cde632439033f3e48706dca
+    layerID: 166
+    mosaicPosition: {x: 15589, y: 4582}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Water BG Color
+    spriteName: Water BG Color
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 9a5678ea8e284784c8aef73a439d6907
+    layerID: 167
+    mosaicPosition: {x: 10955, y: 2587}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Earth
+    spriteName: Earth
+    isGroup: 0
+    parentIndex: 0
+    spriteID: e1ebf4cc38efe02468f05b4994c067ff
+    layerID: 161
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Ebene 1
+    spriteName: 
+    isGroup: 0
+    parentIndex: 0
+    spriteID: ada9d4fbfb7c5f34393ce4db5dd517a4
+    layerID: 298
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  sharedRigPSDLayers: []
+  pSDLayerImportSetting: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638236441174847378
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []
