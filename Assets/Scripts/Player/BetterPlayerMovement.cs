@@ -203,16 +203,13 @@ public class BetterPlayerMovement : MonoBehaviour {
         Rigidbody2D objectRigidbody = forwardCheck.collider.attachedRigidbody;
 
         if (objectRigidbody == null) {
-            Debug.Log("Object has no rigidbody");
             return;
         }
 
         if (objectRigidbody.mass > maxObjectMass) {
-            Debug.Log("Object is too heavy");
             return;
         }
 
-        Debug.Log("Pushing object, IsPushing is true");
         if (!IsPushing) {
             IsPushing = true;
             player.GetPlayerAnimatorController().StartPush();
