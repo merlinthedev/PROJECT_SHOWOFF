@@ -168,6 +168,12 @@ public class BetterPlayerMovement : MonoBehaviour {
 
                 externalLocomotionCallback = null;
                 callback = null;
+
+                // if the current scene is level 4, disable movement
+                if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Level4") {
+                    canMove = false;
+                }
+
                 return;
             }
 

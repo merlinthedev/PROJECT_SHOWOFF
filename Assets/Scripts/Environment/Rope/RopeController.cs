@@ -29,9 +29,11 @@ public class RopeController : MonoBehaviour {
             if (ropeParts == null) return;
             if (ropeParts.Count == 0) return;
             foreach (var part in ropeParts) {
-                part.GetComponent<Rigidbody2D>().bodyType = value ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+                if (part != null)
+                    part.GetComponent<Rigidbody2D>().bodyType = value ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
             }
 
+                if (ropeParts[0] != null)
             ropeParts[0].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
     }

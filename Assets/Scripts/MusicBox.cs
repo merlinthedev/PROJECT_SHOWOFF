@@ -49,4 +49,10 @@ public class MusicBox : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy() {
+        try {
+            audio.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        } catch (System.Exception e) { }
+    }
 }
