@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using FMODUnity;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour {
     [SerializeField] DialogueEntry[] entries;
-    private int textPos;
-    private bool fadeIn;
+    private int entryIndex;
 
     [System.Serializable]
     class DialogueEntry {
@@ -15,52 +15,62 @@ public class DialogueManager : MonoBehaviour {
         public float endDelay;
         public TMP_Text text;
         public EventReference sound;
+        public UnityEvent onEnd;
     }
 
     private void Start() {
-        textPos = 0;
-        RunDialogue();
+        //enduser we start at beginning and texts are invisible
+        entryIndex = 0;
         for(int i  = 0; i < entries.Length; i++) {
             var textCol = entries[i].text.color;
             entries[i].text.color = new Color(textCol.r, textCol.g, textCol.b, 0);
         }
-    }
-
-    private void FixedUpdate() {
-        var currTextCol = entries[textPos].text.color;
-        //fade in the text
-        if (fadeIn) {
-            currTextCol = new Color(currTextCol.r, currTextCol.g, currTextCol.b, currTextCol.a + 0.01f);
-            entries[textPos].text.color = currTextCol;
-        }
-
-        //if there is a next entry in the array, do this after the text is faded in
-        if (currTextCol.a >= 1f && textPos < entries.Length - 1) { 
-            fadeIn = false;
-            textPos++;
-            StartCoroutine(InvokeDelayedCoroutine(RunDialogue));
-        }
+        
+        RunDialogue();
     }
 
     public void RunDialogue() {
-        entries[textPos].text.text = entries[textPos].dialogue;
-        fadeIn = true;
+        var currentEntry = entries[entryIndex];
+        if(currentEntry == null) {
+            Debug.LogError("No entry for index " + entryIndex);
+            return;
+        }
+        
+        //ensure text is the one specified
+        currentEntry.text.text = currentEntry.dialogue;
 
-        if (!entries[textPos].sound.IsNull)
-            RuntimeManager.PlayOneShot(entries[textPos].sound, transform.position);
+        //play the sound if specified
+        if (!currentEntry.sound.IsNull)
+            RuntimeManager.PlayOneShot(currentEntry.sound, transform.position);
 
+        //tween the color of the text to fade in over 1.6 seconds
+        LeanTween.value(currentEntry.text.gameObject, 0f, 1f, 1.6f).setOnUpdate((float val) => {
+            var textCol = currentEntry.text.color;
+            currentEntry.text.color = new Color(textCol.r, textCol.g, textCol.b, val);
+        }).setOnComplete(() => {
+            //when tween is done, wait for the end delay and then invoke the end dialogue function
+            StartCoroutine(InvokeDelayedCoroutine(OnEndDialogue, currentEntry.endDelay));
+        });
     }
 
-    public void NextScene() {
-        GlobalSceneManager.GetInstance().LoadLevelFromString("TheRealExampleArtScene");
+
+    void OnEndDialogue() {
+        entries[entryIndex].onEnd?.Invoke();
+        if (entryIndex < entries.Length - 1) {
+            entryIndex++;
+            RunDialogue();
+        }
     }
 
-    private IEnumerator InvokeDelayedCoroutine(System.Action action) {
+    
+    public void NextScene(string sceneName) {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        //GlobalSceneManager.GetInstance().LoadLevelFromString(sceneName);
+    }
 
+    private IEnumerator InvokeDelayedCoroutine(System.Action action, float delay) {
         Debug.Log("delaying");
-        yield return new WaitForSeconds(entries[textPos - 1].endDelay);
-        if(textPos == entries.Length) NextScene();
-
+        yield return new WaitForSeconds(delay);
         action.Invoke();
     }
 }

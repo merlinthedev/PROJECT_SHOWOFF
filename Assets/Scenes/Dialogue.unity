@@ -956,6 +956,9 @@ MonoBehaviour:
         Data3: 1950082465
         Data4: 708805898
       Path: event:/dialogue/pt1
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
   - dialogue: At night, I used to hear strange howling noises. I called them the
       Whispers of the swamp.
     endDelay: 7
@@ -967,6 +970,9 @@ MonoBehaviour:
         Data3: 0
         Data4: 0
       Path: 
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
   - dialogue: "When I\u2019d ask my grandpa about these noises, he\u2019d deny their
       existence and tell me I was just hearing the wind pass through the trees."
     endDelay: 5
@@ -978,6 +984,9 @@ MonoBehaviour:
         Data3: -255015786
         Data4: -1829864806
       Path: event:/dialogue/pt2
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
   - dialogue: One day, at the first light of dawn, I decided to investigate.
     endDelay: 0
     text: {fileID: 800658161}
@@ -988,6 +997,21 @@ MonoBehaviour:
         Data3: -1503690824
         Data4: -847197026
       Path: event:/dialogue/pt3
+    onEnd:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1647026061}
+          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+          m_MethodName: NextScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: TheRealExampleArtScene
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &1647026062
 Transform:
   m_ObjectHideFlags: 0
