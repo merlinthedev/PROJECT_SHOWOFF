@@ -69,6 +69,8 @@ public class Vodyanoy : MonoBehaviour {
         animator.SetTrigger(stopWalkTriggerHash);
 
         player.noJumpAllowed = false;
+        player.canMove = true;
+        player.inBoat = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
