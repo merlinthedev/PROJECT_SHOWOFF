@@ -337,6 +337,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4430251653829209992, guid: acd16b6dbdebf7841a1bea72b10a1e6a, type: 3}
+      propertyPath: maxTriggerDelay
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430251653829209992, guid: acd16b6dbdebf7841a1bea72b10a1e6a, type: 3}
+      propertyPath: minTriggerDelay
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4822912492716965712, guid: acd16b6dbdebf7841a1bea72b10a1e6a, type: 3}
       propertyPath: m_RootOrder
       value: 17
