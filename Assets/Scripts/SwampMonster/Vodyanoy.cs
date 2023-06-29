@@ -17,7 +17,11 @@ public class Vodyanoy : MonoBehaviour {
     [SerializeField] private GameObject visualReference;
     [SerializeField] private Animator animator;
 
+    public bool shouldIdleOnStart = false;
+
     private int stopWalkTriggerHash;
+    private int startBlowTriggerHash;
+    private int startIdleHash;
 
     //When the object is enabled, it will move to the riseTarget
     private void OnEnable() {
@@ -28,8 +32,6 @@ public class Vodyanoy : MonoBehaviour {
     private void OnDisable() {
         EventBus<VodyanoyAwakeEvent>.Unsubscribe(vodyanoyMove);
         EventBus<TobaccoThrowEvent>.Unsubscribe(onTobaccoThrow);
-
-
     }
 
     private void onTobaccoThrow(TobaccoThrowEvent e) {
@@ -40,6 +42,12 @@ public class Vodyanoy : MonoBehaviour {
 
     private void Start() {
         stopWalkTriggerHash = Animator.StringToHash("StopWalk");
+        startBlowTriggerHash = Animator.StringToHash("StartBlow");
+        startIdleHash = Animator.StringToHash("StartIdle");
+
+        if(shouldIdleOnStart) {
+            animator.SetTrigger(startIdleHash);
+        }
     }
 
     private void vodyanoyMove(VodyanoyAwakeEvent e) {
@@ -61,5 +69,11 @@ public class Vodyanoy : MonoBehaviour {
         animator.SetTrigger(stopWalkTriggerHash);
 
         player.noJumpAllowed = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.GetComponent<Tobacco>() != null) {
+            animator.SetTrigger(startBlowTriggerHash);
+        }
     }
 }
