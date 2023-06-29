@@ -11,9 +11,10 @@ public class AnimationEvents : MonoBehaviour
     public void Pickup() {
         onPickup?.Invoke();
     }
-    
+
     public void PickupEnd() {
         onPickupEnd?.Invoke();
     }
+    
 }
         

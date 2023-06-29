@@ -237,7 +237,7 @@ Transform:
   - {fileID: 2343162826667753969}
   - {fileID: 623153141609875371}
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4688807272451298667
 MonoBehaviour:
@@ -269,8 +269,11 @@ MonoBehaviour:
   rb: {fileID: 2040511780880713308}
   bh: {fileID: 2393361360241083392}
   water: {fileID: 0}
-  boatSpeed: 6
+  boatSpeed: 15
   playerInBoat: 0
+  checkpoints:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!50 &2040511780880713308
 Rigidbody2D:
   serializedVersion: 4
