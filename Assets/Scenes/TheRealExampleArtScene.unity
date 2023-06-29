@@ -8664,7 +8664,7 @@ MonoBehaviour:
       Data2: 1104639733
       Data3: -42607705
       Data4: -758860519
-    Path: event:/Waterfall
+    Path: event:/Ambience/Waterfall
   Event: 
   PlayEvent: 1
   StopEvent: 0
@@ -8674,8 +8674,8 @@ MonoBehaviour:
   AllowNonRigidbodyDoppler: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: 85
+  OverrideMaxDistance: 500
 --- !u!4 &262804016
 Transform:
   m_ObjectHideFlags: 0
@@ -15241,6 +15241,14 @@ PrefabInstance:
     - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
       propertyPath: m_Name
       value: Birb (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5606466414240625601, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903206613270993135, guid: da36e9c1f303902458f769b6d4e4ade4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37295,7 +37303,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -7.8251934, y: 0.49884796}
+  m_Offset: {x: -7.8251934, y: 0.7355776}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -37306,7 +37314,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.474323, y: 2.1441631}
+  m_Size: {x: 19.474323, y: 2.6176224}
   m_EdgeRadius: 0
 --- !u!1 &838669162
 GameObject:
@@ -69079,6 +69087,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8983900503005141105, guid: 4c90f694fcec9ec46983d74296260632, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -76947,7 +76959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439114829}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.908928, y: 25.29082, z: -7}
+  m_LocalPosition: {x: -50.2, y: 17.84, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84825,7 +84837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541395676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.908928, y: 25.29082, z: -7}
+  m_LocalPosition: {x: -50.2, y: 17.84, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87794,7 +87806,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613154995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.13, y: 24.74, z: -7.088583}
+  m_LocalPosition: {x: -47.75, y: 16.710001, z: -7.088583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -93490,11 +93502,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.68
+      value: -50.2
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.73
+      value: 16.7
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -108101,7 +108113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916580031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.908928, y: 25.29082, z: -7}
+  m_LocalPosition: {x: -50.2, y: 17.84, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108741,7 +108753,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928626197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.908928, y: 25.29082, z: -7}
+  m_LocalPosition: {x: -50.2, y: 17.84, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
