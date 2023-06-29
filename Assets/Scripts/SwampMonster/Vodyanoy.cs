@@ -13,6 +13,7 @@ public class Vodyanoy : MonoBehaviour {
     public FixedJoint2D fj;
     public GameObject boat;
     public BetterPlayerMovement player;
+    public BoxCollider2D boxCol;
 
     [SerializeField] private GameObject visualReference;
     [SerializeField] private Animator animator;
@@ -67,7 +68,7 @@ public class Vodyanoy : MonoBehaviour {
         EventBus<VodyanoyFinishedWalkingEvent>.Raise(new VodyanoyFinishedWalkingEvent());
 
         animator.SetTrigger(stopWalkTriggerHash);
-
+        boxCol.enabled = true;
         player.noJumpAllowed = false;
         player.canMove = true;
         player.inBoat = false;
