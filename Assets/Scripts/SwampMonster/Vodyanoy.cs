@@ -14,8 +14,27 @@ public class Vodyanoy : MonoBehaviour {
     public GameObject boat;
     public BetterPlayerMovement player;
 
+    [SerializeField] private GameObject visualReference;
+    [SerializeField] private Animator animator;
+
+    private int stopWalkTriggerHash;
+
     //When the object is enabled, it will move to the riseTarget
     private void OnEnable() {
+        EventBus<VodyanoyAwakeEvent>.Subscribe(vodyanoyMove);
+    }
+
+    private void OnDisable() {
+        EventBus<VodyanoyAwakeEvent>.Unsubscribe(vodyanoyMove);
+
+    }
+
+    private void Start() {
+        stopWalkTriggerHash = Animator.StringToHash("StopWalk");
+    }
+
+    private void vodyanoyMove(VodyanoyAwakeEvent e) {
+        visualReference.SetActive(true);
         Move();
     }
 
@@ -28,6 +47,9 @@ public class Vodyanoy : MonoBehaviour {
 
     private void EnablePlayerJump() {
         Debug.Log("EnablePlayerJump");
+        EventBus<VodyanoyFinishedWalkingEvent>.Raise(new VodyanoyFinishedWalkingEvent());
+
+        animator.SetTrigger(stopWalkTriggerHash);
 
         player.noJumpAllowed = false;
     }
