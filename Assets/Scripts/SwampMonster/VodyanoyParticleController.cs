@@ -8,6 +8,11 @@ public class VodyanoyParticleController : MonoBehaviour
 
     public void EnableParticles() {
         _particleSystem.Play();
+
+        Utils.Instance.InvokeDelayed(1.8f, () => {
+            Debug.Log("HGEKOOFDJGDG");
+            GlobalSceneManager.GetInstance().LoadLevelFromString("Outro Dialogue");
+        });
     }
 
     public void DisableParticles() {

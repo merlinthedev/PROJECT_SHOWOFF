@@ -70,7 +70,7 @@ public class Vodyanoy : MonoBehaviour {
         animator.SetTrigger(stopWalkTriggerHash);
         boxCol.enabled = true;
         player.noJumpAllowed = false;
-        player.canMove = true;
+        //player.canMove = true;
         player.inBoat = false;
     }
 
