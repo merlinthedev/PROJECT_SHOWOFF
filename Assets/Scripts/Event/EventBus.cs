@@ -26,7 +26,11 @@ namespace EventBus {
     }
 
     public class BoatDestinationReachedEvent : Event {
+        public int index;
+        public bool last;
     }
+
+    public class PlayerBoatEnter : Event { }
 }
 
 public class EventBus<T> where T : EventBus.Event {

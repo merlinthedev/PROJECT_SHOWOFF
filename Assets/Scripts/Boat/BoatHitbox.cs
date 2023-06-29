@@ -1,4 +1,5 @@
 using System;
+using EventBus;
 using UnityEngine;
 
 public class BoatHitbox : MonoBehaviour {
@@ -18,6 +19,9 @@ public class BoatHitbox : MonoBehaviour {
             player = other.gameObject.GetComponent<Player>();
 
             player.GetPlayerController().noJumpAllowed = true;
+
+            Debug.Log("Boat hitbox fóund stuff");
+            EventBus<PlayerBoatEnter>.Raise(new PlayerBoatEnter());
         }
     }
 

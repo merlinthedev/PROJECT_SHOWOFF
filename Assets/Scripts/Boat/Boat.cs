@@ -1,5 +1,5 @@
 using EventBus;
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Boat : MonoBehaviour {
@@ -12,49 +12,72 @@ public class Boat : MonoBehaviour {
     [Header("Boat Properties")] public float boatSpeed = 1;
     public bool playerInBoat = false;
 
+    [SerializeField] private List<Transform> checkpoints = new();
+
+    private bool shouldMove = false;
+    private float rawX;
+
     private void OnEnable() {
         EventBus<BoatDestinationReachedEvent>.Subscribe(onDestinationReached);
+        EventBus<PlayerBoatEnter>.Subscribe(onPlayerBoatEnter);
+
     }
 
     private void OnDisable() {
         EventBus<BoatDestinationReachedEvent>.Unsubscribe(onDestinationReached);
+        EventBus<PlayerBoatEnter>.Unsubscribe(onPlayerBoatEnter);
+
     }
 
     private void FixedUpdate() {
-        if (playerInBoat) {
-            MoveBoat(boatSpeed);
-        }
-
         playerInBoat = bh.playerInBoat;
-    }
 
-    private void ReetCast() {
-        Debug.DrawRay(reet.transform.position, Vector3.down * 0.5f, Color.red);
-        RaycastHit2D hit;
-        hit = Physics2D.Raycast(reet.transform.position, Vector2.down, .5f);
-        if (hit.collider.gameObject.CompareTag("Water")) {
-            Debug.Log("me heavy now");
-            MoveBoat(1);
+        if (shouldMove) {
+            MoveBoat(rawX);
         }
     }
 
-    private void MoveBoat(float speed) {
-        rb.velocity = new Vector2(speed, 0);
+
+    private void MoveBoat(float xMove) {
+        float desiredHorizontalSpeed = xMove * boatSpeed;
+        float velocityGap = desiredHorizontalSpeed - rb.velocity.x;
+
+        float acceleration = 70;
+        float accelerationThisFrame = acceleration * Time.fixedDeltaTime;
+        float accelerationSign = Mathf.Sign(velocityGap);
+        float accelerationMagnitude = Mathf.Min(Mathf.Abs(velocityGap), accelerationThisFrame);
+
+        Vector2 accelerationVector = new Vector2(accelerationMagnitude * accelerationSign, 0);
+
+        rb.AddForce(accelerationVector, ForceMode2D.Impulse);
+
     }
 
     private void onDestinationReached(BoatDestinationReachedEvent e) {
-        boatSpeed = 0f;
+        shouldMove = false;
+
+        Debug.Log("bdre received");
+
+        if (e.last) return;
+
+        Debug.Log("updating raw x");
+        rawX = -(transform.position.x - checkpoints[e.index + 1].position.x);
+        Utils.Instance.InvokeDelayed(.5f, () => {
+            shouldMove = true;
+            Debug.Log("shouldMove = true");
+        });
     }
 
-    private bool activated = false;
+    private void onPlayerBoatEnter(PlayerBoatEnter e) {
+        Debug.Log("player entered boat");
+        rawX = -(transform.position.x - checkpoints[0].position.x);
+        rawX = Mathf.Clamp(rawX, -1, 1);
+
+        shouldMove = true;
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Trigger")) {
-            if (activated) return;
-            activated = true;
-            boatSpeed = 0;
-            Utils.Instance.InvokeDelayed(2f, () => boatSpeed = 1);
-        }
 
         if (collision.gameObject.CompareTag("Vodyanoy")) {
             //collision.gameObject.GetComponent<Vodyanoy>().Connect();
