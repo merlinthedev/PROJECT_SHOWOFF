@@ -7110,8 +7110,12 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -2402269256869612929, guid: 0bd950fa05498fd4fa88034bd3d216b6, type: 3}
+      propertyPath: m_Color.a
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: -2402269256869612929, guid: 0bd950fa05498fd4fa88034bd3d216b6, type: 3}
       propertyPath: m_SortingLayer
-      value: -4
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: -2402269256869612929, guid: 0bd950fa05498fd4fa88034bd3d216b6, type: 3}
       propertyPath: m_SortingLayerID
@@ -25784,7 +25788,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: f4a21b90b95e37a41b7af87833158b21, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
