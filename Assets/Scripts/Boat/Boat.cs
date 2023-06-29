@@ -11,10 +11,12 @@ public class Boat : MonoBehaviour {
 
     [Header("Boat Properties")] public float boatSpeed = 1;
     public bool playerInBoat = false;
+    private bool boatInWater = false;
 
     [SerializeField] private List<Transform> checkpoints = new();
 
     private bool shouldMove = false;
+    [SerializeField] private float frozenTime = 10f;
     private float rawX;
 
     private void OnEnable() {
@@ -62,7 +64,7 @@ public class Boat : MonoBehaviour {
 
         Debug.Log("updating raw x");
         rawX = -(transform.position.x - checkpoints[e.index + 1].position.x);
-        Utils.Instance.InvokeDelayed(.5f, () => {
+        Utils.Instance.InvokeDelayed(frozenTime, () => {
             shouldMove = true;
             Debug.Log("shouldMove = true");
         });
@@ -73,16 +75,23 @@ public class Boat : MonoBehaviour {
         rawX = -(transform.position.x - checkpoints[0].position.x);
         rawX = Mathf.Clamp(rawX, -1, 1);
 
-        shouldMove = true;
+        if (boatInWater) {
+            shouldMove = true;
+            bh.GetPlayer().GetPlayerController().noJumpAllowed = true;
+        }
+
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision) {
-
         if (collision.gameObject.CompareTag("Vodyanoy")) {
             //collision.gameObject.GetComponent<Vodyanoy>().Connect();
             rb.freezeRotation = true;
         }
+    }
+
+    public void BoatInWater() {
+        boatInWater = true;
     }
 
     public BoatHitbox GetBoatHitbox() {

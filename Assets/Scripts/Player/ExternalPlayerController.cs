@@ -28,7 +28,7 @@ public class ExternalPlayerController : MonoBehaviour {
             Utils.Instance.InvokeDelayed(0.5f, () => move(destinations[0].gameObject.transform.position));
             currentDestination = destinations[1];
         } else {
-            currentDestination = destinations[0];
+            currentDestination = destinations[1];
         }
     }
 
@@ -43,7 +43,6 @@ public class ExternalPlayerController : MonoBehaviour {
     private void eventBasedMovement(VodyanoyFinishedWalkingEvent e) {
         EventBus<NextJumpIsCutsceneEvent>.Raise(new NextJumpIsCutsceneEvent {
             destination = currentDestination,
-            callback = () => player.GetPlayerController().JumpIntoDestinationMovement(destinations[1])
         });
     }
 

@@ -4,20 +4,23 @@ public class Water : MonoBehaviour {
     [SerializeField] private Collider2D triggerCollider;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (!other.gameObject.CompareTag("Player")) {
-            return;
+        if (other.gameObject.CompareTag("Player")) {
+            var player = other.gameObject.GetComponent<BetterPlayerMovement>();
+
+            if (player == null) {
+                //Debug.LogError("Player has no BetterPlayerMovement component", this);
+                return;
+            }
+
+            player.setInWater(true);
+
+            Debug.Log("InWater is set to true");
         }
 
-        var player = other.gameObject.GetComponent<BetterPlayerMovement>();
-
-        if (player == null) {
-            //Debug.LogError("Player has no BetterPlayerMovement component", this);
-            return;
+        if (other.gameObject.CompareTag("Boat")) {
+            other.GetComponent<Boat>().BoatInWater();
         }
 
-        player.setInWater(true);
-
-        Debug.Log("InWater is set to true");
     }
 
     private void OnTriggerStay2D(Collider2D other) {

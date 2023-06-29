@@ -18,8 +18,6 @@ public class BoatHitbox : MonoBehaviour {
         if (other.gameObject.CompareTag("Player")) {
             player = other.gameObject.GetComponent<Player>();
 
-            player.GetPlayerController().noJumpAllowed = true;
-
             Debug.Log("Boat hitbox fóund stuff");
             EventBus<PlayerBoatEnter>.Raise(new PlayerBoatEnter());
         }

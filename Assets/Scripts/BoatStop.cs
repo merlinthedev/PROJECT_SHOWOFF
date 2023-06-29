@@ -7,6 +7,10 @@ public class BoatStop : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
+            if (index == 0) {
+                EventBus<VodyanoyAwakeEvent>.Raise(new VodyanoyAwakeEvent());
+            }
+
             EventBus<BoatDestinationReachedEvent>.Raise(new BoatDestinationReachedEvent {
                 index = this.index,
                 last = isLast,
