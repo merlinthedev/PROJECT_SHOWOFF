@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class DialogueManager : MonoBehaviour {
     [SerializeField] DialogueEntry[] entries;
     private int entryIndex;
+    private float startDelay = 2f;
 
     [System.Serializable]
     class DialogueEntry {
@@ -25,8 +26,9 @@ public class DialogueManager : MonoBehaviour {
             var textCol = entries[i].text.color;
             entries[i].text.color = new Color(textCol.r, textCol.g, textCol.b, 0);
         }
-        
-        RunDialogue();
+
+        //start the dialogue after the start delay
+        StartCoroutine(InvokeDelayedCoroutine(RunDialogue, startDelay));
     }
 
     public void RunDialogue() {
@@ -66,9 +68,10 @@ public class DialogueManager : MonoBehaviour {
     public void NextScene(string sceneName) {
         //fadeout all text over 1.6 seconds
         for (int i = 0; i < entries.Length; i++) {
-            var textCol = entries[i].text.color;
-            LeanTween.value(entries[i].text.gameObject, textCol.a, 0f, 1.6f).setOnUpdate((float val) => {
-                entries[i].text.color = new Color(textCol.r, textCol.g, textCol.b, val);
+            var entry = entries[i];
+            var textCol = entry.text.color;
+            LeanTween.value(1f, 0f, 1.6f).setOnUpdate((float val) => {
+                entry.text.color = new Color(textCol.r, textCol.g, textCol.b, val);
             });
         }
         //after the fadeout is done, load the next scene
@@ -80,7 +83,6 @@ public class DialogueManager : MonoBehaviour {
     }
 
     private IEnumerator InvokeDelayedCoroutine(System.Action action, float delay) {
-        Debug.Log("delaying");
         yield return new WaitForSeconds(delay);
         action.Invoke();
     }
