@@ -7,7 +7,20 @@ public class PlayerProjectileController : MonoBehaviour {
     private bool hasProjectile = false;
     private GameObject projectile = null;
     [SerializeField] private Transform holdTransform;
-    [SerializeField] private bool grabbing = false;
+    [SerializeField] public bool grabbing = false;
+
+    [SerializeField] private GameObject startingPickup = null;
+
+    private void Start() {
+        if (startingPickup != null) {
+            IPickup pickup = startingPickup.GetComponent<IPickup>();
+            if (pickup == null) { return; }
+
+            hasProjectile = true;
+            projectile = startingPickup;
+            pickup.OnPickup(player);
+        }
+    }
 
     private void Update() {
         UpdateProjectile();
@@ -53,12 +66,12 @@ public class PlayerProjectileController : MonoBehaviour {
             player.GetPlayerAnimatorController().Pickup();
             p = other.gameObject.GetComponent<IPickup>();
             g = other.gameObject;
-            
+
             Debug.Log("Picked up a pickup!");
 
             freezePlayerAfterRockPickup();
         }
-        
+
     }
 
     public void AnimateRock() {

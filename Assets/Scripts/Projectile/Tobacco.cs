@@ -16,7 +16,7 @@ public class Tobacco : AProjectile, IPickup {
     private void onVodyanoyLocationReceived(VodyanoyLocationEvent e) {
         Vector2 direction = e.location - transform.position;
         direction.Normalize();
-        float force = 30f;
+        float force = 10f;
 
         Debug.Log("Shooting at vod");
 
