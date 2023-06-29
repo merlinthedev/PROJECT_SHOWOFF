@@ -83,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &790853567617532197
@@ -128,17 +128,17 @@ MonoBehaviour:
     Path: event:/BigFrogWalk
   frogCroack:
     Guid:
-      Data1: -1772438259
-      Data2: 1196582494
-      Data3: -1477849170
-      Data4: -852927818
+      Data1: 833504999
+      Data2: 1250625330
+      Data3: 699690677
+      Data4: 375068212
     Path: event:/Vodyanoy_Croak
   frogRise:
     Guid:
-      Data1: -1989380561
-      Data2: 1089638287
-      Data3: 1122630037
-      Data4: 2115745171
+      Data1: 932840117
+      Data2: 1105663171
+      Data3: -998616960
+      Data4: 589064115
     Path: event:/Water_Movement
 --- !u!1 &4606065358533513303
 GameObject:
