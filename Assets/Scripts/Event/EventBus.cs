@@ -25,6 +25,8 @@ namespace EventBus {
         public Vector3 location;
     }
 
+    public class BoatDestinationReachedEvent : Event {
+    }
 }
 
 public class EventBus<T> where T : EventBus.Event {
