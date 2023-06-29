@@ -12,6 +12,8 @@ public abstract class AProjectile : MonoBehaviour {
             return;
         }
 
+        Debug.Log("Shooting AProjectile");
+
         rb.AddForce(direction * force, ForceMode2D.Impulse);
     }
 

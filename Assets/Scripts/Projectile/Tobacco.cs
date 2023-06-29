@@ -16,8 +16,10 @@ public class Tobacco : AProjectile, IPickup {
     private void onVodyanoyLocationReceived(VodyanoyLocationEvent e) {
         Vector2 direction = e.location - transform.position;
         direction.Normalize();
-        float force = 10f;
-        
+        float force = 30f;
+
+        Debug.Log("Shooting at vod");
+
         base.Shoot(direction, force);
     }
 
@@ -44,9 +46,10 @@ public class Tobacco : AProjectile, IPickup {
         player.GetPlayerProjectileController().ResetProjectile();
 
     }
-    
+
 
     public override void Shoot(Vector2 direction, float force) {
+        Debug.Log("Shooting the override function");
         EventBus<TobaccoThrowEvent>.Raise(new TobaccoThrowEvent());
     }
 

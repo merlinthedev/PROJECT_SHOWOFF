@@ -22,11 +22,20 @@ public class Vodyanoy : MonoBehaviour {
     //When the object is enabled, it will move to the riseTarget
     private void OnEnable() {
         EventBus<VodyanoyAwakeEvent>.Subscribe(vodyanoyMove);
+        EventBus<TobaccoThrowEvent>.Subscribe(onTobaccoThrow);
     }
 
     private void OnDisable() {
         EventBus<VodyanoyAwakeEvent>.Unsubscribe(vodyanoyMove);
+        EventBus<TobaccoThrowEvent>.Unsubscribe(onTobaccoThrow);
 
+
+    }
+
+    private void onTobaccoThrow(TobaccoThrowEvent e) {
+        EventBus<VodyanoyLocationEvent>.Raise(new VodyanoyLocationEvent {
+            location = this.gameObject.transform.position
+        });
     }
 
     private void Start() {
@@ -40,7 +49,7 @@ public class Vodyanoy : MonoBehaviour {
 
     //Move the object to the riseTarget
     private void Move() {
-        
+
         LeanTween.move(gameObject, targets[0].transform.position, moveDuration).setEase(LeanTweenType.easeInOutSine)
             .setOnComplete(EnablePlayerJump);
     }
