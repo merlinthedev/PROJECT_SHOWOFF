@@ -14007,14 +14007,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 363483033}
     - target: {fileID: 1750190321989284914, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1318433906}
-    - target: {fileID: 1750190321989284914, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
-      propertyPath: shouldIdleOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1750190321989284914, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
       propertyPath: targets.Array.data[0]
       value: 
       objectReference: {fileID: 1560302923}
@@ -14062,10 +14054,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3566896959887109615, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4606065358533513303, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
       propertyPath: m_Name
       value: Vodyanoy
@@ -14075,11 +14063,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
---- !u!95 &1318433906 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 790853567617532197, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
-  m_PrefabInstance: {fileID: 1318433904}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1320239853
 GameObject:
   m_ObjectHideFlags: 0
