@@ -185,8 +185,11 @@ public class BetterPlayerMovement : MonoBehaviour {
         jumpButtonPressedThisFrame = false;
     }
 
+    public bool inBoat = false;
+
     private void pushObject() {
         if (movementInput.x == 0) return;
+        if (inBoat) return;
         Vector2 rayPosition = new(transform.position.x,
             transform.position.y - m_CapsuleCollider2D.size.y / 3f + m_CapsuleCollider2D.offset.y);
         RaycastHit2D forwardCheck =

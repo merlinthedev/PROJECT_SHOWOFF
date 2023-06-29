@@ -18,6 +18,7 @@ public class Boat : MonoBehaviour {
     private bool shouldMove = false;
     [SerializeField] private float frozenTime = 10f;
     private float rawX;
+    private float accel = 70;
 
     private void OnEnable() {
         EventBus<BoatDestinationReachedEvent>.Subscribe(onDestinationReached);
@@ -44,7 +45,7 @@ public class Boat : MonoBehaviour {
         float desiredHorizontalSpeed = xMove * boatSpeed;
         float velocityGap = desiredHorizontalSpeed - rb.velocity.x;
 
-        float acceleration = 70;
+        float acceleration = accel;
         float accelerationThisFrame = acceleration * Time.fixedDeltaTime;
         float accelerationSign = Mathf.Sign(velocityGap);
         float accelerationMagnitude = Mathf.Min(Mathf.Abs(velocityGap), accelerationThisFrame);
@@ -57,7 +58,7 @@ public class Boat : MonoBehaviour {
 
     private void onDestinationReached(BoatDestinationReachedEvent e) {
         shouldMove = false;
-
+        accel = 35;
         Debug.Log("bdre received");
 
         if (e.last) return;
@@ -78,6 +79,8 @@ public class Boat : MonoBehaviour {
         if (boatInWater) {
             shouldMove = true;
             bh.GetPlayer().GetPlayerController().noJumpAllowed = true;
+            bh.GetPlayer().GetPlayerController().canMove = false;
+            bh.GetPlayer().GetPlayerController().inBoat = true;
         }
 
     }

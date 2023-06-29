@@ -36,6 +36,8 @@ public class PlayerAnimatorController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (playerMovementController.inBoat) animator.SetBool("inBoat", true);
+        else animator.SetBool("inBoat", false);
         if (playerMovementController.canMove || playerMovementController.isExternallyControlled) {
             animator.SetFloat("xSpeed", Mathf.Abs(playerMovementController.m_Rigidbody2D.velocity.x));
         }
