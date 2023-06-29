@@ -22,6 +22,7 @@ public class BetterPlayerMovement : MonoBehaviour {
     [SerializeField] private bool affectGroundHorizontalOnly = true;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask ledgeGrabLayer;
+    [SerializeField] private LayerMask objectLayer;
     private bool hasJumpBuffer => isGrounded && (jumpButtonPressedTime + jumpBufferTime > Time.time);
     private bool hasCoyoteJump => !isGrounded && (lastGroundedTime + coyoteTime > Time.time);
 
@@ -189,7 +190,7 @@ public class BetterPlayerMovement : MonoBehaviour {
         Vector2 rayPosition = new(transform.position.x,
             transform.position.y - m_CapsuleCollider2D.size.y / 3f + m_CapsuleCollider2D.offset.y);
         RaycastHit2D forwardCheck =
-            Physics2D.Raycast(rayPosition, new Vector2(movementInput.x, 0), objectDistance, groundLayer);
+            Physics2D.Raycast(rayPosition, new Vector2(movementInput.x, 0), objectDistance, objectLayer);
 
         if (forwardCheck.collider == null) {
             if (IsPushing) {

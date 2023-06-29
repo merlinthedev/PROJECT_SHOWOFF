@@ -2,30 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using FMODUnity;
 
 public class DialogueManager : MonoBehaviour {
-    [SerializeField] string[] dialogue;
-    [SerializeField] float delay;
-    [SerializeField] TMP_Text[] text;
+    [SerializeField] DialogueEntry[] entries;
     private int textPos;
     private bool fadeIn;
 
+    [System.Serializable]
+    class DialogueEntry {
+        public string dialogue;
+        public float endDelay;
+        public TMP_Text text;
+        public EventReference sound;
+    }
+
     private void Start() {
-        StartCoroutine(InvokeDelayedCoroutine(RunDialogue));
         textPos = 0;
-        for(int i  = 0; i < text.Length; i++) {
-            text[i].color = new Color(text[i].color.r, text[i].color.g, text[i].color.b, 0);
+        RunDialogue();
+        for(int i  = 0; i < entries.Length; i++) {
+            var textCol = entries[i].text.color;
+            entries[i].text.color = new Color(textCol.r, textCol.g, textCol.b, 0);
         }
     }
 
     private void FixedUpdate() {
+        var currTextCol = entries[textPos].text.color;
         //fade in the text
         if (fadeIn) {
-            text[textPos].color = new Color(text[textPos].color.r, text[textPos].color.g, text[textPos].color.b, text[textPos].color.a + 0.01f);
+            currTextCol = new Color(currTextCol.r, currTextCol.g, currTextCol.b, currTextCol.a + 0.01f);
+            entries[textPos].text.color = currTextCol;
         }
 
         //if there is a next entry in the array, do this after the text is faded in
-        if (text[textPos].color.a >= 1f && textPos < text.Length - 1) { 
+        if (currTextCol.a >= 1f && textPos < entries.Length - 1) { 
             fadeIn = false;
             textPos++;
             StartCoroutine(InvokeDelayedCoroutine(RunDialogue));
@@ -33,13 +43,24 @@ public class DialogueManager : MonoBehaviour {
     }
 
     public void RunDialogue() {
-        text[textPos].text = dialogue[textPos];
+        entries[textPos].text.text = entries[textPos].dialogue;
         fadeIn = true;
+
+        if (!entries[textPos].sound.IsNull)
+            RuntimeManager.PlayOneShot(entries[textPos].sound, transform.position);
+
     }
 
-    private System.Collections.IEnumerator InvokeDelayedCoroutine(System.Action action) {
+    public void NextScene() {
+        GlobalSceneManager.GetInstance().LoadLevelFromString("TheRealExampleArtScene");
+    }
+
+    private IEnumerator InvokeDelayedCoroutine(System.Action action) {
+
         Debug.Log("delaying");
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(entries[textPos - 1].endDelay);
+        if(textPos == entries.Length) NextScene();
+
         action.Invoke();
     }
 }
