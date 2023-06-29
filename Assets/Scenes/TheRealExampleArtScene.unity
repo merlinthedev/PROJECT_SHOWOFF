@@ -72451,7 +72451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439114829}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.4, y: 15.55, z: -7}
+  m_LocalPosition: {x: -118.84, y: 8.68, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80238,7 +80238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541395676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.4, y: 15.55, z: -7}
+  m_LocalPosition: {x: -118.84, y: 8.68, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83791,7 +83791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613154995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.95, y: 14.42, z: -7.088583}
+  m_LocalPosition: {x: -116.39, y: 7.55, z: -7.088583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -89403,11 +89403,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.4
+      value: -118.84
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.41
+      value: 7.54
       objectReference: {fileID: 0}
     - target: {fileID: 1224499228632735635, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_LocalPosition.z
@@ -89520,6 +89520,46 @@ PrefabInstance:
     - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: jumpSound.Guid.Data4
       value: -2090385562
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ledgeClimbPart1.Path
+      value: event:/ledge climb part 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ledgeClimbPart2.Path
+      value: event:/ledge climb part 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ledgeClimbPart1.Guid.Data1
+      value: 92746646
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ledgeClimbPart1.Guid.Data2
+      value: 1311737537
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ledgeClimbPart1.Guid.Data3
+      value: 288511166
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ledgeClimbPart1.Guid.Data4
+      value: -1894896600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ledgeClimbPart2.Guid.Data1
+      value: 1992358588
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ledgeClimbPart2.Guid.Data2
+      value: 1107124641
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ledgeClimbPart2.Guid.Data3
+      value: 1187634864
+      objectReference: {fileID: 0}
+    - target: {fileID: 3954622827240131756, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: ledgeClimbPart2.Guid.Data4
+      value: -1150723793
       objectReference: {fileID: 0}
     - target: {fileID: 4362900472004917176, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_SortingLayer
@@ -103462,7 +103502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916580031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.4, y: 15.55, z: -7}
+  m_LocalPosition: {x: -118.84, y: 8.68, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104102,7 +104142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928626197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.4, y: 15.55, z: -7}
+  m_LocalPosition: {x: -118.84, y: 8.68, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
