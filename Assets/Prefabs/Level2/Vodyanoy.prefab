@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6591271830536652811}
   - component: {fileID: 9030543521214064556}
   - component: {fileID: 790853567617532197}
+  - component: {fileID: 8987608351484815776}
   m_Layer: 0
   m_Name: visual
   m_TagString: Untagged
@@ -106,6 +107,39 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8987608351484815776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3566896959887109615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7891843bef3902d4796b4447c02136a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frogWalk:
+    Guid:
+      Data1: 1878442189
+      Data2: 1309606804
+      Data3: 980901776
+      Data4: -1438785004
+    Path: event:/BigFrogWalk
+  frogCroack:
+    Guid:
+      Data1: 833504999
+      Data2: 1250625330
+      Data3: 699690677
+      Data4: 375068212
+    Path: event:/Vodyanoy_Croak
+  frogRise:
+    Guid:
+      Data1: 932840117
+      Data2: 1105663171
+      Data3: -998616960
+      Data4: 589064115
+    Path: event:/Water_Movement
 --- !u!1 &4606065358533513303
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +174,7 @@ Transform:
   - {fileID: 3232769089311945781}
   - {fileID: 6591271830536652811}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2266717000127851937
 SpriteRenderer:
@@ -319,6 +353,6 @@ FixedJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -92.26584, y: 37.727764}
+  m_ConnectedAnchor: {x: -81.2, y: 27.598248}
   m_DampingRatio: 0
   m_Frequency: 0
