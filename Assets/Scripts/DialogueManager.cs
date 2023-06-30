@@ -20,7 +20,7 @@ public class DialogueManager : MonoBehaviour {
     }
 
     private void Start() {
-        //enduser we start at beginning and texts are invisible
+        //ensure we start at beginning and texts are invisible
         entryIndex = 0;
         for(int i  = 0; i < entries.Length; i++) {
             var textCol = entries[i].text.color;
