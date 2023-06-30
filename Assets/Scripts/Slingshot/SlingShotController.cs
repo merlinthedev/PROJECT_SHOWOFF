@@ -24,7 +24,7 @@ public class SlingShotController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (stickInput == Vector2.zero) {
+        if (stickInput == Vector2.zero || player.GetPlayerProjectileController().GetProjectileScript().canThrow == false) {
             slingShotTrajectoryPreview.ClearPredictionLine();
         }
 
@@ -33,7 +33,8 @@ public class SlingShotController : MonoBehaviour {
 
 
     private void aim() {
-        if (player.GetPlayerController().IsOnRope()) return;
+        if (player.GetPlayerProjectileController().GetProjectileScript() == null) return;
+        if (player.GetPlayerController().IsOnRope() || !player.GetPlayerProjectileController().GetProjectileScript().canThrow) return;
         //update smoothed stick
         Vector2 smoothDelta = stickSmoothed - stickInput;
         stickSmoothed -= smoothDelta * Mathf.Clamp01(stickSmoothSpeed * Time.deltaTime);

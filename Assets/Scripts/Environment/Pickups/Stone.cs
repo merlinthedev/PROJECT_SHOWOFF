@@ -24,6 +24,7 @@ public class Stone : AProjectile, IPickup, IReactor {
     }
 
     public void OnPickup(Player player) {
+        preparePlayerPickup();
         transform.SetParent(player.transform);
         transform.position = player.GetPlayerProjectileController().GetHoldingTransform().position;
         particleeffect.SetActive(false);

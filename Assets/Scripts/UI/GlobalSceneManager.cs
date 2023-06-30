@@ -20,12 +20,18 @@ public class GlobalSceneManager : MonoBehaviour {
     private void Awake() {
         if (instance == null) {
             instance = this;
+            EventBus<MainMenuDestroyedEvent>.Subscribe(onMenuDestroyed);
             DontDestroyOnLoad(this);
         } else {
+            EventBus<MainMenuDestroyedEvent>.Raise(new MainMenuDestroyedEvent());
             Destroy(gameObject);
         }
 
         fadeImage.gameObject.SetActive(false);
+    }
+
+    void onMenuDestroyed(MainMenuDestroyedEvent e) {
+        mainMenuObject.transform.parent.gameObject.active = true;
     }
 
     private void OnEnable() {

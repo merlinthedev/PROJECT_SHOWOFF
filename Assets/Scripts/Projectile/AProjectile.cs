@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 public abstract class AProjectile : MonoBehaviour {
+    public bool canThrow = true;
+
     // Shoot method
     public virtual void Shoot(Vector2 direction, float force) {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();

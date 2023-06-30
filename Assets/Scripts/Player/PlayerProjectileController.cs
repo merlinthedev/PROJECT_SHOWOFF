@@ -6,6 +6,7 @@ public class PlayerProjectileController : MonoBehaviour {
 
     private bool hasProjectile = false;
     private GameObject projectile = null;
+    private AProjectile projectileScript = null;
     [SerializeField] private Transform holdTransform;
     [SerializeField] public bool grabbing = false;
 
@@ -18,6 +19,7 @@ public class PlayerProjectileController : MonoBehaviour {
 
             hasProjectile = true;
             projectile = startingPickup;
+            projectileScript = startingPickup.GetComponent<AProjectile>();
             pickup.OnPickup(player);
         }
     }
@@ -46,6 +48,10 @@ public class PlayerProjectileController : MonoBehaviour {
 
     public GameObject GetProjectile() {
         return projectile;
+    }
+
+    public AProjectile GetProjectileScript() {
+        return projectileScript;
     }
 
     public Transform GetHoldingTransform() {
@@ -78,6 +84,7 @@ public class PlayerProjectileController : MonoBehaviour {
         hasProjectile = true;
         p.OnPickup(player);
         projectile = g;
+        projectileScript = g.GetComponent<AProjectile>();
     }
 
     public void OnGrab(InputAction.CallbackContext callbackContext) {

@@ -10,14 +10,21 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject menuRoot;
 
     private void Start() {
-        pauseAction = new InputAction("Pause", binding: "<Keyboard>/escape");
-
+        if (pauseAction == null) return;
         //bind action to method
         pauseAction.started += OnPauseButtonPressed;
         menuRoot.SetActive(false);
 
         //activate action
         pauseAction.Enable();
+    }
+
+    private void OnDestroy() {
+        Time.timeScale = 1f;
+        if (pauseAction == null) return;
+        //deactivate action
+        pauseAction.started -= OnPauseButtonPressed;
+        pauseAction.Disable();
     }
 
     public void Pause() {
