@@ -4118,6 +4118,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -112.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932723516212218009, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 33.42
+      objectReference: {fileID: 0}
     - target: {fileID: 8445435830689493568, guid: 4bdbaf5bd95ca99479dda4d0169ee750, type: 3}
       propertyPath: m_Name
       value: BetterPlayer
@@ -14213,6 +14221,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6591271830536652811, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
       propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143532613967102254, guid: 5cbe3f04a8bcf0b4b9a199f0bc85e2b5, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
