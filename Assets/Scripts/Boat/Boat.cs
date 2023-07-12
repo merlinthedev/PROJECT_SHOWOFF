@@ -81,6 +81,7 @@ public class Boat : MonoBehaviour {
             bh.GetPlayer().GetPlayerController().noJumpAllowed = true;
             bh.GetPlayer().GetPlayerController().canMove = false;
             bh.GetPlayer().GetPlayerController().inBoat = true;
+            bh.GetPlayer().GetPlayerController().m_Rigidbody2D.velocity = Vector2.zero;
         }
 
     }
