@@ -28,6 +28,7 @@ public class RopePart : MonoBehaviour
     }
 
     public void SetDamping(float damping) {
+        if (rigidBody == null) return;
         rigidBody.drag = damping;
     }
 
